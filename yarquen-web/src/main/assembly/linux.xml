@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Linux assembly -->
+<!-- autor: Jorge Riquelme -->
+<!-- fecha: 01/08/2012 -->
+<!-- version: $Id$ -->
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	<id>linux</id>
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+
+	<fileSets>
+		<fileSet>
+			<directory>${project.build.directory}/apache-tomcat-${apache-tomcat.version}</directory>
+			<outputDirectory>/</outputDirectory>
+			<excludes>
+				<exclude>bin/**</exclude>
+				<exclude>**/webapps/docs/**</exclude>
+				<exclude>**/webapps/examples/**</exclude>
+				<exclude>**/webapps/host-manager/**</exclude>
+				<exclude>**/webapps/manager/**</exclude>
+			</excludes>
+			<fileMode>0644</fileMode>
+			<directoryMode>755</directoryMode>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}/apache-tomcat-${apache-tomcat.version}/bin</directory>
+			<outputDirectory>/bin</outputDirectory>
+			<includes>
+				<include>**/*.sh</include>
+			</includes>
+			<fileMode>0755</fileMode>
+			<directoryMode>755</directoryMode>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}/apache-tomcat-${apache-tomcat.version}/bin</directory>
+			<outputDirectory>/bin</outputDirectory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+			<excludes>
+				<exclude>**/*.sh</exclude>
+			</excludes>
+			<directoryMode>755</directoryMode>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/distribution/install</directory>
+			<outputDirectory>/install</outputDirectory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+			<fileMode>0644</fileMode>
+			<directoryMode>755</directoryMode>
+		</fileSet>
+	</fileSets>
+
+	<files>
+		<file>
+			<source>src/main/distribution/bin/setenv.sh</source>
+			<outputDirectory>/bin</outputDirectory>
+			<fileMode>0755</fileMode>
+			<lineEnding>unix</lineEnding>
+		</file>
+		<file>
+			<source>src/main/distribution/bin/jrebel-startup.sh</source>
+			<outputDirectory>/bin</outputDirectory>
+			<fileMode>0755</fileMode>
+			<lineEnding>unix</lineEnding>
+		</file>
+		<file>
+			<source>src/main/distribution/conf/server.xml</source>
+			<outputDirectory>/conf</outputDirectory>
+			<lineEnding>unix</lineEnding>
+			<filtered>true</filtered>
+		</file>
+		<file>
+			<source>src/main/distribution/conf/logback.xml</source>
+			<outputDirectory>/conf</outputDirectory>
+			<lineEnding>unix</lineEnding>
+		</file>
+	</files>
+
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>/webapps/yarquen</outputDirectory>
+			<includes>
+				<include>${project.groupId}:${project.artifactId}</include>
+			</includes>
+			<unpack>true</unpack>
+		</dependencySet>
+		<dependencySet>
+			<outputDirectory>/webapps</outputDirectory>
+			<outputFileNameMapping>yarquen.${artifact.extension}</outputFileNameMapping>
+			<includes>
+				<include>${project.groupId}:${project.artifactId}</include>
+			</includes>
+			<unpack>false</unpack>
+		</dependencySet>
+	</dependencySets>
+</assembly>

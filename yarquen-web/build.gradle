@@ -1,0 +1,28 @@
+/**
+ * yarquen-web build script
+ *
+ * author: Jorge Riquelme
+ * date: 26/11/2012
+ * version: $Id$
+ */
+
+apply plugin: "war"
+apply plugin: "eclipse-wtp"
+
+if (hasProperty("production")) {
+	jar.exclude "rebel.xml"
+}
+
+dependencies {
+	providedCompile "javax.servlet:javax.servlet-api:3.0.1"
+
+	compile project(":yarquen-common")	
+	compile "org.springframework:org.springframework.web.servlet:$springVersion"
+	compile "org.thymeleaf:thymeleaf:2.0.14"
+	compile "org.thymeleaf:thymeleaf-spring3:2.0.14"
+	
+	compile "org.apache.lucene:lucene-core:4.0.0"
+	compile "org.apache.lucene:lucene-analyzers-common:4.0.0"
+	compile "org.apache.lucene:lucene-queryparser:4.0.0"
+	compile "commons-io:commons-io:2.4"
+}

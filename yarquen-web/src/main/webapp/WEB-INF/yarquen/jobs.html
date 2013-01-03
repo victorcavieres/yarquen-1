@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:substituteby="layout :: header">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link th:href="@{/static/bootstrap/css/bootstrap.css}" href="../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+		<link th:href="@{/static/bootstrap/css/bootstrap-responsive.css}" href="../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+		<link th:href="@{/static/css/yarquen.css}" href="../../css/yarquen.css" rel="stylesheet" />
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script th:src="@{/static/bootstrap/js/bootstrap.js}" src="../../bootstrap/js/bootstrap.js"></script>
+		<title>Yarquen Crawler</title>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" th:href="@{/}" href="home.html">Yarquen</a>
+					<div class="nav-collapse collapse">
+						<p class="navbar-text pull-right">Logged in as <a href="#" class="navbar-link">admin</a></p>
+						<ul class="nav">
+							<li class="active"><a th:href="@{/}" href="home.html">Home</a></li>
+							<li><a href="#about">About</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid">
+				<ul class="breadcrumb">
+					<li><a th:href="@{/}" href="home.html">Home</a> <span class="divider">/</span></li>
+					<li class="active">Crawling Jobs</li>
+				</ul>	
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span10 offset1">
+					<table class="table table-bordered table-hover">
+						<caption>Current Jobs</caption>
+						<thead>
+							<tr>
+								<th>Job Id</th>
+								<th>Processed</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="job : ${jobs}">
+								<td th:text="${job.name}">CRW-1</td>
+								<td>2</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div th:substituteby="layout :: footer" class="footer">
+				<p>&copy; no! ;)</p>
+			</div>
+		</div>
+	</body>
+</html>

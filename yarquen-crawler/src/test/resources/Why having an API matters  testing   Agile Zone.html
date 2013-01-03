@@ -1,0 +1,947 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0062)http://agile.dzone.com/articles/why-having-api-matters-testing -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/widgets.js"></script><link rel="stylesheet" type="text/css" href="./Why having an API matters  testing   Agile Zone_files/widget097.css" media="all">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <link rel="canonical" href="http://css.dzone.com/articles/why-having-api-matters-testing">
+    
+    <!-- Start of DART Code -->
+    <script id="LR1" type="text/javascript" async="" src="./Why having an API matters  testing   Agile Zone_files/hubclient.js"></script><script id="facebook-jssdk" src="./Why having an API matters  testing   Agile Zone_files/all.js"></script><script src="./Why having an API matters  testing   Agile Zone_files/cb=gapi.loaded_0" async=""></script><script id="twitter-wjs" src="./Why having an API matters  testing   Agile Zone_files/widgets.js"></script><script type="text/javascript" async="" src="./Why having an API matters  testing   Agile Zone_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" async="" src="./Why having an API matters  testing   Agile Zone_files/ga.js"></script><script src="./Why having an API matters  testing   Agile Zone_files/woopra.js" type="text/javascript" async=""></script><script type="text/javascript">
+	// This is a bad little hack for things that execute reliance on Drupals JS before its been fully loaded
+	var Drupal = Drupal || { 'settings': {}, 'behaviors': {}, 'themes': {}, 'locale': {} };
+	Drupal.behaviors = Drupal.behaviors || {};
+        (function() {
+            var useSSL = 'https:' == document.location.protocol;
+            var src = (useSSL ? 'https:' : 'http:') +
+                '//www.googletagservices.com/tag/js/gpt.js';
+            document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+        })();
+        </script><script src="./Why having an API matters  testing   Agile Zone_files/gpt.js"></script>
+
+    <script type="text/javascript">
+        googletag.defineSlot('/2916070/zones_bottomblurb_650x122', [650, 122], 'div-gpt-ad-1350569504085-0').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_masthead_728x90_default', [728, 90], 'div-gpt-ad-1350569504085-1').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_sidebar_336x280_default', [300, 250], 'div-gpt-ad-1350569504085-2').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_superboard_980x200', [980, 200], 'div-gpt-ad-1350569504085-3').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_239x90', [239, 90], 'div-gpt-ad-1350569504085-40').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_239x90', [239, 90], 'div-gpt-ad-1350569504085-41').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_239x90', [239, 90], 'div-gpt-ad-1350569504085-42').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_800x20', [800, 20], 'div-gpt-ad-1350569504085-5').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_topblurb_650x61', [650, 61], 'div-gpt-ad-1350569504085-6').addService(googletag.pubads());
+        googletag.pubads().enableSyncRendering();
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+        googletag.pubads().setTargeting("tag", "62823-enterprise-integration");
+    </script><script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/google_ads_gpt.js"></script>
+    <!-- End of DART Code -->
+
+
+    <!-- Start of Woopra Code -->
+    <script type="text/javascript">
+        function woopraReady(tracker) {
+            tracker.setDomain('dzone.com');
+            tracker.setIdleTimeout(300000);
+
+            
+            tracker.trackPageview({
+                url: window.location.pathname + window.location.search,
+                title: document.title,
+                                    author: 'piccoloprincipe',
+                                zone:'Agile Zone',
+                microzone:'1'
+            });
+
+            return false;
+        }
+        (function() {
+            var wsc = document.createElement('script');
+            wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
+            wsc.type = 'text/javascript';
+            wsc.async = true;
+            var ssc = document.getElementsByTagName('script')[0];
+            ssc.parentNode.insertBefore(wsc, ssc);
+        })();
+    </script>
+    <!-- End of Woopra Code -->
+
+    <!-- Use this code block to activate a prestitial if there's one to load -->
+    <!-- BEGIN ADVERTPRO ADVANCED CODE BLOCK -->
+
+    <script language="JavaScript" type="text/javascript">
+        <!--
+        document.write('<SCR'+'IPT src="http://avpa.dzone.com/servlet/view/dynamic/javascript/zone?zid=159&pid=0&random='+Math.floor(89999999*Math.random()+10000000)+'&millis='+new Date().getTime()+'" language="JavaScript" type="text/javascript"></SCR'+'IPT>');
+        //-->
+    </script><script src="./Why having an API matters  testing   Agile Zone_files/zone" language="JavaScript" type="text/javascript"></script>
+
+    <!-- END ADVERTPRO ADVANCED CODE BLOCK -->
+
+            <title>Why having an API matters: testing | Agile Zone</title>
+    
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for &quot;Why having an API matters: testing&quot;" href="http://agile.dzone.com/crss/node/122939">
+
+<link rel="shortcut icon" href="http://agile.dzone.com/misc/favicon.ico" type="image/x-icon">
+<script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/16518638.js"></script>
+            <link rel="alternate" type="application/rss+xml" title="Agile Zone RSS" href="http://feeds.dzone.com/zones/agile">
+                <link type="text/css" rel="stylesheet" media="all" href="./Why having an API matters  testing   Agile Zone_files/css_7300f5cc0042f89cb9c0bee528cfa1a1.css">
+<link type="text/css" rel="stylesheet" media="print" href="./Why having an API matters  testing   Agile Zone_files/css_ba431a9c54c12f1ae2f21704f258686a.css">
+                <meta name="Description" content="You know when they tell you exposing an HTTP API for your application (usually a REST-like one) is positive for reuse and accessing it in unforeseen ways?...">
+            
+        <meta name="google-site-verification" content="Sz_0y6oSgz3X38lir7pEv1Iio3tqLItTgPdyYPuQPsk">
+    
+    <!-- RSS link -->
+    
+        <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-410289-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>                        <script type="text/javascript">
+                _gaq.push(['_trackEvent', 'piccoloprincipe\'s Pageviews', 'Original', 'Why having an API matters: testing']);
+                <!--                pageTracker._trackEvent('--><!--\'s Pageviews', '--><!--', "--><!--");-->
+            </script>
+                        
+
+<script src="./Why having an API matters  testing   Agile Zone_files/nonSecureAnonymousFramework"></script><div style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;" id="_atssh"><iframe id="_atssh684" title="AddThis utility frame" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px; left: 0px; top: 0px;" src="./Why having an API matters  testing   Agile Zone_files/sh103.html"></iframe></div><script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/core048.js"></script><link rel="stylesheet" type="text/css" href="./Why having an API matters  testing   Agile Zone_files/woopra.widgets.2.css"><script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/osd.js"></script><style type="text/css">* html #li_ui_li_gen_1353555026198_0 a#li_ui_li_gen_1353555026198_0-link{height:1% !important;}#li_ui_li_gen_1353555026198_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1353555026198_0 a#li_ui_li_gen_1353555026198_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1353555026198_0 a#li_ui_li_gen_1353555026198_0-link:link, #li_ui_li_gen_1353555026198_0 a#li_ui_li_gen_1353555026198_0-link:visited, #li_ui_li_gen_1353555026198_0 a#li_ui_li_gen_1353555026198_0-link:hover, #li_ui_li_gen_1353555026198_0 a#li_ui_li_gen_1353555026198_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1353555026198_0 a#li_ui_li_gen_1353555026198_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-logo{background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -276px no-repeat !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;}#li_ui_li_gen_1353555026198_0.hovered #li_ui_li_gen_1353555026198_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1353555026198_0.clicked #li_ui_li_gen_1353555026198_0-logo, #li_ui_li_gen_1353555026198_0.down #li_ui_li_gen_1353555026198_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-logo{}#li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1353555026198_0.hovered #li_ui_li_gen_1353555026198_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1353555026198_0.clicked #li_ui_li_gen_1353555026198_0-title, #li_ui_li_gen_1353555026198_0.down #li_ui_li_gen_1353555026198_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title{}.IN-shadowed #li_ui_li_gen_1353555026198_0.hovered #li_ui_li_gen_1353555026198_0-title{}.IN-shadowed #li_ui_li_gen_1353555026198_0.clicked #li_ui_li_gen_1353555026198_0-title, .IN-shadowed #li_ui_li_gen_1353555026198_0.down #li_ui_li_gen_1353555026198_0-title{}#li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title-text, #li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;display:inline-block !important;background:transparent none !important;vertical-align:baseline !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1353555026198_0.hovered #li_ui_li_gen_1353555026198_0-title-text, #li_ui_li_gen_1353555026198_0.hovered #li_ui_li_gen_1353555026198_0-title-text *{color:#000 !important;}#li_ui_li_gen_1353555026198_0.clicked #li_ui_li_gen_1353555026198_0-title-text, #li_ui_li_gen_1353555026198_0.down #li_ui_li_gen_1353555026198_0-title-text, #li_ui_li_gen_1353555026198_0.clicked #li_ui_li_gen_1353555026198_0-title-text *, #li_ui_li_gen_1353555026198_0.down #li_ui_li_gen_1353555026198_0-title-text *{color:#666 !important;}#li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title #li_ui_li_gen_1353555026198_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title-text, .success #li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1353555026198_0 #li_ui_li_gen_1353555026198_0-title{}.success #li_ui_li_gen_1353555026198_0.hovered #li_ui_li_gen_1353555026198_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1353555026198_0.hovered #li_ui_li_gen_1353555026198_0-title-text, .success #li_ui_li_gen_1353555026198_0.hovered #li_ui_li_gen_1353555026198_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1353555026198_0.clicked #li_ui_li_gen_1353555026198_0-title, .success #li_ui_li_gen_1353555026198_0.down #li_ui_li_gen_1353555026198_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1353555026198_0.clicked #li_ui_li_gen_1353555026198_0-title-text, .success #li_ui_li_gen_1353555026198_0.down #li_ui_li_gen_1353555026198_0-title-text, .success #li_ui_li_gen_1353555026198_0.clicked #li_ui_li_gen_1353555026198_0-title-text *, .success #li_ui_li_gen_1353555026198_0.down #li_ui_li_gen_1353555026198_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1353555026198_0.clicked #li_ui_li_gen_1353555026198_0-title, .IN-shadowed .success #li_ui_li_gen_1353555026198_0.down #li_ui_li_gen_1353555026198_0-title{}#li_ui_li_gen_1353555026237_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1353555026237_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) right -100px no-repeat !important;}#li_ui_li_gen_1353555026237_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -60px no-repeat !important;}#li_ui_li_gen_1353555026237_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1353555026237_1-container.IN-hovered #li_ui_li_gen_1353555026237_1.IN-right, #li_ui_li_gen_1353555026237_1-container.IN-clicked #li_ui_li_gen_1353555026237_1.IN-right, #li_ui_li_gen_1353555026237_1-container.IN-down #li_ui_li_gen_1353555026237_1.IN-right {background-position-y:-120px !important;}#li_ui_li_gen_1353555026237_1-container.IN-hovered #li_ui_li_gen_1353555026237_1-inner.IN-right, #li_ui_li_gen_1353555026237_1-container.IN-clicked #li_ui_li_gen_1353555026237_1-inner.IN-right, #li_ui_li_gen_1353555026237_1-container.IN-down #li_ui_li_gen_1353555026237_1-inner.IN-right {background-position-y:-80px !important;}#li_ui_li_gen_1353555026237_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1353555026237_1-container.IN-hidden #li_ui_li_gen_1353555026237_1 {display:none !important;}* html #li_ui_li_gen_1353555026272_2 a#li_ui_li_gen_1353555026272_2-link{height:1% !important;}#li_ui_li_gen_1353555026272_2{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1353555026272_2 a#li_ui_li_gen_1353555026272_2-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1353555026272_2 a#li_ui_li_gen_1353555026272_2-link:link, #li_ui_li_gen_1353555026272_2 a#li_ui_li_gen_1353555026272_2-link:visited, #li_ui_li_gen_1353555026272_2 a#li_ui_li_gen_1353555026272_2-link:hover, #li_ui_li_gen_1353555026272_2 a#li_ui_li_gen_1353555026272_2-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1353555026272_2 a#li_ui_li_gen_1353555026272_2-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-logo{background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -276px no-repeat !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;}#li_ui_li_gen_1353555026272_2.hovered #li_ui_li_gen_1353555026272_2-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1353555026272_2.clicked #li_ui_li_gen_1353555026272_2-logo, #li_ui_li_gen_1353555026272_2.down #li_ui_li_gen_1353555026272_2-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-logo{}#li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1353555026272_2.hovered #li_ui_li_gen_1353555026272_2-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1353555026272_2.clicked #li_ui_li_gen_1353555026272_2-title, #li_ui_li_gen_1353555026272_2.down #li_ui_li_gen_1353555026272_2-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title{}.IN-shadowed #li_ui_li_gen_1353555026272_2.hovered #li_ui_li_gen_1353555026272_2-title{}.IN-shadowed #li_ui_li_gen_1353555026272_2.clicked #li_ui_li_gen_1353555026272_2-title, .IN-shadowed #li_ui_li_gen_1353555026272_2.down #li_ui_li_gen_1353555026272_2-title{}#li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title-text, #li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;display:inline-block !important;background:transparent none !important;vertical-align:baseline !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title-text em{font-style:italic !important;}#li_ui_li_gen_1353555026272_2.hovered #li_ui_li_gen_1353555026272_2-title-text, #li_ui_li_gen_1353555026272_2.hovered #li_ui_li_gen_1353555026272_2-title-text *{color:#000 !important;}#li_ui_li_gen_1353555026272_2.clicked #li_ui_li_gen_1353555026272_2-title-text, #li_ui_li_gen_1353555026272_2.down #li_ui_li_gen_1353555026272_2-title-text, #li_ui_li_gen_1353555026272_2.clicked #li_ui_li_gen_1353555026272_2-title-text *, #li_ui_li_gen_1353555026272_2.down #li_ui_li_gen_1353555026272_2-title-text *{color:#666 !important;}#li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title #li_ui_li_gen_1353555026272_2-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title-text, .success #li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1353555026272_2 #li_ui_li_gen_1353555026272_2-title{}.success #li_ui_li_gen_1353555026272_2.hovered #li_ui_li_gen_1353555026272_2-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1353555026272_2.hovered #li_ui_li_gen_1353555026272_2-title-text, .success #li_ui_li_gen_1353555026272_2.hovered #li_ui_li_gen_1353555026272_2-title-text *{color:#000 !important;}.success #li_ui_li_gen_1353555026272_2.clicked #li_ui_li_gen_1353555026272_2-title, .success #li_ui_li_gen_1353555026272_2.down #li_ui_li_gen_1353555026272_2-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1353555026272_2.clicked #li_ui_li_gen_1353555026272_2-title-text, .success #li_ui_li_gen_1353555026272_2.down #li_ui_li_gen_1353555026272_2-title-text, .success #li_ui_li_gen_1353555026272_2.clicked #li_ui_li_gen_1353555026272_2-title-text *, .success #li_ui_li_gen_1353555026272_2.down #li_ui_li_gen_1353555026272_2-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1353555026272_2.clicked #li_ui_li_gen_1353555026272_2-title, .IN-shadowed .success #li_ui_li_gen_1353555026272_2.down #li_ui_li_gen_1353555026272_2-title{}#li_ui_li_gen_1353555026310_3-container.IN-top {display:inline-block !important;overflow:visible !important;position:relative !important;height:42px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1353555026310_3.IN-top {display:inline-block !important;height:42px !important;width:57px !important;text-align:center !important;background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) -150px top no-repeat !important;}#li_ui_li_gen_1353555026310_3-content.IN-top {display:inline !important;font-size:16px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:34px !important;}#li_ui_li_gen_1353555026310_3-container.IN-hovered #li_ui_li_gen_1353555026310_3.IN-top, #li_ui_li_gen_1353555026310_3-container.IN-clicked #li_ui_li_gen_1353555026310_3.IN-top, #li_ui_li_gen_1353555026310_3-container.IN-down #li_ui_li_gen_1353555026310_3.IN-top {background-position-x:-210px !important;}#li_ui_li_gen_1353555026310_3-container.IN-empty #li_ui_li_gen_1353555026310_3-inner.IN-top {background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -20px no-repeat !important;overflow:hidden !important;margin:5px auto 0 auto !important;width:26px !important;height:26px !important;display:block !important;}#li_ui_li_gen_1353555026310_3-container.IN-empty #li_ui_li_gen_1353555026310_3-content.IN-top {text-indent:-999px !important;display:inline-block !important;}#li_ui_li_gen_1353555026310_3-container.IN-hidden #li_ui_li_gen_1353555026310_3 {display:none !important;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border-spacing:0;border:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/y6/x/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/y6/x/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/y6/x/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+/* @noflip */
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+/* @noflip */
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yD/x/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;left:-10000px;overflow:visible;position:absolute;top:-10000px;width:100%
+}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yc/x/3rhSv5V8j3o.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0 0, 0 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0 0, 0 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yJ/x/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{position:relative;display:-moz-inline-block;display:inline-block}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_iframe_widget span{position:relative;display:inline-block;vertical-align:text-bottom;text-align:justify}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yJ/x/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_button_simple,
+.fb_button_simple_rtl{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yH/x/eIpbnVKI9lR.png);background-repeat:no-repeat;cursor:pointer;outline:none;text-decoration:none}
+.fb_button_simple_rtl{background-position:right 0}
+.fb_button_simple .fb_button_text{margin:0 0 0 20px;padding-bottom:1px}
+.fb_button_simple_rtl .fb_button_text{margin:0 10px 0 0}
+a.fb_button_simple:hover .fb_button_text,
+a.fb_button_simple_rtl:hover .fb_button_text,
+.fb_button_simple:hover .fb_button_text,
+.fb_button_simple_rtl:hover .fb_button_text{text-decoration:underline}
+.fb_button,
+.fb_button_rtl{background:#29447e url(http://static.ak.fbcdn.net/rsrc.php/v2/yl/x/FGFbc80dUKj.png);background-repeat:no-repeat;cursor:pointer;display:inline-block;padding:0 0 0 1px;text-decoration:none;outline:none}
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text{background:#5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v2/yl/x/FGFbc80dUKj.png);border-top:solid 1px #879ac0;border-bottom:solid 1px #1a356e;color:#fff;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-weight:bold;padding:2px 6px 3px 6px;margin:1px 1px 0 21px;text-shadow:none}
+a.fb_button,
+a.fb_button_rtl,
+.fb_button,
+.fb_button_rtl{text-decoration:none}
+a.fb_button:active .fb_button_text,
+a.fb_button_rtl:active .fb_button_text,
+.fb_button:active .fb_button_text,
+.fb_button_rtl:active .fb_button_text{border-bottom:solid 1px #29447e;border-top:solid 1px #45619d;background:#4f6aa3;text-shadow:none}
+.fb_button_xlarge,
+.fb_button_xlarge_rtl{background-position:left -60px;font-size:24px;line-height:30px}
+.fb_button_xlarge .fb_button_text{padding:3px 8px 3px 12px;margin-left:38px}
+a.fb_button_xlarge:active{background-position:left -99px}
+.fb_button_xlarge_rtl{background-position:right -268px}
+.fb_button_xlarge_rtl .fb_button_text{padding:3px 8px 3px 12px;margin-right:39px}
+a.fb_button_xlarge_rtl:active{background-position:right -307px}
+.fb_button_large,
+.fb_button_large_rtl{background-position:left -138px;font-size:13px;line-height:16px}
+.fb_button_large .fb_button_text{margin-left:24px;padding:2px 6px 4px 6px}
+a.fb_button_large:active{background-position:left -163px}
+.fb_button_large_rtl{background-position:right -346px}
+.fb_button_large_rtl .fb_button_text{margin-right:25px}
+a.fb_button_large_rtl:active{background-position:right -371px}
+.fb_button_medium,
+.fb_button_medium_rtl{background-position:left -188px;font-size:11px;line-height:14px}
+a.fb_button_medium:active{background-position:left -210px}
+.fb_button_medium_rtl{background-position:right -396px}
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text{padding:2px 6px 3px 6px;margin-right:22px}
+a.fb_button_medium_rtl:active{background-position:right -418px}
+.fb_button_small,
+.fb_button_small_rtl{background-position:left -232px;font-size:10px;line-height:10px}
+.fb_button_small .fb_button_text{padding:2px 6px 3px;margin-left:17px}
+a.fb_button_small:active,
+.fb_button_small:active{background-position:left -250px}
+.fb_button_small_rtl{background-position:right -440px}
+.fb_button_small_rtl .fb_button_text{padding:2px 6px;margin-right:18px}
+a.fb_button_small_rtl:active{background-position:right -458px}
+.fb_share_count_wrapper{position:relative;float:left}
+.fb_share_count{background:#b0b9ec none repeat scroll 0 0;color:#333;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.fb_share_count_inner{background:#e8ebf2;display:block}
+.fb_share_count_right{margin-left:-1px;display:inline-block}
+.fb_share_count_right .fb_share_count_inner{border-top:solid 1px #e8ebf2;border-bottom:solid 1px #b0b9ec;margin:1px 1px 0 1px;font-size:10px;line-height:10px;padding:2px 6px 3px;font-weight:bold}
+.fb_share_count_top{display:block;letter-spacing:-1px;line-height:34px;margin-bottom:7px;font-size:22px;border:solid 1px #b0b9ec}
+.fb_share_count_nub_top{border:none;display:block;position:absolute;left:7px;top:35px;margin:0;padding:0;width:6px;height:7px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yP/x/bSOHtKbCGYI.png)}
+.fb_share_count_nub_right{border:none;display:inline-block;padding:0;width:5px;height:10px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/x/i_oIVTKMYsL.png);vertical-align:top;background-position:right 5px;z-index:10;left:2px;margin:0 2px 0 0;position:relative}
+.fb_share_no_count{display:none}
+.fb_share_size_Small .fb_share_count_right .fb_share_count_inner{font-size:10px}
+.fb_share_size_Medium .fb_share_count_right .fb_share_count_inner{font-size:11px;padding:2px 6px 3px;letter-spacing:-1px;line-height:14px}
+.fb_share_size_Large .fb_share_count_right .fb_share_count_inner{font-size:13px;line-height:16px;padding:2px 6px 4px;font-weight:normal;letter-spacing:-1px}
+.fb_share_count_hidden .fb_share_count_nub_top,
+.fb_share_count_hidden .fb_share_count_top,
+.fb_share_count_hidden .fb_share_count_nub_right,
+.fb_share_count_hidden .fb_share_count_right{visibility:hidden}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+/* @noflip */
+.fbpluginrecommendationsbarleft{left:10px}
+/* @noflip */
+.fbpluginrecommendationsbarright{right:10px}
+</style></head>
+<body class="sidebar-right" data-twttr-rendered="true"><iframe id="twttrHubFrameSecure" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrameSecure" style="position: absolute; top: -9999em; width: 10px; height: 10px;" src="./Why having an API matters  testing   Agile Zone_files/hub(1).html"></iframe><iframe id="twttrHubFrame" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrame" style="position: absolute; top: -9999em; width: 10px; height: 10px;" src="./Why having an API matters  testing   Agile Zone_files/hub.html"></iframe>
+
+<div id="page_wrapper">
+
+
+<div class="global_menu">
+    <div class="menu_wrapper">
+        <div id="menu_login">
+                        <a href="http://agile.dzone.com/user">LOG IN</a> or <a href="http://agile.dzone.com/user/register?clean=true">JOIN</a>
+                    </div>
+                <ul class="nice-menu nice-menu-down" id="nice-menu-1"><li id="menu-211" class="menu-path-www.dzone.com"><a href="http://www.dzone.com/" title="">Home</a></li>
+<li id="menu-167" class="menu-path-refcardz.dzone.com-"><a href="http://refcardz.dzone.com/">Refcardz</a></li>
+<li id="menu-4979" class="menuparent menu-path-www.dzone.com-mz"><a href="http://www.dzone.com/mz" title="">Microzones</a><ul><li id="menu-5029" class="menu-path-domain-cloud.dzone.com"><a href="http://agile.dzone.com/domain/cloud.dzone.com" title="Go to cloud.dzone.com">Cloud Zone</a></li>
+<li id="menu-5221" class="menu-path-dzone.com-mz-nosql"><a href="http://dzone.com/mz/nosql" title="">NoSQL Zone</a></li>
+<li id="menu-5187" class="menu-path-dzone.com-mz-html5"><a href="http://dzone.com/mz/html5" title="">HTML5 Zone</a></li>
+<li id="menu-5081" class="menu-path-dzone.com-mz-devops"><a href="http://dzone.com/mz/devops" title="">DevOps Zone</a></li>
+<li id="menu-5451" class="menu-path-dzone.com-mz-enterprise-integration"><a href="http://dzone.com/mz/enterprise-integration" title="">Enterprise Integration</a></li>
+<li id="menu-4987" class="menu-path-dzone.com-mz-windowsphone7"><a href="http://dzone.com/mz/windowsphone7" title="">Windows Phone</a></li>
+<li id="menu-5293" class="menu-path-dzone.com-mz-dotnet"><a href="http://dzone.com/mz/dotnet" title="">.NET Zone</a></li>
+<li id="menu-5607" class="menu-path-dzone.com-mz-performance"><a href="http://dzone.com/mz/performance" title="">Performance Zone</a></li>
+<li id="menu-5613" class="menu-path-dzone.com-mz-big-data"><a href="http://dzone.com/mz/big-data" title="">Big Data/BI Zone</a></li>
+</ul>
+</li>
+<li id="menu-125" class="menuparent menu-path-domain"><a href="http://agile.dzone.com/domain">Zones</a><ul><li id="menu-358" class="menu-path-domain-agile.dzone.com"><a href="http://agile.dzone.com/domain/agile.dzone.com" title="Go to agile.dzone.com">Agile Zone</a></li>
+<li id="menu-4849" class="menu-path-domain-mobile.dzone.com"><a href="http://agile.dzone.com/domain/mobile.dzone.com" title="Go to mobile.dzone.com">Mobile Zone</a></li>
+<li id="menu-426" class="menu-path-domain-java.dzone.com"><a href="http://agile.dzone.com/domain/java.dzone.com" title="Go to java.dzone.com">Javalobby</a></li>
+<li id="menu-454" class="menu-path-domain-css.dzone.com"><a href="http://agile.dzone.com/domain/css.dzone.com" title="Go to css.dzone.com">Web Builder Zone</a></li>
+<li id="menu-4991" class="menuparent menu-path-front"><a href="http://agile.dzone.com/" title="">IDEs and Tools</a><ul><li id="menu-413" class="menu-path-domain-eclipse.dzone.com"><a href="http://agile.dzone.com/domain/eclipse.dzone.com" title="Go to eclipse.dzone.com">Eclipse Zone</a></li>
+<li id="menu-317" class="menu-path-domain-jetbrains.dzone.com"><a href="http://agile.dzone.com/domain/jetbrains.dzone.com" title="Go to jetbrains.dzone.com">JetBrains Zone</a></li>
+<li id="menu-431" class="menu-path-domain-netbeans.dzone.com"><a href="http://agile.dzone.com/domain/netbeans.dzone.com" title="Go to netbeans.dzone.com">NetBeans Zone</a></li>
+</ul>
+</li>
+<li id="menu-4999" class="menuparent menu-path-front"><a href="http://agile.dzone.com/" title="">Languages</a><ul><li id="menu-5295" class="menu-path-php.dzone.com"><a href="http://php.dzone.com/" title="Go to php.dzone.com">PHP Zone</a></li>
+<li id="menu-5001" class="menu-path-groovy.dzone.com"><a href="http://groovy.dzone.com/" title="">Groovy Zone</a></li>
+<li id="menu-5003" class="menu-path-python.dzone.com"><a href="http://python.dzone.com/" title="">Python Zone</a></li>
+<li id="menu-5457" class="menu-path-ruby.dzone.com"><a href="http://ruby.dzone.com/" title="">Ruby Zone</a></li>
+</ul>
+</li>
+<li id="menu-189" class="menu-path-domain-architects.dzone.com"><a href="http://agile.dzone.com/domain/architects.dzone.com" title="Go to architects.dzone.com">Architects Zone</a></li>
+<li id="menu-400" class="menu-path-domain-books.dzone.com"><a href="http://agile.dzone.com/domain/books.dzone.com" title="Go to books.dzone.com">Book Zone</a></li>
+<li id="menu-287" class="menu-path-domain-server.dzone.com"><a href="http://agile.dzone.com/domain/server.dzone.com">Server Zone</a></li>
+</ul>
+</li>
+<li id="menu-367" class="menu-path-library.dzone.com"><a href="http://library.dzone.com/">Library</a></li>
+<li id="menu-1349" class="menu-path-dzone.com-snippets-"><a href="http://dzone.com/snippets/" title="">Snippets</a></li>
+<li id="menu-5617" class="menu-path-www.dzone.com-tutorials-"><a href="http://www.dzone.com/tutorials/" title="">Tutorials</a></li>
+</ul>
+        <div id="search_bar">
+            <form action="http://agile.dzone.com/search/google" accept-charset="UTF-8" method="get" id="google-cse-searchbox-form">
+<div><input type="hidden" name="cx" id="edit-cx" value="010821965829155306098:ogyaz_5nsc8">
+<input type="hidden" name="cof" id="edit-cof" value="FORID:11">
+<div class="form-item" id="edit-query-wrapper">
+ <input type="text" maxlength="128" name="query" id="edit-query" size="15" value="" title="Enter the terms you wish to search for." class="form-text" style="background-image: url(http://www.google.com/coop/intl/en/images/google_custom_search_watermark.gif); background-color: rgb(255, 255, 255); background-position: 0% 50%; background-repeat: no-repeat no-repeat;">
+</div>
+<input type="submit" name="op" id="edit-sa" value="Search" class="form-submit">
+<input type="hidden" name="form_build_id" id="form-d348a9ad88a1c9b1d992aacbedab0340" value="form-d348a9ad88a1c9b1d992aacbedab0340">
+<input type="hidden" name="form_id" id="edit-google-cse-searchbox-form" value="google_cse_searchbox_form">
+
+</div></form>
+        </div>
+    </div>
+</div>
+
+    
+
+
+<div class="siteHeader">
+</div>
+
+
+<div id="header-region" class="clear-block">
+</div>
+
+<div id="wrapper" class="fewerAds">
+<div id="container" class="clear-block">
+<div id="header">
+    <div id="masthead">
+
+        <div id="site_id">
+                        <a href="http://www.dzone.com/mz/enterprise-integration" title="DZone: Your Personal Tech Universe"><img class="dz_logo" src="./Why having an API matters  testing   Agile Zone_files/mh_dzone_logo.png" alt="DZone: Your Personal Tech Universe" title="DZone: Your Personal Tech Universe"></a>
+                            <!--                    <div class="site_name" style="margin-top:16px;"><a  href="--><!--" title="--><!--">--><!--</a></div>-->
+                <!--                    <a href="--><!--" title="--><!--"><img class="site_logo" src="http://cdn.dzone.com/--><!--"-->
+                <!--                         alt="--><!--" title="--><!--" /></a>-->
+                            <!--                <span class="site_slogan">--><!--</span>-->
+                    </div>
+
+        
+                <div class="mh_leader">
+            <div class="leaderboard">
+                <!-- BEGIN DART CODE BLOCK -->
+                        <!-- zones_textad_239x90 -->
+                    <div id="div-gpt-ad-1350569504085-4" class="top-textad">
+                        <script type="text/javascript">
+                            googletag.display('div-gpt-ad-1350569504085-40');
+                        </script><script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/ads"></script><div id="div-gpt-ad-1350569504085-40_ad_container"><a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DB7IU0UZytUOHNIOG7sQfs6YGIB6awnfgCAAAAEAEg4tPyBjgAWIabq9c-YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIcLzI5MTYwNzAvem9uZXNfdGV4dGFkXzIzOXg5MPgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBh8%2526num%253D0%2526sig%253DAOD64_2L-RsPx_Zrj-8_sPtAZqq_2pGmVg%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://www.mulesoft.com/mule-esb-open-source-esb" title="" target="_blank"><span style="color:green"><b><span style="font-size:15px;">Connect the Enterprise</span><br></b></span></a> <span style="color:black"><span style="font-size:15px;">The world's most widely <br>used integration platform</span></span><br>
+
+</div>
+
+                    </div>
+                    <div id="div-gpt-ad-1333726564216-41" class="top-textad">
+                        <script type="text/javascript">
+                            googletag.display('div-gpt-ad-1350569504085-41');
+                        </script><div id="div-gpt-ad-1350569504085-41_ad_container"><a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBjqRuUZytUOLNIOG7sQfs6YGIB6awnfgCAAAAEAEg4tPyBjgAWP6bq9c-YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIcLzI5MTYwNzAvem9uZXNfdGV4dGFkXzIzOXg5MPgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBh8%2526num%253D0%2526sig%253DAOD64_1pXknhG4lvVK3ZPdWGnYdmyUONhg%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://www.mulesoft.com/webinars" title="" target="_blank"><span style="color:green"><b><span style="font-size:15px;">Exclusive Mulesoft Webinar</span><br></b></span></a> <span style="color:black"><span style="font-size:15px;">Better Together: SAP and <br>Salesforce.com. Space Limited</span></span><br>
+
+</div>
+
+                    </div>
+                    <div id="div-gpt-ad-1333726564216-42" class="top-textad">
+                        <script type="text/javascript">
+                            googletag.display('div-gpt-ad-1350569504085-42');
+                        </script><div id="div-gpt-ad-1350569504085-42_ad_container"><a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DB1_muUZytUOPNIOG7sQfs6YGIB6awnfgCAAAAEAEg4tPyBjgAWI6aq9c-YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIcLzI5MTYwNzAvem9uZXNfdGV4dGFkXzIzOXg5MPgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBh8%2526num%253D0%2526sig%253DAOD64_2RrvNO4r3SoS2wj2WwXQcMm9eoxQ%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://www.mulesoft.com/enterprise-integration-platform" title="" target="_blank"><span style="color:green"><b><span style="font-size:15px;">Integrate Anywhere</span><br></b></span></a> <span style="color:black"><span style="font-size:15px;">The #1 integration platform<br>for cloud and enterprise</span></span><br>
+
+</div>
+
+                    </div>
+                <!-- END DART CODE BLOCK -->
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<div id="siteBar">
+            <div class="site_name"><a href="http://www.dzone.com/mz/enterprise-integration" style="font-size:13px;" title="Enterprise Integration Zone">Enterprise Integration</a></div>
+    <div class="textads">
+        <!-- zones_textad_800x20 -->
+        <div id="div-gpt-ad-1350569504085-5" style="width:800px; height:20px;">
+            <script type="text/javascript">
+                googletag.display('div-gpt-ad-1350569504085-5');
+            </script><div id="div-gpt-ad-1350569504085-5_ad_container"><style type="text/css">
+    #zone_800_textad{
+        font-size: 16px;
+        font-family: 'MuseoSans500', helvetica, arial;
+        font-weight:normal;
+        color: #555;
+        text-decoration:none;
+    }
+
+    #zone_800_textad a{
+        font-weight:bold;
+        color:#555;
+        text-decoration:none;
+    }
+</style>
+
+<div id="zone_800_textad">
+    Join the DZone team!
+<a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBzWytUZytUOTNIOG7sQfs6YGIB8bk9f0CAAAAEAEg4tPyBjgAWJ6UvsAxYJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIcLzI5MTYwNzAvem9uZXNfdGV4dGFkXzgwMHgyMPgCgdIekAOcBJgDpAOoAwHQBJBO4AQBoAYW%2526num%253D0%2526sig%253DAOD64_07hV3ToQFqm8M3kwYvBjshhWp6Cg%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://www.dzone.com/corporate/careers" target="_parent"> See our open positions.</a>
+</div>
+
+</div>
+
+        </div>
+    </div>
+    </div>
+
+<!--    <div class="topics-trending fancyfont">-->
+<!--    --><!--    </div>-->
+
+    
+<div id="superboard">
+    <span class="superboard_sponsor_info">Enterprise Integration Zone is brought to you in partnership with:</span>
+    <!-- zones_superboard_980x200 -->
+    <div id="div-gpt-ad-1350569504085-3" style="width:980px; height:200px;">
+        <script type="text/javascript">
+            googletag.display('div-gpt-ad-1350569504085-3');
+        </script><div id="div-gpt-ad-1350569504085-3_ad_container">
+<ins style="width: 980px; height: 200px; display: inline-table; position: relative; border: 0px;"><ins style="width: 980px; height: 200px; display: block; position: relative; border: 0px;"><iframe id="google_ads_iframe_/2916070/zones_superboard_980x200_0" name="google_ads_iframe_/2916070/zones_superboard_980x200_0" width="980" height="200" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; position: absolute; top: 0px; left: 0px;"></iframe></ins></ins></div>
+<script>googletag.impl.pubads.createDomIframe("div-gpt-ad-1350569504085-3_ad_container" ,"/2916070/zones_superboard_980x200_0",false,undefined);</script>
+    </div>
+    <!-- End DART Code-->
+</div>
+    
+
+
+<!-- end of header -->
+<div id="center" class=""><div id="squeeze">
+    <div id="article">         <!-- Snippets Message Header -->
+                <div style="clear:both;"></div>
+                                                                        
+            <!--Author Block-->
+                            <div class="meta">
+
+                    
+                                        <div class="submitted">
+                        <div id="author">
+                            <a href="http://agile.dzone.com/users/piccoloprincipe"><img src="./Why having an API matters  testing   Agile Zone_files/picture-355617.jpg" style="width:43px; float:left; margin-right: 10px;"></a>
+                                                        <a href="http://www.dzone.com/page/mvbs" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;MVB Badge&#39;, &#39;piccoloprincipe&#39;]);"><img src="./Why having an API matters  testing   Agile Zone_files/staff_badge.png" style="vertical-align:bottom;"></a>
+                                                        <a href="http://agile.dzone.com/users/piccoloprincipe"><b id="authorname">Giorgio Sironi</b> </a>
+                            <ul class="authorMetaData">
+                                                                <li><span>Bio</span></li>
+                                                                                                                                <li><a href="https://twitter.com/giorgiosironi" class="author-twitter-button">@giorgiosironi</a></li>
+                                                                                                <li class="author-facebook">
+                                    <a href="http://www.facebook.com/pages/Invisible-to-the-eye/158115862370" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Social Button Click&#39;, &#39;Author Facebook&#39;, &#39;piccoloprincipe&#39;]);"><img src="./Why having an API matters  testing   Agile Zone_files/facebook_icon.png" width="20"></a>
+                                </li>
+                                                                                                <li class="author-googleplus">
+                                    <a href="http://plus.google.com/111746708330132898280/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Social Button Click&#39;, &#39;Author Google+&#39;, &#39;piccoloprincipe&#39;]);"><img src="./Why having an API matters  testing   Agile Zone_files/googleplus_icon.png" width="20"></a>
+                                </li>
+                                                                                                <li class="author-linkedin">
+                                    <a href="http://www.linkedin.com/in/giorgiosironi" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Social Button Click&#39;, &#39;Author LinkedIn&#39;, &#39;piccoloprincipe&#39;]);"><img src="./Why having an API matters  testing   Agile Zone_files/linkedin_icon.png" width="20"></a>
+                                </li>
+                                                                                            </ul>
+
+                        </div>
+
+                    </div><div style="clear:both;"></div>
+                    
+                                        <div id="author_block" style=" padding: 5px; padding-right: 10px; margin-top: 7px; margin-bottom:10px;">
+                        <!--                                 -->                        <p style="padding-left: 80px; padding-top: 0; margin-top: 0;">
+                            I am a programmer and architect (the kind that writes code) with a focus on testing and open source; I maintain the PHPUnit_Selenium project. I believe programming is one of the hardest and most beautiful jobs in the world.  Giorgio is a DZone Zone Leader and has posted 520 posts at DZone. You can read more from them at <a href="">their website.</a><a href="http://agile.dzone.com/users/piccoloprincipe"> View Full User Profile</a></p></div>
+                                    </div>
+                            <!--End Author Block-->
+
+                        <div id="articleHead">
+                <!-- Print Breadcrumb for Tutorials -->
+                                <h1>Why having an API matters: testing</h1>            </div>
+                            <div class="under_the_title">
+                    <div id="date">11.19.2012                    </div>
+                    <span style="margin:0 8px;color:#ddd;">|</span>
+                    <span style="padding: 5px; vertical-align: middle; font-size:14px;">
+                        2591 views                    </span>
+                    <span style="margin:0 8px;color:#ddd;">|</span>
+
+                    <!-- AddThis Button BEGIN -->
+<!--                    <a href="/forward?path=node/--><!--" style="vertical-align: middle;"><img style="margin: 8px 5px 0 5px; vertical-align: top;" width="20" height="20" src="http://cdn.dzone.com/links/themes/reader/images/actions/email-32x32.png" border="0"> Email</a>-->
+                    <div class="addthis_toolbox addthis_default_style " style="display:inline-block; vertical-align:middle;margin-top:8px;">
+                        <a class="addthis_button_facebook_like at300b" fb:like:layout="button_count" title="Facebook_like" href="http://agile.dzone.com/articles/why-having-api-matters-testing#"><fb:like ref=".UK2cUbNizdw.like" layout="button_count" show_faces="false" action="like" width="90" font="arial" href="http://css.dzone.com/articles/why-having-api-matters-testing" send="false" fb-xfbml-state="rendered" class="fb_edge_widget_with_comment fb_iframe_widget"><span style="height: 20px; width: 73px;"><iframe id="f20816550c" name="f2e0acb24" scrolling="no" style="border: none; overflow: hidden; height: 20px; width: 73px;" title="Like this content on Facebook." class="fb_ltr" src="./Why having an API matters  testing   Agile Zone_files/like(1).html"></iframe></span></fb:like></a>
+                        <a class="addthis_button_tweet at300b" title="Tweet" href="http://agile.dzone.com/articles/why-having-api-matters-testing#"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="./Why having an API matters  testing   Agile Zone_files/tweet_button.1352365724(1).html" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe></a>
+                        <a class="addthis_button_google_plusone at300b" g:plusone:size="medium" title="Google_plusone" href="http://agile.dzone.com/articles/why-having-api-matters-testing#"><div style="height: 20px; width: 90px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial;" id="___plusone_1"><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1353555027196" name="I0_1353555027196" src="./Why having an API matters  testing   Agile Zone_files/fastbutton.html" title="+1"></iframe></div></a>
+                        <script src="./Why having an API matters  testing   Agile Zone_files/in.js" type="text/javascript"></script>
+                        <span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1353555026198_0"><a id="li_ui_li_gen_1353555026198_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1353555026198_0-logo">in</span><span id="li_ui_li_gen_1353555026198_0-title"><span id="li_ui_li_gen_1353555026198_0-mark"></span><span id="li_ui_li_gen_1353555026198_0-title-text">Share</span></span></a></span></span><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1353555026237_1-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1353555026237_1" class="IN-right"><span id="li_ui_li_gen_1353555026237_1-inner" class="IN-right"><span id="li_ui_li_gen_1353555026237_1-content" class="IN-right">0</span></span></span></span></span></span><script type="IN/Share+init" data-counter="right"></script>
+                    <div class="atclear"></div></div>
+                    <script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/addthis_widget.js"></script>
+                </div>
+
+                <!-- AddThis Button END -->
+                                                    <div id="articleText" class="articleReset">
+                        
+            <ul id="sharebar" style="background-color: rgb(255, 255, 255); border-color: rgb(204, 204, 204); margin-top: 0px; width: 75px; float: left; margin-right: 10px; margin-left: -110px; display: block; top: 414px; position: absolute; background-position: initial initial; background-repeat: initial initial;"><li><script type="text/javascript">var dzone_url = 'http://css.dzone.com/articles/why-having-api-matters-testing';</script>
+<script type="text/javascript">var dzone_title = 'Why having an API matters: testing';</script>
+<script language="javascript" src="./Why having an API matters  testing   Agile Zone_files/zoneit.js"></script><iframe src="./Why having an API matters  testing   Agile Zone_files/zoneit.html" height="70" width="50" scrolling="no" frameborder="0"></iframe></li><li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="./Why having an API matters  testing   Agile Zone_files/tweet_button.1352365724.html" class="twitter-share-button twitter-count-vertical" style="width: 56px; height: 62px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe><script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/widgets.js"></script></li><li><!-- Place this tag where you want the +1 button to render -->
+<div style="height: 60px; width: 50px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial;" id="___plusone_0"><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 50px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 60px;" tabindex="0" vspace="0" width="100%" id="I0_1353555025646" name="I0_1353555025646" src="./Why having an API matters  testing   Agile Zone_files/fastbutton(1).html" title="+1"></iframe></div>
+
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script></li><li><iframe src="./Why having an API matters  testing   Agile Zone_files/like(2).html" scrolling="no" frameborder="0" style="border:none; width:58px; height:62px;" allowtransparency="true"></iframe></li><li><script src="./Why having an API matters  testing   Agile Zone_files/in.js" type="text/javascript"></script>
+<span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1353555026310_3-container" class="IN-top IN-empty"><span id="li_ui_li_gen_1353555026310_3" class="IN-top"><span id="li_ui_li_gen_1353555026310_3-inner" class="IN-top"><span id="li_ui_li_gen_1353555026310_3-content" class="IN-top">0</span></span></span></span></span><br><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1353555026272_2"><a id="li_ui_li_gen_1353555026272_2-link" href="javascript:void(0);"><span id="li_ui_li_gen_1353555026272_2-logo">in</span><span id="li_ui_li_gen_1353555026272_2-title"><span id="li_ui_li_gen_1353555026272_2-mark"></span><span id="li_ui_li_gen_1353555026272_2-title-text">Share</span></span></a></span></span></span><script type="IN/Share+init" data-counter="top"></script></li><li><a href="http://www.reddit.com/r/programming/submit" onclick="window.location = &#39;http://www.reddit.com/r/programming/submit?url=&#39; + encodeURIComponent(window.location); return false"> <img src="./Why having an API matters  testing   Agile Zone_files/spreddit7.gif" alt="submit to reddit" border="0" width="64"> </a></li></ul>
+
+<div id="node-122939" class="node node-page node-article">
+
+
+
+            <div class="microzoneShortDescription">
+            <!-- zones_topblurb_650x61 -->
+            <div id="div-gpt-ad-1350569504085-6" style="width:650px;">
+                <script type="text/javascript">
+                    googletag.display('div-gpt-ad-1350569504085-6');
+                </script><div id="div-gpt-ad-1350569504085-6_ad_container"><style type="text/css">
+  .microzone_article_ad{
+      font-size: 15px;
+      font-weight:normal;
+      font-style:italic;
+      color: #222;
+      text-decoration:none;
+      font-family:'Helvetica', 'Arial', 'Verdana';
+  }
+</style>
+
+<div class="microzone_article_ad">
+The <a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=Bt_xuUZytUObNIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWKbri_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-AKB0h6AAwGQA5wEmAOkA6gDAeAEAaAGFg&num=0&sig=AOD64_0iVGuJTzV55NniTb8nVwBGCmzf0Q&client=ca-pub-3945085396033279&adurl=http://www.dzone.com/mz/enterprise-integration">Enterprise Integration Zone</a> is brought to you in partnership with <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBt_xuUZytUObNIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWKbri_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-AKB0h6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_0iVGuJTzV55NniTb8nVwBGCmzf0Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2873&cid=471&mid=983">MuleSoft</a>, makers of the <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBt_xuUZytUObNIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWKbri_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-AKB0h6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_0iVGuJTzV55NniTb8nVwBGCmzf0Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2873&cid=471&mid=983">#1 ESB</a>.  <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBt_xuUZytUObNIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWKbri_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-AKB0h6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_0iVGuJTzV55NniTb8nVwBGCmzf0Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2861&cid=471&mid=971">Learn more</a> about <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBt_xuUZytUObNIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWKbri_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-AKB0h6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_0iVGuJTzV55NniTb8nVwBGCmzf0Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2871&cid=471&mid=981">APIs</a>, the <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBt_xuUZytUObNIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWKbri_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-AKB0h6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_0iVGuJTzV55NniTb8nVwBGCmzf0Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2869&cid=471&mid=979">Future of Architecture</a>, and <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBt_xuUZytUObNIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWKbri_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-AKB0h6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_0iVGuJTzV55NniTb8nVwBGCmzf0Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2863&cid=471&mid=973">Legacy Integration</a>. 
+</div>
+
+</div>
+
+            </div>
+        </div>
+    
+  <div class="content" style="margin-bottom: 5px;">      		<div class="related_library_content" style="float: right;"><h3>Related MicroZone Resources</h3><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2867&cid=471&mid=977">Mobile Commerce, Your Way</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2869&cid=471&mid=979">6 SaaS Metrics that Matter</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2871&cid=471&mid=981">The Key To API Integration</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2873&cid=471&mid=983">MuleESB: SOA with Eclipse, Maven, Spring and Ant</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2865&cid=471&mid=975">Use Your Java Toolchain with SAP</a></h4>    <p style="font-size: 10px; color: #999; margin-bottom: 0; padding-bottom: 0;">Like this piece?  Share it with your friends:</p>
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+    <a class="addthis_button_facebook at300b" title="Facebook" href="http://agile.dzone.com/articles/why-having-api-matters-testing#"><span class="at16nc at300bs at15nc at15t_facebook at16t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+    <a class="addthis_button_twitter at300b" title="Tweet This" href="http://agile.dzone.com/articles/why-having-api-matters-testing#"><span class="at16nc at300bs at15nc at15t_twitter at16t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+    <a class="addthis_button_linkedin at300b" href="http://www.addthis.com/bookmark.php?v=250&winname=addthis&pub=xa-4f34528f655fc4f0&source=tbx-250&lng=es&s=linkedin&url=http%3A%2F%2Fcss.dzone.com%2Farticles%2Fwhy-having-api-matters-testing&title=Why%20having%20an%20API%20matters%3A%20testing%20%7C%20Agile%20Zone&ate=AT-xa-4f34528f655fc4f0/-/-/50ad9c51fde9b420/2&frommenu=1&uid=50ad9c516f3b8634&ufbl=1&ct=1&pre=http%3A%2F%2Fagile.dzone.com%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="Linkedin"><span class="at16nc at300bs at15nc at15t_linkedin at16t_linkedin"><span class="at_a11y">Share on linkedin</span></span></a>
+    <a class="addthis_button_google at300b" href="http://www.addthis.com/bookmark.php?v=250&winname=addthis&pub=xa-4f34528f655fc4f0&source=tbx-250&lng=es&s=google&url=http%3A%2F%2Fcss.dzone.com%2Farticles%2Fwhy-having-api-matters-testing&title=Why%20having%20an%20API%20matters%3A%20testing%20%7C%20Agile%20Zone&ate=AT-xa-4f34528f655fc4f0/-/-/50ad9c51fde9b420/3&frommenu=1&uid=50ad9c5186a9e69b&ufbl=1&ct=1&pre=http%3A%2F%2Fagile.dzone.com%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="Google"><span class="at16nc at300bs at15nc at15t_google at16t_google"><span class="at_a11y">Share on google</span></span></a>
+    <a class="addthis_button_stumbleupon at300b" href="http://www.addthis.com/bookmark.php?v=250&winname=addthis&pub=xa-4f34528f655fc4f0&source=tbx-250&lng=es&s=stumbleupon&url=http%3A%2F%2Fcss.dzone.com%2Farticles%2Fwhy-having-api-matters-testing&title=Why%20having%20an%20API%20matters%3A%20testing%20%7C%20Agile%20Zone&ate=AT-xa-4f34528f655fc4f0/-/-/50ad9c51fde9b420/4&frommenu=1&uid=50ad9c5107236d2d&ufbl=1&ct=1&pre=http%3A%2F%2Fagile.dzone.com%2F&tt=0&captcha_provider=nucaptcha" target="_blank" title="StumbleUpon"><span class="at16nc at300bs at15nc at15t_stumbleupon at16t_stumbleupon"><span class="at_a11y">Share on stumbleupon</span></span></a>
+    <a class="addthis_button_email at300b" title="Email" href="http://agile.dzone.com/articles/why-having-api-matters-testing#"><span class="at16nc at300bs at15nc at15t_email at16t_email"><span class="at_a11y">Share on email</span></span></a>
+    <span class="addthis_separator">|</span>
+    <a href="http://addthis.com/bookmark.php?v=250&username=dzone1" class="addthis_button_expanded at300m" title="View more services"><span class="at16nc at300bs at15nc at15t_expanded at16t_expanded"><span class="at_a11y">More Sharing Services</span></span>More</a>
+    <div class="atclear"></div></div>
+    <script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/addthis_widget(1).js"></script>
+    <!-- AddThis Button END --></div>		<span class="print-link"></span><p>You know when they tell you exposing an HTTP API for your application (usually a REST-like one) is positive for reuse and accessing it in unforeseen ways? That's whay just happened to me last week while trying to put together some functional tests. <br></p><h2>The context: architecture </h2><p>This application is divided between multiple components on the server-side, that communicate with each other, sometimes asynchronously. However, only one of them faces outside. <br></p><p>A rich-client UI, written in JavaScript, runs in a browser and accesses this port of the application. It communicates with the server-side through a REST-like API, that as such does not have any session persistence. The data transmitted is contained in POST parameters, for example, but mostly in the body of PUT and GET requests in the form of JSON. <br></p><p>Behavior can be driven a bit by HTTP itself, as it provides semantics that a browser should respect (redirects with the Location header, POST and GET semantics respected, etc.). <a href="http://www.slideshare.net/gabriele.lana/api-over-http" target="">This architecture</a>&nbsp; is really nothing new and revolutionary, but it's surprising to find it implemented consistently.&nbsp; <br></p><h2>Goal </h2><p>My objective was writing functional tests for checking the happy path integration of the server-side components.&nbsp; The UI has its own tests, and we already use a bit of Selenium magic for running it in a browser and test the basic integration with the server.&nbsp; <br></p><h2>How </h2><p>Well, once a REST-like API is exposed, you can very easily adopt an HTTP library for your language of choice and start writing tests like you were a browser bot: <br></p><ul><li>make HTTP calls: POST, GET, PUT, or DELETE according to the action required. </li><li>Encode and decode JSON (or XML) into your own testing framework, which may not even be written in the same language as the application (this would be an extreme case.) </li><li>Write assertions on the data returned, but also on the state of the conversation: status codes, HTTP response headers and everything that can be specified about the API. </li></ul><p>So far, it's all roses, Agile and let's hug trees. But there are also problems to solve in order to write fast, reliable end-to-end tests. <br></p><h2>Resolved issues </h2><p>The first issue to solve for writing these tests is that of asynchronicity. Since the components of the server side talk with each other multiple times, it's normal for the UI to (long) poll or listen to the server for updates. <br></p><p>So just executing a request isn't going to cut it: we may check the result too early. <a href="http://martinfowler.com/articles/nonDeterminism.html" target="">Synchronization of end-to-end tests</a>&nbsp; basically means waiting for a condition to be satisfied, to eliminate the non-deterministic behavior of tests that may pass once and then fail randomly in the middle of a test suite: <br></p><div class="syntaxhighlighter " id="highlighter_816789" style=""><div class="bar"><div class="toolbar"><a href="http://agile.dzone.com/articles/why-having-api-matters-testing#viewSource" title="view source" style="width: 16px; height: 16px;" class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_816789_clipboard" type="application/x-shockwave-flash" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_816789" menu="false" src="/sites/all/themes/dzone2012/scripts/syntaxHighlighter/clipboard.swf"></div><a href="http://agile.dzone.com/articles/why-having-api-matters-testing#printSource" title="print" style="width: 16px; height: 16px;" class="item printSource">print</a><a href="http://agile.dzone.com/articles/why-having-api-matters-testing#about" title="?" style="width: 16px; height: 16px;" class="item about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">1.</code><span class="content"><span class="block" style="margin-left: 0px;"><code class="keyword">while</code> <code class="plain">(!condition()) {</code></span></span></div><div class="line alt2"><code class="number">2.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 21px;"><code class="plain">sleep(</code><code class="value">1</code><code class="plain">);</code></span></span></div><div class="line alt1"><code class="number">3.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 21px;"><code class="plain">seconds++;</code></span></span></div><div class="line alt2"><code class="number">4.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 21px;"><code class="keyword">if</code> <code class="plain">(seconds &gt; timeout) {</code></span></span></div><div class="line alt1"><code class="number">5.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 35px;"><code class="plain">fail(</code><code class="string">"We tried waiting for $condition to be fulfilled, but after $timeout seconds there was still no result, so we declare the test failed."</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">6.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 21px;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">7.</code><span class="content"><span class="block" style="margin-left: 0px;"><code class="plain">}</code></span></span></div></div></div><p>The next issue is that of an API that does not expose the right commands because some logic is embedded in the UI. For example, I found a wrong redirect performed with the Location header: this was actually working in the browser, but just because of particular logic embedded in the JavaScript client. We can say that having tests as the second client for your API allows you to improve it: it's true that one of the most pwowerful ways to test the robustness of a design is to change the pieces connected to it. <br></p><p>The third problem was server state: it is usually not a problem with REST or web services, as they are naturally concurrent and can be accessed by many clients at the same time. However, some conflicts between resources may arise if you reuse the same data to repeat the test. <br></p><p>Think for example of creating a user with a given social security number: your system shouldn't let you create a resource representing him multiple times. Rather than than changing the test data each time, and lose build repeatability, it's easier to reset the database to a known state at the start of each test. <br></p><p>It's also crucial to be very precise in resetting the database, for speed and isolation of tests. You should only clean up what is strictly related to the current test: think of a future in which your test could run in parallel. <br></p><p>Finally, I advise you to clean up the server state at the start of the test instead of in the tear down phase as unit test do. This allows you to inspect the final state of the server after a test is failed, while being functionally equivalent for the test execution. <br></p><h2>Conclusions</h2><p></p><p>When you hear yet another talk or article about writing an HTTP API, don't jump to conclusions: it's not necessarily an hyped architecture, but can be a way to separate server and client concerns, to test the latter without encountering the former in the way.<br></p>	
+	<div style="clear: both;"></div>
+
+    </div>
+
+<div id="terms" class="tags-on-articles fancyfont">Tags: <ul class="links inline"><li class="taxonomy_term_3283 first"><a href="http://agile.dzone.com/category/tags/http" rel="tag" title="">http</a></li>
+<li class="taxonomy_term_1816"><a href="http://agile.dzone.com/category/tags/rest" rel="tag" title="">REST</a></li>
+<li class="taxonomy_term_324 last"><a href="http://agile.dzone.com/category/tags/testing" rel="tag" title="">testing</a></li>
+</ul></div>
+            <!-- zones_bottomblurb_650x122 -->
+            <div id="div-gpt-ad-1350569504085-0" style="width:650px;">
+            <script type="text/javascript">
+            googletag.display('div-gpt-ad-1350569504085-0');
+            </script><div id="div-gpt-ad-1350569504085-0_ad_container"><style type="text/css">
+  .microzone_article_ad{
+      font-size: 15px;
+      font-weight:normal;
+      font-style:italic;
+      color: #222;
+      text-decoration:none;
+      font-family:'Helvetica', 'Arial', 'Verdana';
+  }
+</style>
+
+<div class="microzone_article_ad">
+<a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=BcsIKUZytUN3NIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWJ7si_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBhY&num=0&sig=AOD64_2TTS2yNwBrK31V4cbsfjYp3Vas2Q&client=ca-pub-3945085396033279&adurl=http://www.dzone.com/mz/enterprise-integration">Enterprise Integration</a> is a huge problem space for developers, and with so many different technologies to choose from, finding the most elegant solution can be tricky. <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBcsIKUZytUN3NIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWJ7si_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBhY%2526num%253D0%2526sig%253DAOD64_2TTS2yNwBrK31V4cbsfjYp3Vas2Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2873&cid=471&mid=983"> MuleSoft</a> provides the #1 open source Enterprise Service Bus, <a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=BcsIKUZytUN3NIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWJ7si_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBhY&num=0&sig=AOD64_2TTS2yNwBrK31V4cbsfjYp3Vas2Q&client=ca-pub-3945085396033279&adurl=http://txt.couchware.com/medias/jump?hid=2873&cid=471&mid=983">Mule</a>, along with SOA integration cloud services that are used by customers like eBay, Amazon, and Walmart.  <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBcsIKUZytUN3NIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWJ7si_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBhY%2526num%253D0%2526sig%253DAOD64_2TTS2yNwBrK31V4cbsfjYp3Vas2Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2869&cid=471&mid=979">Learn More</a> about <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBcsIKUZytUN3NIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWJ7si_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBhY%2526num%253D0%2526sig%253DAOD64_2TTS2yNwBrK31V4cbsfjYp3Vas2Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2861&cid=471&mid=971">SOA Best Practices</a>, <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBcsIKUZytUN3NIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWJ7si_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBhY%2526num%253D0%2526sig%253DAOD64_2TTS2yNwBrK31V4cbsfjYp3Vas2Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2867&cid=471&mid=977">Mobile E-Commerce</a>, and <a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBcsIKUZytUN3NIOG7sQfs6YGIB9bA5fECAAAAEAEg4tPyBjgAWJ7si_Q8YJmx0IGMBbIBD2FnaWxlLmR6b25lLmNvbboBCWdmcF9pbWFnZcgBCdoBPmh0dHA6Ly9hZ2lsZS5kem9uZS5jb20vYXJ0aWNsZXMvd2h5LWhhdmluZy1hcGktbWF0dGVycy10ZXN0aW5nwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgCgdIegAMBkAOcBJgDpAOoAwHgBAGgBhY%2526num%253D0%2526sig%253DAOD64_2TTS2yNwBrK31V4cbsfjYp3Vas2Q%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2863&cid=471&mid=973">Legacy Integration</a>.
+</div>
+
+</div>
+
+            </div></div></div>
+    </div>
+</div></div>
+<!-- end of squeeze, center (main content) -->
+        <div id="sidebar-right" class="sidebar">
+        
+        <style>
+
+
+        </style>
+
+    <div id="social-box">
+        <div class="social-box-header">
+            Connect with DZone
+        </div>
+
+        <div class="content-buttons-wrapper">
+            <div class="content-buttons">
+                <div class="article-button">
+                    <a href="http://agile.dzone.com/node/add"><i class="icon-file"></i>  Publish an Article</a>
+                </div>
+
+                <div class="tip-button">
+                    <a href="mailto:newsdesk@dzone.com"><i class="icon-envelope"></i> Share a Tip</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="social-box-wrapper">
+            <ul>
+                <div style="height: 69px; width: 282px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial;" id="___plus_0"><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 282px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 69px;" tabindex="0" vspace="0" width="100%" id="I1_1353555025648" name="I1_1353555025648" src="./Why having an API matters  testing   Agile Zone_files/badge.html" title="Google+ Badge"></iframe></div>
+                <li class="facebookbtn"><div class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-href="http://www.facebook.com/pages/DZone/259639764711" data-send="false" data-layout="button_count" data-width="285" data-show-faces="false" data-font="lucida grande" fb-xfbml-state="rendered"><span style="height: 20px; width: 79px;"><iframe id="f12f99dfc" name="f360fb5274" scrolling="no" style="border: none; overflow: hidden; height: 20px; width: 79px;" title="Like this content on Facebook." class="fb_ltr" src="./Why having an API matters  testing   Agile Zone_files/like.html"></iframe></span></div></li>
+                <li class="twitterbtn"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="./Why having an API matters  testing   Agile Zone_files/follow_button.1352365724.html" class="twitter-follow-button" style="width: 158px; height: 20px;" title="Twitter Follow Button" data-twttr-rendered="true"></iframe></li>
+                <li class="rssbtn">
+                                            <a href="http://dzone.com/mz/enterprise-integration/rss" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone RSS&#39;]);"><i class="icon-rss"></i></a>
+                                    </li>
+            </ul>
+
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/plusone.js" gapi_processed="true"></script>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <ul class="dzone-social-buttons" style="display:none;">
+            <li><a href="mailto:newsdesk@dzone.com" class="got_a_tip" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;Tip Button&#39;]);">Got a story? Tell us!</a></li>
+            <li>
+                                 <a href="http://dzone.com/mz/enterprise-integration/rss" class="dzone-social-rss" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone RSS&#39;]);"></a>
+                            </li>
+            <li><a href="https://plus.google.com/+dzone/posts" class="dzone-social-google" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone Google+&#39;]);" "=""></a></li>
+            <li><a href="http://www.facebook.com/pages/DZone/259639764711" class="dzone-social-facebook" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone Facebook&#39;]);" "=""></a></li>
+            <li><a href="https://twitter.com/#!/Dzone" class="dzone-social-twitter" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone Twitter&#39;]);" "=""></a></li>
+            <li><a href="http://www.linkedin.com/groups/DZone-696877" class="dzone-social-linkedin" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone LinkedIn&#39;]);" "=""></a></li>
+            <!--                  <li><a href="#" class="careers-button" onClick= "pageTracker._trackEvent('Social Button Click', 'Careers Button');">Careers</a></li>-->
+
+        </ul>
+
+
+        <!--        Popular Snippets Sidebar Box-->
+        
+
+        <div class="related_library_content2"><h3>Related MicroZone Resources</h3><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2873&cid=471&mid=983">MuleESB: SOA with Eclipse, Maven, Spring and Ant</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2863&cid=471&mid=973">Easy Legacy System Integration</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2869&cid=471&mid=979">6 SaaS Metrics that Matter</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2871&cid=471&mid=981">The Key To API Integration</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2861&cid=471&mid=971">SOA Best Practices</a></h4></div>
+                    <div id="mh_rectangle">
+
+                <!-- zones_sidebar_336x280_default -->
+                <div id="div-gpt-ad-1350569504085-2" style="width:300px; height:250px;">
+                    <script type="text/javascript">
+                        googletag.display('div-gpt-ad-1350569504085-2');
+                    </script><div id="div-gpt-ad-1350569504085-2_ad_container">
+<ins style="width: 300px; height: 250px; display: inline-table; position: relative; border: 0px;"><ins style="width: 300px; height: 250px; display: block; position: relative; border: 0px;"><iframe id="google_ads_iframe_/2916070/zones_sidebar_336x280_default_0" name="google_ads_iframe_/2916070/zones_sidebar_336x280_default_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; position: absolute; top: 0px; left: 0px;"></iframe></ins></ins></div>
+<script>googletag.impl.pubads.createDomIframe("div-gpt-ad-1350569504085-2_ad_container" ,"/2916070/zones_sidebar_336x280_default_0",false,undefined);</script>
+                </div>
+                <!-- End DART Ad -->
+
+            </div>
+            
+
+        
+        
+                        <div id="block-block-5" class="block block-block">
+
+  <div class="content">
+    <div id="sidebar_features"><h2 class="header">Spotlight Features</h2>				
+			      	  	<div>
+	  		<a href="http://agile.dzone.com/click/115945/1" class="sidebar_image_link"><img src="./Why having an API matters  testing   Agile Zone_files/documentation.png"></a>
+	  		<h2><a href="http://agile.dzone.com/click/115945/1">Make Technical Debt Explicit</a></h2>
+	  	</div>
+                    	  	<div>
+	  		<a href="http://agile.dzone.com/click/119801/1" class="sidebar_image_link"><img src="./Why having an API matters  testing   Agile Zone_files/maelstrom.jpg"></a>
+	  		<h2><a href="http://agile.dzone.com/click/119801/1">Your Software Flow is More Like a Whirlpool than a Pipeline</a></h2>
+	  	</div>
+                    	  	<div>
+	  		<a href="http://agile.dzone.com/click/121269/1" class="sidebar_image_link"><img src="./Why having an API matters  testing   Agile Zone_files/Screen Shot 2012-09-11 at 10.42.56 AM_2.png"></a>
+	  		<h2><a href="http://agile.dzone.com/click/121269/1">Weekly Poll: Windows 8... When?</a></h2>
+	  	</div>
+                    	  	<div>
+	  		<a href="http://agile.dzone.com/click/115981/1" class="sidebar_image_link"><img src="./Why having an API matters  testing   Agile Zone_files/DevOps Seal.png"></a>
+	  		<h2><a href="http://agile.dzone.com/click/115981/1">Book Preview: DevOps for Developers</a></h2>
+	  	</div>
+              </div>  </div>
+</div>
+<div id="block-block-3" class="block block-block">
+
+  <div class="content">
+    <div id="popularlinks"><ul class="popularlist"><h2>Popular at DZone</h2><li><a href="http://www.dzone.com/links/6_aspects_of_successful_software_delivery.html"><span class="popularlist-number popularlist-1">1:</span>6 Aspects of Successful Software Delivery</a></li>
+                <li><a href="http://www.dzone.com/links/why_i_have_given_up_on_coding_standards.html"><span class="popularlist-number popularlist-2">2:</span>Why I Have Given Up on Coding Standards</a></li>
+                <li><a href="http://www.dzone.com/links/branchperfeature_in_the_realm_of_agile_and_net_de.html"><span class="popularlist-number popularlist-3">3:</span>Branch-per-Feature in the Realm of Agile and .NET Development</a></li>
+                <li><a href="http://www.dzone.com/links/business_intelligence_suppliers_are_you_ready_for.html"><span class="popularlist-number popularlist-4">4:</span>Business Intelligence Suppliers: Are You Ready for 2013?</a></li>
+                <li><a href="http://www.dzone.com/links/design_patterns_bridge_2.html"><span class="popularlist-number popularlist-5">5:</span>Design Patterns: Bridge</a></li>
+                <li><a href="http://www.dzone.com/links/installing_couchdb_on_a_virtualbox_instance_with.html"><span class="popularlist-number popularlist-6">6:</span>Installing CouchDB on a VirtualBox instance with Chef and Vagrant</a></li>
+                <li><a href="http://www.dzone.com/links/it_takes_more_than_a_tool_swarovskis_10_requireme.html"><span class="popularlist-number popularlist-7">7:</span>It Takes More than a Tool! Swarovski’s 10 Requirements for Creating an APM Culture about:performance</a></li>
+                <a class="moredz" href="http://www.dzone.com/">See more popular at DZone</a><br><a class="rss" href="http://feeds.dzone.com/dzone/frontpage">Subscribe to the RSS feed</a></ul></div>  </div>
+</div>
+            </div>
+    <!-- end of right sidebar -->
+            
+<!-- Cache the footer block -->
+<div id="footer"><span class="footer-header">Around the DZone Network</span><div class="large-topics-articles"><div class="featured-articles"><a href="http://architects.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Architects Zone&#39;]);">ARCHITECTS </a><a href="http://architects.dzone.com/articles/code-stories-patrick-wyatt" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121567-Code Stories: Patrick Wyatt, Game Programmer and Producer of Warcraft&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/codestories.jpg);"></div><br>Code Stories: Patrick Wyatt, Game Programmer and P...</a></div><div class="featured-articles"><a href="http://architects.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Architects Zone&#39;]);">ARCHITECTS </a><a href="http://architects.dzone.com/articles/busy-developers-guide-restful" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121413-A Busy Developer&#39;s Guide to RESTful Services in Java&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/Screen%20Shot%202012-10-26%20at%204.50.44%20PM.png);"></div><br>A Busy Developer's Guide to RESTful Services in Ja...</a></div><div class="featured-articles"><a href="http://java.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Javalobby&#39;]);">JAVALOBBY</a><a href="http://java.dzone.com/articles/j2ee-dead-long-live-javascript" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121365-J2EE is Dead: Long-live Javascript Backed by JSON Services &#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/js_2.jpg);"></div><br>J2EE is Dead: Long-live Javascript Backed by JSON ...</a></div><div class="featured-articles"><a href="http://cloud.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Cloud Zone&#39;]);">CLOUD </a><a href="http://cloud.dzone.com/articles/paas-automation" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121581-PaaS Is Automation&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/Screen%20Shot%202012-10-30%20at%202.38.24%20PM.png);"></div><br>PaaS Is Automation</a></div><div class="featured-articles"><a href="http://architects.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Architects Zone&#39;]);">ARCHITECTS </a><a href="http://architects.dzone.com/articles/unit-tests-dont-find-bugs" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121341-Unit Tests Don&#39;t Find Bugs: the Death of QA&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/Screen%20Shot%202012-10-26%20at%2011.19.55%20AM.png);"></div><br>Unit Tests Don't Find Bugs: the Death of QA</a></div><div class="featured-articles last-item"><a href="http://mobile.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Mobile Zone&#39;]);">MOBILE </a><a href="http://mobile.dzone.com/articles/windows-8-definitive-link-list" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121279-The Definitive Windows 8 Linksheet&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/Win8-logo1.jpg);"></div><br>The Definitive Windows 8 Linksheet</a></div></div><div class="hail_mary"><span class="block-title">You Might Also Like</span><ul class="footer-links"><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/james-betteley-discusses" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122321-James Betteley Discusses the Deployment Automation Patterns Refcard&#39;]);">James Betteley Discusses the Deployment Automation Patterns Refcard</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/single-page-web-apps-worst" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122611-Single Page Web Apps: The Worst of Both Worlds&#39;]);">Single Page Web Apps: The Worst of Both Worlds</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/release-engineering-facebook" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122263-Release Engineering at Facebook&#39;]);">Release Engineering at Facebook</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/web-server-c" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122771-A Web Server in C &#39;]);">A Web Server in C </a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/nosql-landscaope-diagrams" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122289-The NoSQL Landscape in Diagrams&#39;]);">The NoSQL Landscape in Diagrams</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/algorithm-week-kruskals" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122449-Algorithm of the Week: Kruskal&#39;s Minimum Spanning Tree&#39;]);">Algorithm of the Week: Kruskal's Minimum Spanning Tree</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/weekly-poll-ci-landscape" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122693-Weekly Poll: The CI Landscape&#39;]);">Weekly Poll: The CI Landscape</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/introduction-jms" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122593-Introduction to JMS&#39;]);">Introduction to JMS</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/non-blocking-io-discovering-0" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122551-Non-Blocking I/O - Discovering Akka&#39;]);">Non-Blocking I/O - Discovering Akka</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/visualvm-135-released" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122605-VisualVM 1.3.5 Released&#39;]);">VisualVM 1.3.5 Released</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/monitoring-ebay-big-data" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122533-Monitoring at eBay: Big Data Problems&#39;]);">Monitoring at eBay: Big Data Problems</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/iteratees-imperative" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122459-Iteratees for Imperative Programmers&#39;]);">Iteratees for Imperative Programmers</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/evolution-recommendation" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122661-The Evolution of Recommendation Systems&#39;]);">The Evolution of Recommendation Systems</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/thursday-code-puzzler-test" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122621-Thursday Code Puzzler: Test Case Generator&#39;]);">Thursday Code Puzzler: Test Case Generator</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/10-things-you-need-know-about" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122945-10 Things You need to Know about Javascript&#39;]);">10 Things You need to Know about Javascript</a></li></ul></div><div id="footer-articles"><div id="block-wrapper"><div id="left-block" class="footer-article-block"><span class="block-title">Popular on Agile Zone</span><ul><li><a href="http://agile.dzone.com/news/one-night-clojure-makes-scala" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;45561-One Night With Clojure Makes a Scala Guy Humble&#39;]);">One Night With Clojure Makes a Scala Guy Humble</a></li><li><a href="http://agile.dzone.com/news/things-do-improve-code-quality" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;23771-Things to do to improve code quality &#39;]);">Things to do to improve code quality </a></li><li><a href="http://agile.dzone.com/news/10-mistakes-software-team" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;45009-Top DZone Article of 2011 - 10 Mistakes That Software Team Leads Make&#39;]);">Top DZone Article of 2011 - 10 Mistakes That Software Team Leads Make</a></li><li><a href="http://agile.dzone.com/news/promiscuous-integration-vs" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;18031-Promiscuous Integration vs Continuous Integration&#39;]);">Promiscuous Integration vs Continuous Integration</a></li><li><a href="http://agile.dzone.com/news/introducing-kanban-flow-and" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;10651-Introducing Kanban, Flow, and Cadence&#39;]);">Introducing Kanban, Flow, and Cadence</a></li><li><a href="http://agile.dzone.com/news/defining-kanban" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;11049-Defining Kanban&#39;]);">Defining Kanban</a></li><li><a href="http://agile.dzone.com/news/beware-of-the-second-worst-pro" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;5403-Beware Of The Second Worst Programmer&#39;]);">Beware Of The Second Worst Programmer</a></li><li><a href="http://agile.dzone.com/news/death-best-practices" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;27113-Death to Best Practices&#39;]);">Death to Best Practices</a></li></ul></div><div id="middle-block" class="footer-article-block"><span class="block-title">Latest Articles</span><ul><li><a href="http://agile.dzone.com/articles/erlang-monitoring" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;123131-Erlang: monitoring&#39;]);">Erlang: monitoring</a></li><li><a href="http://agile.dzone.com/articles/31-days-windows-8-html5-day-14" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122805-31 Days of Windows 8 for HTML5 | Day #14 Geolocation&#39;]);">31 Days of Windows 8 for HTML5 | Day #14 Geolocation</a></li><li><a href="http://agile.dzone.com/articles/how-tune-virtual-pc" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122793-How to Tune Up a Virtual PC&#39;]);">How to Tune Up a Virtual PC</a></li><li><a href="http://agile.dzone.com/articles/cloudcast-ep-64-intel-inside" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122923-The Cloudcast, Ep. 64: Intel Inside the Data Center&#39;]);">The Cloudcast, Ep. 64: Intel Inside the Data Center</a></li><li><a href="http://agile.dzone.com/articles/predicting-outcomes-tennis" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122683-Predicting Outcomes of Tennis Matches with Dynamic Bayesian Networks&#39;]);">Predicting Outcomes of Tennis Matches with Dynamic Bayesian Networks</a></li><li><a href="http://agile.dzone.com/articles/php-54-available-windows-azure" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122919-PHP 5.4 Available in Windows Azure Web Sites&#39;]);">PHP 5.4 Available in Windows Azure Web Sites</a></li><li><a href="http://agile.dzone.com/articles/memory-compute-grid-explained" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122679-In-Memory Compute Grid Explained&#39;]);">In-Memory Compute Grid Explained</a></li><li><a href="http://agile.dzone.com/articles/setting-custom-instrumentation" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122937-Setting Up Custom Instrumentation Using the New Relic Java Agent&#39;]);">Setting Up Custom Instrumentation Using the New Relic Java Agent</a></li></ul></div></div></div><div id="right-block" class="footer-article-spotlight-block"><h2 class="block-title">Spotlight Resources</h2><div class="spotlight" style="margin-top: 5px; clear: both;"><div class="callout"><a href="http://refcardz.dzone.com/refcardz/java-profiling-visualvm" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Thumbnail Click&#39;, &#39;162-Java Profiling with VisualVM: X-Ray Vision for Dramatic Performance Gains&#39;]);"><img border="0" style="float: left;" src="./Why having an API matters  testing   Agile Zone_files/thumb.png"></a></div><h3 style="margin-left: 120px;"><a href="http://refcardz.dzone.com/refcardz/java-profiling-visualvm" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Title Click&#39;, &#39;162-Java Profiling with VisualVM: X-Ray Vision for Dramatic Performance Gains&#39;]);">Java Profiling with VisualVM: X-Ray Vision for Dramatic Performance Gains</a></h3><div class="blurb" style="margin-left: 120px;">VisualVM is a visual tool integrating several command-line JDK tools
+and lightweight profiling capabilities. Designed for both production...</div></div><div class="spotlight" style="margin-top: 5px; clear: both;"><div class="callout"><a href="http://refcardz.dzone.com/refcardz/data-warehousing" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Thumbnail Click&#39;, &#39;160-Data Warehousing: Best Practices for Collecting, Storing, and Delivering Decision-Support Data&#39;]);"><img border="0" style="float: left;" src="./Why having an API matters  testing   Agile Zone_files/thumb(1).png"></a></div><h3 style="margin-left: 120px;"><a href="http://refcardz.dzone.com/refcardz/data-warehousing" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Title Click&#39;, &#39;160-Data Warehousing: Best Practices for Collecting, Storing, and Delivering Decision-Support Data&#39;]);">Data Warehousing: Best Practices for Collecting, Storing, and Delivering Decision-Support Data</a></h3><div class="blurb" style="margin-left: 120px;"><p><span style="font-size: 8pt; font-weight: 300; font-family: &#39;Roboto&#39;">Data Warehousing is a process for collecting, storing, and...</span></p></div></div><div class="spotlight" style="margin-top: 5px; clear: both;"><div class="callout"><a href="http://refcardz.dzone.com/refcardz/database-partitioning" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Thumbnail Click&#39;, &#39;157-Database Partitioning with MySQL: Improving Performance, Availability, and Manageability&#39;]);"><img border="0" style="float: left;" src="./Why having an API matters  testing   Agile Zone_files/thumb(2).png"></a></div><h3 style="margin-left: 120px;"><a href="http://refcardz.dzone.com/refcardz/database-partitioning" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Title Click&#39;, &#39;157-Database Partitioning with MySQL: Improving Performance, Availability, and Manageability&#39;]);">Database Partitioning with MySQL: Improving Performance, Availability, and Manageability</a></h3><div class="blurb" style="margin-left: 120px;">MySQL, the world’s most popular open-source database management system, 
+has become the default database for building any new generation...</div></div></div></div>
+<!-- end of footer -->
+</div>
+<!-- end of container -->
+</div>
+<!-- end of wrapper -->
+
+<div class="subfooter fancyfont">
+    <div class="subfooter_center">
+        <div class="subfooter_top">
+            <div class="subfooter_logo">
+            </div>
+            <div class="subfooter_search">
+                <form action="http://agile.dzone.com/search/google" accept-charset="UTF-8" method="get" id="google-cse-searchbox-form-1">
+<div><input type="hidden" name="cx" id="edit-cx-1" value="010821965829155306098:ogyaz_5nsc8">
+<input type="hidden" name="cof" id="edit-cof-1" value="FORID:11">
+<div class="form-item" id="edit-query-1-wrapper">
+ <input type="text" maxlength="128" name="query" id="edit-query-1" size="15" value="" title="Enter the terms you wish to search for." class="form-text">
+</div>
+<input type="submit" name="op" id="edit-sa-1" value="Search" class="form-submit">
+<input type="hidden" name="form_build_id" id="form-692983d4da5d6fdb51e5dbcce70ebad8" value="form-692983d4da5d6fdb51e5dbcce70ebad8">
+<input type="hidden" name="form_id" id="edit-google-cse-searchbox-form-1" value="google_cse_searchbox_form">
+
+</div></form>
+            </div>
+        </div>
+        <div>
+        </div>
+        <div class="subfooter_box">
+            <ul class="menu"><li class="expanded first"><a href="http://dzone.com/" title="">DZone</a><ul class="menu"><li class="leaf first"><a href="http://refcardz.dzone.com/" title="">Refcardz</a></li>
+<li class="leaf"><a href="http://books.dzone.com/" title="">Book Reviews</a></li>
+<li class="leaf"><a href="http://library.dzone.com/" title="">Tech Library</a></li>
+<li class="leaf"><a href="http://itquestions.com/index.html" title="">IT Questions</a></li>
+<li class="leaf"><a href="http://snippets.dzone.com/" title="">Snippets</a></li>
+<li class="leaf"><a href="http://dzone.com/user" title="">My Profile</a></li>
+<li class="leaf"><a href="http://www.dzone.com/links/about.jsp" title="">About DZone</a></li>
+<li class="leaf"><a href="http://www.dzone.com/corporate/advertise" title="">Advertise</a></li>
+<li class="leaf"><a href="http://www.dzone.com/links/buttons.jsp" title="">Tools &amp; Buttons</a></li>
+<li class="leaf last"><a href="http://ask.dzone.com/index.html" title="">Send Feedback</a></li>
+</ul></li>
+<li class="expanded last"><a href="http://dzone.com/mz/html5" title="">Topics</a><ul class="menu"><li class="leaf first"><a href="http://dzone.com/mz/html5" title="">HTML5</a></li>
+<li class="leaf"><a href="http://dzone.com/mz/windowsphone7" title="">Windows Phone</a></li>
+<li class="leaf"><a href="http://cloud.dzone.com/" title="">Cloud</a></li>
+<li class="leaf"><a href="http://mobile.dzone.com/" title="">Mobile</a></li>
+<li class="leaf"><a href="http://dzone.com/mz/dotnet" title="">.NET</a></li>
+<li class="leaf"><a href="http://java.dzone.com/" title="">Java</a></li>
+<li class="leaf"><a href="http://php.dzone.com/" title="">PHP</a></li>
+<li class="leaf"><a href="http://eclipse.dzone.com/" title="">Eclipse</a></li>
+<li class="leaf"><a href="http://dzone.com/mz/performance" title="">Performance</a></li>
+<li class="leaf"><a href="http://www.dzone.com/mz/big-data" title="">Big Data</a></li>
+<li class="leaf"><a href="http://agile.dzone.com/" title="">Agile</a></li>
+<li class="leaf last"><a href="http://dzone.com/mz/devops" title="">DevOps</a></li>
+</ul></li>
+</ul>
+            <ul class="menu">
+                <li class="expanded follow-buttons">
+                    <a href="http://agile.dzone.com/articles/why-having-api-matters-testing#">Follow Us</a>
+                    <ul class="menu">
+                        <li>
+                                                    </li>
+                        <li>
+                            <a href="https://plus.google.com/+dzone/posts" class="subfooter-social subfooter-social-google">Google +</a>
+                        </li>
+                        <li>
+                            <a href="http://www.facebook.com/pages/DZone/259639764711" class="subfooter-social subfooter-social-facebook">Facebook</a>
+                        </li>
+                        <li>
+                            <a href="http://www.linkedin.com/groups/DZone-696877" class="subfooter-social subfooter-social-linkedin">LinkedIn</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/#!/Dzone" class="subfooter-social subfooter-social-twitter">Twitter</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="subfooter-right">
+
+                "Starting from scratch" is seductive but disease ridden <br><span>-Pithy Advice for Programmers</span>
+
+            </div>
+
+
+        </div>
+        <div id="legal"><a href="http://agile.dzone.com/page/advertise">Advertising</a> - <a href="http://agile.dzone.com/page/tos">Terms of Service</a> - <a href="http://agile.dzone.com/page/privacy">Privacy</a> - © 1997-2012, DZone, Inc.</div>
+    </div>
+</div>
+    
+<!-- end of page wrapper -->
+</div>
+<script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/js_627eb8baa423571fe60473a5eefc7bf5.js"></script>
+<script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/jquery.form-3.18.js"></script>
+<script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/sharebar.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "fivestar": { "titleUser": "Your rating: ", "titleAverage": "Average: ", "feedbackSavingVote": "Saving your vote...", "feedbackVoteSaved": "Your vote has been saved.", "feedbackDeletingVote": "Deleting your vote...", "feedbackVoteDeleted": "Your vote has been deleted." }, "jstools": { "cleanurls": true, "basePath": "/" }, "activemenu": { "#block-book-0": "activemenu/book", "#block-menu-devel": "activemenu/menu", "#block-menu-menu-library-navigat": "activemenu/menu", "#block-menu-primary-links": "activemenu/menu", "#block-menu-secondary-links": "activemenu/menu", "#block-menu-menu-sections": "activemenu/menu", "#block-menu-menu-sitemap": "activemenu/menu", "#block-menu-menu-zones": "activemenu/menu", "#block-user-1": "activemenu/menu" } });
+//--><!]]>
+</script>
+
+<script type="text/javascript">
+    if(document.title.indexOf("Page not found") != 0){
+        $('.sharebar').sharebar({horizontal:'false',swidth:'75',minwidth:1100,position:'left',leftOffset:35,rightOffset:10});
+        $('#sharebar').css('display', 'none');
+        $(parent.document).scroll(function() {
+            var scroll_position =  $(window).scrollTop();
+            if(scroll_position > 350)
+                $('#sharebar').fadeIn();
+            else
+                $('#sharebar').fadeOut();
+        });}
+</script>
+
+<script type="text/javascript">
+    SyntaxHighlighter.config.bloggerMode = true;
+    SyntaxHighlighter.config.taName = "pre";
+    SyntaxHighlighter.config.clipboardSwf = '/sites/all/themes/dzone2012/scripts/syntaxHighlighter/clipboard.swf';
+    SyntaxHighlighter.all();
+    dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+    
+<script type="text/javascript" src="./Why having an API matters  testing   Agile Zone_files/js_def5b13468ddfa4386970cbe7d780b8e.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "googleCSE": { "language": "en" } });
+//--><!]]>
+</script>
+
+<!--Track Microzones -->
+
+        <script type="text/javascript">_gaq.push(['_trackEvent','Microzone Pageviews', 'Enterprise Integration Zone', "Why having an API matters: testing"]);</script>
+            
+
+<!-- Social Tracking Scripts -->
+<script type="text/javascript">
+    fancyBoxOpen = false;
+
+    try {
+        if (FB && FB.Event && FB.Event.subscribe) {
+            FB.Event.subscribe('edge.create', function(targetUrl) {
+                if(fancyBoxOpen) {
+                    _gaq.push(['_trackSocial','Facebook', 'popup like']);
+//                    pageTracker._trackEvent('Facebook', 'popup like');
+                } else {
+                    _gaq.push(['_trackSocial', 'Facebook', 'like']);
+                }
+            });
+        }
+    } catch(e) {}
+
+    try {
+        $(window).ready(function() {
+            $('.IN-widget').click(function() {
+                if(fancyBoxOpen) {
+                    _gaq.push(['_trackSocial','LinkedIn', 'popup share']);
+//                    pageTracker._trackEvent('LinkedIn', 'popup share');
+                } else {
+                    _gaq.push(['_trackSocial','LinkedIn', 'share']);
+                }
+            });
+        });
+    } catch(e) {}
+
+    function track_plusone(gpovote) {
+        try {
+            if(fancyBoxOpen) {
+                _gaq.push(['_trackSocial','Google', 'popup +1']);
+//                pageTracker._trackEvent('Google', 'popup +1');
+            } else {
+                _gaq.push(['_trackSocial','Google', '+1']);
+            }
+        } catch (e) {}
+    }
+
+    try {
+        twttr.events.bind('tweet', function(event) {
+            if (event) {
+                var targetUrl;
+                if (event.target && event.target.nodeName == 'IFRAME') {
+                    targetUrl = extractParamFromUri(event.target.src, 'url');
+                }
+                if(fancyBoxOpen) {
+                    _gaq.push(['_trackSocial','Twitter', 'popup tweet']);
+//                    pageTracker._trackEvent('Twitter', 'popup tweet');
+                } else {
+                    _gaq.push(['_trackSocial','Twitter', 'tweet']);
+                }
+            }
+        });
+    } catch(e) {}
+
+    function extractParamFromUri(uri, paramName) {
+        if (!uri) {
+            return;
+        }
+        var uri = uri.split('#')[0];  // Remove anchor.
+        var parts = uri.split('?');  // Check for query params.
+        if (parts.length == 1) {
+            return;
+        }
+        var query = decodeURI(parts[1]);
+
+        // Find url param.
+        paramName += '=';
+        var params = query.split('&');
+        for (var i = 0, param; param = params[i]; ++i) {
+            if (param.indexOf(paramName) === 0) {
+                return unescape(param.split('=')[1]);
+            }
+        }
+    }
+
+    </script>
+
+    <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe id="fb_xdm_frame_http" name="fb_xdm_frame_http" src="./Why having an API matters  testing   Agile Zone_files/xd_arbiter.html"></iframe><iframe id="fb_xdm_frame_https" name="fb_xdm_frame_https" src="./Why having an API matters  testing   Agile Zone_files/xd_arbiter(1).html"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+
+<div id="woopra_bar" style="display: block;"><ul id="woopra_barul"><li class="woopra_barli" id="_woopra_logo" style="display: none;"><a class="woopra_logotab" href="http://www.woopra.com/?woo_campaign=chatbar&woo_medium=widget&woo_source=agile.dzone.com" target="_blank"><img style="margin: 6px 6px 0 6px" src="./Why having an API matters  testing   Agile Zone_files/woopra_widget.gif" alt="Woopra"></a></li><li class="woopra_barli" id="_woopra_visitors_widget" style="display: block;"><a class="woopra_tab" href="http://agile.dzone.com/articles/why-having-api-matters-testing#">Online Visitors: 161</a><div id="box_PzcBv" class="woopra_widgetbox woopra_presence"><div class="wwb_head"></div><div class="wwb_content"></div></div></li><li class="woopra_barli" id="_woopra_chat_widget" style="display: none;"><a class="woopra_tab" href="http://agile.dzone.com/articles/why-having-api-matters-testing#">Sorry, we're away.</a><div id="box_GoxYw" class="woopra_widgetbox woopra_presence"><div class="wwb_head">Online Agents</div><div class="wwb_content"><div class="wwb_desc">Sorry, we're away.</div></div></div></li></ul></div></body></html>

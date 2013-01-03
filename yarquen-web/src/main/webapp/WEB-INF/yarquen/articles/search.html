@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:substituteby="layout :: header">
+		<meta charset="UTF-8" />
+		<title>Yarquen Crawler</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+		<link href="../../../css/yarquen.css" rel="stylesheet" />
+		<link href="../../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+
+		<script src="../../../js/jquery.js"></script>
+		<script src="../../../bootstrap/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" th:href="@{/}" href="../home.html">Yarquen</a>
+					<div class="nav-collapse collapse">
+						<p class="navbar-text pull-right">Logged in as <a href="#" class="navbar-link">admin</a></p>
+						<ul class="nav">
+							<li class="active"><a th:href="@{/}" href="../home.html">Home</a></li>
+							<li><a href="#about">About</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+				<ul class="breadcrumb">
+					<li><a th:href="@{/}" href="../home.html">Home</a> <span class="divider">/</span></li>
+					<li class="active">Search</li>
+				</ul>
+		</div>
+		
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span4 offset1">
+					<form class="form-search" th:action="@{/articles}" action="search.html" th:object="${searchFields}" method="get">
+						<div class="alert alert-error" th:errors="*{query}">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							<strong>Error</strong>: a query is required!
+						</div>
+						<input type="text" class="input-xlarge search-query" th:field="*{query}" placeholder="search terms" />
+						<button type="submit" class="btn btn-primary">Search</button>
+					</form>
+				</div>
+			</div>
+			
+			<div class="row-fluid">
+				<div id="facetsSection" class="span2" th:if="${results != null}">
+					<h3>Facets</h3>
+					<div>
+						<h4>Type</h4>
+						<label class="checkbox">
+							<input type="checkbox">Articles</input>
+							<small class="muted">(23)</small>
+						</label>
+						<label class="checkbox">
+							<input type="checkbox">Interviews</input>
+							<small class="muted">(12)</small>
+						</label>
+						<label class="checkbox">
+							<input type="checkbox">Tutorials</input>
+							<small class="muted">(5)</small>
+						</label>
+					</div>
+					<div id="authorFacetSection">
+						<h4>Author</h4>
+						<a id="authorFacetBtn" href="#" class="btn btn-small btn-info" rel="popover"
+							title="Authors">Add author</a>
+						<br/>
+<script type="text/javascript">
+/*<![CDATA[*/
+var authors = [{id: 1, name: 'January', results: 4, used: false},
+				{id: 2, name: 'February', results: 20, used: false},
+				{id: 3, name: 'March', results: 1, used: false}];
+
+function addAuthors() {
+	for(var i = 0; i < authors.length; i++){
+		var buff = [];
+		var j = 0;
+		if(authors[i].used) {
+			buff[j++] = '<li class="hide">';
+		} else {
+			buff[j++] = '<li>';
+		}
+		buff[j++] = '<a id="author';
+		buff[j++] = authors[i].id;
+		buff[j++] = '" href="#" class="authorFacetValue">';
+		buff[j++] = authors[i].name;
+		buff[j++] = '</a> <small class="muted">(';
+		buff[j++] = authors[i].results;
+		buff[j++] = ')</small></li>';
+		$('#authorsFacetList').append(buff.join(''));
+		
+		//append data
+		$('#author' + authors[i].id).data('author', authors[i]);
+	}
+}
+
+$('#authorFacetSection').on('click', '.authorFacetValue', function(event) {
+	var author = $(this).data('author');
+	
+	//update state and hide from list
+	author.used = true;
+	$(this).parent().addClass('hide');
+	
+	//add label
+	var buff = [];
+	if(author.results >= 20) {
+		buff[0] = '<a class="label label-warning usedAuthor" style="margin-right: 2px"';
+	} else {
+		buff[0] = '<a class="label label-inverse usedAuthor" style="margin-right: 2px"';
+	}
+	buff[1] = ' id="usedAuthor';
+	buff[2] = author.id;
+	buff[3] = '" href="#">';
+	buff[4] = author.name;
+	buff[6] = ' <small>(';
+	buff[7] = author.results;
+	buff[8] = ')</small></a>';
+	$('#authorFacetSection').append(buff.join(''));
+	
+	//add data to new label
+	$('#usedAuthor' + author.id).data('author', author);
+	
+	event.preventDefault();
+});
+
+$('#authorFacetBtn').popover({
+		html: true,
+		content: '<div><ol id="authorsFacetList"></ol>\
+			<a id="authorFacetValuesClose" href="#" \
+			class="btn btn-mini btn-inverse pull-right" style="margin-bottom: 10px">Close</a><div>',
+		trigger: 'manual'
+	}).click(function(event) {
+		$(this).popover('show');
+		addAuthors();
+		event.preventDefault();
+	});
+
+$('#authorFacetSection').on('click', '#authorFacetValuesClose', function(event) {
+	$('#authorFacetBtn').popover('hide');
+	event.preventDefault();
+});
+
+$('#authorFacetSection').on('click', '.usedAuthor', function(event) {
+	var author = $(this).data('author');
+
+	//show author in list
+	author.used = false;
+	$('#author' + author.id).parent().removeClass('hide');
+	
+	//remove label
+	$(this).remove();
+	
+	event.preventDefault();
+});
+/*]]>*/
+</script>
+					</div>
+					<div>
+						<h4>Year</h4>
+						<label class="checkbox">
+							<input type="checkbox">2012</input>
+							<small class="muted">(12)</small>
+						</label>
+						<label class="checkbox">
+							<input type="checkbox">2010</input>
+							<small class="muted">(6)</small>
+						</label>
+					</div>
+					<div id="keywordFacetSection">
+						<h4>Keywords</h4>
+						<a id="keywordFacetBtn" href="#" class="btn btn-small btn-info" rel="popover"
+							title="Keywords">Add keyword</a>
+						<br/>
+<script type="text/javascript">
+/*<![CDATA[*/
+var keywords = [{id: 1, name: 'Java', results: 4, used: false},
+				{id: 2, name: 'Functional Programming', results: 20, used: false},
+				{id: 3, name: 'REST', results: 1, used: false},
+				{id: 4, name: 'Spring', results: 4, used: false}];
+
+function addKeywords() {
+	for(var i = 0; i < keywords.length; i++){
+		var buff = [];
+		var j = 0;
+		if(keywords[i].used) {
+			buff[j++] = '<li class="hide">';
+		} else {
+			buff[j++] = '<li>';
+		}
+		buff[j++] = '<a id="keyword';
+		buff[j++] = keywords[i].id;
+		buff[j++] = '" href="#" class="keywordFacetValue">';
+		buff[j++] = keywords[i].name;
+		buff[j++] = '</a> <small class="muted">(';
+		buff[j++] = keywords[i].results;
+		buff[j++] = ')</small></li>';
+		$('#keywordsFacetList').append(buff.join(''));
+		
+		//append data
+		$('#keyword' + keywords[i].id).data('keyword', keywords[i]);
+	}
+}
+
+$('#keywordFacetSection').on('click', '.keywordFacetValue', function(event) {
+	var keyword = $(this).data('keyword');
+	
+	//update state and hide from list
+	keyword.used = true;
+	$(this).parent().addClass('hide');
+	
+	//add label
+	var buff = [];
+	if(keyword.results >= 20) {
+		buff[0] = '<a class="label label-warning usedKeyword" style="margin-right: 2px"';
+	} else {
+		buff[0] = '<a class="label label-inverse usedKeyword" style="margin-right: 2px"';
+	}
+	buff[1] = ' id="usedKeyword';
+	buff[2] = keyword.id;
+	buff[3] = '" href="#">';
+	buff[4] = keyword.name;
+	buff[6] = ' <small>(';
+	buff[7] = keyword.results;
+	buff[8] = ')</small></a>';
+	$('#keywordFacetSection').append(buff.join(''));
+	
+	//add data to new label
+	$('#usedKeyword' + keyword.id).data('keyword', keyword);
+	
+	event.preventDefault();
+});
+
+$('#keywordFacetBtn').popover({
+		html: true,
+		content: '<div><ol id="keywordsFacetList"></ol>\
+			<a id="keywordFacetValuesClose" href="#" \
+			class="btn btn-mini btn-inverse pull-right" style="margin-bottom: 10px">Close</a><div>',
+		trigger: 'manual'
+	}).click(function(event) {
+		$(this).popover('show');
+		addKeywords();
+		event.preventDefault();
+	});
+
+$('#keywordFacetSection').on('click', '#keywordFacetValuesClose', function(event) {
+	$('#keywordFacetBtn').popover('hide');
+	event.preventDefault();
+});
+
+$('#keywordFacetSection').on('click', '.usedKeyword', function(event) {
+	var keyword = $(this).data('keyword');
+
+	//show keyword in list
+	keyword.used = false;
+	$('#keyword' + keyword.id).parent().removeClass('hide');
+	
+	//remove label
+	$(this).remove();
+	
+	event.preventDefault();
+});
+/*]]>*/
+</script>
+					</div>
+					<!--div style="margin-top:10px; text-align: center">
+						<button type="button" class="btn btn-danger">Filter!</button>
+					</div-->
+				</div>
+				<div class="span10">
+					<h3 th:if="${results != null}">Results</h3>
+					<h3 id="searchResultsText" th:if="${results == null}">No results found</h3>
+					<ol id="results">
+						<li th:each="result : ${results}">
+							<div style="margin-bottom: 15px">
+								<span>
+									<em><a th:href="${result.url}" href="http://architects.dzone.com/news/functional-programming-101-lam"
+										th:text="${result.title}" target="_blank">Functional Programming 101: Lambda Forms</a></em>
+									<small>by</small>
+									<small><span class="icon-user"></span> <a href="#" th:text="${result.author}">Pramod Subramanyan</a></small>
+									<small>on</small>
+									<small><span class="icon-calendar"></span> <span th:text="${result.date}">05.19.2008</span></small>
+								</span>
+								<br />
+								<small class="muted" th:text="${result.url}">http://architects.dzone.com/news/functional-programming-101-lam</small>
+								<br />
+								<span class="icon-tags"></span>
+								<small class="muted">Keywords:</small>
+								<small th:each="kw : ${result.keywords}" style="margin-right:5px"><a href="#" th:text="${kw}" class="text-success">lambda,</a>,</small>
+								<br />
+								<small><a href="#" class="resultDetailsLink muted">+ more details</a></small>
+								<div class="resultDetails hide">
+									<button type="button" class="resultDetailsClose pull-right close">&times;</button>
+									<h5>Summary</h5>
+									<p th:text="${result.summary}">In this example you will see how to populate a form using Spring annotations. The annotated user controller class is shown below.</p>
+								</div>								
+							</div>
+						</li>
+						<li th:remove="all">
+							<span>
+								<em><a href="http://www.dzone.com/tutorials/java/spring/spring-annotations.html"
+									target="_blank">Spring Annotations Tutorial</a></em>
+								<small>by</small>
+								<small><span class="icon-user"></span> <a href="#">Meyyappan Muthuraman</a></small>
+								<small>on</small>
+								<small><span class="icon-calendar"></span> <span>06.15.2012</span></small>
+							</span>
+							<br />
+							<small class="muted">http://www.dzone.com/tutorials/java/spring/spring-annotations.html</small>
+							<br />
+							<span class="icon-tags"></span>
+							<small>Keywords:</small>
+							<small><a href="#" class="text-success">Spring,</a></small>
+							<small><a href="#" class="text-success">Java,</a></small>
+							<br />
+							<small><a href="#" class="resultDetailsLink muted">+ more details</a></small>
+							<div class="resultDetails hide">
+								<button type="button" class="resultDetailsClose pull-right close">&times;</button>
+								<h5>Summary</h5>
+								<p  th:text="${result.summary}">In this example you will see how to populate a form using Spring annotations. The annotated user controller class is shown below.</p>
+							</div>
+						</li>
+<script type="text/javascript">
+/*<![CDATA[*/
+$('#results').on('click', '.resultDetailsLink', function(event) {
+	var el = $(this).parent().next('.resultDetails'); 
+	if(el.hasClass('hide')) {
+		el.removeClass('hide');
+		$(this).text('- less details');
+	} else {
+		el.addClass('hide');
+		$(this).text('+ more details');
+	}
+	event.preventDefault();
+});
+
+$('#results').on('click', '.resultDetailsClose', function(event) {
+	$(this).parent().addClass('hide');
+	$(this).parent().prev('small').children('.resultDetailsLink').text('+ more details');
+	event.preventDefault();
+});
+/*]]>*/
+</script>
+					</ol>
+				</div>
+			</div>
+
+			<hr/>
+			<footer class="pull-right" th:substituteby="layout :: footer">
+				<small class="muted">Yarquen, a focused, semantic, distributed crawler :)</small>
+			</footer>
+		</div>
+<script type="text/javascript">
+/*<![CDATA[*/
+$(document).ready(function() {
+if(document.location.search.length) {
+    $("#searchResultsText").show();
+    $("#facetsSection").show();
+} else {
+    $("#searchResultsText").hide();
+    $("#facetsSection").hide();
+}
+});
+/*]]>*/
+</script>
+	</body>
+</html>

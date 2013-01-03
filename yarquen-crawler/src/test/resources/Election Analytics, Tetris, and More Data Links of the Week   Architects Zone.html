@@ -1,0 +1,956 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0066)http://architects.dzone.com/articles/election-analytics-tetris-and -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/widgets.js"></script><link rel="stylesheet" type="text/css" href="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/widget097.css" media="all">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <link rel="canonical" href="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/Election Analytics, Tetris, and More Data Links of the Week   Architects Zone.html">
+    
+    <!-- Start of DART Code -->
+    <script id="LR1" type="text/javascript" async="" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/hubclient.js"></script><script id="facebook-jssdk" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/all.js"></script><script src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/cb=gapi.loaded_0" async=""></script><script id="twitter-wjs" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/widgets.js"></script><script type="text/javascript" async="" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" async="" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/ga.js"></script><script src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/woopra.js" type="text/javascript" async=""></script><script type="text/javascript">
+	// This is a bad little hack for things that execute reliance on Drupals JS before its been fully loaded
+	var Drupal = Drupal || { 'settings': {}, 'behaviors': {}, 'themes': {}, 'locale': {} };
+	Drupal.behaviors = Drupal.behaviors || {};
+        (function() {
+            var useSSL = 'https:' == document.location.protocol;
+            var src = (useSSL ? 'https:' : 'http:') +
+                '//www.googletagservices.com/tag/js/gpt.js';
+            document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+        })();
+        </script><script src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/gpt.js"></script>
+
+    <script type="text/javascript">
+        googletag.defineSlot('/2916070/zones_bottomblurb_650x122', [650, 122], 'div-gpt-ad-1350569504085-0').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_masthead_728x90_default', [728, 90], 'div-gpt-ad-1350569504085-1').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_sidebar_336x280_default', [300, 250], 'div-gpt-ad-1350569504085-2').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_superboard_980x200', [980, 200], 'div-gpt-ad-1350569504085-3').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_239x90', [239, 90], 'div-gpt-ad-1350569504085-40').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_239x90', [239, 90], 'div-gpt-ad-1350569504085-41').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_239x90', [239, 90], 'div-gpt-ad-1350569504085-42').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_800x20', [800, 20], 'div-gpt-ad-1350569504085-5').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_topblurb_650x61', [650, 61], 'div-gpt-ad-1350569504085-6').addService(googletag.pubads());
+        googletag.pubads().enableSyncRendering();
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+        googletag.pubads().setTargeting("tag", "111665-bigdata");
+    </script><script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/google_ads_gpt.js"></script>
+    <!-- End of DART Code -->
+
+
+    <!-- Start of Woopra Code -->
+    <script type="text/javascript">
+        function woopraReady(tracker) {
+            tracker.setDomain('dzone.com');
+            tracker.setIdleTimeout(300000);
+
+            
+            tracker.trackPageview({
+                url: window.location.pathname + window.location.search,
+                title: document.title,
+                                    author: 'freakonometrics',
+                                zone:'Architects Zone',
+                microzone:'1'
+            });
+
+            return false;
+        }
+        (function() {
+            var wsc = document.createElement('script');
+            wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
+            wsc.type = 'text/javascript';
+            wsc.async = true;
+            var ssc = document.getElementsByTagName('script')[0];
+            ssc.parentNode.insertBefore(wsc, ssc);
+        })();
+    </script>
+    <!-- End of Woopra Code -->
+
+    <!-- Use this code block to activate a prestitial if there's one to load -->
+    <!-- BEGIN ADVERTPRO ADVANCED CODE BLOCK -->
+
+    <script language="JavaScript" type="text/javascript">
+        <!--
+        document.write('<SCR'+'IPT src="http://avpa.dzone.com/servlet/view/dynamic/javascript/zone?zid=159&pid=0&random='+Math.floor(89999999*Math.random()+10000000)+'&millis='+new Date().getTime()+'" language="JavaScript" type="text/javascript"></SCR'+'IPT>');
+        //-->
+    </script><script src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/zone" language="JavaScript" type="text/javascript"></script>
+
+    <!-- END ADVERTPRO ADVANCED CODE BLOCK -->
+
+            <title>Election Analytics, Tetris, and More Data Links of the Week | Architects Zone</title>
+    
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for &quot;Election Analytics, Tetris, and More Data Links of the Week&quot;" href="http://architects.dzone.com/crss/node/122493">
+
+<link rel="shortcut icon" href="http://architects.dzone.com/misc/favicon.ico" type="image/x-icon">
+<script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/16518638.js"></script>
+            <link rel="alternate" type="application/rss+xml" title="Architects Zone RSS" href="http://feeds.dzone.com/zones/architects">
+                <link type="text/css" rel="stylesheet" media="all" href="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/css_7300f5cc0042f89cb9c0bee528cfa1a1.css">
+<link type="text/css" rel="stylesheet" media="print" href="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/css_ba431a9c54c12f1ae2f21704f258686a.css">
+                <meta name="Description" content="So, Movember finally arrived (seehttp://ca.movember.com/). So far, not a lot of articles about moustaches. But I should find some by the end of the month!...">
+            
+        <meta name="google-site-verification" content="">
+    
+    <!-- RSS link -->
+    
+        <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-410289-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>                        <script type="text/javascript">
+                _gaq.push(['_trackEvent', 'egregory\'s Pageviews', 'Reprint', 'Election Analytics, Tetris, and More Data Links of the Week']);
+                <!--                pageTracker._trackEvent('--><!--\'s Pageviews', '--><!--', "--><!--");-->
+            </script>
+                        
+
+<link rel="stylesheet" type="text/css" href="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/woopra.widgets.2.css"><script src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/nonSecureAnonymousFramework"></script><div style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;" id="_atssh"><iframe id="_atssh404" title="AddThis utility frame" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px; left: 0px; top: 0px;" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/sh103.html"></iframe></div><script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/core048.js"></script><script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/osd.js"></script><style type="text/css">* html #li_ui_li_gen_1353598643725_0 a#li_ui_li_gen_1353598643725_0-link{height:1% !important;}#li_ui_li_gen_1353598643725_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1353598643725_0 a#li_ui_li_gen_1353598643725_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1353598643725_0 a#li_ui_li_gen_1353598643725_0-link:link, #li_ui_li_gen_1353598643725_0 a#li_ui_li_gen_1353598643725_0-link:visited, #li_ui_li_gen_1353598643725_0 a#li_ui_li_gen_1353598643725_0-link:hover, #li_ui_li_gen_1353598643725_0 a#li_ui_li_gen_1353598643725_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1353598643725_0 a#li_ui_li_gen_1353598643725_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-logo{background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -276px no-repeat !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;}#li_ui_li_gen_1353598643725_0.hovered #li_ui_li_gen_1353598643725_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1353598643725_0.clicked #li_ui_li_gen_1353598643725_0-logo, #li_ui_li_gen_1353598643725_0.down #li_ui_li_gen_1353598643725_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-logo{}#li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1353598643725_0.hovered #li_ui_li_gen_1353598643725_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1353598643725_0.clicked #li_ui_li_gen_1353598643725_0-title, #li_ui_li_gen_1353598643725_0.down #li_ui_li_gen_1353598643725_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title{}.IN-shadowed #li_ui_li_gen_1353598643725_0.hovered #li_ui_li_gen_1353598643725_0-title{}.IN-shadowed #li_ui_li_gen_1353598643725_0.clicked #li_ui_li_gen_1353598643725_0-title, .IN-shadowed #li_ui_li_gen_1353598643725_0.down #li_ui_li_gen_1353598643725_0-title{}#li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title-text, #li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;display:inline-block !important;background:transparent none !important;vertical-align:baseline !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1353598643725_0.hovered #li_ui_li_gen_1353598643725_0-title-text, #li_ui_li_gen_1353598643725_0.hovered #li_ui_li_gen_1353598643725_0-title-text *{color:#000 !important;}#li_ui_li_gen_1353598643725_0.clicked #li_ui_li_gen_1353598643725_0-title-text, #li_ui_li_gen_1353598643725_0.down #li_ui_li_gen_1353598643725_0-title-text, #li_ui_li_gen_1353598643725_0.clicked #li_ui_li_gen_1353598643725_0-title-text *, #li_ui_li_gen_1353598643725_0.down #li_ui_li_gen_1353598643725_0-title-text *{color:#666 !important;}#li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title #li_ui_li_gen_1353598643725_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title-text, .success #li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1353598643725_0 #li_ui_li_gen_1353598643725_0-title{}.success #li_ui_li_gen_1353598643725_0.hovered #li_ui_li_gen_1353598643725_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1353598643725_0.hovered #li_ui_li_gen_1353598643725_0-title-text, .success #li_ui_li_gen_1353598643725_0.hovered #li_ui_li_gen_1353598643725_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1353598643725_0.clicked #li_ui_li_gen_1353598643725_0-title, .success #li_ui_li_gen_1353598643725_0.down #li_ui_li_gen_1353598643725_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1353598643725_0.clicked #li_ui_li_gen_1353598643725_0-title-text, .success #li_ui_li_gen_1353598643725_0.down #li_ui_li_gen_1353598643725_0-title-text, .success #li_ui_li_gen_1353598643725_0.clicked #li_ui_li_gen_1353598643725_0-title-text *, .success #li_ui_li_gen_1353598643725_0.down #li_ui_li_gen_1353598643725_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1353598643725_0.clicked #li_ui_li_gen_1353598643725_0-title, .IN-shadowed .success #li_ui_li_gen_1353598643725_0.down #li_ui_li_gen_1353598643725_0-title{}#li_ui_li_gen_1353598643766_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1353598643766_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) right -100px no-repeat !important;}#li_ui_li_gen_1353598643766_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -60px no-repeat !important;}#li_ui_li_gen_1353598643766_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1353598643766_1-container.IN-hovered #li_ui_li_gen_1353598643766_1.IN-right, #li_ui_li_gen_1353598643766_1-container.IN-clicked #li_ui_li_gen_1353598643766_1.IN-right, #li_ui_li_gen_1353598643766_1-container.IN-down #li_ui_li_gen_1353598643766_1.IN-right {background-position-y:-120px !important;}#li_ui_li_gen_1353598643766_1-container.IN-hovered #li_ui_li_gen_1353598643766_1-inner.IN-right, #li_ui_li_gen_1353598643766_1-container.IN-clicked #li_ui_li_gen_1353598643766_1-inner.IN-right, #li_ui_li_gen_1353598643766_1-container.IN-down #li_ui_li_gen_1353598643766_1-inner.IN-right {background-position-y:-80px !important;}#li_ui_li_gen_1353598643766_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1353598643766_1-container.IN-hidden #li_ui_li_gen_1353598643766_1 {display:none !important;}* html #li_ui_li_gen_1353598643799_2 a#li_ui_li_gen_1353598643799_2-link{height:1% !important;}#li_ui_li_gen_1353598643799_2{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1353598643799_2 a#li_ui_li_gen_1353598643799_2-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1353598643799_2 a#li_ui_li_gen_1353598643799_2-link:link, #li_ui_li_gen_1353598643799_2 a#li_ui_li_gen_1353598643799_2-link:visited, #li_ui_li_gen_1353598643799_2 a#li_ui_li_gen_1353598643799_2-link:hover, #li_ui_li_gen_1353598643799_2 a#li_ui_li_gen_1353598643799_2-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1353598643799_2 a#li_ui_li_gen_1353598643799_2-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-logo{background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -276px no-repeat !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;}#li_ui_li_gen_1353598643799_2.hovered #li_ui_li_gen_1353598643799_2-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1353598643799_2.clicked #li_ui_li_gen_1353598643799_2-logo, #li_ui_li_gen_1353598643799_2.down #li_ui_li_gen_1353598643799_2-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-logo{}#li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1353598643799_2.hovered #li_ui_li_gen_1353598643799_2-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1353598643799_2.clicked #li_ui_li_gen_1353598643799_2-title, #li_ui_li_gen_1353598643799_2.down #li_ui_li_gen_1353598643799_2-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title{}.IN-shadowed #li_ui_li_gen_1353598643799_2.hovered #li_ui_li_gen_1353598643799_2-title{}.IN-shadowed #li_ui_li_gen_1353598643799_2.clicked #li_ui_li_gen_1353598643799_2-title, .IN-shadowed #li_ui_li_gen_1353598643799_2.down #li_ui_li_gen_1353598643799_2-title{}#li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title-text, #li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;display:inline-block !important;background:transparent none !important;vertical-align:baseline !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title-text em{font-style:italic !important;}#li_ui_li_gen_1353598643799_2.hovered #li_ui_li_gen_1353598643799_2-title-text, #li_ui_li_gen_1353598643799_2.hovered #li_ui_li_gen_1353598643799_2-title-text *{color:#000 !important;}#li_ui_li_gen_1353598643799_2.clicked #li_ui_li_gen_1353598643799_2-title-text, #li_ui_li_gen_1353598643799_2.down #li_ui_li_gen_1353598643799_2-title-text, #li_ui_li_gen_1353598643799_2.clicked #li_ui_li_gen_1353598643799_2-title-text *, #li_ui_li_gen_1353598643799_2.down #li_ui_li_gen_1353598643799_2-title-text *{color:#666 !important;}#li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title #li_ui_li_gen_1353598643799_2-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title-text, .success #li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1353598643799_2 #li_ui_li_gen_1353598643799_2-title{}.success #li_ui_li_gen_1353598643799_2.hovered #li_ui_li_gen_1353598643799_2-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1353598643799_2.hovered #li_ui_li_gen_1353598643799_2-title-text, .success #li_ui_li_gen_1353598643799_2.hovered #li_ui_li_gen_1353598643799_2-title-text *{color:#000 !important;}.success #li_ui_li_gen_1353598643799_2.clicked #li_ui_li_gen_1353598643799_2-title, .success #li_ui_li_gen_1353598643799_2.down #li_ui_li_gen_1353598643799_2-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1353598643799_2.clicked #li_ui_li_gen_1353598643799_2-title-text, .success #li_ui_li_gen_1353598643799_2.down #li_ui_li_gen_1353598643799_2-title-text, .success #li_ui_li_gen_1353598643799_2.clicked #li_ui_li_gen_1353598643799_2-title-text *, .success #li_ui_li_gen_1353598643799_2.down #li_ui_li_gen_1353598643799_2-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1353598643799_2.clicked #li_ui_li_gen_1353598643799_2-title, .IN-shadowed .success #li_ui_li_gen_1353598643799_2.down #li_ui_li_gen_1353598643799_2-title{}#li_ui_li_gen_1353598643832_3-container.IN-top {display:inline-block !important;overflow:visible !important;position:relative !important;height:42px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1353598643832_3.IN-top {display:inline-block !important;height:42px !important;width:57px !important;text-align:center !important;background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) -150px top no-repeat !important;}#li_ui_li_gen_1353598643832_3-content.IN-top {display:inline !important;font-size:16px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:34px !important;}#li_ui_li_gen_1353598643832_3-container.IN-hovered #li_ui_li_gen_1353598643832_3.IN-top, #li_ui_li_gen_1353598643832_3-container.IN-clicked #li_ui_li_gen_1353598643832_3.IN-top, #li_ui_li_gen_1353598643832_3-container.IN-down #li_ui_li_gen_1353598643832_3.IN-top {background-position-x:-210px !important;}#li_ui_li_gen_1353598643832_3-container.IN-empty #li_ui_li_gen_1353598643832_3-inner.IN-top {background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -20px no-repeat !important;overflow:hidden !important;margin:5px auto 0 auto !important;width:26px !important;height:26px !important;display:block !important;}#li_ui_li_gen_1353598643832_3-container.IN-empty #li_ui_li_gen_1353598643832_3-content.IN-top {text-indent:-999px !important;display:inline-block !important;}#li_ui_li_gen_1353598643832_3-container.IN-hidden #li_ui_li_gen_1353598643832_3 {display:none !important;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border-spacing:0;border:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/y6/x/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/y6/x/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/y6/x/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+/* @noflip */
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+/* @noflip */
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yD/x/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;left:-10000px;overflow:visible;position:absolute;top:-10000px;width:100%
+}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yc/x/3rhSv5V8j3o.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0 0, 0 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0 0, 0 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yJ/x/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{position:relative;display:-moz-inline-block;display:inline-block}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_iframe_widget span{position:relative;display:inline-block;vertical-align:text-bottom;text-align:justify}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yJ/x/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_button_simple,
+.fb_button_simple_rtl{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yH/x/eIpbnVKI9lR.png);background-repeat:no-repeat;cursor:pointer;outline:none;text-decoration:none}
+.fb_button_simple_rtl{background-position:right 0}
+.fb_button_simple .fb_button_text{margin:0 0 0 20px;padding-bottom:1px}
+.fb_button_simple_rtl .fb_button_text{margin:0 10px 0 0}
+a.fb_button_simple:hover .fb_button_text,
+a.fb_button_simple_rtl:hover .fb_button_text,
+.fb_button_simple:hover .fb_button_text,
+.fb_button_simple_rtl:hover .fb_button_text{text-decoration:underline}
+.fb_button,
+.fb_button_rtl{background:#29447e url(http://static.ak.fbcdn.net/rsrc.php/v2/yl/x/FGFbc80dUKj.png);background-repeat:no-repeat;cursor:pointer;display:inline-block;padding:0 0 0 1px;text-decoration:none;outline:none}
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text{background:#5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v2/yl/x/FGFbc80dUKj.png);border-top:solid 1px #879ac0;border-bottom:solid 1px #1a356e;color:#fff;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-weight:bold;padding:2px 6px 3px 6px;margin:1px 1px 0 21px;text-shadow:none}
+a.fb_button,
+a.fb_button_rtl,
+.fb_button,
+.fb_button_rtl{text-decoration:none}
+a.fb_button:active .fb_button_text,
+a.fb_button_rtl:active .fb_button_text,
+.fb_button:active .fb_button_text,
+.fb_button_rtl:active .fb_button_text{border-bottom:solid 1px #29447e;border-top:solid 1px #45619d;background:#4f6aa3;text-shadow:none}
+.fb_button_xlarge,
+.fb_button_xlarge_rtl{background-position:left -60px;font-size:24px;line-height:30px}
+.fb_button_xlarge .fb_button_text{padding:3px 8px 3px 12px;margin-left:38px}
+a.fb_button_xlarge:active{background-position:left -99px}
+.fb_button_xlarge_rtl{background-position:right -268px}
+.fb_button_xlarge_rtl .fb_button_text{padding:3px 8px 3px 12px;margin-right:39px}
+a.fb_button_xlarge_rtl:active{background-position:right -307px}
+.fb_button_large,
+.fb_button_large_rtl{background-position:left -138px;font-size:13px;line-height:16px}
+.fb_button_large .fb_button_text{margin-left:24px;padding:2px 6px 4px 6px}
+a.fb_button_large:active{background-position:left -163px}
+.fb_button_large_rtl{background-position:right -346px}
+.fb_button_large_rtl .fb_button_text{margin-right:25px}
+a.fb_button_large_rtl:active{background-position:right -371px}
+.fb_button_medium,
+.fb_button_medium_rtl{background-position:left -188px;font-size:11px;line-height:14px}
+a.fb_button_medium:active{background-position:left -210px}
+.fb_button_medium_rtl{background-position:right -396px}
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text{padding:2px 6px 3px 6px;margin-right:22px}
+a.fb_button_medium_rtl:active{background-position:right -418px}
+.fb_button_small,
+.fb_button_small_rtl{background-position:left -232px;font-size:10px;line-height:10px}
+.fb_button_small .fb_button_text{padding:2px 6px 3px;margin-left:17px}
+a.fb_button_small:active,
+.fb_button_small:active{background-position:left -250px}
+.fb_button_small_rtl{background-position:right -440px}
+.fb_button_small_rtl .fb_button_text{padding:2px 6px;margin-right:18px}
+a.fb_button_small_rtl:active{background-position:right -458px}
+.fb_share_count_wrapper{position:relative;float:left}
+.fb_share_count{background:#b0b9ec none repeat scroll 0 0;color:#333;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.fb_share_count_inner{background:#e8ebf2;display:block}
+.fb_share_count_right{margin-left:-1px;display:inline-block}
+.fb_share_count_right .fb_share_count_inner{border-top:solid 1px #e8ebf2;border-bottom:solid 1px #b0b9ec;margin:1px 1px 0 1px;font-size:10px;line-height:10px;padding:2px 6px 3px;font-weight:bold}
+.fb_share_count_top{display:block;letter-spacing:-1px;line-height:34px;margin-bottom:7px;font-size:22px;border:solid 1px #b0b9ec}
+.fb_share_count_nub_top{border:none;display:block;position:absolute;left:7px;top:35px;margin:0;padding:0;width:6px;height:7px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yP/x/bSOHtKbCGYI.png)}
+.fb_share_count_nub_right{border:none;display:inline-block;padding:0;width:5px;height:10px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/x/i_oIVTKMYsL.png);vertical-align:top;background-position:right 5px;z-index:10;left:2px;margin:0 2px 0 0;position:relative}
+.fb_share_no_count{display:none}
+.fb_share_size_Small .fb_share_count_right .fb_share_count_inner{font-size:10px}
+.fb_share_size_Medium .fb_share_count_right .fb_share_count_inner{font-size:11px;padding:2px 6px 3px;letter-spacing:-1px;line-height:14px}
+.fb_share_size_Large .fb_share_count_right .fb_share_count_inner{font-size:13px;line-height:16px;padding:2px 6px 4px;font-weight:normal;letter-spacing:-1px}
+.fb_share_count_hidden .fb_share_count_nub_top,
+.fb_share_count_hidden .fb_share_count_top,
+.fb_share_count_hidden .fb_share_count_nub_right,
+.fb_share_count_hidden .fb_share_count_right{visibility:hidden}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+/* @noflip */
+.fbpluginrecommendationsbarleft{left:10px}
+/* @noflip */
+.fbpluginrecommendationsbarright{right:10px}
+</style></head>
+<body class="sidebar-right" data-twttr-rendered="true"><iframe id="twttrHubFrameSecure" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrameSecure" style="position: absolute; top: -9999em; width: 10px; height: 10px;" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/hub(1).html"></iframe><iframe id="twttrHubFrame" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrame" style="position: absolute; top: -9999em; width: 10px; height: 10px;" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/hub.html"></iframe>
+
+<div id="page_wrapper">
+
+
+<div class="global_menu">
+    <div class="menu_wrapper">
+        <div id="menu_login">
+                        <a href="http://architects.dzone.com/user">LOG IN</a> or <a href="http://architects.dzone.com/user/register?clean=true">JOIN</a>
+                    </div>
+                <ul class="nice-menu nice-menu-down" id="nice-menu-1"><li id="menu-211" class="menu-path-www.dzone.com"><a href="http://www.dzone.com/" title="">Home</a></li>
+<li id="menu-167" class="menu-path-refcardz.dzone.com-"><a href="http://refcardz.dzone.com/">Refcardz</a></li>
+<li id="menu-4979" class="menuparent menu-path-www.dzone.com-mz"><a href="http://www.dzone.com/mz" title="">Microzones</a><ul><li id="menu-5029" class="menu-path-domain-cloud.dzone.com"><a href="http://architects.dzone.com/domain/cloud.dzone.com" title="Go to cloud.dzone.com">Cloud Zone</a></li>
+<li id="menu-5221" class="menu-path-dzone.com-mz-nosql"><a href="http://dzone.com/mz/nosql" title="">NoSQL Zone</a></li>
+<li id="menu-5187" class="menu-path-dzone.com-mz-html5"><a href="http://dzone.com/mz/html5" title="">HTML5 Zone</a></li>
+<li id="menu-5081" class="menu-path-dzone.com-mz-devops"><a href="http://dzone.com/mz/devops" title="">DevOps Zone</a></li>
+<li id="menu-5451" class="menu-path-dzone.com-mz-enterprise-integration"><a href="http://dzone.com/mz/enterprise-integration" title="">Enterprise Integration</a></li>
+<li id="menu-4987" class="menu-path-dzone.com-mz-windowsphone7"><a href="http://dzone.com/mz/windowsphone7" title="">Windows Phone</a></li>
+<li id="menu-5293" class="menu-path-dzone.com-mz-dotnet"><a href="http://dzone.com/mz/dotnet" title="">.NET Zone</a></li>
+<li id="menu-5607" class="menu-path-dzone.com-mz-performance"><a href="http://dzone.com/mz/performance" title="">Performance Zone</a></li>
+<li id="menu-5613" class="menu-path-dzone.com-mz-big-data"><a href="http://dzone.com/mz/big-data" title="">Big Data/BI Zone</a></li>
+</ul>
+</li>
+<li id="menu-125" class="menuparent menu-path-domain"><a href="http://architects.dzone.com/domain">Zones</a><ul><li id="menu-358" class="menu-path-domain-agile.dzone.com"><a href="http://architects.dzone.com/domain/agile.dzone.com" title="Go to agile.dzone.com">Agile Zone</a></li>
+<li id="menu-4849" class="menu-path-domain-mobile.dzone.com"><a href="http://architects.dzone.com/domain/mobile.dzone.com" title="Go to mobile.dzone.com">Mobile Zone</a></li>
+<li id="menu-426" class="menu-path-domain-java.dzone.com"><a href="http://architects.dzone.com/domain/java.dzone.com" title="Go to java.dzone.com">Javalobby</a></li>
+<li id="menu-454" class="menu-path-domain-css.dzone.com"><a href="http://architects.dzone.com/domain/css.dzone.com" title="Go to css.dzone.com">Web Builder Zone</a></li>
+<li id="menu-4991" class="menuparent menu-path-front"><a href="http://architects.dzone.com/" title="">IDEs and Tools</a><ul><li id="menu-413" class="menu-path-domain-eclipse.dzone.com"><a href="http://architects.dzone.com/domain/eclipse.dzone.com" title="Go to eclipse.dzone.com">Eclipse Zone</a></li>
+<li id="menu-317" class="menu-path-domain-jetbrains.dzone.com"><a href="http://architects.dzone.com/domain/jetbrains.dzone.com" title="Go to jetbrains.dzone.com">JetBrains Zone</a></li>
+<li id="menu-431" class="menu-path-domain-netbeans.dzone.com"><a href="http://architects.dzone.com/domain/netbeans.dzone.com" title="Go to netbeans.dzone.com">NetBeans Zone</a></li>
+</ul>
+</li>
+<li id="menu-4999" class="menuparent menu-path-front"><a href="http://architects.dzone.com/" title="">Languages</a><ul><li id="menu-5295" class="menu-path-php.dzone.com"><a href="http://php.dzone.com/" title="Go to php.dzone.com">PHP Zone</a></li>
+<li id="menu-5001" class="menu-path-groovy.dzone.com"><a href="http://groovy.dzone.com/" title="">Groovy Zone</a></li>
+<li id="menu-5003" class="menu-path-python.dzone.com"><a href="http://python.dzone.com/" title="">Python Zone</a></li>
+<li id="menu-5457" class="menu-path-ruby.dzone.com"><a href="http://ruby.dzone.com/" title="">Ruby Zone</a></li>
+</ul>
+</li>
+<li id="menu-189" class="menu-path-domain-architects.dzone.com"><a href="http://architects.dzone.com/domain/architects.dzone.com" title="Go to architects.dzone.com">Architects Zone</a></li>
+<li id="menu-400" class="menu-path-domain-books.dzone.com"><a href="http://architects.dzone.com/domain/books.dzone.com" title="Go to books.dzone.com">Book Zone</a></li>
+<li id="menu-287" class="menu-path-domain-server.dzone.com"><a href="http://architects.dzone.com/domain/server.dzone.com">Server Zone</a></li>
+</ul>
+</li>
+<li id="menu-367" class="menu-path-library.dzone.com"><a href="http://library.dzone.com/">Library</a></li>
+<li id="menu-1349" class="menu-path-dzone.com-snippets-"><a href="http://dzone.com/snippets/" title="">Snippets</a></li>
+<li id="menu-5617" class="menu-path-www.dzone.com-tutorials-"><a href="http://www.dzone.com/tutorials/" title="">Tutorials</a></li>
+</ul>
+        <div id="search_bar">
+            <form action="http://architects.dzone.com/search/google" accept-charset="UTF-8" method="get" id="google-cse-searchbox-form">
+<div><input type="hidden" name="cx" id="edit-cx" value="010821965829155306098:ogyaz_5nsc8">
+<input type="hidden" name="cof" id="edit-cof" value="FORID:11">
+<div class="form-item" id="edit-query-wrapper">
+ <input type="text" maxlength="128" name="query" id="edit-query" size="15" value="" title="Enter the terms you wish to search for." class="form-text" style="background-image: url(http://www.google.com/coop/intl/en/images/google_custom_search_watermark.gif); background-color: rgb(255, 255, 255); background-position: 0% 50%; background-repeat: no-repeat no-repeat;">
+</div>
+<input type="submit" name="op" id="edit-sa" value="Search" class="form-submit">
+<input type="hidden" name="form_build_id" id="form-87cd5e735c397aa9677685eb5ab6a07c" value="form-87cd5e735c397aa9677685eb5ab6a07c">
+<input type="hidden" name="form_id" id="edit-google-cse-searchbox-form" value="google_cse_searchbox_form">
+
+</div></form>
+        </div>
+    </div>
+</div>
+
+    
+
+
+<div class="siteHeader">
+</div>
+
+
+<div id="header-region" class="clear-block">
+</div>
+
+<div id="wrapper" class="fewerAds">
+<div id="container" class="clear-block">
+<div id="header">
+    <div id="masthead">
+
+        <div id="site_id">
+                        <a href="http://www.dzone.com/mz/big-data" title="DZone: Your Personal Tech Universe"><img class="dz_logo" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/mh_dzone_logo.png" alt="DZone: Your Personal Tech Universe" title="DZone: Your Personal Tech Universe"></a>
+                            <!--                    <div class="site_name" style="margin-top:16px;"><a  href="--><!--" title="--><!--">--><!--</a></div>-->
+                <!--                    <a href="--><!--" title="--><!--"><img class="site_logo" src="http://cdn.dzone.com/--><!--"-->
+                <!--                         alt="--><!--" title="--><!--" /></a>-->
+                            <!--                <span class="site_slogan">--><!--</span>-->
+                    </div>
+
+        
+                <div class="mh_leader">
+            <div class="leaderboard">
+                <!-- BEGIN DART CODE BLOCK -->
+                        <!-- zones_textad_239x90 -->
+                    <div id="div-gpt-ad-1350569504085-4" class="top-textad">
+                        <script type="text/javascript">
+                            googletag.display('div-gpt-ad-1350569504085-40');
+                        </script><script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/ads"></script><div id="div-gpt-ad-1350569504085-40_ad_container"><a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DB_y9LrkauUKXUKJTi6gH3-IHwCc61-M4CAAAAEAEg4tPyBjgAWJ6V088vYJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIcLzI5MTYwNzAvem9uZXNfdGV4dGFkXzIzOXg5MPgC8tEegAMBkAOcBJgDpAOoAwHgBAGgBh8%2526num%253D0%2526sig%253DAOD64_30PrUQ8UTeupfONU-bYLTlfkQt-g%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://www.gridgain.com/?utm_source=dzone&utm_medium=banners&utm_campaign=DZoneSummer2012" title="" target="_blank"><span style="color:green"><b><span style="font-size:15px;">GridGain FREE Version</span><br></b></span></a> <span style="color:black"><span style="font-size:15px;">Unlock Big Data With Zero-Cost Open Source</span></span><br>
+
+</div>
+
+                    </div>
+                    <div id="div-gpt-ad-1333726564216-41" class="top-textad">
+                        <script type="text/javascript">
+                            googletag.display('div-gpt-ad-1350569504085-41');
+                        </script><div id="div-gpt-ad-1350569504085-41_ad_container"><a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DB6vTKrkauUKjUKJTi6gH3-IHwCc61-M4CAAAAEAEg4tPyBjgAWNbgts8vYJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIcLzI5MTYwNzAvem9uZXNfdGV4dGFkXzIzOXg5MPgC8tEegAMBkAOcBJgDpAOoAwHgBAGgBh8%2526num%253D0%2526sig%253DAOD64_3nDo41pyzqmlsgL222Y42HeiniEw%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://www.gridgain.com/?utm_source=dzone&utm_medium=banners&utm_campaign=DZoneSummer2012" title="" target="_blank"><span style="color:green"><b><span style="font-size:15px;">Java-Based Big Data</span><br></b></span></a> <span style="color:black"><span style="font-size:15px;">Open Source, Scalable, In-Memory, Real-Time Big Data Processing</span></span><br>
+
+</div>
+
+                    </div>
+                    <div id="div-gpt-ad-1333726564216-42" class="top-textad">
+                        <script type="text/javascript">
+                            googletag.display('div-gpt-ad-1350569504085-42');
+                        </script><div id="div-gpt-ad-1350569504085-42_ad_container"><a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBMWLFrkauUKnUKJTi6gH3-IHwCc61-M4CAAAAEAEg4tPyBjgAWP7w5s8vYJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIcLzI5MTYwNzAvem9uZXNfdGV4dGFkXzIzOXg5MPgC8tEegAMBkAOcBJgDpAOoAwHgBAGgBh8%2526num%253D0%2526sig%253DAOD64_20Yyn_vpOCFy3DQl1LCy0XB-ePVg%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://www.gridgain.com/purchase/consulting/?utm_source=dzone&utm_medium=banners&utm_campaign=DZoneSummer2012" title="" target="_blank"><span style="color:green"><b><span style="font-size:15px;">Fix Your Big Data Problems</span><br></b></span></a> <span style="color:black"><span style="font-size:15px;">Big Data Analytics Customized For YOUR Next Project</span></span><br>
+
+</div>
+
+                    </div>
+                <!-- END DART CODE BLOCK -->
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<div id="siteBar">
+            <div class="site_name"><a href="http://www.dzone.com/mz/big-data" title="Big Data/BI Zone">Big Data/BI Zone</a></div>
+    <div class="textads">
+        <!-- zones_textad_800x20 -->
+        <div id="div-gpt-ad-1350569504085-5" style="width:800px; height:20px;">
+            <script type="text/javascript">
+                googletag.display('div-gpt-ad-1350569504085-5');
+            </script><div id="div-gpt-ad-1350569504085-5_ad_container"><style type="text/css">
+    #zone_800_textad{
+        font-size: 16px;
+        font-family: 'MuseoSans500', helvetica, arial;
+        font-weight:normal;
+        color: #555;
+        text-decoration:none;
+    }
+
+    #zone_800_textad a{
+        font-weight:bold;
+        color:#555;
+        text-decoration:none;
+    }
+</style>
+
+<div id="zone_800_textad">
+    DZone is hiring UI/UX designers!
+<a href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBWsybrkauUKrUKJTi6gH3-IHwCcbk9f0CAAAAEAEg4tPyBjgAWJ71sMAxYJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIcLzI5MTYwNzAvem9uZXNfdGV4dGFkXzgwMHgyMPgC8tEekAOcBJgDpAOoAwHQBJBO4AQBoAYW%2526num%253D0%2526sig%253DAOD64_1QbkXUIfWebGlNLCMEb9OU660zrA%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://www.dzone.com/corporate/careers/uiux-20120712-jobposting" target="_parent"> Click here to learn more.</a>
+</div>
+
+</div>
+
+        </div>
+    </div>
+    </div>
+
+<!--    <div class="topics-trending fancyfont">-->
+<!--    --><!--    </div>-->
+
+    
+<div id="superboard">
+    <span class="superboard_sponsor_info">Big Data/BI Zone is brought to you in partnership with:</span>
+    <!-- zones_superboard_980x200 -->
+    <div id="div-gpt-ad-1350569504085-3" style="width:980px; height:200px;">
+        <script type="text/javascript">
+            googletag.display('div-gpt-ad-1350569504085-3');
+        </script><div id="div-gpt-ad-1350569504085-3_ad_container">
+
+
+
+<title>Untitled Document</title>
+
+
+
+<img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/gridgain102412.png" alt="superboard" width="980" height="200" border="0" usemap="#Map">
+<map name="Map" id="Map">
+  <area shape="rect" coords="-762,1,236,64" href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBw06xrkauUJ7UKJTi6gH3-IHwCc61-M4CAAAAEAEg4tPyBjgAWJ7Xw4w-YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIhLzI5MTYwNzAvem9uZXNfc3VwZXJib2FyZF85ODB4MjAw-ALy0R6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_1YFCzE20HaVJoG41mrLbmLD6HhBQ%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2597&cid=445&mid=791" target="_blank" alt="in-memory-speed">
+  <area shape="rect" coords="248,-1,1017,221" href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBw06xrkauUJ7UKJTi6gH3-IHwCc61-M4CAAAAEAEg4tPyBjgAWJ7Xw4w-YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIhLzI5MTYwNzAvem9uZXNfc3VwZXJib2FyZF85ODB4MjAw-ALy0R6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_1YFCzE20HaVJoG41mrLbmLD6HhBQ%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2597&cid=445&mid=791" target="_blank" alt="gridgain">
+<area shape="rect" coords="-745,62,236,103" href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBw06xrkauUJ7UKJTi6gH3-IHwCc61-M4CAAAAEAEg4tPyBjgAWJ7Xw4w-YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIhLzI5MTYwNzAvem9uZXNfc3VwZXJib2FyZF85ODB4MjAw-ALy0R6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_1YFCzE20HaVJoG41mrLbmLD6HhBQ%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2597&cid=445&mid=791" target="_blank" alt="database-reliability">
+  <area shape="rect" coords="-742,102,236,143" href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBw06xrkauUJ7UKJTi6gH3-IHwCc61-M4CAAAAEAEg4tPyBjgAWJ7Xw4w-YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIhLzI5MTYwNzAvem9uZXNfc3VwZXJib2FyZF85ODB4MjAw-ALy0R6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_1YFCzE20HaVJoG41mrLbmLD6HhBQ%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2601&cid=445&mid=795" target="_blank" alt="enterprise-proven">
+  <area shape="rect" coords="1,142,235,206" href="http://adclick.g.doubleclick.net/aclk%253Fsa%253DL%2526ai%253DBw06xrkauUJ7UKJTi6gH3-IHwCc61-M4CAAAAEAEg4tPyBjgAWJ7Xw4w-YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIhLzI5MTYwNzAvem9uZXNfc3VwZXJib2FyZF85ODB4MjAw-ALy0R6AAwGQA5wEmAOkA6gDAeAEAaAGFg%2526num%253D0%2526sig%253DAOD64_1YFCzE20HaVJoG41mrLbmLD6HhBQ%2526client%253Dca-pub-3945085396033279%2526adurl%253Dhttp://txt.couchware.com/medias/jump?hid=2599&cid=445&mid=793" target="_blank" alt="professional-support">
+</map>
+</div>
+
+    </div>
+    <!-- End DART Code-->
+</div>
+    
+
+
+<!-- end of header -->
+<div id="center" class=""><div id="squeeze">
+    <div id="article">         <!-- Snippets Message Header -->
+                <div style="clear:both;"></div>
+                                                                        
+            <!--Author Block-->
+                            <div class="meta">
+
+                    
+                                        <div class="submitted">
+                        <div id="author">
+                            <a href="http://architects.dzone.com/users/freakonometrics"><img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/picture-1020233.png" style="width:43px; float:left; margin-right: 10px;"></a>
+                                                        <a href="http://www.dzone.com/page/mvbs" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;MVB Badge&#39;, &#39;freakonometrics&#39;]);"><img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/mvb_badge.png" style="vertical-align:bottom;"></a>
+                                                        <a href="http://architects.dzone.com/users/freakonometrics"><b id="authorname">Arthur Charpentier</b> </a>
+                            <ul class="authorMetaData">
+                                                                <li><span>Bio</span></li>
+                                                                                                <li><a href="http://freakonometrics.blog.free.fr/">Website</a></li>
+                                                                                                <li><a href="https://twitter.com/freakonometrics" class="author-twitter-button">@freakonometrics</a></li>
+                                                                                                                                                                <li class="author-linkedin">
+                                    <a href="http://www.linkedin.com/in/arthurcharpentier" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Social Button Click&#39;, &#39;Author LinkedIn&#39;, &#39;freakonometrics&#39;]);"><img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/linkedin_icon.png" width="20"></a>
+                                </li>
+                                                                                            </ul>
+
+                        </div>
+
+                    </div><div style="clear:both;"></div>
+                    
+                                        <div id="author_block" style=" padding: 5px; padding-right: 10px; margin-top: 7px; margin-bottom:10px;">
+                        <!--                                 -->                        <p style="padding-left: 80px; padding-top: 0; margin-top: 0;">
+                            Arthur Charpentier, ENSAE, PhD in Mathematics (KU Leuven), Fellow of the French Institute of Actuaries, professor at UQàM in Actuarial Science. Former professor-assistant at ENSAE Paritech, associate professor at Ecole Polytechnique and professor assistant in economics at Université de Rennes 1. Arthur is a DZone MVB and is not an employee of DZone and has posted 21 posts at DZone. You can read more from them at <a href="http://freakonometrics.blog.free.fr/">their website.</a><a href="http://architects.dzone.com/users/freakonometrics"> View Full User Profile</a></p></div>
+                                    </div>
+                            <!--End Author Block-->
+
+                        <div id="articleHead">
+                <!-- Print Breadcrumb for Tutorials -->
+                                <h1>Election Analytics, Tetris, and More Data Links of the Week</h1>            </div>
+                            <div class="under_the_title">
+                    <div id="date">11.14.2012                    </div>
+                    <span style="margin:0 8px;color:#ddd;">|</span>
+                    <span style="padding: 5px; vertical-align: middle; font-size:14px;">
+                        1263 views                    </span>
+                    <span style="margin:0 8px;color:#ddd;">|</span>
+
+                    <!-- AddThis Button BEGIN -->
+<!--                    <a href="/forward?path=node/--><!--" style="vertical-align: middle;"><img style="margin: 8px 5px 0 5px; vertical-align: top;" width="20" height="20" src="http://cdn.dzone.com/links/themes/reader/images/actions/email-32x32.png" border="0"> Email</a>-->
+                    <div class="addthis_toolbox addthis_default_style " style="display:inline-block; vertical-align:middle;margin-top:8px;">
+                        <a class="addthis_button_facebook_like at300b" fb:like:layout="button_count" title="Facebook_like" href="http://architects.dzone.com/articles/election-analytics-tetris-and#"><iframe style="overflow: hidden; border: 0px none; width: 90px; height: 25px;" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/like(1).html"></iframe></a>
+                        <a class="addthis_button_tweet at300b" title="Tweet" href="http://architects.dzone.com/articles/election-analytics-tetris-and#"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/tweet_button.1352365724(1).html" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe></a>
+                        <a class="addthis_button_google_plusone at300b" g:plusone:size="medium" title="Google_plusone" href="http://architects.dzone.com/articles/election-analytics-tetris-and#"><div style="height: 20px; width: 90px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial;" id="___plusone_1"><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1353598640036" name="I0_1353598640036" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/fastbutton.html" title="+1"></iframe></div></a>
+                        <script src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/in.js" type="text/javascript"></script>
+                        <span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1353598643725_0"><a id="li_ui_li_gen_1353598643725_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1353598643725_0-logo">in</span><span id="li_ui_li_gen_1353598643725_0-title"><span id="li_ui_li_gen_1353598643725_0-mark"></span><span id="li_ui_li_gen_1353598643725_0-title-text">Share</span></span></a></span></span><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1353598643766_1-container" class="IN-right IN-hidden"><span id="li_ui_li_gen_1353598643766_1" class="IN-right"><span id="li_ui_li_gen_1353598643766_1-inner" class="IN-right"><span id="li_ui_li_gen_1353598643766_1-content" class="IN-right">0</span></span></span></span></span></span><script type="IN/Share+init" data-counter="right"></script>
+                    <div class="atclear"></div></div>
+                    <script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/addthis_widget.js"></script>
+                </div>
+
+                <!-- AddThis Button END -->
+                                                    <div id="articleText" class="articleReset">
+                        
+            <ul id="sharebar" style="background-color: rgb(255, 255, 255); border-color: rgb(204, 204, 204); margin-top: 0px; width: 75px; float: left; margin-right: 10px; margin-left: -110px; display: block; top: 414px; position: absolute; background-position: initial initial; background-repeat: initial initial;"><li><script type="text/javascript">var dzone_url = 'http://architects.dzone.com/articles/election-analytics-tetris-and';</script>
+<script type="text/javascript">var dzone_title = 'Election Analytics, Tetris, and More Data Links of the Week';</script>
+<script language="javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/zoneit.js"></script><iframe src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/zoneit.html" height="70" width="50" scrolling="no" frameborder="0"></iframe></li><li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/tweet_button.1352365724.html" class="twitter-share-button twitter-count-vertical" style="width: 56px; height: 62px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe><script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/widgets.js"></script></li><li><!-- Place this tag where you want the +1 button to render -->
+<div style="height: 60px; width: 50px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial;" id="___plusone_0"><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 50px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 60px;" tabindex="0" vspace="0" width="100%" id="I0_1353598638703" name="I0_1353598638703" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/fastbutton(1).html" title="+1"></iframe></div>
+
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script></li><li><iframe src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/like(2).html" scrolling="no" frameborder="0" style="border:none; width:58px; height:62px;" allowtransparency="true"></iframe></li><li><script src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/in.js" type="text/javascript"></script>
+<span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1353598643832_3-container" class="IN-top IN-empty"><span id="li_ui_li_gen_1353598643832_3" class="IN-top"><span id="li_ui_li_gen_1353598643832_3-inner" class="IN-top"><span id="li_ui_li_gen_1353598643832_3-content" class="IN-top">0</span></span></span></span></span><br><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1353598643799_2"><a id="li_ui_li_gen_1353598643799_2-link" href="javascript:void(0);"><span id="li_ui_li_gen_1353598643799_2-logo">in</span><span id="li_ui_li_gen_1353598643799_2-title"><span id="li_ui_li_gen_1353598643799_2-mark"></span><span id="li_ui_li_gen_1353598643799_2-title-text">Share</span></span></a></span></span></span><script type="IN/Share+init" data-counter="top"></script></li><li><a href="http://www.reddit.com/r/programming/submit" onclick="window.location = &#39;http://www.reddit.com/r/programming/submit?url=&#39; + encodeURIComponent(window.location); return false"> <img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/spreddit7.gif" alt="submit to reddit" border="0" width="64"> </a></li></ul>
+
+<div id="node-122493" class="node node-page node-article">
+
+
+
+            <div class="microzoneShortDescription">
+            <!-- zones_topblurb_650x61 -->
+            <div id="div-gpt-ad-1350569504085-6" style="width:650px;">
+                <script type="text/javascript">
+                    googletag.display('div-gpt-ad-1350569504085-6');
+                </script><div id="div-gpt-ad-1350569504085-6_ad_container"><style type="text/css">
+  .microzone_article_ad{
+      font-size: 15px;
+      font-weight:normal;
+      font-style:italic;
+      color: #222;
+      text-decoration:none;
+      font-family:'Helvetica', 'Arial', 'Verdana';
+  }
+</style>
+
+<div class="microzone_article_ad">
+The Big Data/BI Zone is brought to you in partnership with  <a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=Bcb-rrkauUKvUKJTi6gH3-IHwCe695fECAAAAEAEg4tPyBjgAWKaYjPQ8YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-ALy0R6AAwGQA5wEmAOkA6gDAeAEAaAGFg&num=0&sig=AOD64_00R87P8dHHu3WF8nLQSE5uzS3pww&client=ca-pub-3945085396033279&adurl=http://txt.couchware.com/medias/jump?hid=2597&cid=445&mid=791">GridGain</a>.   Here you'll learn to work with <a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=Bcb-rrkauUKvUKJTi6gH3-IHwCe695fECAAAAEAEg4tPyBjgAWKaYjPQ8YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-ALy0R6AAwGQA5wEmAOkA6gDAeAEAaAGFg&num=0&sig=AOD64_00R87P8dHHu3WF8nLQSE5uzS3pww&client=ca-pub-3945085396033279&adurl=http://txt.couchware.com/medias/jump?hid=2599&cid=445&mid=793">large data sets</a>  and brush up on your statistics and data science.   GridGain has some of the  <a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=Bcb-rrkauUKvUKJTi6gH3-IHwCe695fECAAAAEAEg4tPyBjgAWKaYjPQ8YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIeLzI5MTYwNzAvem9uZXNfdG9wYmx1cmJfNjUweDYx-ALy0R6AAwGQA5wEmAOkA6gDAeAEAaAGFg&num=0&sig=AOD64_00R87P8dHHu3WF8nLQSE5uzS3pww&client=ca-pub-3945085396033279&adurl=http://txt.couchware.com/medias/jump?hid=2601&cid=445&mid=795">leading experts</a>  in the Big Data space.
+</div>
+
+</div>
+
+            </div>
+        </div>
+    
+  <div class="content" style="margin-bottom: 5px;">      		<div class="related_library_content" style="float: right;"><h3>Related MicroZone Resources</h3><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2599&cid=445&mid=793">Solve Big Data's Big Challenges</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2601&cid=445&mid=795">Custom Big Data Help for YOUR Project</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2603&cid=445&mid=797">Hyperspeed Hadoop!</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2597&cid=445&mid=791">Open Source, Java-Based Real-Time Big Data</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2603&cid=445&mid=797">GridGain FREE Download </a></h4>    <p style="font-size: 10px; color: #999; margin-bottom: 0; padding-bottom: 0;">Like this piece?  Share it with your friends:</p>
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+    <a class="addthis_button_facebook at300b" title="Facebook" href="http://architects.dzone.com/articles/election-analytics-tetris-and#"><span class="at16nc at300bs at15nc at15t_facebook at16t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+    <a class="addthis_button_twitter at300b" title="Tweet This" href="http://architects.dzone.com/articles/election-analytics-tetris-and#"><span class="at16nc at300bs at15nc at15t_twitter at16t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+    <a class="addthis_button_linkedin at300b" href="http://www.addthis.com/bookmark.php?v=250&winname=addthis&pub=xa-4f34528f655fc4f0&source=tbx-250&lng=es&s=linkedin&url=http%3A%2F%2Farchitects.dzone.com%2Farticles%2Felection-analytics-tetris-and&title=Election%20Analytics%2C%20Tetris%2C%20and%20More%20Data%20Links%20of%20the%20Week%20%7C%20Architects%20Zone&ate=AT-xa-4f34528f655fc4f0/-/-/50ae46ae0aae6d4c/2&frommenu=1&uid=50ae46ae95145175&ufbl=1&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="Linkedin"><span class="at16nc at300bs at15nc at15t_linkedin at16t_linkedin"><span class="at_a11y">Share on linkedin</span></span></a>
+    <a class="addthis_button_google at300b" href="http://www.addthis.com/bookmark.php?v=250&winname=addthis&pub=xa-4f34528f655fc4f0&source=tbx-250&lng=es&s=google&url=http%3A%2F%2Farchitects.dzone.com%2Farticles%2Felection-analytics-tetris-and&title=Election%20Analytics%2C%20Tetris%2C%20and%20More%20Data%20Links%20of%20the%20Week%20%7C%20Architects%20Zone&ate=AT-xa-4f34528f655fc4f0/-/-/50ae46ae0aae6d4c/3&frommenu=1&uid=50ae46ae99d7eba1&ufbl=1&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="Google"><span class="at16nc at300bs at15nc at15t_google at16t_google"><span class="at_a11y">Share on google</span></span></a>
+    <a class="addthis_button_stumbleupon at300b" href="http://www.addthis.com/bookmark.php?v=250&winname=addthis&pub=xa-4f34528f655fc4f0&source=tbx-250&lng=es&s=stumbleupon&url=http%3A%2F%2Farchitects.dzone.com%2Farticles%2Felection-analytics-tetris-and&title=Election%20Analytics%2C%20Tetris%2C%20and%20More%20Data%20Links%20of%20the%20Week%20%7C%20Architects%20Zone&ate=AT-xa-4f34528f655fc4f0/-/-/50ae46ae0aae6d4c/4&frommenu=1&uid=50ae46aebee7e2fc&ufbl=1&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="StumbleUpon"><span class="at16nc at300bs at15nc at15t_stumbleupon at16t_stumbleupon"><span class="at_a11y">Share on stumbleupon</span></span></a>
+    <a class="addthis_button_email at300b" title="Email" href="http://architects.dzone.com/articles/election-analytics-tetris-and#"><span class="at16nc at300bs at15nc at15t_email at16t_email"><span class="at_a11y">Share on email</span></span></a>
+    <span class="addthis_separator">|</span>
+    <a href="http://addthis.com/bookmark.php?v=250&username=dzone1" class="addthis_button_expanded at300m" title="View more services"><span class="at16nc at300bs at15nc at15t_expanded at16t_expanded"><span class="at_a11y">More Sharing Services</span></span>More</a>
+    <div class="atclear"></div></div>
+    <script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/addthis_widget(1).js"></script>
+    <!-- AddThis Button END --></div>		<span class="print-link"></span><p></p><p>So, Movember finally arrived (see<a href="http://ca.movember.com/" style="color: rgb(0, 0, 0); ">http://ca.movember.com/</a>). So far, not a lot of articles about moustaches. But I should find some by the end of the month! Nevertheless, I discoverd a great post for those wo used to be addicted players</p><ul><li>"Millions of hours have been lost through people playing Tetris. It's a simple game, so why we find it so compelling?"<a href="http://t.co/CSBCeq0i" class="twitter-timeline-link" target="_blank" data-expanded-url="http://mindhacks.com/2012/10/29/bbc-future-column-the-psychology-of-tetris/" title="http://mindhacks.com/2012/10/29/bbc-future-column-the-psychology-of-tetris/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://&nbsp;mindhacks.com/bbc-future-column-the-psychology-of-tetris/…</a></li></ul>Also a lot of posts, this week, about the elections in the United States (and statistics-pooling-forecasting issues)<br><ul><li>Drew Linzer's&nbsp;<a href="http://t.co/2Xg52uDJ" class="twitter-timeline-link" target="_blank" data-expanded-url="http://votamatic.org/" title="http://votamatic.org/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://votamatic.org/</a>&nbsp;"The stats man who predicted Obama's win" via&nbsp;<a href="http://t.co/W9jWx7le" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.bbc.co.uk/news/magazine-20246741" title="http://www.bbc.co.uk/news/magazine-20246741" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://www.bbc.co.uk/news/magazine-20246741…</a></li><li>"Mapping Racist Tweets in Response to President Obama's Re-election"&nbsp;<a href="http://t.co/9cAulSV3" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.floatingsheep.org/2012/11/mapping-racist-tweets-in-response-to.html" title="http://www.floatingsheep.org/2012/11/mapping-racist-tweets-in-response-to.html" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; ">http://www.floatingsheep.org/mapping-racist-tweets-in-response-to.html…</a></li><li>"moving from polls to forecasts"&nbsp;<a href="http://t.co/3nd8JeDp" class="twitter-timeline-link" target="_blank" data-expanded-url="http://punkrockor.wordpress.com/2012/11/02/election-day-blog-post-moving-from-polls-to-forecasts/" title="http://punkrockor.wordpress.com/2012/11/02/election-day-blog-post-moving-from-polls-to-forecasts/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://punkrockor.wordpress.com/election-day-blog-post-moving-from-polls-to-forecasts/…</a>&nbsp;on&nbsp;<a href="https://twitter.com/lamclay" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">@<strong>lamclay</strong></a>'s great blog (following&nbsp;<a href="http://t.co/PXSwZUnd" class="twitter-timeline-link" target="_blank" data-expanded-url="http://simplystatistics.org/post/34635539704/on-weather-forecasts-nate-silver-and-the" title="http://simplystatistics.org/post/34635539704/on-weather-forecasts-nate-silver-and-the" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://simplystatistics.org/539704/on-weather-forecasts-nate-silver-and-the…</a>&nbsp;)</li><li>for those who still want to understand how to play with data<a href="http://t.co/yrdhcSCW" class="twitter-timeline-link" target="_blank" data-expanded-url="http://fivethirtyeight.blogs.nytimes.com/methodology/" title="http://fivethirtyeight.blogs.nytimes.com/methodology/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://fivethirtyeight.blogs.nytimes.com/methodology/</a>&nbsp;for the description of Nate Silver's methodology</li><li>US elections, on&nbsp;<a href="http://t.co/jIYF0YTf" class="twitter-timeline-link" target="_blank" data-expanded-url="http://gianlubaio.blogspot.ca/2012/11/gotcha.html" title="http://gianlubaio.blogspot.ca/2012/11/gotcha.html" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://gianlubaio.blogspot.ca/gotcha.html…</a>&nbsp;from the model described here&nbsp;<a href="http://t.co/DRnrWTNL" class="twitter-timeline-link" target="_blank" data-expanded-url="http://gianlubaio.blogspot.co.uk/2012/10/bayes-for-president.html" title="http://gianlubaio.blogspot.co.uk/2012/10/bayes-for-president.html" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://gianlubaio.blogspot.co.uk/bayes-for-president.html…</a></li><li>"Highly Unscientific Ways of Predicting the Next President" (but who cares)&nbsp;<a href="http://t.co/uMnxHKgA" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.wired.com/underwire/2012/11/unscientific-election-predictions/?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+wired%2Findex+%28Wired%3A+Top+Stories%29" title="http://www.wired.com/underwire/2012/11/unscientific-election-predictions/?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+wired%2Findex+%28Wired%3A+Top+Stories%29" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://www.wired.com/underwire/2/11/unscientific-election-predictions/?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+wired%2Findex+%28Wired%3A+Top+Stories%29…</a></li><li>en francais, sur le blog de&nbsp;<a href="https://twitter.com/tomroud" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">@<strong>tomroud</strong></a>&nbsp;"5 leçons scientifiques du succès de Nate Silver"&nbsp;<a href="http://t.co/95lJHlBU" class="twitter-timeline-link" target="_blank" data-expanded-url="http://tomroud.cafe-sciences.org/2012/11/07/5-lecons-scientifiques-du-succes-de-nate-silver/" title="http://tomroud.cafe-sciences.org/2012/11/07/5-lecons-scientifiques-du-succes-de-nate-silver/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://tomroud.cafe-sciences.org/2…&nbsp;ou "Qui va gagner l'élection présidentielle américaine?"&nbsp;par&nbsp;</a><a href="https://twitter.com/adelaigue" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; ">@<strong>adelaigue</strong></a><a href="http://t.co/PwBnfAFH" class="twitter-timeline-link" target="_blank" data-expanded-url="http://blog.francetvinfo.fr/classe-eco/2012/11/03/qui-va-gagner-lelection-presidentielle-americaine.html" title="http://blog.francetvinfo.fr/classe-eco/2012/11/03/qui-va-gagner-lelection-presidentielle-americaine.html" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; ">http://blog.francetvinfo.fr/classe-eco/22/11/03/qui-va-gagner-lelection-presidentielle-americaine.html…</a></li><li>US elections... "Color might have been a decent option here"<a href="http://t.co/xSsrZ3Ej" class="twitter-timeline-link" target="_blank" data-expanded-url="http://ilovecharts.tumblr.com/post/35278224813/color-might-have-been-a-decent-option-here" title="http://ilovecharts.tumblr.com/post/35278224813/color-might-have-been-a-decent-option-here" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://ilovecharts.tumblr.com/224813/color-might-have-been-a-decent-option-here…</a></li></ul><img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/tumblr_md6jonqdsU1qa0uujo1_1280_m.jpg" alt="" style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 11px; line-height: 15px; "><div>And as usual, several posts on different topics that I found interesting,<br><ul><li>“The Collapse of the Soviet Union and the Productivity of American Mathematicians”&nbsp;<a href="http://t.co/FQX1sqyN" class="twitter-timeline-link" target="_blank" data-expanded-url="http://qje.oxfordjournals.org/content/127/3/1143.short" title="http://qje.oxfordjournals.org/content/127/3/1143.short" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://qje.oxfordjournals.org/co…</a></li><li>"Did the sun just explode? The last Dutch Book you’ll ever make"<a href="http://t.co/xlKpeos4" class="twitter-timeline-link" target="_blank" data-expanded-url="http://bayesianbiologist.com/2012/11/09/did-the-sun-just-explode-the-last-dutch-book-youll-ever-make/" title="http://bayesianbiologist.com/2012/11/09/did-the-sun-just-explode-the-last-dutch-book-youll-ever-make/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://bayesianbiologist.com/did-the-sun-just-explode-the-last-dutch-book-youll-ever-make/…</a>&nbsp;the answer of&nbsp;<a href="https://twitter.com/CjBayesian" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">@<strong>CJBayesian&nbsp;</strong></a>to&nbsp;<a href="http://t.co/4O0U1ECE" class="twitter-timeline-link" target="_blank" data-expanded-url="http://xkcd.com/1132/" title="http://xkcd.com/1132/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://xkcd.com/1132/</a></li><li>"Why academic publishing is like a coffee shop"&nbsp;<a href="http://t.co/CbIU48Y9" class="twitter-timeline-link" target="_blank" data-expanded-url="http://blogs.lse.ac.uk/impactofsocialsciences/2012/11/08/lord-publishing-coffee-shop/" title="http://blogs.lse.ac.uk/impactofsocialsciences/2012/11/08/lord-publishing-coffee-shop/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://blogs.lse.ac.uk/impac…</a>&nbsp;"An enormous mystique adds relatively little"</li><li>via&nbsp;<a href="https://twitter.com/sciencegoddess" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; ">@<strong>sciencegoddess</strong></a>&nbsp;"How to devise passwords that drive hackers away"&nbsp;<a href="http://t.co/LJLJOa07" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.nytimes.com/2012/11/08/technology/personaltech/how-to-devise-passwords-that-drive-hackers-away.html?_r=0" title="http://www.nytimes.com/2012/11/08/technology/personaltech/how-to-devise-passwords-that-drive-hackers-away.html?_r=0" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; ">http://www.nytimes.com/technology/personaltech/how-to-devise-passwords-that-drive-hackers-away.html?_r=0…</a></li><li>"Word diffusion and climate science"&nbsp;<a href="http://t.co/CbySwJOR" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0047966" title="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0047966" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://www.plosone.org/artiAdoi%2F10.1371%2Fjournal.pone.0047966…</a></li><li>"Models must be simpler than the phenomena they are supposed to model"&nbsp;<a href="http://t.co/tZe5RjrB" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.farnamstreetblog.com/2012/11/the-principle-of-incomplete-knowledge/" title="http://www.farnamstreetblog.com/2012/11/the-principle-of-incomplete-knowledge/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://www.farnamstreetblog.com/the-principle-of-incomplete-knowledge/…</a></li><li>"Economics and Natural Disasters"<a href="http://t.co/BfVEN0qv" class="twitter-timeline-link" target="_blank" data-expanded-url="http://conversableeconomist.blogspot.ca/2012/11/economics-and-natural-disasters.html" title="http://conversableeconomist.blogspot.ca/2012/11/economics-and-natural-disasters.html" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://&nbsp;conversableeconomist.blogspot.ca/eics-and-natural-disasters.html…</a></li><li><p>"Mathematically Challenging Bagels" by Robert Krulwich<a href="http://t.co/3JxgTSMO" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.npr.org/blogs/krulwich/2012/11/08/164682556/mathematically-challenging-bagels?ft=1&amp;f=1007" title="http://www.npr.org/blogs/krulwich/2012/11/08/164682556/mathematically-challenging-bagels?ft=1&amp;f=1007" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; ">http://www.&nbsp;npr.org/krulwich/2012/11/08/164682556/mathematically-challenging-bagels?ft=1&amp;f=1007…</a></p></li><li>"we no longer need expensive publishing networks"&nbsp;<a href="http://t.co/2Yh4dNt3" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.guardian.co.uk/higher-education-network/blog/2012/nov/08/open-access-academic-publishing-models" title="http://www.guardian.co.uk/higher-education-network/blog/2012/nov/08/open-access-academic-publishing-models" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://www.guardian.co.uk/higher-eduon-network/blog/2012/nov/08/open-access-academic-publishing-models…</a></li><li>"How Dark Sky work"&nbsp;<a href="http://t.co/rraya11V" class="twitter-timeline-link" target="_blank" data-expanded-url="http://journal.darkskyapp.com/2011/how-dark-sky-works/" title="http://journal.darkskyapp.com/2011/how-dark-sky-works/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://journal.darkskyapp.com/how-dark-sky-works/…</a>&nbsp;via&nbsp;<a href="https://twitter.com/therealprotonk" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">@<strong>therealprotonk</strong></a></li><li>"Why supervisors should continue measuring financial risks – the fallacy of simple rules"&nbsp;<a href="http://t.co/6hFFDXwt" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.voxeu.org/article/why-supervisors-should-continue-measuring-financial-risks-fallacy-simple-rules" title="http://www.voxeu.org/article/why-supervisors-should-continue-measuring-financial-risks-fallacy-simple-rules" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; ">http://www.voxeu.org/why-supervisors-should-continue-measuring-financial-risks-fallacy-simple-rules…</a>&nbsp;via&nbsp;<a href="https://twitter.com/Blogizmo" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; ">@<strong>blogizmo</strong></a></li><li>"A Math-Free Guide to the Math of Alice in Wonderland"&nbsp;<a href="http://t.co/ZtkPDw3L" class="twitter-timeline-link" target="_blank" data-expanded-url="http://io9.com/5907235/a-math+free-guide-to-the-math-of-alice-in-wonderland" title="http://io9.com/5907235/a-math+free-guide-to-the-math-of-alice-in-wonderland" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://io9.com/a-math+free-guide-to-the-math-of-alice-in-wonderland…</a>&nbsp;via&nbsp;<a href="https://twitter.com/centerofmath" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">@<strong>centerofmath</strong></a></li><li>"How Twitter language reveals your gender"&nbsp;<a href="http://t.co/nGuGycOR" class="twitter-timeline-link" target="_blank" data-expanded-url="http://bostonglobe.com/ideas/2012/11/03/how-twitter-language-reveals-your-gender-your-friends/e68H6Z0Z2GAfnJ6UjU3IxO/story.html" title="http://bostonglobe.com/ideas/2012/11/03/how-twitter-language-reveals-your-gender-your-friends/e68H6Z0Z2GAfnJ6UjU3IxO/story.html" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://bostonglobe.com/ide…</a>&nbsp;"Social media is giving linguists new insight into how speech varies"</li><li>"Supermarket banking"&nbsp;<a href="http://t.co/QVQNgiQb" class="twitter-timeline-link" target="_blank" data-expanded-url="http://coppolacomment.blogspot.co.uk/2012/11/supermarket-banking.html" title="http://coppolacomment.blogspot.co.uk/2012/11/supermarket-banking.html" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://coppolacomment.blogspot.co.uk/supermarket-banking.html…</a>&nbsp;"Problems didn't arise from proximity to investment banking; they came from the retail sector"&nbsp;see also "On Being The Right Size" (still talking about banks)&nbsp;<a href="http://t.co/6eUHH82f" class="twitter-timeline-link" target="_blank" data-expanded-url="http://b.rw/TPSh78" title="http://b.rw/TPSh78" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; ">http://b.rw/TPSh78</a></li><li>"Tweeting out loud"&nbsp;<a href="http://t.co/YVXU50Zz" class="twitter-timeline-link" target="_blank" data-expanded-url="http://blogs.lse.ac.uk/impactofsocialsciences/2012/10/16/fullick-tweeting-out-loud/" title="http://blogs.lse.ac.uk/impactofsocialsciences/2012/10/16/fullick-tweeting-out-loud/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; ">http://blogs.lse.ac.uk/impactofsocialsciences/2012/10/16/fullick-tweeting-out-loud/…</a>&nbsp;"ethics, knowledge and social media in academe"</li><li>"Are You a Good Econometrician? No, I am British"<a href="http://t.co/orRF8SB4" class="twitter-timeline-link" target="_blank" data-expanded-url="http://economistsview.typepad.com/economistsview/2012/11/maurizio-bovi-are-you-a-good-econometrician-no-i-am-british-with-a-response-from-george-evans.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+EconomistsView+%28Economist%27s+View%29" title="http://economistsview.typepad.com/economistsview/2012/11/maurizio-bovi-are-you-a-good-econometrician-no-i-am-british-with-a-response-from-george-evans.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+EconomistsView+%28Economist%27s+View%29" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://economistsview.typepad.com/economistsview/2012/11/maurizio-bovi-are-you-a-good-econometrician-no-i-am-british-with-a-response-from-george-evans.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+EconomistsView+%28Economist%27s+View%29…</a></li><li>nice discussion on "Dumb econometrics questions/bleg on forecast probabilities"&nbsp;<a href="http://t.co/kaH9SWrX" class="twitter-timeline-link" target="_blank" data-expanded-url="http://worthwhile.typepad.com/worthwhile_canadian_initi/2012/11/dumb-econometrics-questionsbleg-on-forecast-probabilities.html" title="http://worthwhile.typepad.com/worthwhile_canadian_initi/2012/11/dumb-econometrics-questionsbleg-on-forecast-probabilities.html" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://worthwhile.typepad.com/worthwhile_canadian_initi/2012/11/dumb-econometrics-questionsbleg-on-forecast-probabilities.html…</a>&nbsp;following a question asked by Nick Rowe</li><li>"Climate policy: Do economists all favour a carbon tax?" via<a href="https://twitter.com/stephenfgordon" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">@<strong>stephenfgordon</strong></a><a href="http://t.co/Atg6NPZR" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.economist.com/blogs/freeexchange/2011/09/climate-policy?fsrc=scn/tw_ec/do_economists_all_favour_a_carbon_tax_" title="http://www.economist.com/blogs/freeexchange/2011/09/climate-policy?fsrc=scn/tw_ec/do_economists_all_favour_a_carbon_tax_" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://www.economist.com/freeexchange/2011/09/climate-policy?fsrc=scn/tw_ec/do_economists_all_favour_a_carbon_tax_…</a></li><li>"Economics is a serious and difficult subject"<a href="http://t.co/3SHg5XKj" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.tandfonline.com/doi/abs/10.1080/1350178X.2012.714143?journalCode=rjec20" title="http://www.tandfonline.com/doi/abs/10.1080/1350178X.2012.714143?journalCode=rjec20" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://www.&nbsp;tandfonline.com/doi/0/1350178X.2012.714143?journalCode=rjec20…</a>via&nbsp;<a href="https://twitter.com/phnk" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">@<strong>phnk</strong></a></li><li>on "Market Noise and Signal "&nbsp;<a href="http://t.co/hbNmCegg" class="twitter-timeline-link" target="_blank" data-expanded-url="http://derekhernquist.com/market-noise-and-signal/" title="http://derekhernquist.com/market-noise-and-signal/" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://derekhernquist.com/market-noise-and-signal/…</a>by&nbsp;<a href="https://twitter.com/derekhernquist" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">@<strong>derekhernquist</strong></a></li><li>"A compulsory register of trials could give a more accurate view of studies and test results"&nbsp;<a href="http://t.co/r9vReo3o" class="twitter-timeline-link" target="_blank" data-expanded-url="http://www.ft.com/intl/cms/s/2/b795fbd6-22f2-11e2-938d-00144feabdc0.html?ftcamp=published_links/rss/arts_columnists_timharford/feed//product" title="http://www.ft.com/intl/cms/s/2/b795fbd6-22f2-11e2-938d-00144feabdc0.html?ftcamp=published_links/rss/arts_columnists_timharford/feed//product" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">http://www.ft.com/intl/cm795fbd6-22f2-11e2-938d-00144feabdc0.html?ftcamp=published_links/rss/arts_columnists_timharford/feed//product…</a>&nbsp;by&nbsp;<a href="https://twitter.com/TimHarford" class="twitter-atreply pretty-link" dir="ltr" style="color: rgb(153, 0, 0); text-decoration: none; font-family: &#39;Helvetica Neue&#39;, Arial, sans-serif; line-height: 18px; background-color: rgb(245, 245, 245); ">@<strong>TimHarford</strong></a></li></ul></div><p></p>	
+	<div style="clear: both;"></div>
+
+    </div>
+
+<span class="acknowledgement">Published at DZone with permission of <a href="http://architects.dzone.com/users/freakonometrics">Arthur Charpentier</a>, author and DZone MVB. (<a href="http://freakonometrics.blog.free.fr/index.php" target="_blank">source</a>)</span><br><p style="font-size: 11px; padding-left: 0px; color: #666;" class="disclaimer"><em>(Note: Opinions expressed in this article and its replies are the opinions of their respective authors and not those of DZone, Inc.)</em></p><div id="terms" class="tags-on-articles fancyfont">Tags: <ul class="links inline"><li class="taxonomy_term_57205 first"><a href="http://architects.dzone.com/category/dzone-taxonomy/tools-methods/big-data" rel="tag" title="">Big Data</a></li>
+<li class="taxonomy_term_58297"><a href="http://architects.dzone.com/category/content-form/tips-and-tricks" rel="tag" title="">Tips and Tricks</a></li>
+<li class="taxonomy_term_4365 last"><a href="http://architects.dzone.com/category/dzone-taxonomy/tools-methods" rel="tag" title="">Tools &amp; Methods</a></li>
+</ul></div>
+            <!-- zones_bottomblurb_650x122 -->
+            <div id="div-gpt-ad-1350569504085-0" style="width:650px;">
+            <script type="text/javascript">
+            googletag.display('div-gpt-ad-1350569504085-0');
+            </script><div id="div-gpt-ad-1350569504085-0_ad_container"><style type="text/css">
+  .microzone_article_ad{
+      font-size: 15px;
+      font-weight:normal;
+      font-style:italic;
+      color: #222;
+      text-decoration:none;
+      font-family:'Helvetica', 'Arial', 'Verdana';
+  }
+</style>
+
+<div class="microzone_article_ad">
+The Big Data/BI Zone is a prime resource and community for Big Data geeks of all stripes.   We're on top of all the best tips and news for Hadoop, R, and data visualization technologies.   Not only that, but we also give you advice from data science experts on how to understand and present that data.   With great  <a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=Br7s0rkauUIzUKJTi6gH3-IHwCe695fECAAAAEAEg4tPyBjgAWJ6ZjPQ8YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgC8tEegAMBkAOcBJgDpAOoAwHgBAGgBhY&num=0&sig=AOD64_0bMWPGX4zP8kzensYbIt6XgagYzQ&client=ca-pub-3945085396033279&adurl=http://txt.couchware.com/medias/jump?hid=2599&cid=445&mid=793">resources</a>  and  <a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=Br7s0rkauUIzUKJTi6gH3-IHwCe695fECAAAAEAEg4tPyBjgAWJ6ZjPQ8YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgC8tEegAMBkAOcBJgDpAOoAwHgBAGgBhY&num=0&sig=AOD64_0bMWPGX4zP8kzensYbIt6XgagYzQ&client=ca-pub-3945085396033279&adurl=http://txt.couchware.com/medias/jump?hid=2601&cid=445&mid=795">experts</a>  from  <a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=Br7s0rkauUIzUKJTi6gH3-IHwCe695fECAAAAEAEg4tPyBjgAWJ6ZjPQ8YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgC8tEegAMBkAOcBJgDpAOoAwHgBAGgBhY&num=0&sig=AOD64_0bMWPGX4zP8kzensYbIt6XgagYzQ&client=ca-pub-3945085396033279&adurl=http://txt.couchware.com/medias/jump?hid=2597&cid=445&mid=791">GridGain</a>, we can bring you the most  <a href="http://adclick.g.doubleclick.net/aclk?sa=L&ai=Br7s0rkauUIzUKJTi6gH3-IHwCe695fECAAAAEAEg4tPyBjgAWJ6ZjPQ8YJmp0IGMBbIBFGFyY2hpdGVjdHMuZHpvbmUuY29tugEJZ2ZwX2ltYWdlyAEJ2gFCaHR0cDovL2FyY2hpdGVjdHMuZHpvbmUuY29tL2FydGljbGVzL2VsZWN0aW9uLWFuYWx5dGljcy10ZXRyaXMtYW5kwAIC4AIA6gIiLzI5MTYwNzAvem9uZXNfYm90dG9tYmx1cmJfNjUweDEyMvgC8tEegAMBkAOcBJgDpAOoAwHgBAGgBhY&num=0&sig=AOD64_0bMWPGX4zP8kzensYbIt6XgagYzQ&client=ca-pub-3945085396033279&adurl=http://txt.couchware.com/medias/jump?hid=2599&cid=445&mid=793">practical information</a> for dealing with today's data challenges.
+</div>
+
+</div>
+
+            </div></div></div>
+    </div>
+</div></div>
+<!-- end of squeeze, center (main content) -->
+        <div id="sidebar-right" class="sidebar">
+        
+        <style>
+
+
+        </style>
+
+    <div id="social-box">
+        <div class="social-box-header">
+            Connect with DZone
+        </div>
+
+        <div class="content-buttons-wrapper">
+            <div class="content-buttons">
+                <div class="article-button">
+                    <a href="http://architects.dzone.com/node/add"><i class="icon-file"></i>  Publish an Article</a>
+                </div>
+
+                <div class="tip-button">
+                    <a href="mailto:newsdesk@dzone.com"><i class="icon-envelope"></i> Share a Tip</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="social-box-wrapper">
+            <ul>
+                <div style="height: 69px; width: 282px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial;" id="___plus_0"><iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 282px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 69px;" tabindex="0" vspace="0" width="100%" id="I1_1353598638707" name="I1_1353598638707" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/badge.html" title="Google+ Badge"></iframe></div>
+                <li class="facebookbtn"><div class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-href="http://www.facebook.com/pages/DZone/259639764711" data-send="false" data-layout="button_count" data-width="285" data-show-faces="false" data-font="lucida grande" fb-xfbml-state="rendered"><span style="height: 20px; width: 79px;"><iframe id="f2860ad95" name="f292bdb3bc" scrolling="no" style="border: none; overflow: hidden; height: 20px; width: 79px;" title="Like this content on Facebook." class="fb_ltr" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/like.html"></iframe></span></div></li>
+                <li class="twitterbtn"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/follow_button.1352365724.html" class="twitter-follow-button" style="width: 158px; height: 20px;" title="Twitter Follow Button" data-twttr-rendered="true"></iframe></li>
+                <li class="rssbtn">
+                                            <a href="http://dzone.com/mz/big-data/rss" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone RSS&#39;]);"><i class="icon-rss"></i></a>
+                                    </li>
+            </ul>
+
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/plusone.js" gapi_processed="true"></script>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <ul class="dzone-social-buttons" style="display:none;">
+            <li><a href="mailto:newsdesk@dzone.com" class="got_a_tip" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;Tip Button&#39;]);">Got a story? Tell us!</a></li>
+            <li>
+                                 <a href="http://dzone.com/mz/big-data/rss" class="dzone-social-rss" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone RSS&#39;]);"></a>
+                            </li>
+            <li><a href="https://plus.google.com/+dzone/posts" class="dzone-social-google" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone Google+&#39;]);" "=""></a></li>
+            <li><a href="http://www.facebook.com/pages/DZone/259639764711" class="dzone-social-facebook" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone Facebook&#39;]);" "=""></a></li>
+            <li><a href="https://twitter.com/#!/Dzone" class="dzone-social-twitter" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone Twitter&#39;]);" "=""></a></li>
+            <li><a href="http://www.linkedin.com/groups/DZone-696877" class="dzone-social-linkedin" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Social Button Click&#39;, &#39;DZone LinkedIn&#39;]);" "=""></a></li>
+            <!--                  <li><a href="#" class="careers-button" onClick= "pageTracker._trackEvent('Social Button Click', 'Careers Button');">Careers</a></li>-->
+
+        </ul>
+
+
+        <!--        Popular Snippets Sidebar Box-->
+        
+
+        <div class="related_library_content2"><h3>Related MicroZone Resources</h3><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2601&cid=445&mid=795">Custom Big Data Help for YOUR Project</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2599&cid=445&mid=793">Solve Big Data's Big Challenges</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2603&cid=445&mid=797">Hyperspeed Hadoop!</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2597&cid=445&mid=791">Open Source, Java-Based Real-Time Big Data</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2603&cid=445&mid=797">GridGain FREE Download </a></h4></div>
+                    <div id="mh_rectangle">
+
+                <!-- zones_sidebar_336x280_default -->
+                <div id="div-gpt-ad-1350569504085-2" style="width:300px; height:250px;">
+                    <script type="text/javascript">
+                        googletag.display('div-gpt-ad-1350569504085-2');
+                    </script><div id="div-gpt-ad-1350569504085-2_ad_container">
+<ins style="width: 300px; height: 250px; display: inline-table; position: relative; border: 0px;"><ins style="width: 300px; height: 250px; display: block; position: relative; border: 0px;"><iframe id="google_ads_iframe_/2916070/zones_sidebar_336x280_default_0" name="google_ads_iframe_/2916070/zones_sidebar_336x280_default_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; position: absolute; top: 0px; left: 0px;"></iframe></ins></ins></div>
+<script>googletag.impl.pubads.createDomIframe("div-gpt-ad-1350569504085-2_ad_container" ,"/2916070/zones_sidebar_336x280_default_0",false,undefined);</script>
+                </div>
+                <!-- End DART Ad -->
+
+            </div>
+            
+
+        
+        
+                        <div id="block-block-5" class="block block-block">
+
+  <div class="content">
+    <div id="sidebar_features"><h2 class="header">Spotlight Features</h2>				      	  	<div>
+	  		<a href="http://architects.dzone.com/click/121407/1" class="sidebar_image_link"><img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/owl2.png"></a>
+	  		<h2><a href="http://architects.dzone.com/click/121407/1">Domain Modeling with OWL - Part 2</a></h2>
+	  	</div>
+                    	  	<div>
+	  		<a href="http://architects.dzone.com/click/121559/1" class="sidebar_image_link"><img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/windows8.png"></a>
+	  		<h2><a href="http://architects.dzone.com/click/121559/1">The Absolute Top 34 Features of Windows Phone 8 </a></h2>
+	  	</div>
+                    	  	<div>
+	  		<a href="http://architects.dzone.com/click/122611/1" class="sidebar_image_link"><img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/Screen shot 2012-11-14 at 5.36.31 PM.png"></a>
+	  		<h2><a href="http://architects.dzone.com/click/122611/1">Single Page Web Apps: The Worst of Both Worlds</a></h2>
+	  	</div>
+                    	  	<div>
+	  		<a href="http://architects.dzone.com/click/122329/1" class="sidebar_image_link"><img src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/Capture_0.JPG"></a>
+	  		<h2><a href="http://architects.dzone.com/click/122329/1">When Making Apps, It’s the Little Things That Matter… </a></h2>
+	  	</div>
+              </div>  </div>
+</div>
+<div id="block-block-3" class="block block-block">
+
+  <div class="content">
+    <div id="popularlinks"><ul class="popularlist"><h2>Popular at DZone</h2><li><a href="http://www.dzone.com/links/extremist_programming_2.html"><span class="popularlist-number popularlist-1">1:</span>Extremist Programming</a></li>
+                <li><a href="http://www.dzone.com/links/nosql_need_and_evolution_fundamentals_and_compari.html"><span class="popularlist-number popularlist-2">2:</span>NoSQL : Need and evolution, fundamentals and comparison of NoSQL with RDBMS databases</a></li>
+                <li><a href="http://www.dzone.com/links/continuous_delivery_with_a_difference_theyre_usin.html"><span class="popularlist-number popularlist-3">3:</span>Continuous Delivery with a Difference: They’re Using Windows!</a></li>
+                <li><a href="http://www.dzone.com/links/building_a_designdriven_culture.html"><span class="popularlist-number popularlist-4">4:</span>Building a Design-Driven Culture</a></li>
+                <li><a href="http://www.dzone.com/links/implementing_lock_free_concurrency_with_akka.html"><span class="popularlist-number popularlist-5">5:</span>Implementing Lock Free Concurrency with Akka</a></li>
+                <li><a href="http://www.dzone.com/links/does_flyweight_stand_the_test_of_time.html"><span class="popularlist-number popularlist-6">6:</span>Does the Flyweight Design Pattern Stand the Test of Time?</a></li>
+                <li><a href="http://www.dzone.com/links/java_specification_requests_in_numbers.html"><span class="popularlist-number popularlist-7">7:</span>Java Specification Requests in Numbers</a></li>
+                <a class="moredz" href="http://www.dzone.com/">See more popular at DZone</a><br><a class="rss" href="http://feeds.dzone.com/dzone/frontpage">Subscribe to the RSS feed</a></ul></div>  </div>
+</div>
+            </div>
+    <!-- end of right sidebar -->
+            
+<!-- Cache the footer block -->
+<div id="footer"><span class="footer-header">Around the DZone Network</span><div class="large-topics-articles"><div class="featured-articles"><a href="http://architects.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Architects Zone&#39;]);">ARCHITECTS </a><a href="http://architects.dzone.com/articles/code-stories-patrick-wyatt" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121567-Code Stories: Patrick Wyatt, Game Programmer and Producer of Warcraft&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/codestories.jpg);"></div><br>Code Stories: Patrick Wyatt, Game Programmer and P...</a></div><div class="featured-articles"><a href="http://architects.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Architects Zone&#39;]);">ARCHITECTS </a><a href="http://architects.dzone.com/articles/busy-developers-guide-restful" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121413-A Busy Developer&#39;s Guide to RESTful Services in Java&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/Screen%20Shot%202012-10-26%20at%204.50.44%20PM.png);"></div><br>A Busy Developer's Guide to RESTful Services in Ja...</a></div><div class="featured-articles"><a href="http://java.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Javalobby&#39;]);">JAVALOBBY</a><a href="http://java.dzone.com/articles/j2ee-dead-long-live-javascript" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121365-J2EE is Dead: Long-live Javascript Backed by JSON Services &#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/js_2.jpg);"></div><br>J2EE is Dead: Long-live Javascript Backed by JSON ...</a></div><div class="featured-articles"><a href="http://cloud.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Cloud Zone&#39;]);">CLOUD </a><a href="http://cloud.dzone.com/articles/paas-automation" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121581-PaaS Is Automation&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/Screen%20Shot%202012-10-30%20at%202.38.24%20PM.png);"></div><br>PaaS Is Automation</a></div><div class="featured-articles"><a href="http://architects.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Architects Zone&#39;]);">ARCHITECTS </a><a href="http://architects.dzone.com/articles/unit-tests-dont-find-bugs" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121341-Unit Tests Don&#39;t Find Bugs: the Death of QA&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/Screen%20Shot%202012-10-26%20at%2011.19.55%20AM.png);"></div><br>Unit Tests Don't Find Bugs: the Death of QA</a></div><div class="featured-articles last-item"><a href="http://mobile.dzone.com/" class="featured-domains" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;Zone Footer&#39;, &#39;Thumbnail Zone Link Header Click&#39;,&#39;Mobile Zone&#39;]);">MOBILE </a><a href="http://mobile.dzone.com/articles/windows-8-definitive-link-list" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Thumbnail Click&#39;, &#39;121279-The Definitive Windows 8 Linksheet&#39;]);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/October/Win8-logo1.jpg);"></div><br>The Definitive Windows 8 Linksheet</a></div></div><div class="hail_mary"><span class="block-title">You Might Also Like</span><ul class="footer-links"><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/single-page-web-apps-worst" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122611-Single Page Web Apps: The Worst of Both Worlds&#39;]);">Single Page Web Apps: The Worst of Both Worlds</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/release-engineering-facebook" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122263-Release Engineering at Facebook&#39;]);">Release Engineering at Facebook</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/web-server-c" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122771-A Web Server in C &#39;]);">A Web Server in C </a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/algorithm-week-kruskals" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122449-Algorithm of the Week: Kruskal&#39;s Minimum Spanning Tree&#39;]);">Algorithm of the Week: Kruskal's Minimum Spanning Tree</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/weekly-poll-ci-landscape" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122693-Weekly Poll: The CI Landscape&#39;]);">Weekly Poll: The CI Landscape</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/introduction-jms" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122593-Introduction to JMS&#39;]);">Introduction to JMS</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/non-blocking-io-discovering-0" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122551-Non-Blocking I/O - Discovering Akka&#39;]);">Non-Blocking I/O - Discovering Akka</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/visualvm-135-released" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122605-VisualVM 1.3.5 Released&#39;]);">VisualVM 1.3.5 Released</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/10-things-you-need-know-about" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122945-10 Things You need to Know about Javascript&#39;]);">10 Things You need to Know about Javascript</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/monitoring-ebay-big-data" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122533-Monitoring at eBay: Big Data Problems&#39;]);">Monitoring at eBay: Big Data Problems</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/evolution-recommendation" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122661-The Evolution of Recommendation Systems&#39;]);">The Evolution of Recommendation Systems</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/iteratees-imperative" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122459-Iteratees for Imperative Programmers&#39;]);">Iteratees for Imperative Programmers</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/thursday-code-puzzler-test" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122621-Thursday Code Puzzler: Test Case Generator&#39;]);">Thursday Code Puzzler: Test Case Generator</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/anatomy-push-notification" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122665-Anatomy of a Push Notification&#39;]);">Anatomy of a Push Notification</a></li><li class="footer-links-item"><a href="http://mobile.dzone.com/articles/algorithm-week-prims-minimum" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Hail Mary&#39;, &#39;122931-Algorithm of the Week: Prim&#39;s Minimum Spanning Tree&#39;]);">Algorithm of the Week: Prim's Minimum Spanning Tree</a></li></ul></div><div id="footer-articles"><div id="block-wrapper"><div id="left-block" class="footer-article-block"><span class="block-title">Popular on Architects Zone</span><ul><li><a href="http://architects.dzone.com/news/top-open-source-esbs" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;13703-Top Open Source ESB Projects&#39;]);">Top Open Source ESB Projects</a></li><li><a href="http://architects.dzone.com/news/building-multi-core-ready-java" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;2482-Building Multi-core Ready Java Applications, Part I&#39;]);">Building Multi-core Ready Java Applications, Part I</a></li><li><a href="http://architects.dzone.com/news/understanding-hbase-and-bigtab" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;3036-Understanding HBase and BigTable&#39;]);">Understanding HBase and BigTable</a></li><li><a href="http://architects.dzone.com/news/three-forms-resteasy-client" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;11487-Three Forms of RESTEasy Client&#39;]);">Three Forms of RESTEasy Client</a></li><li><a href="http://architects.dzone.com/news/top-10-alm-solutions" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;13367-Top ALM Tools and Solutions Providers&#39;]);">Top ALM Tools and Solutions Providers</a></li><li><a href="http://architects.dzone.com/news/cassandra-adds-hadoop" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;21161-Cassandra Adds Hadoop MapReduce&#39;]);">Cassandra Adds Hadoop MapReduce</a></li><li><a href="http://architects.dzone.com/news/build-multi-core-ready-java-ap-0" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;2483-Build Multi-core Ready Java Applications, Part 2&#39;]);">Build Multi-core Ready Java Applications, Part 2</a></li><li><a href="http://architects.dzone.com/news/tech-predictions-2011-edition" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Popular Current Zone Link Click&#39;, &#39;33541-Tech Predictions, 2011 Edition&#39;]);">Tech Predictions, 2011 Edition</a></li></ul></div><div id="middle-block" class="footer-article-block"><span class="block-title">Latest Articles</span><ul><li><a href="http://architects.dzone.com/articles/marrying-clojurescript-and-js" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122873-Marrying ClojureScript and JS Frameworks – Knockout Edition&#39;]);">Marrying ClojureScript and JS Frameworks – Knockout Edition</a></li><li><a href="http://architects.dzone.com/articles/continuous-delivery-difference" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122871-Continuous Delivery with a Difference: They’re Using Windows!&#39;]);">Continuous Delivery with a Difference: They’re Using Windows!</a></li><li><a href="http://architects.dzone.com/articles/thursday-code-puzzler-5" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122999-Thursday Code Puzzler: Investment Predictor&#39;]);">Thursday Code Puzzler: Investment Predictor</a></li><li><a href="http://architects.dzone.com/articles/practical-uses-weakreferences" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122869- Practical Uses for WeakReferences &#39;]);"> Practical Uses for WeakReferences </a></li><li><a href="http://architects.dzone.com/articles/normalizecss-modern-html5" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122967-Normalize.css - A Modern, HTML5-Ready Alternative to CSS Resets&#39;]);">Normalize.css - A Modern, HTML5-Ready Alternative to CSS Resets</a></li><li><a href="http://architects.dzone.com/articles/31-days-windows-8-html5-day-15" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122965-31 Days of Windows 8 for HTML5 | Day #15: The On-Screen Keyboard&#39;]);">31 Days of Windows 8 for HTML5 | Day #15: The On-Screen Keyboard</a></li><li><a href="http://architects.dzone.com/articles/combinding-neo4j-and-hadoop" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122961-Combinding Neo4j and Hadoop (Part 1) &#39;]);">Combinding Neo4j and Hadoop (Part 1) </a></li><li><a href="http://architects.dzone.com/articles/several-solutions-queue-worker" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Latest Articles Link Click&#39;, &#39;122795-Several Solutions for Queue &amp; Worker Systems&#39;]);">Several Solutions for Queue &amp; Worker Systems</a></li></ul></div></div></div><div id="right-block" class="footer-article-spotlight-block"><h2 class="block-title">Spotlight Resources</h2><div class="spotlight" style="margin-top: 5px; clear: both;"><div class="callout"><a href="http://refcardz.dzone.com/refcardz/data-warehousing" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Thumbnail Click&#39;, &#39;160-Data Warehousing: Best Practices for Collecting, Storing, and Delivering Decision-Support Data&#39;]);"><img border="0" style="float: left;" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/thumb.png"></a></div><h3 style="margin-left: 120px;"><a href="http://refcardz.dzone.com/refcardz/data-warehousing" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Title Click&#39;, &#39;160-Data Warehousing: Best Practices for Collecting, Storing, and Delivering Decision-Support Data&#39;]);">Data Warehousing: Best Practices for Collecting, Storing, and Delivering Decision-Support Data</a></h3><div class="blurb" style="margin-left: 120px;"><p><span style="font-size: 8pt; font-weight: 300; font-family: &#39;Roboto&#39;">Data Warehousing is a process for collecting, storing, and...</span></p></div></div><div class="spotlight" style="margin-top: 5px; clear: both;"><div class="callout"><a href="http://refcardz.dzone.com/refcardz/java-profiling-visualvm" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Thumbnail Click&#39;, &#39;162-Java Profiling with VisualVM: X-Ray Vision for Dramatic Performance Gains&#39;]);"><img border="0" style="float: left;" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/thumb(1).png"></a></div><h3 style="margin-left: 120px;"><a href="http://refcardz.dzone.com/refcardz/java-profiling-visualvm" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Title Click&#39;, &#39;162-Java Profiling with VisualVM: X-Ray Vision for Dramatic Performance Gains&#39;]);">Java Profiling with VisualVM: X-Ray Vision for Dramatic Performance Gains</a></h3><div class="blurb" style="margin-left: 120px;">VisualVM is a visual tool integrating several command-line JDK tools
+and lightweight profiling capabilities. Designed for both production...</div></div><div class="spotlight" style="margin-top: 5px; clear: both;"><div class="callout"><a href="http://refcardz.dzone.com/refcardz/database-partitioning" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Thumbnail Click&#39;, &#39;157-Database Partitioning with MySQL: Improving Performance, Availability, and Manageability&#39;]);"><img border="0" style="float: left;" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/thumb(2).png"></a></div><h3 style="margin-left: 120px;"><a href="http://refcardz.dzone.com/refcardz/database-partitioning" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Zone Footer&#39;, &#39;Spotlight Features Title Click&#39;, &#39;157-Database Partitioning with MySQL: Improving Performance, Availability, and Manageability&#39;]);">Database Partitioning with MySQL: Improving Performance, Availability, and Manageability</a></h3><div class="blurb" style="margin-left: 120px;">MySQL, the world’s most popular open-source database management system, 
+has become the default database for building any new generation...</div></div></div></div>
+<!-- end of footer -->
+</div>
+<!-- end of container -->
+</div>
+<!-- end of wrapper -->
+
+<div class="subfooter fancyfont">
+    <div class="subfooter_center">
+        <div class="subfooter_top">
+            <div class="subfooter_logo">
+            </div>
+            <div class="subfooter_search">
+                <form action="http://architects.dzone.com/search/google" accept-charset="UTF-8" method="get" id="google-cse-searchbox-form-1">
+<div><input type="hidden" name="cx" id="edit-cx-1" value="010821965829155306098:ogyaz_5nsc8">
+<input type="hidden" name="cof" id="edit-cof-1" value="FORID:11">
+<div class="form-item" id="edit-query-1-wrapper">
+ <input type="text" maxlength="128" name="query" id="edit-query-1" size="15" value="" title="Enter the terms you wish to search for." class="form-text">
+</div>
+<input type="submit" name="op" id="edit-sa-1" value="Search" class="form-submit">
+<input type="hidden" name="form_build_id" id="form-fc0cadfe3a51981cda67a1d2f63727c3" value="form-fc0cadfe3a51981cda67a1d2f63727c3">
+<input type="hidden" name="form_id" id="edit-google-cse-searchbox-form-1" value="google_cse_searchbox_form">
+
+</div></form>
+            </div>
+        </div>
+        <div>
+        </div>
+        <div class="subfooter_box">
+            <ul class="menu"><li class="expanded first"><a href="http://dzone.com/" title="">DZone</a><ul class="menu"><li class="leaf first"><a href="http://refcardz.dzone.com/" title="">Refcardz</a></li>
+<li class="leaf"><a href="http://books.dzone.com/" title="">Book Reviews</a></li>
+<li class="leaf"><a href="http://library.dzone.com/" title="">Tech Library</a></li>
+<li class="leaf"><a href="http://itquestions.com/index.html" title="">IT Questions</a></li>
+<li class="leaf"><a href="http://snippets.dzone.com/" title="">Snippets</a></li>
+<li class="leaf"><a href="http://dzone.com/user" title="">My Profile</a></li>
+<li class="leaf"><a href="http://www.dzone.com/links/about.jsp" title="">About DZone</a></li>
+<li class="leaf"><a href="http://www.dzone.com/corporate/advertise" title="">Advertise</a></li>
+<li class="leaf"><a href="http://www.dzone.com/links/buttons.jsp" title="">Tools &amp; Buttons</a></li>
+<li class="leaf last"><a href="http://ask.dzone.com/index.html" title="">Send Feedback</a></li>
+</ul></li>
+<li class="expanded last"><a href="http://dzone.com/mz/html5" title="">Topics</a><ul class="menu"><li class="leaf first"><a href="http://dzone.com/mz/html5" title="">HTML5</a></li>
+<li class="leaf"><a href="http://dzone.com/mz/windowsphone7" title="">Windows Phone</a></li>
+<li class="leaf"><a href="http://cloud.dzone.com/" title="">Cloud</a></li>
+<li class="leaf"><a href="http://mobile.dzone.com/" title="">Mobile</a></li>
+<li class="leaf"><a href="http://dzone.com/mz/dotnet" title="">.NET</a></li>
+<li class="leaf"><a href="http://java.dzone.com/" title="">Java</a></li>
+<li class="leaf"><a href="http://php.dzone.com/" title="">PHP</a></li>
+<li class="leaf"><a href="http://eclipse.dzone.com/" title="">Eclipse</a></li>
+<li class="leaf"><a href="http://dzone.com/mz/performance" title="">Performance</a></li>
+<li class="leaf"><a href="http://www.dzone.com/mz/big-data" title="">Big Data</a></li>
+<li class="leaf"><a href="http://agile.dzone.com/" title="">Agile</a></li>
+<li class="leaf last"><a href="http://dzone.com/mz/devops" title="">DevOps</a></li>
+</ul></li>
+</ul>
+            <ul class="menu">
+                <li class="expanded follow-buttons">
+                    <a href="http://architects.dzone.com/articles/election-analytics-tetris-and#">Follow Us</a>
+                    <ul class="menu">
+                        <li>
+                                                    </li>
+                        <li>
+                            <a href="https://plus.google.com/+dzone/posts" class="subfooter-social subfooter-social-google">Google +</a>
+                        </li>
+                        <li>
+                            <a href="http://www.facebook.com/pages/DZone/259639764711" class="subfooter-social subfooter-social-facebook">Facebook</a>
+                        </li>
+                        <li>
+                            <a href="http://www.linkedin.com/groups/DZone-696877" class="subfooter-social subfooter-social-linkedin">LinkedIn</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/#!/Dzone" class="subfooter-social subfooter-social-twitter">Twitter</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="subfooter-right">
+
+                "Starting from scratch" is seductive but disease ridden <br><span>-Pithy Advice for Programmers</span>
+
+            </div>
+
+
+        </div>
+        <div id="legal"><a href="http://architects.dzone.com/page/advertise">Advertising</a> - <a href="http://architects.dzone.com/page/tos">Terms of Service</a> - <a href="http://architects.dzone.com/page/privacy">Privacy</a> - © 1997-2012, DZone, Inc.</div>
+    </div>
+</div>
+    
+<!-- end of page wrapper -->
+</div><div id="woopra_bar" style="display: block;"><ul id="woopra_barul"><li class="woopra_barli" id="_woopra_visitors_widget" style="display: block;"><a class="woopra_tab" href="http://architects.dzone.com/articles/election-analytics-tetris-and#">Online Visitors: 335</a><div id="box_I8g8A" class="woopra_widgetbox woopra_presence"><div class="wwb_head"></div><div class="wwb_content"></div></div></li><li class="woopra_barli" id="_woopra_chat_widget" style="display: none;"><a class="woopra_tab" href="http://architects.dzone.com/articles/election-analytics-tetris-and#">Sorry, we're away.</a><div id="box_UqcJ0" class="woopra_widgetbox woopra_presence"><div class="wwb_head">Online Agents</div><div class="wwb_content"><div class="wwb_desc">Sorry, we're away.</div></div></div></li><li class="woopra_barli" id="_woopra_logo" style="display: none;"><a class="woopra_logotab" href="http://www.woopra.com/?woo_campaign=chatbar&woo_medium=widget&woo_source=architects.dzone.com" target="_blank"><img style="margin: 6px 6px 0 6px" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/woopra_widget.gif" alt="Woopra"></a></li></ul></div>
+<script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/js_627eb8baa423571fe60473a5eefc7bf5.js"></script>
+<script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/jquery.form-3.18.js"></script>
+<script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/sharebar.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "fivestar": { "titleUser": "Your rating: ", "titleAverage": "Average: ", "feedbackSavingVote": "Saving your vote...", "feedbackVoteSaved": "Your vote has been saved.", "feedbackDeletingVote": "Deleting your vote...", "feedbackVoteDeleted": "Your vote has been deleted." }, "jstools": { "cleanurls": true, "basePath": "/" }, "activemenu": { "#block-book-0": "activemenu/book", "#block-menu-devel": "activemenu/menu", "#block-menu-menu-library-navigat": "activemenu/menu", "#block-menu-primary-links": "activemenu/menu", "#block-menu-secondary-links": "activemenu/menu", "#block-menu-menu-sections": "activemenu/menu", "#block-menu-menu-sitemap": "activemenu/menu", "#block-menu-menu-zones": "activemenu/menu", "#block-user-1": "activemenu/menu" } });
+//--><!]]>
+</script>
+
+<script type="text/javascript">
+    if(document.title.indexOf("Page not found") != 0){
+        $('.sharebar').sharebar({horizontal:'false',swidth:'75',minwidth:1100,position:'left',leftOffset:35,rightOffset:10});
+        $('#sharebar').css('display', 'none');
+        $(parent.document).scroll(function() {
+            var scroll_position =  $(window).scrollTop();
+            if(scroll_position > 350)
+                $('#sharebar').fadeIn();
+            else
+                $('#sharebar').fadeOut();
+        });}
+</script>
+
+<script type="text/javascript">
+    SyntaxHighlighter.config.bloggerMode = true;
+    SyntaxHighlighter.config.taName = "pre";
+    SyntaxHighlighter.config.clipboardSwf = '/sites/all/themes/dzone2012/scripts/syntaxHighlighter/clipboard.swf';
+    SyntaxHighlighter.all();
+    dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+    
+<script type="text/javascript" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/js_def5b13468ddfa4386970cbe7d780b8e.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "googleCSE": { "language": "en" } });
+//--><!]]>
+</script>
+
+<!--Track Microzones -->
+
+        <script type="text/javascript">_gaq.push(['_trackEvent','Microzone Pageviews', 'Big Data/BI Zone', "Election Analytics, Tetris, and More Data Links of the Week"]);</script>
+            
+
+<!-- Social Tracking Scripts -->
+<script type="text/javascript">
+    fancyBoxOpen = false;
+
+    try {
+        if (FB && FB.Event && FB.Event.subscribe) {
+            FB.Event.subscribe('edge.create', function(targetUrl) {
+                if(fancyBoxOpen) {
+                    _gaq.push(['_trackSocial','Facebook', 'popup like']);
+//                    pageTracker._trackEvent('Facebook', 'popup like');
+                } else {
+                    _gaq.push(['_trackSocial', 'Facebook', 'like']);
+                }
+            });
+        }
+    } catch(e) {}
+
+    try {
+        $(window).ready(function() {
+            $('.IN-widget').click(function() {
+                if(fancyBoxOpen) {
+                    _gaq.push(['_trackSocial','LinkedIn', 'popup share']);
+//                    pageTracker._trackEvent('LinkedIn', 'popup share');
+                } else {
+                    _gaq.push(['_trackSocial','LinkedIn', 'share']);
+                }
+            });
+        });
+    } catch(e) {}
+
+    function track_plusone(gpovote) {
+        try {
+            if(fancyBoxOpen) {
+                _gaq.push(['_trackSocial','Google', 'popup +1']);
+//                pageTracker._trackEvent('Google', 'popup +1');
+            } else {
+                _gaq.push(['_trackSocial','Google', '+1']);
+            }
+        } catch (e) {}
+    }
+
+    try {
+        twttr.events.bind('tweet', function(event) {
+            if (event) {
+                var targetUrl;
+                if (event.target && event.target.nodeName == 'IFRAME') {
+                    targetUrl = extractParamFromUri(event.target.src, 'url');
+                }
+                if(fancyBoxOpen) {
+                    _gaq.push(['_trackSocial','Twitter', 'popup tweet']);
+//                    pageTracker._trackEvent('Twitter', 'popup tweet');
+                } else {
+                    _gaq.push(['_trackSocial','Twitter', 'tweet']);
+                }
+            }
+        });
+    } catch(e) {}
+
+    function extractParamFromUri(uri, paramName) {
+        if (!uri) {
+            return;
+        }
+        var uri = uri.split('#')[0];  // Remove anchor.
+        var parts = uri.split('?');  // Check for query params.
+        if (parts.length == 1) {
+            return;
+        }
+        var query = decodeURI(parts[1]);
+
+        // Find url param.
+        paramName += '=';
+        var params = query.split('&');
+        for (var i = 0, param; param = params[i]; ++i) {
+            if (param.indexOf(paramName) === 0) {
+                return unescape(param.split('=')[1]);
+            }
+        }
+    }
+
+    </script>
+
+    <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe id="fb_xdm_frame_http" name="fb_xdm_frame_http" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/xd_arbiter.html"></iframe><iframe id="fb_xdm_frame_https" name="fb_xdm_frame_https" src="./Election Analytics, Tetris, and More Data Links of the Week   Architects Zone_files/xd_arbiter(1).html"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+
+</body></html>

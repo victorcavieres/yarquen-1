@@ -1,0 +1,43 @@
+/**
+ * yarquen-crawler build script 
+ *
+ * author: Jorge Riquelme
+ * date: 26/11/2012
+ * version: $Id: build.gradle 786 2012-11-26 16:29:54Z totex $
+ */
+
+import org.gradle.groovy.scripts.internal.BuildScriptClasspathScriptTransformer;
+
+apply plugin:"application"
+
+mainClassName = "org.yarquen.crawler.Crawler"
+
+jar.exclude 'log4j.properties'
+jar.exclude 'seeds.txt'
+if (hasProperty("production")) {
+	jar.exclude "rebel.xml"
+}
+
+dependencies {
+	compile project(":yarquen-common")
+
+	compile ("org.apache.hadoop:hadoop-core:0.20.2") {
+		exclude group: "ant", module: "ant"
+	}
+	
+	//compile "com.ibm.icu:icu4j:3.4.4"
+	compile "bixo:bixo-core:0.8.0"
+	compile "dom4j:dom4j:1.6.1"
+	
+	compile "org.springframework.data:spring-data-hadoop:1.0.0.RC1"
+
+	runtime ("jaxen:jaxen:1.1.1") {
+		exclude group: "xerces", module: "xercesImpl"
+	}
+}
+
+repositories {
+	mavenRepo(url: "http://bixo.github.com/repo/")
+	mavenRepo(url: "http://conjars.org/repo/")
+	mavenRepo(url: "http://maven.jenkins-ci.org/content/repositories/releases/")
+}
