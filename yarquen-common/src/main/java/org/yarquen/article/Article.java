@@ -2,8 +2,6 @@ package org.yarquen.article;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 
@@ -17,6 +15,42 @@ import org.springframework.data.annotation.Id;
  */
 public class Article
 {
+	public static enum Facets
+	{
+		AUTHOR("author"), KEYWORD("keyword"), YEAR("year");
+
+		private String label;
+
+		private Facets(String label)
+		{
+			this.label = label;
+		}
+
+		@Override
+		public String toString()
+		{
+			return label;
+		};
+	}
+
+	public static enum Fields
+	{
+		ID("id"), PLAIN_TEXT("plainText"), TITLE("title"), URL("url");
+
+		private String label;
+
+		private Fields(String label)
+		{
+			this.label = label;
+		}
+
+		@Override
+		public String toString()
+		{
+			return label;
+		};
+	}
+
 	private String author;
 	private String date;
 	@Id
@@ -25,8 +59,9 @@ public class Article
 	@NotEmpty
 	private String plainText;
 	private String summary;
+	@NotEmpty
 	private String title;
-	@NotNull
+	@NotEmpty
 	private String url;
 
 	public String getAuthor()

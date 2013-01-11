@@ -1,3 +1,7 @@
+import com.sun.java.swing.plaf.gtk.GTKFileChooserUI.RenameFileAction;
+
+import groovy.sql.ExpandedVariable;
+
 /**
  * yarquen-web build script
  *
@@ -13,16 +17,61 @@ if (hasProperty("production")) {
 	jar.exclude "rebel.xml"
 }
 
+ext {
+	thymeleafVersion = "2.0.14"
+	luceneVersion = "4.0.0"
+}
+
 dependencies {
 	providedCompile "javax.servlet:javax.servlet-api:3.0.1"
 
 	compile project(":yarquen-common")	
-	compile "org.springframework:org.springframework.web.servlet:$springVersion"
-	compile "org.thymeleaf:thymeleaf:2.0.14"
-	compile "org.thymeleaf:thymeleaf-spring3:2.0.14"
+	compile "org.springframework:spring-webmvc:$springVersion"
+	compile "org.thymeleaf:thymeleaf:$thymeleafVersion"
+	compile "org.thymeleaf:thymeleaf-spring3:$thymeleafVersion"
 	
-	compile "org.apache.lucene:lucene-core:4.0.0"
-	compile "org.apache.lucene:lucene-analyzers-common:4.0.0"
-	compile "org.apache.lucene:lucene-queryparser:4.0.0"
+	compile "org.apache.lucene:lucene-core:$luceneVersion"
+	compile "org.apache.lucene:lucene-analyzers-common:$luceneVersion"
+	compile "org.apache.lucene:lucene-queryparser:$luceneVersion"
+	compile "org.apache.lucene:lucene-facet:$luceneVersion"
 	compile "commons-io:commons-io:2.4"
+	
+	runtime "ch.qos.logback:logback-classic:1.0.9"
 }
+
+
+//distribution
+task unpackTomcat(type: Copy) {
+	from tarTree(tomcatPath)
+	into "$buildDir"
+	exclude "**/webapps/docs/**"
+	exclude "**/webapps/examples/**"
+	exclude "**/webapps/host-manager/**"
+	exclude "**/webapps/manager/**"
+}
+
+task copyDistBin(type: Copy, dependsOn: unpackTomcat) {
+	from "src/main/distribution/bin"
+	into "$buildDir/$tomcatDir/bin"
+}
+task copyDistLogback(type: Copy, dependsOn: unpackTomcat) {
+	from "src/main/distribution/conf/logback.xml"
+	into "$buildDir/$tomcatDir/conf"
+}
+task copyDistServer(type: Copy, dependsOn: unpackTomcat) {
+	from "src/main/distribution/conf/server.xml"
+	into "$buildDir/$tomcatDir/conf"
+	expand (shutdownPort: shutdownPort, connectorPort: connectorPort, redirectPort: redirectPort, ajpPort: ajpPort)
+}
+task copyWar(type: Copy, dependsOn: [ unpackTomcat, war ]) {
+	from war.archivePath
+	into "$buildDir/$tomcatDir/webapps"
+	rename(war.archiveName, "yarquen.war")
+}
+
+task dist(type: Tar, dependsOn: [copyDistBin, copyDistLogback, copyDistServer, copyWar]) {
+	compression = Compression.GZIP
+	from "$buildDir/$tomcatDir"
+}
+
+

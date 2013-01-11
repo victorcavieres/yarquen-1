@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- autor: Jorge Riquelme -->
-<!-- fecha: 16/02/2012 -->
+<!-- author: Jorge Riquelme -->
+<!-- date: 16/02/2012 -->
 <!-- version: $Id: logback.xml 122 2012-08-01 18:00:44Z totex $ -->
 <configuration scan="true" scanPeriod="10 seconds">
 
-	<!-- niveles -->
-	<logger name="cl.pucv" level="TRACE" />
-	<logger name="org.springframework.faces" level="DEBUG" />
-	<logger name="org.springframework.webflow" level="DEBUG" />
-	<logger name="org.springframework.web" level="TRACE" />
-	<logger name="org.springframework.jdbc" level="TRACE" />
-	<logger name="javax.enterprise.resource.webcontainer.jsf" level="DEBUG" />
-	<logger name="javax.faces" level="DEBUG" />
+	<!-- levels -->
+	<logger name="org.yarquen" level="TRACE" />
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
@@ -21,12 +15,12 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${catalina.base}/logs/openport.log</file>
+		<file>${catalina.base}/logs/yarquen.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- un log por dia -->
-			<fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- one log per dia -->
+			<fileNamePattern>${catalina.base}/logs/yarquen.%d{yyyy-MM-dd}.log</fileNamePattern>
 
-			<!-- 30 dias de historia -->
+			<!-- 30 days -->
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
 		<encoder>

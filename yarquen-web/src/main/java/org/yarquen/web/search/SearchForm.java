@@ -52,7 +52,7 @@ public class SearchForm
 		{
 			try
 			{
-				List<SearchResult> results = articleSearch.search(query, 100);
+				List<SearchResult> results = articleSearch.search(searchFields);
 
 				if (results.isEmpty())
 				{

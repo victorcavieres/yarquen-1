@@ -2,30 +2,34 @@ package org.yarquen.web.lucene;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.stream.StreamSource;
+import javax.annotation.Resource;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
+import org.apache.lucene.facet.index.CategoryDocumentBuilder;
+import org.apache.lucene.facet.taxonomy.CategoryPath;
+import org.apache.lucene.facet.taxonomy.TaxonomyWriter;
+import org.apache.lucene.facet.taxonomy.directory.DirectoryTaxonomyWriter;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.NIOFSDirectory;
 import org.apache.lucene.util.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yarquen.model.Article;
+import org.springframework.beans.factory.annotation.Value;
+import org.yarquen.article.Article;
+import org.yarquen.article.ArticleRepository;
 
 /**
+ * Lucenes index builder
  * 
  * @author Jorge Riquelme Santana
  * @date 22/11/2012
@@ -37,63 +41,99 @@ public class IndexBuilder
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(IndexBuilder.class);
 
-	public void createIndex() throws IOException, JAXBException
+	@Resource
+	private ArticleRepository articleRepository;
+
+	@Value("#{config.indexDirectory}")
+	private String indexDirectoryPath;
+
+	@Value("#{config.taxoDirectory}")
+	private String taxoDirectoryPath;
+
+	public void createIndex() throws IOException
 	{
 		final StandardAnalyzer analyzer = new StandardAnalyzer(
 				Version.LUCENE_40);
-		final Directory index = new NIOFSDirectory(new File(
-				"/home/totex/local/tmp/lucene"));
-
 		final IndexWriterConfig config = new IndexWriterConfig(
 				Version.LUCENE_40, analyzer);
 
-		final File articlesDir = new File("/home/totex/data-crawling-it");
-		final Collection<File> articles = FileUtils.listFiles(articlesDir,
-				new String[] { "xml" }, false);
-		LOGGER.debug("{} files to index", articles.size());
-		if (!articles.isEmpty())
+		final Directory indexDirectory = new NIOFSDirectory(new File(
+				indexDirectoryPath));
+		final IndexWriter indexWriter = new IndexWriter(indexDirectory, config);
+
+		final Directory taxoDirectory = new NIOFSDirectory(new File(
+				taxoDirectoryPath));
+		final TaxonomyWriter taxoWriter = new DirectoryTaxonomyWriter(
+				taxoDirectory, OpenMode.CREATE);
+
+		final Iterable<Article> articles = articleRepository.findAll();
+		int c = 0;
+		for (Article article : articles)
 		{
-			final IndexWriter writer = new IndexWriter(index, config);
-
-			final JAXBContext context = JAXBContext
-					.newInstance("org.yarquen.model");
-			final Unmarshaller unmarshaller = context.createUnmarshaller();
-
-			for (File file : articles)
-			{
-				try
-				{
-					final JAXBElement<Article> articleElement = unmarshaller
-							.unmarshal(new StreamSource(file), Article.class);
-					addArticle(writer, articleElement.getValue());
-				}
-				catch (Exception ex)
-				{
-					LOGGER.error(
-							"error while indexing " + file.getAbsolutePath(),
-							ex);
-				}
-			}
-
-			writer.close();
+			addArticle(indexWriter, taxoWriter, article);
+			c++;
 		}
+		indexWriter.close();
+		taxoWriter.close();
+
+		LOGGER.debug("{} articles indexed", c);
 	}
 
-	private static void addArticle(IndexWriter writer, Article article)
-			throws IOException
+	private void addArticle(IndexWriter indexWriter, TaxonomyWriter taxoWriter,
+			Article article) throws IOException
 	{
 		final Document doc = new Document();
-		doc.add(new StringField("url", article.getUrl(), Field.Store.YES));
-		doc.add(new TextField("title", article.getTitle(), Field.Store.YES));
-		doc.add(new TextField("summary", article.getSummary(), Field.Store.YES));
-		doc.add(new StringField("author", article.getAuthor(), Field.Store.YES));
-		doc.add(new StringField("date", article.getDate(), Field.Store.YES));
-		doc.add(new TextField("plainText", article.getPlainText(),
+
+		// add fields
+		addFieldsToDoc(doc, article);
+
+		// extract and add facets
+		final CategoryDocumentBuilder categoryBuilder = new CategoryDocumentBuilder(
+				taxoWriter);
+		final List<CategoryPath> facets = getFacetsWithValue(article);
+		categoryBuilder.setCategoryPaths(facets).build(doc);
+
+		// add doc to index
+		indexWriter.addDocument(doc);
+	}
+
+	private void addFieldsToDoc(Document doc, Article article)
+	{
+		doc.add(new TextField(Article.Fields.ID.toString(), article.getId(),
 				Field.Store.YES));
-		for (String kw : article.getKeywords())
+		doc.add(new TextField(Article.Fields.PLAIN_TEXT.toString(), article
+				.getPlainText(), Field.Store.YES));
+		doc.add(new TextField(Article.Fields.TITLE.toString(), article
+				.getTitle(), Field.Store.YES));
+		doc.add(new StringField(Article.Fields.URL.toString(),
+				article.getUrl(), Field.Store.YES));
+	}
+
+	private List<CategoryPath> getFacetsWithValue(Article article)
+	{
+		final List<CategoryPath> facets = new ArrayList<CategoryPath>();
+
+		if (article.getAuthor() != null)
 		{
-			doc.add(new StringField("keyword", kw, Field.Store.YES));
+			facets.add(new CategoryPath(Article.Facets.AUTHOR.toString(),
+					article.getAuthor()));
 		}
-		writer.addDocument(doc);
+		if (article.getDate() != null)
+		{
+			final String date = article.getDate();
+			// FIXME
+			final String year = date.substring(date.lastIndexOf("."));
+			facets.add(new CategoryPath(Article.Facets.YEAR.toString(), year));
+		}
+		if (article.getKeywords() != null)
+		{
+			for (String kw : article.getKeywords())
+			{
+				facets.add(new CategoryPath(Article.Facets.KEYWORD.toString(),
+						kw));
+			}
+		}
+
+		return facets;
 	}
 }

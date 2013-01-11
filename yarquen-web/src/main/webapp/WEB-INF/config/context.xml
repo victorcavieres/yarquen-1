@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
-			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-			http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/data/mongo
+		http://www.springframework.org/schema/data/mongo/spring-mongo-1.1.xsd
+		">
+	<util:properties id="config">
+		<prop key="indexDirectory">/home/totex/local/tmp/yarquen-lucene/index</prop>
+		<prop key="taxoDirectory">/home/totex/local/tmp/yarquen-lucene/taxo</prop>
+		<!-- /var/yarquen-lucene -->
+	</util:properties>
 
+	<context:component-scan base-package="org.yarquen" />
 
+	<!-- mongo config -->
+	<mongo:mongo host="localhost" port="27017" />
+	<mongo:db-factory dbname="yarquen" />
+	<mongo:repositories base-package="org.yarquen" />
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate"
+		c:mongoDbFactory-ref="mongoDbFactory" />
+
+	<!-- bean validation -->
+	<bean id="validatorFactory" class="javax.validation.Validation"
+		factory-method="buildDefaultValidatorFactory" />
+	<bean id="validator" factory-bean="validatorFactory"
+		factory-method="getValidator" />
 </beans>

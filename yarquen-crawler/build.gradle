@@ -40,4 +40,6 @@ repositories {
 	mavenRepo(url: "http://bixo.github.com/repo/")
 	mavenRepo(url: "http://conjars.org/repo/")
 	mavenRepo(url: "http://maven.jenkins-ci.org/content/repositories/releases/")
+	
+	mavenRepo(url: "http://repo.springsource.org/milestone")
 }

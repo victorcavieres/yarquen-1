@@ -14,9 +14,8 @@ import javax.xml.bind.Marshaller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yarquen.article.Article;
 import org.yarquen.crawler.datum.ArticleDatum;
-import org.yarquen.model.Article;
-import org.yarquen.model.ObjectFactory;
 
 import cascading.flow.FlowProcess;
 import cascading.operation.BaseOperation;
@@ -133,8 +132,9 @@ public class ArticleXmlEmitter extends BaseOperation<NullContext> implements
 		article.setTitle(articleDatum.getTitle());
 		article.setUrl(articleDatum.getUrl());
 
-		final ObjectFactory objectFactory = new ObjectFactory();
-		marshaller.marshal(objectFactory.createArticle(article), writer);
+		//FIXME
+//		final ObjectFactory objectFactory = new ObjectFactory();
+//		marshaller.marshal(objectFactory.createArticle(article), writer);
 
 		writer.flush();
 		writer.close();

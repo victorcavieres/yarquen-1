@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.yarquen.article.Article;
@@ -26,6 +27,7 @@ import org.yarquen.article.ArticleRepository;
  * @version $Id$
  * 
  */
+@IfProfileValue(name = "test-groups", values = { "itests" })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/context.xml", "/article-context.xml" })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -81,5 +83,15 @@ public class ArticleRepositoryTest
 		articleRepository.delete(art);
 
 		Assert.assertNull(articleRepository.findByUrl(URL));
+	}
+
+	@Test
+	public void t4findById()
+	{
+		final Article art = articleRepository
+				.findOne("50eee67d2b5e52b1ef9792bf");
+		Assert.assertNotNull(art);
+		LOGGER.info("title is: {}", art.getTitle());
+		Assert.assertEquals("Why Page Speed Isn't Enough", art.getTitle());
 	}
 }

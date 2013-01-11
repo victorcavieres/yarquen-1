@@ -11,7 +11,7 @@
 	language governing permissions and limitations under the License. -->
 <!-- Note: A "Server" is not itself a "Container", so you may not define 
 	subcomponents such as "Valves" at this level. Documentation at /docs/config/server.html -->
-<Server port="${shutdown.port}" shutdown="SHUTDOWN">
+<Server port="${shutdownPort}" shutdown="SHUTDOWN">
 	<!-- Security listener. Documentation at /docs/config/listeners.html <Listener 
 		className="org.apache.catalina.security.SecurityListener" /> -->
 	<!--APR library loader. Documentation at /docs/apr.html -->
@@ -49,23 +49,23 @@
 		<!-- A "Connector" represents an endpoint by which requests are received 
 			and responses are returned. Documentation at : Java HTTP Connector: /docs/config/http.html 
 			(blocking & non-blocking) Java AJP Connector: /docs/config/ajp.html APR (HTTP/AJP) 
-			Connector: /docs/apr.html Define a non-SSL HTTP/1.1 Connector on port ${connector.port} -->
-		<Connector port="${connector.port}" protocol="HTTP/1.1"
-			connectionTimeout="20000" redirectPort="${redirect.port}" />
+			Connector: /docs/apr.html Define a non-SSL HTTP/1.1 Connector on port ${connectorPort} -->
+		<Connector port="${connectorPort}" protocol="HTTP/1.1"
+			connectionTimeout="20000" redirectPort="${redirectPort}" />
 		<!-- A "Connector" using the shared thread pool -->
-		<!-- <Connector executor="tomcatThreadPool" port="${connector.port}" 
-			protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="${redirect.port}" 
+		<!-- <Connector executor="tomcatThreadPool" port="${connectorPort}" 
+			protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="${redirectPort}" 
 			/> -->
-		<!-- Define a SSL HTTP/1.1 Connector on port ${redirect.port} This connector 
+		<!-- Define a SSL HTTP/1.1 Connector on port ${redirectPort} This connector 
 			uses the JSSE configuration, when using APR, the connector should be using 
 			the OpenSSL style configuration described in the APR documentation -->
-		<!-- <Connector port="${redirect.port}" protocol="HTTP/1.1" SSLEnabled="true" 
+		<!-- <Connector port="${redirectPort}" protocol="HTTP/1.1" SSLEnabled="true" 
 			maxThreads="150" scheme="https" secure="true" clientAuth="false" sslProtocol="TLS" 
 			/> -->
 
-		<!-- Define an AJP 1.3 Connector on port ${ajp.port} -->
-		<Connector port="${ajp.port}" protocol="AJP/1.3"
-			redirectPort="${redirect.port}" />
+		<!-- Define an AJP 1.3 Connector on port ${ajpPort} -->
+		<Connector port="${ajpPort}" protocol="AJP/1.3"
+			redirectPort="${redirectPort}" />
 
 
 		<!-- An Engine represents the entry point (within Catalina) that processes 

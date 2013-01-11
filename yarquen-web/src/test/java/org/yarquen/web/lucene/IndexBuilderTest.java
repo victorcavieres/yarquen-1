@@ -2,11 +2,12 @@ package org.yarquen.web.lucene;
 
 import java.io.IOException;
 
-import javax.xml.bind.JAXBException;
+import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.IfProfileValue;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
@@ -19,12 +20,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @IfProfileValue(name = "test-groups", value = "itests")
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "/context.xml", "/index-builder-context.xml" })
 public class IndexBuilderTest
 {
+	@Resource
+	private IndexBuilder indexBuilder;
+	
 	@Test
-	public void text() throws IOException, JAXBException
+	public void text() throws IOException
 	{
-		final IndexBuilder indexBuilder = new IndexBuilder();
 		indexBuilder.createIndex();
 	}
 }
