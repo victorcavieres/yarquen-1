@@ -13,7 +13,8 @@ import java.util.List;
 public class SearchFields
 {
 	private String author;
-	private List<String> keywords;
+	private Integer facets;
+	private List<String> keyword;
 	private String query;
 	private Integer results;
 	private String year;
@@ -23,9 +24,14 @@ public class SearchFields
 		return author;
 	}
 
-	public List<String> getKeywords()
+	public Integer getFacets()
 	{
-		return keywords;
+		return facets;
+	}
+
+	public List<String> getKeyword()
+	{
+		return keyword;
 	}
 
 	public String getQuery()
@@ -48,9 +54,14 @@ public class SearchFields
 		this.author = author;
 	}
 
-	public void setKeywords(List<String> keywords)
+	public void setFacets(Integer facets)
 	{
-		this.keywords = keywords;
+		this.facets = facets;
+	}
+
+	public void setKeyword(List<String> keyword)
+	{
+		this.keyword = keyword;
 	}
 
 	public void setQuery(String query)

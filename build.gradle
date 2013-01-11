@@ -18,6 +18,15 @@ allprojects {
 }
 
 subprojects {
+	apply plugin: "eclipse"
+
+	eclipse {
+		classpath {
+			downloadSources = true
+			downloadJavadoc = true
+		}
+	}
+	
 	ext {
 		springVersion = "3.1.2.RELEASE"
 		slf4jVersion = "1.6.1"

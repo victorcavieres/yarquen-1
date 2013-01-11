@@ -55,226 +55,51 @@
 			<div class="row-fluid">
 				<div id="facetsSection" class="span2" th:if="${results != null}">
 					<h3>Facets</h3>
-					<div>
-						<h4>Type</h4>
-						<label class="checkbox">
-							<input type="checkbox">Articles</input>
-							<small class="muted">(23)</small>
-						</label>
-						<label class="checkbox">
-							<input type="checkbox">Interviews</input>
-							<small class="muted">(12)</small>
-						</label>
-						<label class="checkbox">
-							<input type="checkbox">Tutorials</input>
-							<small class="muted">(5)</small>
-						</label>
-					</div>
 					<div id="authorFacetSection">
 						<h4>Author</h4>
-						<a id="authorFacetBtn" href="#" class="btn btn-small btn-info" rel="popover"
-							title="Authors">Add author</a>
-						<br/>
-<script type="text/javascript">
-/*<![CDATA[*/
-var authors = [{id: 1, name: 'January', results: 4, used: false},
-				{id: 2, name: 'February', results: 20, used: false},
-				{id: 3, name: 'March', results: 1, used: false}];
-
-function addAuthors() {
-	for(var i = 0; i < authors.length; i++){
-		var buff = [];
-		var j = 0;
-		if(authors[i].used) {
-			buff[j++] = '<li class="hide">';
-		} else {
-			buff[j++] = '<li>';
-		}
-		buff[j++] = '<a id="author';
-		buff[j++] = authors[i].id;
-		buff[j++] = '" href="#" class="authorFacetValue">';
-		buff[j++] = authors[i].name;
-		buff[j++] = '</a> <small class="muted">(';
-		buff[j++] = authors[i].results;
-		buff[j++] = ')</small></li>';
-		$('#authorsFacetList').append(buff.join(''));
-		
-		//append data
-		$('#author' + authors[i].id).data('author', authors[i]);
-	}
-}
-
-$('#authorFacetSection').on('click', '.authorFacetValue', function(event) {
-	var author = $(this).data('author');
-	
-	//update state and hide from list
-	author.used = true;
-	$(this).parent().addClass('hide');
-	
-	//add label
-	var buff = [];
-	if(author.results >= 20) {
-		buff[0] = '<a class="label label-warning usedAuthor" style="margin-right: 2px"';
-	} else {
-		buff[0] = '<a class="label label-inverse usedAuthor" style="margin-right: 2px"';
-	}
-	buff[1] = ' id="usedAuthor';
-	buff[2] = author.id;
-	buff[3] = '" href="#">';
-	buff[4] = author.name;
-	buff[6] = ' <small>(';
-	buff[7] = author.results;
-	buff[8] = ')</small></a>';
-	$('#authorFacetSection').append(buff.join(''));
-	
-	//add data to new label
-	$('#usedAuthor' + author.id).data('author', author);
-	
-	event.preventDefault();
-});
-
-$('#authorFacetBtn').popover({
-		html: true,
-		content: '<div><ol id="authorsFacetList"></ol>\
-			<a id="authorFacetValuesClose" href="#" \
-			class="btn btn-mini btn-inverse pull-right" style="margin-bottom: 10px">Close</a><div>',
-		trigger: 'manual'
-	}).click(function(event) {
-		$(this).popover('show');
-		addAuthors();
-		event.preventDefault();
-	});
-
-$('#authorFacetSection').on('click', '#authorFacetValuesClose', function(event) {
-	$('#authorFacetBtn').popover('hide');
-	event.preventDefault();
-});
-
-$('#authorFacetSection').on('click', '.usedAuthor', function(event) {
-	var author = $(this).data('author');
-
-	//show author in list
-	author.used = false;
-	$('#author' + author.id).parent().removeClass('hide');
-	
-	//remove label
-	$(this).remove();
-	
-	event.preventDefault();
-});
-/*]]>*/
-</script>
+						<div th:if="${authorFacet != null}">
+							<a th:href="${authorFacet.url}" href="#"><span class="text-error">-</span><span class="text-error" th:text="${authorFacet.value}">Peter</span></a>
+							<small class="muted">(<span th:text="${authorFacet.count}">12</span>)</small>
+						</div>
+						<div th:each="af : ${facets.author}" th:if="${authorFacet == null}">
+							<a th:href="${af.url}" href="#" th:text="${af.value}">Peter</a>
+							<small class="muted">(<span th:text="${af.count}">12</span>)</small>
+						</div>
+						<div th:remove="all">
+							<a href="#">John</a>
+							<small class="muted">(8)</small>
+						</div>
 					</div>
 					<div>
 						<h4>Year</h4>
-						<label class="checkbox">
-							<input type="checkbox">2012</input>
-							<small class="muted">(12)</small>
-						</label>
-						<label class="checkbox">
-							<input type="checkbox">2010</input>
-							<small class="muted">(6)</small>
-						</label>
+						<div th:if="${yearFacet != null}">
+							<a th:href="${yearFacet.url}" href="#"><span class="text-error">-</span><span class="text-error" th:text="${yearFacet.value}">2012</span></a>
+							<small class="muted">(<span th:text="${yearFacet.count}">12</span>)</small>
+						</div>
+						<div th:each="yf : ${facets.year}" th:if="${yearFacet == null}">
+							<a th:href="${yf.url}" href="#" th:text="${yf.value}">2012</a>
+							<small class="muted">(<span th:text="${yf.count}">12</span>)</small>
+						</div>
+						<div th:remove="all">
+							<a href="#">2010</a>
+							<small class="muted">(8)</small>
+						</div>
 					</div>
 					<div id="keywordFacetSection">
 						<h4>Keywords</h4>
-						<a id="keywordFacetBtn" href="#" class="btn btn-small btn-info" rel="popover"
-							title="Keywords">Add keyword</a>
-						<br/>
-<script type="text/javascript">
-/*<![CDATA[*/
-var keywords = [{id: 1, name: 'Java', results: 4, used: false},
-				{id: 2, name: 'Functional Programming', results: 20, used: false},
-				{id: 3, name: 'REST', results: 1, used: false},
-				{id: 4, name: 'Spring', results: 4, used: false}];
-
-function addKeywords() {
-	for(var i = 0; i < keywords.length; i++){
-		var buff = [];
-		var j = 0;
-		if(keywords[i].used) {
-			buff[j++] = '<li class="hide">';
-		} else {
-			buff[j++] = '<li>';
-		}
-		buff[j++] = '<a id="keyword';
-		buff[j++] = keywords[i].id;
-		buff[j++] = '" href="#" class="keywordFacetValue">';
-		buff[j++] = keywords[i].name;
-		buff[j++] = '</a> <small class="muted">(';
-		buff[j++] = keywords[i].results;
-		buff[j++] = ')</small></li>';
-		$('#keywordsFacetList').append(buff.join(''));
-		
-		//append data
-		$('#keyword' + keywords[i].id).data('keyword', keywords[i]);
-	}
-}
-
-$('#keywordFacetSection').on('click', '.keywordFacetValue', function(event) {
-	var keyword = $(this).data('keyword');
-	
-	//update state and hide from list
-	keyword.used = true;
-	$(this).parent().addClass('hide');
-	
-	//add label
-	var buff = [];
-	if(keyword.results >= 20) {
-		buff[0] = '<a class="label label-warning usedKeyword" style="margin-right: 2px"';
-	} else {
-		buff[0] = '<a class="label label-inverse usedKeyword" style="margin-right: 2px"';
-	}
-	buff[1] = ' id="usedKeyword';
-	buff[2] = keyword.id;
-	buff[3] = '" href="#">';
-	buff[4] = keyword.name;
-	buff[6] = ' <small>(';
-	buff[7] = keyword.results;
-	buff[8] = ')</small></a>';
-	$('#keywordFacetSection').append(buff.join(''));
-	
-	//add data to new label
-	$('#usedKeyword' + keyword.id).data('keyword', keyword);
-	
-	event.preventDefault();
-});
-
-$('#keywordFacetBtn').popover({
-		html: true,
-		content: '<div><ol id="keywordsFacetList"></ol>\
-			<a id="keywordFacetValuesClose" href="#" \
-			class="btn btn-mini btn-inverse pull-right" style="margin-bottom: 10px">Close</a><div>',
-		trigger: 'manual'
-	}).click(function(event) {
-		$(this).popover('show');
-		addKeywords();
-		event.preventDefault();
-	});
-
-$('#keywordFacetSection').on('click', '#keywordFacetValuesClose', function(event) {
-	$('#keywordFacetBtn').popover('hide');
-	event.preventDefault();
-});
-
-$('#keywordFacetSection').on('click', '.usedKeyword', function(event) {
-	var keyword = $(this).data('keyword');
-
-	//show keyword in list
-	keyword.used = false;
-	$('#keyword' + keyword.id).parent().removeClass('hide');
-	
-	//remove label
-	$(this).remove();
-	
-	event.preventDefault();
-});
-/*]]>*/
-</script>
+						<div th:each="keywordFacet : ${keywordFacets}">
+							<a th:href="${keywordFacet.url}" href="#"><span class="text-error">-</span><span class="text-error" th:text="${keywordFacet.value}">Java</span></a>
+							<small class="muted">(<span th:text="${keywordFacet.count}">12</span>)</small>
+						</div>
+						<div th:each="keywordFacet : ${facets.keyword}">
+							<a th:href="${keywordFacet.url}" href="#" th:text="${keywordFacet.value}">Java</a>
+							<small class="muted">(<span th:text="${keywordFacet.count}">12</span>)</small>
+						</div>
+						<div th:remove="all">
+							<a href="#">REST</a>
+							<small class="muted">(8)</small>
+						</div>
 					</div>
-					<!--div style="margin-top:10px; text-align: center">
-						<button type="button" class="btn btn-danger">Filter!</button>
-					</div-->
 				</div>
 				<div class="span10">
 					<h3 th:if="${results != null}">Results</h3>

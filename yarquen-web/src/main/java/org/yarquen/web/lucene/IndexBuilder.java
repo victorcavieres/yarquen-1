@@ -82,16 +82,17 @@ public class IndexBuilder
 	private void addArticle(IndexWriter indexWriter, TaxonomyWriter taxoWriter,
 			Article article) throws IOException
 	{
-		final Document doc = new Document();
+		// extract facets
+		final List<CategoryPath> facets = getFacetsWithValue(article);
+		final CategoryDocumentBuilder categoryBuilder = new CategoryDocumentBuilder(
+				taxoWriter).setCategoryPaths(facets);
 
+		// doc
+		final Document doc = new Document();
 		// add fields
 		addFieldsToDoc(doc, article);
-
-		// extract and add facets
-		final CategoryDocumentBuilder categoryBuilder = new CategoryDocumentBuilder(
-				taxoWriter);
-		final List<CategoryPath> facets = getFacetsWithValue(article);
-		categoryBuilder.setCategoryPaths(facets).build(doc);
+		// add facets
+		categoryBuilder.build(doc);
 
 		// add doc to index
 		indexWriter.addDocument(doc);
@@ -122,7 +123,7 @@ public class IndexBuilder
 		{
 			final String date = article.getDate();
 			// FIXME
-			final String year = date.substring(date.lastIndexOf("."));
+			final String year = date.substring(date.lastIndexOf(".") + 1);
 			facets.add(new CategoryPath(Article.Facets.YEAR.toString(), year));
 		}
 		if (article.getKeywords() != null)

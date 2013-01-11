@@ -35,6 +35,7 @@ dependencies {
 	compile "org.apache.lucene:lucene-queryparser:$luceneVersion"
 	compile "org.apache.lucene:lucene-facet:$luceneVersion"
 	compile "commons-io:commons-io:2.4"
+	compile "org.apache.httpcomponents:httpclient:4.2.2"
 	
 	runtime "ch.qos.logback:logback-classic:1.0.9"
 }
