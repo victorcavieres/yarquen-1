@@ -1,0 +1,2972 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:ContCompTI="http://www.toeska.cl/ns/contentcompass/ontology/it/v1.0#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://www.toeska.cl/ns/contentcompass/cc-ontology/it/v1.0/topic#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.toeska.cl/ns/contentcompass/cc-ontology/it/v1.0/topic">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.toeska.cl/ns/contentcompass/ontology/it/v1.0"/>
+    <owl:imports rdf:resource="http://purl.org/dc/terms/"/>
+    <owl:imports rdf:resource="http://purl.org/dc/elements/1.1/"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+    <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+  </owl:Ontology>
+  <ContCompTI:Product rdf:ID="MusikCube">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Musik Cube</rdfs:label>
+  </ContCompTI:Product>
+  <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#narrower">
+    <rdfs:domain rdf:resource="http://www.toeska.cl/ns/contentcompass/cc-ontology/v1.0#Topico"/>
+    <rdfs:range rdf:resource="http://www.toeska.cl/ns/contentcompass/cc-ontology/v1.0#Topico"/>
+  </rdf:Description>
+  <ContCompTI:Product rdf:ID="Flash_">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Flash </rdfs:label>
+  </ContCompTI:Product>
+  <ContCompTI:Category rdf:ID="Repetidor_">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Repetidor </rdfs:label>
+  </ContCompTI:Category>
+  <ContCompTI:Category rdf:ID="Informatica">
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="MetodologiasDeDesarrolloDeSoftware">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ModeloEspiral">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Modelo Espiral</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ModeloBasadoEnPrototipos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Modelo  Basado en Prototipos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Metodologías de  Desarrollo de software</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ModeloIncrementalOEvolutivo">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Modelo Incremental o Evolutivo</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ModeloEntregaPorEtapas">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Modelo Entrega por Etapas</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ModeloOrientadoAObjetos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Modelo Orientado a Objetos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="RationalUnifiedProcess">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Rational Unified Process</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="RapidApplicationDevelopment">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Rapid Application Development</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ModeloEnCascada">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Modelo en Cascada</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ELearning">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >E-Learning</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="DataMining">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Herramientas">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Herramientas</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Data Mining</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Tecnicas">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Técnicas</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="InteligenciaArtificial">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Inteligencia Artificial</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="TecnologiasDeComunicacionDeDatos">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TecnologiaDigital">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Tecnología Digital</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TecnologiaAnalogica">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Tecnología Analógica</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Tecnologías de Comunicación de Datos</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ConversionAnalogicaDigital">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Conversión Analógica/Digital</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="GestionDeServiciosDeTecnologiasDeLaInformacion">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AdministracionDeIncidentes">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración de Incidentes</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Gestión de Servicios de Tecnologías de la Información</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AdministracionDelNivelDeServicio">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración del Nivel de Servicio</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AdministracionDeLaCapacidad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración de la Capacidad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AdministracionDeCalidad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración de Calidad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AdministracionGeneral">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración General</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AdministracionDeSeguridad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración de Seguridad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AdministracionFinanciera">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración Financiera</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AdministracionDelCambio">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración del Cambio</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="RedesSociales">
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Linkedln">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Linkedln</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="YouTube">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >YouTube</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Hi5">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Hi5</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="MySpace">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >MySpace</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Facebook">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Facebook</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Redes Sociales</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Twitter">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Twitter</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="EMarketing">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >E-Marketing</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="Robotica">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Robótica</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="GestionDeProcesosDeNegocios">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AnalisisDeNegocio">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Análisis de Negocio</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Planificacion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Planificación</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Estrategia">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Estrategia</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Innovacion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Innovacion</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AnalisisDeRiesgos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Análisis de Riesgos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Administracion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Gestión de Procesos de Negocios</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ModeloDeNegocios">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Modelo de Negocios</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ArquitecturaDeInformacion">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Diseno">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="DisenoLogico">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Diseño Lógico</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="ModeloDeDatos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Modelo de Datos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Diseño</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="EstrategiaDeDiseno">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Estrategia de Diseño</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="ModeloDeClases">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Modelo de Clases</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="ModeloEntidadRelacion">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Modelo Entidad/Relación</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="ArquitecturaDeDiseno">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Arquitectura de Diseño</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="DisenoFisico">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Diseño Físico</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="CasosDeUso">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Casos de Uso </rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="PlanificacionDePruebas">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Planificación de Pruebas</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Navegabilidad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Navegabilidad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Accesibilidad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Accesibilidad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="MetodosDeRepresentacion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Métodos de Representación</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Prototipado">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Prototipado</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Arquitectura de Información</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Usabilidad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Usabilidad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="HerramientasDeDesarrolloDeSoftware">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeDiseno">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Dreamweaver">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Dreamweaver</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WebKitPlus">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Web Kit Plus</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Flash">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Flash</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="AdobePhotoshop">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Adobe Photoshop</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Diseño</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WebCreator">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Web Creator</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeTesting">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Testing</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeConstruccion">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="PowerBuilder">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >PowerBuilder</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="PowerDesigner">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >PowerDesigner</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Construcción</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WorkSpace">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >WorkSpace</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Herramientas de Desarrollo de Software</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeDocumentacion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Documentación</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="FormatosDigitales">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="FormatosDigitalesDeAudio">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Formatos Digitales De Audio</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="FormatosDigitalesDeTextos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Formatos Digitales De Textos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="FormatosDigitalesDeVideo">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Formatos Digitales De Video</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Formatos Digitales</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="FormatosDigitalesDeImagen">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Formatos Digitales De Imagen</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="LenguajesDeMarcado">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Generales">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Html">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Html</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="DocBook">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >DocBook</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="RichTextFormat">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Rich Text  Format</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Generales</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WikiTexto">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >WikiTexto</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Internet">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Extranet">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Extranet</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="XML">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >XML</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="RSS">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >RSS</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Internet</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="XHTML">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >XHTML</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="XForms">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >XForms</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Intranet">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Intranet</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WSDL">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >WSDL</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Internet2">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Internet  2.0</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Lenguajes de Marcado</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Especializados">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="MusicXML">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >MusicXML</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="VEMLX3D">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >VEML/X3D</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="SVG">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >SVG</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="VoiceXML">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >VoiceXML</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Especializados</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="IngenieriaDeSoftware">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="InstalacionEIntegracion">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="PublicacionDeContenidos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Publicación de Contenidos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="IntegracionDePiezasDeSoftware">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Integración de piezas de software</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Instalación e Integración </rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="IntegracionDeSistemas">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >PublicacIntegración de Sistemasión de Contenidos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Construccion">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="PruebasDeProgramas">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Pruebas de Programas</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="IntegracionDeProgramas">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Integración de Programas</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Programacion">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Programación </rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Construcción</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="EspecificacionDeProgramas">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Especificación de Programas</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Requerimientos">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="RequisitosDelRequerimiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Requisitos del Requerimiento</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="ValidacionDeRequerimientos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Validación de Requerimientos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="AnalisisDeRequerimientos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Análisis de Requerimientos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="EspecificacionDeRequerimientos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Especificación de Requerimientos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Requerimientos</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="ProcesosDelRequerimiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Procesos del Requerimiento</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower rdf:resource="#Diseno"/>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Documentacion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Documentación</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Ingeniería de Software</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Testing">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestionDeErroresYRequerimientos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestión de Errores y Requerimientos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="CertificacionDeProgramas">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Certificación de Programas</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="RevisionDeResultados">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Revisión de Resultados</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="RevisionDeEstandaresDeConstruccion">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Revisión de estándares de construcción</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Testing</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="PlanificacionDelTesting">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Planificación del Testing</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Informática</rdfs:label>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="AdministradoresDeContenidos">
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Joomla">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Joomla</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Drupal">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Drupal</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="XOOPS">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >XOOPS</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="WordPress">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >WordPress</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Administradores de Contenidos</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="CMSMadeSimple">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >CMS Made Simple</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="TecnologiasDeAlmacenamiento">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="CloudComputing">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Cloud Computing</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="RecuperacionDeDatos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Recuperación de Datos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Tecnologías de Almacenamiento</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="RestauracionDeDatos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Restauración de Datos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="DispositivosDeAlmacenamiento">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Disco">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Disco</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Pendrive">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Pendrive</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Memorias">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Memorias</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="PCCards">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >PC Cards</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="CDDVDDiskette">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >CD/DVD/Diskette</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="DiscosExternos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Discos Externos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Dispositivos de Almacenamiento</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="CintasMagneticas">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Cintas Magnéticas</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="EstructuraDeDatos">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ListasSimples">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Listas Simples</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ListasDoblementeEnlazadas">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Listas Doblemente Enlazadas</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ListasCirculares">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Listas Circulares</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Estructura de Datos</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Arboles">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Arboles</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ProcesamientoDeDatos">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="MetodosDelProcesamientoDeDatos">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Manual">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Manual</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Mecanico">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Mecánico</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Electromecanico">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Electromecánico</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Métodos del Procesamiento de Datos</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Electronico">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Electrónico</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="CicloDelProcesamientoDeDatos">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Proceso">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Proceso </rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Salida">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Salida</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Ciclo del Procesamiento de Datos</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Entrada">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Entrada</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Procesamiento de Datos</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TiposDeProcesamientoDeDatos">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="ProcesamientoDeTransacciones">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Procesamiento de Transacciones</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Tipos de Procesamiento de Datos</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="ProcesamientoDeInformacion">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Procesamiento de Información</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="GestionDelConocimiento">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="GestionPorCompetencias">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Gestión por Competencias</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AprendizajeOrganizacional">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Aprendizaje Organizacional</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Gestión del Conocimiento</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ProcesosEstrategicos">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="IdentificacionDelConocimiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Identificación del Conocimiento</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="DistribucionDelConocimiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Distribución del Conocimiento</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="UsoDelConocimiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Uso del Conocimiento</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="MedicionDelConocimiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Medición del Conocimiento</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="AdquisicionDelConocimiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Adquisición del Conocimiento</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Procesos Estratégicos</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="DesarrolloDelConocimiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Desarrollo del Conocimiento</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="EncriptacionDeDatos">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="EncriptacionAsimetrica">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Encriptación Asimétrica</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Algoritmos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Algoritmos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Encriptación de datos</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Certificado">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Certificado</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="FirmasDigitales">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Firmas Digitales</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AlgoritmosDeEncriptacion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Algoritmos de Encriptación</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ProtocolosDeEncriptacion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Protocolos de Encriptación</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="EncriptacionSimetrica">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Encriptación Simétrica</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ECommerce">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >E-Commerce</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="GestionDeProyectosInformaticos">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="EtapasDeGestionDelProyectos">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="EjecucionYControl">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Ejecución y Control</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="InicioDelProyecto">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Inicio del Proyecto</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="CierreDelProyecto">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Cierre del Proyecto</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Etapas de Gestión del Proyectos</rdfs:label>
+            <skos:narrower rdf:resource="#Planificacion"/>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="AdministracionDeRiesgos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Administración de Riesgos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="DimensionesDeGestionDeProyectos">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Tecnica">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Técnica</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Estrategica">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Estratégica</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Comercial">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Comercial</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Economica">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Económica</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Dimensiones de Gestión de Proyectos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Metricas">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Métricas</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Entregables">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Entregables</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Gestión de Proyectos Informáticos </rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="SeguridadDeLaInformacion">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="PlanificacionDeLaSeguridad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Planificación de la Seguridad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower rdf:resource="#AdministracionDeRiesgos"/>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ProtocolosDeSeguridad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Protocolos de Seguridad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Certificaciones">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Certificaciones</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ConceptosDeSeguridad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Conceptos de Seguridad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Seguridad de la Información</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="EstandaresDeSeguridad">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Estándares de Seguridad</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="LenguajesDeProgramacion">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="LenguajesAltoNivel">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Lenguajes Alto Nivel</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="LenguajeDeMaquina">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Lenguaje de Maquina</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Lenguajes de Programación</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="LenguajeDeMarcado">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Lenguaje de Marcado</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="LenguajeWeb">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Lenguaje Web</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="LenguajeOrientadoAObjeto">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Lenguaje Orientado a Objeto</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="LenguajesBajoNivel">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Lenguajes Bajo Nivel</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+  </ContCompTI:Category>
+  <ContCompTI:Product rdf:ID="Assembler">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Assembler</rdfs:label>
+  </ContCompTI:Product>
+  <ContCompTI:Category rdf:ID="Comunicacion">
+    <skos:narrower rdf:resource="#Internet"/>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="AdaptadoresParaRedes">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Switches">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Switches</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Routers">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Routers</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Firewall">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Firewall</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Multiplexor">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Multiplexor</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Repetidor">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Repetidor</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Gateways">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Gateways</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Modem">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Modem</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Bridges">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Bridges</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="HubConcentrador">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Hub/Concentrador</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Adaptadores para Redes</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="CapasDeRedes">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="NivelFisico">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Nivel Físico</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="NivelDePresentacion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Nivel de Presentación</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="NivelDeAplicacion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Nivel de Aplicación</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Capas de Redes</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="NivelDeSesion">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Nivel de Sesión</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="NivelDeTransporte">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Nivel de Transporte</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="NivelDeRed">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Nivel de Red</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="NivelDeEnlaceDeDatos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Nivel de Enlace de Datos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ProtocoloDeRedes">
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="WAP">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >WAP</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="OSIISO">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >OSI/ISO</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="NETBeui">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >NETBeui</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="TCPIP">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >TCP/IP</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="DECnet">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >DECnet</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Protocolo de Redes</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="IPXSPX">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >IPX/SPX</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="X25">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >X.25</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ComunicacionesTelefonicas">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="RedMovil">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Red Móvil</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="RedFija">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Red Fija</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Comunicaciones Telefónicas</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Comunicación</rdfs:label>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="TopologiaDeRedes">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TopologiasEnArbol">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Topologías En Árbol</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TopologiasEnAnillo">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Topologías En Anillo</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Topología de Redes</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TopologiasEnBus">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Topologías En Bus</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TopologiasEnEstrella">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Topologías En Estrella</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ElementosDeLasComunicaciones">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Mensaje">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Mensaje</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ProtocoloDeComunicaciones">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Protocolo de Comunicaciones</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="DispositivoDeComunicaciones">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Dispositivo de Comunicaciones</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TiposDeRedes">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Tipos de Redes</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Elementos de las Comunicaciones</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="EnteEmisor">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Ente Emisor</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower rdf:resource="#TopologiaDeRedes"/>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="EnteReceptor">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Ente Receptor</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ServidoresDeRedes">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ServidoresDeCorreos">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="SendMail">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >SendMail</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="PostFix">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >PostFix</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="MicrosoftExchangeServer">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Microsoft Exchange Server</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Servidores de correos</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="LotusNotes">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Lotus Notes</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ServidoresDeAplicaciones">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WebLogic">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >WebLogic</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Oracle">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Oracle</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="InternetInformationServer">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Internet  Information Server</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WindowsServer2008">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Windows Server 2008</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Servidores de Aplicaciones</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="JavaEE">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Java EE</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WebSphere">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Web Sphere</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ServidoresDeComunicaciones">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="ElastixDeLinux">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Elastix de Linux</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="ServidoresHPProliant">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Servidores HP Proliant</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="ServidoresIBM">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Servidores IBM</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="ServidoresDell">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Servidores Dell</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Servidores de Comunicaciones</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="SmartLock">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >SmartLock</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Servidores de Redes</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ServidoresDeDatos">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="ServidoresIntel">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Servidores Intel</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="ServidoresHP">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Servidores HP</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Servidores de Datos</rdfs:label>
+            <skos:narrower rdf:resource="#ServidoresIBM"/>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="ServidoresAsus">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Servidores Asus</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ComunicacionesSatelitales">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TiposDeEnlace">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Tipos de Enlace</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Comunicaciones Satelitales</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="BandasDeFrecuencias">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Bandas de Frecuencias</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ComunicacionesRadiales">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="RadioPorInternet">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Radio por Internet</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Comunicaciones Radiales</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+  </ContCompTI:Category>
+  <ContCompTI:Product rdf:ID="NovelNetware">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Novel Netware</rdfs:label>
+  </ContCompTI:Product>
+  <ContCompTI:Category rdf:ID="Software">
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="SoftwareDeAplicaciones">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDePresentaciones">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="PowerPoint">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Corel Presentations</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="FrontFace">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >FrontFace</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="AdobeDirector">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Adobe Director</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Presentaciones</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="CorelPresentations">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Corel Presentations</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeVideo">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="OpenMovieEditor">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Open Movie Editor</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="FLVPlayer">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >FLVPlayer</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="QuickTime">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Quick Time</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Video</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="NeroVision">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Nero Vision</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="RealPlayer">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Real Player</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeComunicacion">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="LanMessage">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >LanMessage</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Skype">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Skype</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WinConnect">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >WinConnect</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Comunicación</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Messenger">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Messenger</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeJuegos">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="JClipAuthor">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >JClip Author</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Blender">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Blender</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="RealityFactory">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Reality Factory</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Juegos</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="GameMaker">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Game Maker</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Software de Aplicaciones</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeFotografia">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Picassa">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Picassa</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Fotografía</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="CorelPaint">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Corel Paint</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower rdf:resource="#AdobePhotoshop"/>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeCorreosElectronicos">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Gmail">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gmail</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Yahoo">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Yahoo</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Hotmail">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Hotmail</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Outlook">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Outlook</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Correos Electrónicos</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Eudora">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Eudora</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeProcesadoresDeTexto">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="PDFCreator">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >PDF Creator</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Word">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Word</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="NotePad">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >NotePad</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Wordpad">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Wordpad</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Procesadores de Texto</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Writer">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Writer</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeMusica">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="iTunes">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >iTunes</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WindowsMediaPlayer">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Windows Media Player</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="eMule">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >eMule</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Música</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeDigitalizacion">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="QuickScan">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >QuickScan</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Digitalización</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="CaptureProKodak">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Capture Pro de Kodak</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDeSeguridad">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="ControlParental">
+                <skos:narrower>
+                  <ContCompTI:Product rdf:ID="McAfee">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >McAfee</rdfs:label>
+                  </ContCompTI:Product>
+                </skos:narrower>
+                <skos:narrower>
+                  <ContCompTI:Product rdf:ID="Norton">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Norton</rdfs:label>
+                  </ContCompTI:Product>
+                </skos:narrower>
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Control Parental</rdfs:label>
+                <skos:narrower>
+                  <ContCompTI:Product rdf:ID="AdvancedParentalControl">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Advanced Parental Control</rdfs:label>
+                  </ContCompTI:Product>
+                </skos:narrower>
+                <skos:narrower>
+                  <ContCompTI:Product rdf:ID="ParentalFilter">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Parental Filter</rdfs:label>
+                  </ContCompTI:Product>
+                </skos:narrower>
+                <skos:narrower>
+                  <ContCompTI:Product rdf:ID="ParentalControl">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Parental Control</rdfs:label>
+                  </ContCompTI:Product>
+                </skos:narrower>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower rdf:resource="#EncriptacionDeDatos"/>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Seguridad</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="Antivirus">
+                <skos:narrower rdf:resource="#McAfee"/>
+                <skos:narrower rdf:resource="#Norton"/>
+                <skos:narrower>
+                  <ContCompTI:Product rdf:ID="Panda">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Panda</rdfs:label>
+                  </ContCompTI:Product>
+                </skos:narrower>
+                <skos:narrower>
+                  <ContCompTI:Product rdf:ID="AVG">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >AVG</rdfs:label>
+                  </ContCompTI:Product>
+                </skos:narrower>
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Antivirus</rdfs:label>
+                <skos:narrower>
+                  <ContCompTI:Product rdf:ID="Nod32">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Nod32</rdfs:label>
+                  </ContCompTI:Product>
+                </skos:narrower>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SoftwareDePlanillasDeCalculo">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Excel">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Excel</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="OpenOffice">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Open Office</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software de Planillas de Cálculo</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="GNumeric">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >GNumeric</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="SoftwareDeProgramacion">
+        <skos:narrower rdf:resource="#LenguajesDeProgramacion"/>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Depuradores">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Debug">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Debug</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="VisualStudioDebbuger">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Visual Studio Debbuger</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="DBG">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >DBG</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Windbg">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Windbg</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Debug</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Ensambladores">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="MacroAssembler">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >MacroAssembler</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Ensambladores</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Software de Programación</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="EntornosDeProgramacion">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Netbeans">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Netbeans</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Xcode">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Xcode</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Entornos de Programación</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Eclipse">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Eclipse</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WebMatrix">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >WebMatrix</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SeudoLenguajes">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="PSeInt">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >PSeInt</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SeudoLenguajes</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Compiladores">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Cobol">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Cobol</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="CPlusPlus">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >C++</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Java">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >De Java</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Clipper">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Clipper</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Php">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Php</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="VisualBasic">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Visual Basic</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Fortran">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Fortran</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Compiladores</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="EditoresDeProgramacion">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="PageBreeze">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >PageBreeze</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="AliTech">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >AliTech</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="ScriptEditor">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Script Editor</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="JavaScriptPlus">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >JavaScript Plus</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Editores de Programación</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WinHex">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >WinHex</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="UltraEdit">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >UltraEdit</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="TopPhpStudio">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Top Php Studio</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="LicenciasDeSoftware">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="LicenciasDeAutor">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="RegistroDeMarcas">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Registro de marcas</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="LeyesDerechoInformatico">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Licencias Libres</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="PropiedadIntelectual">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Propiedad Intelectual</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Licencias de autor</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="PirateriaDeSoftware">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Pirateria de Software</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="DerechosDeAutor">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Derechos de autor</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Licencias de software</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="LicenciasLibres">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="LicenciaDeArteLibre">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Licencia de Arte Libre (LAL)</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="FreeSoftwareFoundation">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Free Software Foundation (FSF) </rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Licencias Libres</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="LicenciaDeDocumentacionLibre">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Licencia de Documentación Libre GNU (GNU FDL)</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="OpenSourceInitiative">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Open Source Initiative (OSI)</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="CreativeCommonsReconocimiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Creative Commons Reconocimiento – No Comercial (CC by nc)</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="LicenciaPublicaGeneralGNU">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Licencia Pública General de GNU (GNU GPL)</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="SoftwareDeVirtualizacion">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="VirtualizacionDePlataforma">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="OracleVM">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Oracle VM</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="VirtualBox">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Virtual Box</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Virtualización de plataforma</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="VMWare">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >VMWare</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="VirtualizacionDeAplicaciones">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="SoftGrid">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >SoftGrid</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >App-V</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="AppV">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >App-V</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="VirtualizacionDeRed">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="MPLSVPN">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >MPLS/VPN</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Virtualización de Red</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Crossbow">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Crossbow</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="OpenSolaaris">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Crossbow</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Software de virtualización</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="VirtualizacionDeSistemaOperativo">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WindowsServer2008VM">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Windows Server 2008 VM</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="VirtualPC">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >VirtualPC</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="KVM">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >KVM</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Virtualización de Sistema Operativo</rdfs:label>
+            <skos:narrower rdf:resource="#VMWare"/>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Software</rdfs:label>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="SoftwareDeBasesDeDatos">
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Sybase">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Sybase</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Db2IBM">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Db2 IBM</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="PostgreSQL">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >PostgreSQL</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="MySql">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >MySql</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Software De Bases de Datos</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="SqlServer">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >SqlServer</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Progress">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Progress</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Product rdf:ID="Access">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Access</rdfs:label>
+          </ContCompTI:Product>
+        </skos:narrower>
+        <skos:narrower rdf:resource="#Oracle"/>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="SistemasOperativos">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SistemasOperativosParaMoviles">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Symbian">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Symbian</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WindowsMovile">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Windows Movile</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Android">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Android</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Sistemas Operativos para Móviles</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Blackberry">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Blackberry</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SistemasOperativosParaServidores">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Unix">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Unix (FreeBSD, Solaris)</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="LANManager">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >LAN Manager</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="WindowsNTServer">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Windows (NT, Server)</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Sistemas Operativos para Servidores</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Linux">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Linux (RedHat, Debian)</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Sistemas Operativos</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="SistemasOperativosDeEscritorio">
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="LinuxE">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Linux de Escritorio</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="Windows">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Windows</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Sistemas Operativos de Escritorio</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="DOS">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >DOS</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Product rdf:ID="MacOS">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Mac OS</rdfs:label>
+              </ContCompTI:Product>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ComponentesDeUnSistemaOperativo">
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeImpresoras">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Impresoras</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeRecursos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Recursos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeAlmacenamiento">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Almacenamiento</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeMemoria">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Memoria</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeProcesos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Procesos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeArchivos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Archivos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeComunicaciones">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Comunicaciones</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeDatos">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Datos</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Componente de un sistema Operativo</rdfs:label>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeSeguridad">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Seguridad</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+            <skos:narrower>
+              <ContCompTI:Category rdf:ID="GestorDeUsuarios">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Gestor de Usuarios</rdfs:label>
+              </ContCompTI:Category>
+            </skos:narrower>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+  </ContCompTI:Category>
+  <ContCompTI:Category rdf:ID="TopologiadeRedes">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Topología de Redes</rdfs:label>
+  </ContCompTI:Category>
+  <ContCompTI:Category rdf:ID="Hardware">
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="ControladoresDeDispositivos">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Audio">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Audio</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Scanner">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Scanner</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Teclado">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Teclado</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Controladores de Dispositivos</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Video">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Video</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Camara">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Cámara</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Monitor">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Monitor</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower rdf:resource="#CDDVDDiskette"/>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Impresora">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Impresora</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower rdf:resource="#Disco"/>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="PartesYPiezasDeComputadores">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="CPU">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >CPU</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TarjetaDeRed">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Tarjeta de Red</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="FuenteDePoder">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Fuente de Poder</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Gabinete">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Gabinete</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Memoria">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Memoria</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower rdf:resource="#Disco"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Partes y Piezas de Computadores</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TarjetaMadre">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Tarjeta Madre</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="CDDVDDiskettera">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >CD/DVD/Diskettera</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="TarjetaVideo">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Tarjeta Video</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="Computadores">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Netbook">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Netbook</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="PCLigeros">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >PC Ligeros</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Notebook">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Notebook</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Mainfrain">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Mainfrain</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Servidor">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Servidor</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ComputadorPersonal">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Computador Personal</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Computadores</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="PDA">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >PDA (Pocket PC)</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower rdf:resource="#DispositivosDeAlmacenamiento"/>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="DispositivosMultimedia">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="DispositivosDeJuegos">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Dispositivos De Juegos</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="DispositivosDeAudio">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Dispositivos De Audio</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="DispositivosDeVideo">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Dispositivos De Video</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Dispositivos Multimedia</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="DispositivosDeFotografias">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Dispositivos De Fotografías</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="AdaptadoresDeRed">
+        <skos:narrower rdf:resource="#Switches"/>
+        <skos:narrower rdf:resource="#Multiplexor"/>
+        <skos:narrower rdf:resource="#Modem"/>
+        <skos:narrower rdf:resource="#Firewall"/>
+        <skos:narrower rdf:resource="#Gateways"/>
+        <skos:narrower rdf:resource="#Bridges"/>
+        <skos:narrower rdf:resource="#Repetidor"/>
+        <skos:narrower rdf:resource="#HubConcentrador"/>
+        <skos:narrower rdf:resource="#Routers"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Adaptadores de Red</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="DispositivosDeProcesamiento">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Procesador">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Procesador</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Multiporcesador">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Multiporcesador</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Dispositivos de Procesamiento</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="CablesDeRed">
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Coaxial">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Coaxial</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="FibraOptica">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Fibra Óptica</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="ParTrenzado">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Par Trenzado</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Cables de Red</rdfs:label>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="DispositivosDeEntradaSalida">
+        <skos:narrower rdf:resource="#Disco"/>
+        <skos:narrower rdf:resource="#Pendrive"/>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="PantallaTouch">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Pantalla Touch</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="CDDVD">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >CD/DVD</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Fotocopiadora">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Fotocopiadora</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Dispositivos de Entrada/Salida</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Fax">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Fax</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hardware</rdfs:label>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="DispositivosDeSalida">
+        <skos:narrower rdf:resource="#Monitor"/>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Parlantes">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Parlantes</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Dispositivos de Salida</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="DataShow">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Data Show</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Plotters">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Plotters</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Auriculares">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Auriculares</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower rdf:resource="#CDDVD"/>
+        <skos:narrower rdf:resource="#Impresora"/>
+      </ContCompTI:Category>
+    </skos:narrower>
+    <skos:narrower>
+      <ContCompTI:Category rdf:ID="DispositivosDeEntrada">
+        <skos:narrower rdf:resource="#Teclado"/>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Mouse">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Mouse</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="Microfono">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Micrófono</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="WebCam">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >WebCam</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+        <skos:narrower rdf:resource="#Scanner"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Dispositivos de Entrada</rdfs:label>
+        <skos:narrower>
+          <ContCompTI:Category rdf:ID="LectorCodigoDeBarra">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Lector Código de Barra</rdfs:label>
+          </ContCompTI:Category>
+        </skos:narrower>
+      </ContCompTI:Category>
+    </skos:narrower>
+  </ContCompTI:Category>
+</rdf:RDF>
+
+<!-- Created with TopBraid -->

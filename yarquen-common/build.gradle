@@ -18,6 +18,7 @@ dependencies {
 	
 	compile "org.hibernate:hibernate-validator:4.3.1.Final"
 	compile "commons-codec:commons-codec:1.5"
+	testCompile "org.apache.jena:jena-arq:2.9.3"
 }
 
 repositories {
