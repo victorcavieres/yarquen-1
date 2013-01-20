@@ -23,12 +23,32 @@
 					</a>
 					<a class="brand" th:href="@{/}" href="home.html">Yarquen</a>
 					<div class="nav-collapse collapse">
-						<p class="navbar-text pull-right">Logged in as <a href="#" class="navbar-link">admin</a></p>
+						<!--<p class="navbar-text pull-right">Logged in as <a href="#" class="navbar-link">admin</a></p>-->
 						<ul class="nav">
 							<li class="active"><a th:href="@{/}" href="home.html">Home</a></li>
 							<li><a href="#about">About</a></li>
 							<li><a href="#contact">Contact</a></li>
 						</ul>
+						<ul class="nav pull-right">
+          					<li><a href="account/register.html">Sign Up</a></li>
+          					<li class="divider-vertical"></li>
+					          <li class="dropdown">
+					            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+					            <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+					              <form action="">
+									<fieldset>
+										<div class="clearfix">
+											<input type="text" placeholder="Username">
+										</div>
+										<div class="clearfix">
+											<input type="password" placeholder="Password">
+										</div>
+										<button class="btn btn-primary" type="submit">Sign in</button>
+									</fieldset>
+								</form>
+					            </div>
+					          </li>
+					        </ul>
 					</div>
 				</div>
 			</div>
