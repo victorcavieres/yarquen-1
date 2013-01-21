@@ -52,6 +52,7 @@ public class Article
 	}
 
 	private String author;
+	private List<String> categories;
 	private String date;
 	@Id
 	private String id;
@@ -67,6 +68,10 @@ public class Article
 	public String getAuthor()
 	{
 		return author;
+	}
+
+	public List<String> getCategories() {
+		return categories;
 	}
 
 	public String getDate()
@@ -107,6 +112,10 @@ public class Article
 	public void setAuthor(String value)
 	{
 		this.author = value;
+	}
+
+	public void setCategories(List<String> categories) {
+		this.categories = categories;
 	}
 
 	public void setDate(String value)
