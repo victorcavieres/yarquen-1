@@ -3,6 +3,7 @@ package org.yarquen.account;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -22,12 +23,10 @@ public class Account
 	@Size(min = 5)
 	private String email;
 
-	@NotNull
-	@Size(min = 1)
+	@NotEmpty
 	private String familyName;
 
-	@NotNull
-	@Size(min = 1)
+	@NotEmpty
 	private String firstName;
 
 	@Id
