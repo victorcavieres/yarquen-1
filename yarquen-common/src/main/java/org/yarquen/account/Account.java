@@ -123,4 +123,14 @@ public class Account
 	{
 		this.username = username;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [additionalLastName=" + additionalLastName + ", email="
+				+ email + ", familyName=" + familyName + ", firstName="
+				+ firstName + ", id=" + id + ", middleName=" + middleName
+				+ ", username=" + username + "]";
+	}
+	
+	
 }

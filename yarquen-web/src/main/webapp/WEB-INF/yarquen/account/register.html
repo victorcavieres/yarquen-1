@@ -4,37 +4,40 @@
 		<meta charset="UTF-8" />
 		<title>Yarquen Crawler</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		
+
 		<link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet" />
 		<link href="../../../css/yarquen.css" rel="stylesheet" />
 		<link href="../../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 
 		<script src="../../../js/jquery.js"></script>
 		<script src="../../../bootstrap/js/bootstrap.min.js"></script>
-		
+
 		<!-- Include Bootstrap Asserts JavaScript Files. -->
 		<script type="text/javascript" src="jquery.validate.js"></script>
 		<script type="text/javascript">
 		$(document).ready(function()
 		{
-			// Popover 
+			// Popover
 			$('#registerHere input').hover(function()
 			{
 			$(this).popover('show')
 		});
-		
+
 		// Validation
 		$("#registerHere").validate({
 			rules:{
-			user_name:"required",
+			first_name:"required",
+			last_name:"required",
+			username:"required",
 			user_email:{required:true,email: true},
 			pwd:{required:true,minlength: 6},
-			cpwd:{required:true,equalTo: "#pwd"},
-			cv:"required"
+			cpwd:{required:true,equalTo: "#pwd"}
 		},
-		
+
 		messages:{
-			user_name:"Enter your first and last name",
+			first_name:"Enter your first name",
+			last_name:"Enter your last name",
+			username:"Enter your username",
 			user_email:{
 			required:"Enter your email address",
 			email:"Enter valid email address"},
@@ -43,10 +46,9 @@
 			minlength:"Password must be minimum 6 characters"},
 			cpwd:{
 			required:"Enter confirm password",
-			equalTo:"Password and Confirm Password must match"},
-			cv:"Select Category"
+			equalTo:"Password and Confirm Password must match"}
 		},
-		
+
 		errorClass: "help-inline",
 		errorElement: "span",
 		highlight:function(element, errorClass, validClass)
@@ -92,47 +94,55 @@
 			<form class="form-horizontal" id="registerHere" method='post' action='success.html' th:action='@{/account/}' th:object='${account}'>
 			<fieldset>
 			<legend>Registration</legend>
-			
+
+			<div id="errors" class="alert alert-error">
+			        <ul th:if="${#fields.hasErrors('*')}">
+			            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+			        </ul>
+			    </div>
+
 			<div class="control-group">
-				<label class="control-label">Name</label>
+				<label class="control-label">First Name</label>
 				<div class="controls">
-					<input type="text" class="input-large" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name"/>
+					<input type="text" th:field="*{firstName}" class="input-large" id="first_name" name="first_name" rel="popover" data-content="Enter your first name." data-original-title="First Name"/>
 				</div>
 			</div>
-			
-			
+
+			<div class="control-group">
+				<label class="control-label">Last Name</label>
+				<div class="controls">
+					<input type="text" th:field="*{familyName}" class="input-large" id="family_name" name="family_name" rel="popover" data-content="Enter your family name." data-original-title="Family Name"/>
+				</div>
+			</div>
+
 			<div class="control-group">
 				<label class="control-label">Email</label>
 				<div class="controls">
 					<input type="text" th:field="*{email}" class="input-large" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email"/>
 				</div>
 			</div>
-			
+
+			<div class="control-group">
+				<label class="control-label">Username</label>
+				<div class="controls">
+					<input type="text" th:field="*{username}" class="input-large" id="username" name="username" rel="popover" data-content="What’s your username?" data-original-title="Username"/>
+				</div>
+			</div>
+
 			<div class="control-group">
 				<label class="control-label">Password</label>
 				<div class="controls">
 					<input type="password" th:field="*{password}" class="input-large" id="pwd" name="pwd" rel="popover" data-content="What’s your Password?" data-original-title="Password"/>
 				</div>
 			</div>
-			
+
 			<div class="control-group">
 				<label class="control-label">Confirm Password</label>
 				<div class="controls">
 					<input type="password" class="input-large" id="cpwd" name="cpwd" rel="popover" data-content="Confirm your Password" data-original-title="Confirm Password"/>
 				</div>
 			</div>
-			
-			<div class="control-group">
-				<label class="control-label">Category</label>
-				<div class="controls">
-					<select class="selectpicker" id="cv" name="cv" rel="popover" data-content="Choose your CV " data-original-title="Category">
-				      <option>Java</option>
-				      <option>Oracle</option>
-				      <option>PowerDesigner</option>
-				    </select>
-				</div>
-			</div>
-			
+
 			<div class="control-group">
 				<label class="control-label"></label>
 				<div class="controls">
