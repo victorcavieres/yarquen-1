@@ -5,12 +5,12 @@
 		<title>Yarquen Crawler</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
-		<link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet" />
-		<link href="../../../css/yarquen.css" rel="stylesheet" />
-		<link href="../../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+		<link href="../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+		<link href="../../css/yarquen.css" rel="stylesheet" />
+		<link href="../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 
-		<script src="../../../js/jquery.js"></script>
-		<script src="../../../bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../js/jquery.js"></script>
+		<script src="../../bootstrap/js/bootstrap.min.js"></script>
 		<style type="text/css">
       /* Override some defaults */
       html, body {
@@ -61,7 +61,7 @@
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right">Logged in as <a href="#" class="navbar-link">admin</a></p>
 						<ul class="nav">
-							<li class="active"><a th:href="@{/}" href="../home.html">Home</a></li>
+							<li class="active"><a th:href="@{/}" href="/home.html">Home</a></li>
 							<li><a href="#about">About</a></li>
 							<li><a href="#contact">Contact</a></li>
 						</ul>
@@ -79,13 +79,17 @@
 				<div class="row">
 					<div class="login-form">
 						<h2>Login</h2>
-						<form action="">
+						<form action="" method="post" th:action="@{/j_spring_security_check}">
 							<fieldset>
-								<div class="clearfix">
-									<input type="text" placeholder="Username">
+								<div class="alert alert-error" th:if="${loginError}">
+									<button type="button" class="close" data-dismiss="alert">x</button>
+									<strong>Error</strong>: Wrong user or password
 								</div>
 								<div class="clearfix">
-									<input type="password" placeholder="Password">
+									<input type="text" placeholder="Username" id="j_username" name="j_username"/>
+								</div>
+								<div class="clearfix">
+									<input type="password" placeholder="Password" id="j_password" name="j_password"/>
 								</div>
 								<button class="btn btn-primary" type="submit">Sign in</button>
 							</fieldset>

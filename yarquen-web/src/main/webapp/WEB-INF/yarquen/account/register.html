@@ -89,14 +89,14 @@
 		</div>
 
 		<div class="container-fluid">
-			<form class="form-horizontal" id="registerHere" method='post' action='success.html' th:action='@{/account/}' th:object="${account}"'>
+			<form class="form-horizontal" id="registerHere" method='post' action='success.html' th:action='@{/account/}' th:object='${account}'>
 			<fieldset>
 			<legend>Registration</legend>
 			
 			<div class="control-group">
 				<label class="control-label">Name</label>
 				<div class="controls">
-					<input type="text" class="input-large" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name">
+					<input type="text" class="input-large" id="user_name" name="user_name" rel="popover" data-content="Enter your first and last name." data-original-title="Full Name"/>
 				</div>
 			</div>
 			
@@ -104,21 +104,21 @@
 			<div class="control-group">
 				<label class="control-label">Email</label>
 				<div class="controls">
-					<input type="text" th:field="*{email}" class="input-large" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email">
+					<input type="text" th:field="*{email}" class="input-large" id="user_email" name="user_email" rel="popover" data-content="What’s your email address?" data-original-title="Email"/>
 				</div>
 			</div>
 			
 			<div class="control-group">
 				<label class="control-label">Password</label>
 				<div class="controls">
-					<input type="password" th:field="*{password}" class="input-large" id="pwd" name="pwd" rel="popover" data-content="What’s your Password?" data-original-title="Password">
+					<input type="password" th:field="*{password}" class="input-large" id="pwd" name="pwd" rel="popover" data-content="What’s your Password?" data-original-title="Password"/>
 				</div>
 			</div>
 			
 			<div class="control-group">
 				<label class="control-label">Confirm Password</label>
 				<div class="controls">
-					<input type="password" class="input-large" id="cpwd" name="cpwd" rel="popover" data-content="Confirm your Password" data-original-title="Confirm Password">
+					<input type="password" class="input-large" id="cpwd" name="cpwd" rel="popover" data-content="Confirm your Password" data-original-title="Confirm Password"/>
 				</div>
 			</div>
 			

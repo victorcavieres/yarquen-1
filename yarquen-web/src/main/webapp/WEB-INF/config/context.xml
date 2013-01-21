@@ -15,10 +15,15 @@
 		http://www.springframework.org/schema/data/mongo/spring-mongo-1.1.xsd
 		">
 	<util:properties id="config">
-		<prop key="indexDirectory">/home/totex/local/tmp/yarquen-lucene/index</prop>
-		<prop key="taxoDirectory">/home/totex/local/tmp/yarquen-lucene/taxo</prop>
+		<prop key="indexDirectory">/Applications/dev/yarquen-lucene/index</prop>
+		<prop key="taxoDirectory">/Applications/dev/yarquen-lucene/taxo</prop>
 		<!-- /var/yarquen-lucene -->
 	</util:properties>
+	
+	<!-- Security (authentication and authorization) configuration -->
+    <import resource="applicationContext-security.xml" />
+	
+	
 
 	<context:component-scan base-package="org.yarquen" />
 

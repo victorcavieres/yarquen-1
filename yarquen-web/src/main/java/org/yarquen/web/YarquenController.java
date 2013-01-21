@@ -37,4 +37,6 @@ public class YarquenController
 		}
 		return new ModelMap("jobs", jobs);
 	}
+	
+	
 }
