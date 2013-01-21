@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Yarquen Crawler</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link th:href="@{/static/bootstrap/css/bootstrap.min.css}" href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link th:href="@{/static/css/yarquen.css}" href="../../../css/yarquen.css" rel="stylesheet" />
+		<link th:href="@{/static/bootstrap/css/bootstrap-responsive.min.css}" href="../../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+		<link th:href="@{/static/css/flick/jquery-ui-1.10.0.custom.min.css}" href="../../../css/flick/jquery-ui-1.10.0.custom.min.css" rel="stylesheet" />
+		<link th:href="@{/static/css/jquery.tagit.css}" href="../../../css/jquery.tagit.css" rel="stylesheet" />
+
+		<script th:src="@{/static/js/jquery.js}" src="../../../js/jquery.js"></script>
+		<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" src="../../../bootstrap/js/bootstrap.min.js"></script>
+		<script th:src="@{/static/js/jquery-ui-1.10.0.custom.min.js}" src="../../../js/jquery-ui-1.10.0.custom.min.js"></script>
+		<script th:src="@{/static/js/tag-it.min.js}" src="../../../js/tag-it.min.js" charset="utf-8"></script>
+		<script th:src="@{/static/jstree/jquery.jstree.js}" src="../../../jstree/jquery.jstree.js"></script>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" th:href="@{/}" href="../home.html">Yarquen</a>
+					<div class="nav-collapse collapse">
+						<p class="navbar-text pull-right">Logged in as <a href="#" class="navbar-link">admin</a></p>
+						<ul class="nav">
+							<li class="active"><a th:href="@{/}" href="../home.html">Home</a></li>
+							<li><a href="#about">About</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+				<ul class="breadcrumb">
+					<li><a th:href="@{/}" href="../home.html">Home</a> <span class="divider">/</span></li>
+					<li class="active">Enricher</li>
+				</ul>
+		</div>
+		
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span7 offset1">
+					<form id="enrichmentForm" class="form-horizontal" method="POST" th:action="@{/articles/enricher}" action="enricher.html" th:object="${article}">
+						<fieldset>
+							<legend>Article</legend>
+							<div class="control-group">
+								<label class="control-label" for="title">Title</label>
+								<div class="controls">
+									<input id="title" type="text" class="input-xlarge" placeholder="article title" th:value="${article.title}"></input>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="url">Url</label>
+								<div class="controls">
+									<input id="url" type="text" class="input-xlarge" placeholder="article url" th:value="${article.url}"></input>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="author">Author</label>
+								<div class="controls">
+									<input id="author" type="text" class="input-xlarge" placeholder="article author" th:value="${article.author}"></input>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="date">Date</label>
+								<div class="controls">
+									<input id="date" type="text" class="input-small" placeholder="article date" th:value="${article.date}"></input>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="keywords">Keywords</label>
+								<div class="controls">
+									<!-- fix ul.tagit style -->
+									<ul id="keywords" style="margin-left: 0px;">
+										<li th:each="a : ${article.keywords}" th:text="${a}">java</li>
+										<li th:remove="all">C#</li>
+									</ul>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="categories">Categories</label>
+								<div class="controls">
+									<span class="help-block">Current categories</span>
+									<div>
+										<ul id="currentCategories">
+											<li id="Informatica/LenguajesDeProgramación" th:each="cat: ${article.categories}" th:id="${cat}"><span th:text="${cat}">Informática/Lenguajes de Programación</span> <span class="close" style="float: none">x</span></li>
+											<li id="Informatica/DataMining" th:remove="all">Informática/Data Mining <span class="close" style="float: none">x</span></li>
+										</ul>
+									</div>
+									<span class="help-block">Category tree:</span>
+									<div id="categoryTree"></div>
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" class="btn btn-primary">Submit</button>
+									<a th:href="@{/articles}" href="search.html" class="btn">Cancel</a>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+
+			<hr/>
+			<footer class="pull-right" th:substituteby="layout :: footer">
+				<small class="muted">Yarquen, a focused, semantic, distributed crawler :)</small>
+			</footer>
+		</div>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+$(document).ready(function() {
+	$("#keywords").tagit({
+		allowSpaces: true,
+		placeholderText: "new keyword",
+		availableTags: /*[[ ${keywords} ]]*/ ["Java", "C#", "Haskell"]
+	});
+	
+	$("#currentCategories").on("click", ".close", function() {
+		$(this).parent().remove();
+	});
+});
+
+$(document).ready(function() {
+	jQuery("#categoryTree")
+	.jstree({
+		core: { animation: 0 },
+		plugins: [ "themes", "json_data", "ui" ],
+		themes: { theme: "classic", dots: true, icons: false },
+		json_data: {
+			data: /*[[ ${categories} ]]*/ [ { data: "A node", metadata: { id : 23 }, children: [ "Child 1" ] } ]
+		}
+	}).bind("select_node.jstree", function (e, data) {
+		$('#currentCategories').append("<li id=\"" + data.rslt.obj.data("code") + "\"><span>" + data.rslt.obj.data("name") + "</span> <span class=\"close\" style=\"float: none\">x</span></li>");
+	})
+});
+
+$(function() {
+  $("#date").datepicker();
+});
+
+$(function() {
+	var authors = /*[[ ${authors} ]]*/ ["Nostromo", "Charles Gould", "Capitán Mitchell"];
+	$( "#author" ).autocomplete({
+		source: authors
+	});
+});
+
+$("#enrichmentForm").submit(function(event) {
+	//event.preventDefault();
+	
+/* 	$("#currentCategories li").each(function(index) {
+		alert("holo" + index + " " + $(this).attr("id"));
+	}); */
+	
+	return true;
+});
+/*]]>*/
+</script>
+	</body>
+</html>
