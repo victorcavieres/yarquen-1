@@ -52,8 +52,7 @@ import org.yarquen.web.search.SearchResult;
  * 
  */
 @Component
-public class ArticleSearch
-{
+public class ArticleSearch {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(ArticleSearch.class);
 
@@ -72,8 +71,7 @@ public class ArticleSearch
 	private TaxonomyReader taxoReader;
 
 	@PostConstruct
-	public void init() throws IOException
-	{
+	public void init() throws IOException {
 		analyzer = new StandardAnalyzer(Version.LUCENE_40);
 
 		final Directory indexDirectory = new NIOFSDirectory(new File(
@@ -88,8 +86,7 @@ public class ArticleSearch
 	}
 
 	public List<SearchResult> search(SearchFields searchFields,
-			YarquenFacets facetsCount) throws IOException, ParseException
-	{
+			YarquenFacets facetsCount) throws IOException, ParseException {
 		final String queryString = searchFields.getQuery();
 		LOGGER.debug("searching: {}", queryString);
 
@@ -135,16 +132,13 @@ public class ArticleSearch
 		final List<FacetResult> facetResults = facetsCollector
 				.getFacetResults();
 		populateFacets(facetsCount, facetResults);
-		for (YarquenFacet fc : facetsCount.getAuthor())
-		{
+		for (YarquenFacet fc : facetsCount.getAuthor()) {
 			LOGGER.debug("{} = {}", fc.getValue(), fc.getCount());
 		}
-		for (YarquenFacet fc : facetsCount.getKeyword())
-		{
+		for (YarquenFacet fc : facetsCount.getKeyword()) {
 			LOGGER.debug("{} = {}", fc.getValue(), fc.getCount());
 		}
-		for (YarquenFacet fc : facetsCount.getYear())
-		{
+		for (YarquenFacet fc : facetsCount.getYear()) {
 			LOGGER.debug("{} = {}", fc.getValue(), fc.getCount());
 		}
 
@@ -152,21 +146,17 @@ public class ArticleSearch
 		final List<SearchResult> results = new ArrayList<SearchResult>(
 				hits.length);
 		LOGGER.debug("{} results from index", hits.length);
-		for (ScoreDoc scoreDoc : hits)
-		{
+		for (ScoreDoc scoreDoc : hits) {
 			final Document doc = searcher.doc(scoreDoc.doc);
 			final IndexableField idField = doc.getField(Article.Fields.ID
 					.toString());
 			final String id = idField.stringValue();
 			final Article article = articleRepository.findOne(id);
-			if (article == null)
-			{
+			if (article == null) {
 				LOGGER.warn(
 						"the article {} is indexed but doesn't exists in the database",
 						id);
-			}
-			else
-			{
+			} else {
 				final SearchResult searchResult = createSearchResult(article);
 
 				float score = (float) (Math.round(scoreDoc.score * 10.0) / 10.0);
@@ -181,69 +171,56 @@ public class ArticleSearch
 		return results;
 	}
 
-	private Query createFacetedQuery(Query textQuery, SearchFields searchFields)
-	{
+	private Query createFacetedQuery(Query textQuery, SearchFields searchFields) {
 		boolean facetedSearch = false;
 		final List<CategoryPath> facets = new ArrayList<CategoryPath>();
 
 		final String author = searchFields.getAuthor();
-		if (author != null)
-		{
+		if (author != null) {
 			facetedSearch = true;
 			facets.add(new CategoryPath(Article.Facets.AUTHOR.toString(),
 					author));
 		}
 		final String year = searchFields.getYear();
-		if (year != null)
-		{
+		if (year != null) {
 			facetedSearch = true;
 			facets.add(new CategoryPath(Article.Facets.YEAR.toString(), year));
 		}
 		final List<String> keywordValues = searchFields.getKeyword();
-		if (keywordValues != null && !keywordValues.isEmpty())
-		{
+		if (keywordValues != null && !keywordValues.isEmpty()) {
 			facetedSearch = true;
-			for (String kw : keywordValues)
-			{
+			for (String kw : keywordValues) {
 				facets.add(new CategoryPath(Article.Facets.KEYWORD.toString(),
 						kw));
 			}
 		}
 
-		if (facetedSearch)
-		{
+		if (facetedSearch) {
 			LOGGER.debug("faceted search: author={} year={}", author, year);
 			return DrillDown.query(textQuery,
 					facets.toArray(new CategoryPath[facets.size()]));
-		}
-		else
-		{
+		} else {
 			return null;
 		}
 	}
 
-	private SearchResult createSearchResult(Article article)
-	{
+	private SearchResult createSearchResult(Article article) {
 		final SearchResult searchResult = new SearchResult();
+		searchResult.setId(article.getId());
 		searchResult.setUrl(article.getUrl());
 		searchResult.setTitle(article.getTitle());
 		searchResult.setDate(article.getDate());
 		searchResult.setAuthor(article.getAuthor());
 		final String summary = article.getSummary();
-		if (summary == null || summary.trim().length() == 0)
-		{
+		if (summary == null || summary.trim().length() == 0) {
 			searchResult.setSummary("No summary was found for this result :(");
-		}
-		else
-		{
+		} else {
 			searchResult.setSummary(summary);
 		}
 
 		final List<String> keywords = new ArrayList<String>();
-		if (article.getKeywords() != null)
-		{
-			for (String kw : article.getKeywords())
-			{
+		if (article.getKeywords() != null) {
+			for (String kw : article.getKeywords()) {
 				keywords.add(kw);
 			}
 		}
@@ -253,16 +230,14 @@ public class ArticleSearch
 	}
 
 	private void populateFacets(YarquenFacets facetsCount,
-			List<FacetResult> facetResults)
-	{
+			List<FacetResult> facetResults) {
 		// author
 		facetsCount.setAuthor(new ArrayList<YarquenFacet>());
 		final FacetResultNode authorFacetCount = facetResults.get(0)
 				.getFacetResultNode();
 		final Iterable<? extends FacetResultNode> authorFacetsResults = authorFacetCount
 				.getSubResults();
-		for (FacetResultNode facetResultNode : authorFacetsResults)
-		{
+		for (FacetResultNode facetResultNode : authorFacetsResults) {
 			facetsCount.getAuthor().add(createFacet(facetResultNode));
 		}
 
@@ -272,8 +247,7 @@ public class ArticleSearch
 				.getFacetResultNode();
 		final Iterable<? extends FacetResultNode> keywordFacetsResults = keywordFacetCount
 				.getSubResults();
-		for (FacetResultNode facetResultNode : keywordFacetsResults)
-		{
+		for (FacetResultNode facetResultNode : keywordFacetsResults) {
 			facetsCount.getKeyword().add(createFacet(facetResultNode));
 		}
 
@@ -283,14 +257,12 @@ public class ArticleSearch
 				.getFacetResultNode();
 		final Iterable<? extends FacetResultNode> yearFacetsResults = yearFacetCount
 				.getSubResults();
-		for (FacetResultNode facetResultNode : yearFacetsResults)
-		{
+		for (FacetResultNode facetResultNode : yearFacetsResults) {
 			facetsCount.getYear().add(createFacet(facetResultNode));
 		}
 	}
 
-	private YarquenFacet createFacet(FacetResultNode facetResultNode)
-	{
+	private YarquenFacet createFacet(FacetResultNode facetResultNode) {
 		final String name = facetResultNode.getLabel().getComponent(0);
 		final String value = facetResultNode.getLabel().getComponent(1);
 		final double count = facetResultNode.getValue();

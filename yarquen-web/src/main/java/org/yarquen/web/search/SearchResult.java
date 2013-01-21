@@ -13,6 +13,7 @@ public class SearchResult
 {
 	private String author;
 	private String date;
+	private String id;
 	private List<String> keywords;
 	private float score;
 	private String summary;
@@ -27,6 +28,10 @@ public class SearchResult
 	public String getDate()
 	{
 		return date;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public List<String> getKeywords()
@@ -62,6 +67,10 @@ public class SearchResult
 	public void setDate(String date)
 	{
 		this.date = date;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public void setKeywords(List<String> keywords)
