@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +60,7 @@ public class EnricherController {
 	private KeywordRepository keywordRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String setupForm(Model model, @PathVariable String id,
+	public String setupForm(@PathVariable String id, Model model,
 			HttpServletRequest request) {
 
 		final Article article = articleRepository.findOne(id);
@@ -116,26 +117,27 @@ public class EnricherController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String update(@ModelAttribute(ARTICLE) Article article,
-			BindingResult result) {
+	public String update(@Valid Article article, BindingResult result,
+			Model model) {
 
-		String referer = null;
-		LOGGER.trace("pars: referer={} article={}", new Object[] { referer,
-				article });
-		LOGGER.debug("errors? {}", result.hasErrors());
-		LOGGER.debug(
-				"{}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n",
-				new Object[] { article.getAuthor(), article.getCategories(),
-						article.getDate(), article.getId(),
-						article.getKeywords(), article.getPlainText(),
-						article.getSummary(), article.getTitle(),
-						article.getUrl() });
-
-		LOGGER.trace("referer: '{}'", referer);
-		if (referer == null || referer.trim().isEmpty()) {
-			return "redirect:/articles?query=javascript";
+		if (result.hasErrors()) {
+			return "articles/enricher";
 		} else {
-			return "redirect:" + referer;
+			String referer = null;
+			LOGGER.trace("pars: referer={} article={}", new Object[] { referer,
+					article });
+			LOGGER.debug(
+					"{}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n",
+					new Object[] { article.getAuthor(),
+							article.getCategories(), article.getDate(),
+							article.getId(), article.getKeywords(),
+							article.getPlainText(), article.getSummary(),
+							article.getTitle(), article.getUrl() });
+
+			LOGGER.trace("referer: '{}'", referer);
+			model.addAttribute("message", "article successfully enriched");
+			model.addAttribute(REFERER, referer);
+			return "message";
 		}
 	}
 }

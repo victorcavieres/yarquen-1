@@ -7,9 +7,3 @@ target
 rebel.xml
 .gradle
 
-
-yarquen-web/src/main/resources/rebel.xml
-
-yarquen-common/src/main/resources/rebel.xml
-
-yarquen-crawler/src/main/resources/rebel.xml
