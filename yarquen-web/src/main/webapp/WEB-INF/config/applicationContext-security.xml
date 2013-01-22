@@ -17,6 +17,7 @@
         <logout />
         <!-- Security zones -->
         <intercept-url pattern="/account/current.html" access="isAuthenticated()" />
+        <intercept-url pattern="/articles/enricher/**" access="isAuthenticated()" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/shared/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
