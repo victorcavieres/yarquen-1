@@ -34,7 +34,7 @@ public class AccountController {
 			return "account/register";
 		}
 
-//		accountService.register(account);
+		accountService.register(account);
 		return "home";
 	}
 	
