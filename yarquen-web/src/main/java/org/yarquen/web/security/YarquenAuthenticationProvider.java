@@ -28,11 +28,11 @@ public class YarquenAuthenticationProvider implements AuthenticationProvider {
 		String username = String.valueOf(auth.getPrincipal());
 		String password = String.valueOf(auth.getCredentials());
 		Account account = accountService.authenticate(username, password);
-		if (account != null)
-			return new UsernamePasswordAuthenticationToken(
-					account.getFirstName() + " " + account.getFamilyName(),
-					authentication.getCredentials(), null);
-		else
+		if (account != null){
+			auth= new UsernamePasswordAuthenticationToken(account.getFirstName()+" "+account.getFamilyName(),authentication.getCredentials(), null);
+			auth.setDetails(account);
+			return auth;
+		}else
 			return null;
 
 	}

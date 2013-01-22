@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
  * @version $Id$
  * 
  */
-public interface AccountRepository extends CrudRepository<Account, Long>
+public interface AccountRepository extends CrudRepository<Account, String>
 {
 	Account findByUsernameAndPassword(String username, String password);
 }

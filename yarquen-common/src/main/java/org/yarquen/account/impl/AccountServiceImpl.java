@@ -69,4 +69,5 @@ public class AccountServiceImpl implements AccountService
 		return !violations.isEmpty() ? ValidationUtils
 				.getConstraintsMessages(violations) : null;
 	}
+
 }

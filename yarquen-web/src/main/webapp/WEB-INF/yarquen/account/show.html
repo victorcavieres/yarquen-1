@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby="layout :: header">
+<meta charset="UTF-8" />
+<title>Yarquen Crawler</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="../../../css/yarquen.css" rel="stylesheet" />
+<link href="../../../bootstrap/css/bootstrap-responsive.css"
+	rel="stylesheet" />
+
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/jquery.validate.js"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Include Bootstrap Asserts JavaScript Files. -->
+<script type="text/javascript" src="jquery.validate.js"></script>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner" th:substituteby="layout :: navbar">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a class="brand" th:href="@{/}" href="../home.html">Yarquen</a>
+				<div class="nav-collapse collapse">
+					<p class="navbar-text pull-right">
+						Logged in as <a href="#" class="navbar-link">admin</a>
+					</p>
+					<ul class="nav">
+						<li class="active"><a th:href="@{/}" href="../home.html">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<ul class="breadcrumb">
+			<li><a th:href="@{/}" href="../home.html">Home</a> <span
+				class="divider">/</span></li>
+			<li class="active">Show User</li>
+		</ul>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div id="content" class="span12&gt;">
+				<div>
+					<div class="row">
+						<div id="details" class="span7">
+							<div>
+								<!-- <p>
+									<img src="pics/Kathleen_Byrne.jpg" width="160" height="160">
+								</p> -->
+								<h1><span th:text="${account.firstName}+' '+${account.familyName}">Kathleen Byrne</span>  <small><a href="/account/edit.html" th:href="@{/account/edit/}+${account.id}">edit</a></small></h1>
+								<h3 th:text="${account.username}">kathleen</h3>
+
+								<br/>
+								<div class="row">
+									<div class="span6">
+										<table class="table table-striped">
+											<tbody>
+												<tr>
+													<td><h6>Email:</h6></td>
+													<td><i class="icon-envelope"></i> <a th:href="'mailto: '+${account.email}"
+														href="mailto:kbyrne@fakemail.com" th:text="${account.email}">kbyrne@fakemail.com</a></td>
+												</tr>
+											</tbody>
+										</table>
+
+										<!-- <div class="alert alert-warning">
+											<h4 class="alert-heading">Warning</h4>
+											The phone numbers, email addresses, and Twitter handlers are
+											fake.
+										</div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span5">
+							<div id="reports" class="well">
+								<h3 class="modal-header">Skill Details <small><a href="#" >edit</a></small></h3>
+								<div class="alert alert-info no-reports" style="display: block;">
+									<h4 class="alert-heading">Info</h4>
+									<span th:text="${account.firstName}+' '+${account.familyName}">Kathleen Byrne</span> has no skill details
+								</div>
+								<ul class="nav nav-list"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr />
+		<footer class="pull-right" th:substituteby="layout :: footer">
+			<small class="muted">Yarquen, a focused, semantic,
+				distributed crawler :)</small>
+		</footer>
+	</div>
+</body>
+</html>

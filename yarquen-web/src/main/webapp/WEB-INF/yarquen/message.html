@@ -72,12 +72,10 @@
 
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="hero-unit">
-				<p>A focused, semantic, distributed crawler :)</p>
-
-				<a th:href="@{/articles}" href="articles/search.html">search
-					articles</a>
-			</div>
+			<div class="alert alert-info no-reports" style="display: block;">
+              <h4 class="alert-heading">Info</h4>
+              <span th:text="${message}">success operation</span>
+            </div>
 		</div>
 
 		<hr />

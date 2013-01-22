@@ -31,7 +31,7 @@
                 
                 <div th:unless="${exception instanceof T(javax.servlet.ServletException)}" >
                     <p>
-                      <span th:text="${exception.class.name}">NullPointerException</span>: 
+                      <span th:text="${exception.class}">NullPointerException</span>: 
                       <span th:text="${exception.message}">null</span><br />
                     </p>
                     <p>

@@ -25,8 +25,8 @@
 					<div class="nav-collapse collapse">
 						<p class="navbar-text pull-right" th:fragment="logout"
 							sec:authorize="isAuthenticated()">
-							Logged in as <a href="#" class="navbar-link"
-								sec:authentication="name">admin</a> <span
+							Logged in as <a href="account/show.html" th:href="@{/account/current.html}" class="navbar-link"
+								sec:authentication="name">admin</a><span
 								class="divider-vertical"></span> <a href="index.html" th:href="@{/j_spring_security_logout}">Logout</a>
 						</p>
 						<ul class="nav">
