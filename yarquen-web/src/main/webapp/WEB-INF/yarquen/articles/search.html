@@ -114,7 +114,7 @@
 									<small><span class="icon-user"></span> <a href="#" th:text="${result.author}">Pramod Subramanyan</a></small>
 									<small>on</small>
 									<small><span class="icon-calendar"></span> <span th:text="${result.date}">05.19.2008</span></small>
-									<a th:href="@{/articles/enricher(id=${result.id})}" href="enricher.html" rel="tooltip" title="complete metadata"><span class="icon-pencil"></span></a>
+									<a th:href="@{'/articles/enricher/' + ${result.id}}" href="enricher.html" rel="tooltip" title="complete metadata"><span class="icon-pencil"></span></a>
 								</span>
 								<br />
 								<small class="muted" th:text="${result.url}">http://architects.dzone.com/news/functional-programming-101-lam</small>
@@ -139,7 +139,7 @@
 								<small><span class="icon-user"></span> <a href="#">Meyyappan Muthuraman</a></small>
 								<small>on</small>
 								<small><span class="icon-calendar"></span> <span>06.15.2012</span></small>
-								<small><span class="icon-pencil"></span></small>
+								<a href="enricher.html" rel="tooltip" title="complete metadata"><span class="icon-pencil"></span></a>
 							</span>
 							<br />
 							<small class="muted">http://www.dzone.com/tutorials/java/spring/spring-annotations.html</small>

@@ -3,6 +3,7 @@ package org.yarquen.category;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -15,12 +16,21 @@ import org.hibernate.validator.constraints.NotEmpty;
  * 
  */
 public class SubCategory {
+	@Pattern(regexp = "[\\w\\d_]+")
 	@NotEmpty
 	private String code;
 	@NotEmpty
 	private String name;
 	@Valid
 	private List<SubCategory> subCategories;
+
+	public SubCategory() {
+	}
+
+	public SubCategory(String code, String name) {
+		this.code = code;
+		this.name = name;
+	}
 
 	public boolean addSubCategory(SubCategory subCategory) {
 		if (!subCategories.contains(subCategory)) {

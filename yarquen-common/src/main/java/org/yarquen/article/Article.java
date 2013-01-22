@@ -2,8 +2,11 @@ package org.yarquen.article;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
+import org.yarquen.category.CategoryBranch;
 
 /**
  * Article
@@ -52,7 +55,8 @@ public class Article
 	}
 
 	private String author;
-	private List<String> categories;
+	@Valid
+	private List<CategoryBranch> categories;
 	private String date;
 	@Id
 	private String id;
@@ -70,7 +74,7 @@ public class Article
 		return author;
 	}
 
-	public List<String> getCategories() {
+	public List<CategoryBranch> getCategories() {
 		return categories;
 	}
 
@@ -114,7 +118,7 @@ public class Article
 		this.author = value;
 	}
 
-	public void setCategories(List<String> categories) {
+	public void setCategories(List<CategoryBranch> categories) {
 		this.categories = categories;
 	}
 

@@ -1,28 +1,28 @@
 package org.yarquen.web.enricher;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
 import org.yarquen.author.Author;
 import org.yarquen.author.AuthorRepository;
 import org.yarquen.category.Category;
+import org.yarquen.category.CategoryBranch;
 import org.yarquen.category.CategoryRepository;
 import org.yarquen.category.SubCategory;
 import org.yarquen.keyword.Keyword;
@@ -37,11 +37,15 @@ import org.yarquen.keyword.KeywordRepository;
  * 
  */
 @Controller
+@RequestMapping(value = "/articles/enricher/{id}")
 public class EnricherController {
-	private static final String ID_SEPARATOR = ".";
-	private static final String NAME_SEPARATOR = "/";
+	private static final String ARTICLE = "article";
+	private static final String AUTHORS = "authors";
+	private static final String CATEGORIES = "categories";
+	private static final String KEYWORDS = "keywords";
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(EnricherController.class);
+	private static final String REFERER = "referer";
 
 	@Resource
 	private ArticleRepository articleRepository;
@@ -50,25 +54,42 @@ public class EnricherController {
 	@Resource
 	private CategoryRepository categoryRepository;
 	@Resource
+	private CategoryTreeBuilder categoryTreeBuilder;
+	@Resource
 	private KeywordRepository keywordRepository;
 
-	@RequestMapping(value = "/articles/enricher", method = RequestMethod.GET)
-	public ModelAndView setupForm(@RequestParam("id") String articleId) {
-		final ModelAndView mv = new ModelAndView("articles/enricher");
+	@RequestMapping(method = RequestMethod.GET)
+	public String setupForm(Model model, @PathVariable String id,
+			HttpServletRequest request) {
 
-		final Article article = articleRepository.findOne(articleId);
+		final Article article = articleRepository.findOne(id);
 		if (article == null) {
-			throw new RuntimeException("Article " + articleId + " not found");
+			throw new RuntimeException("Article " + id + " not found");
 		} else {
 			LOGGER.debug("enriching article id={} title={}", article.getId(),
 					article.getTitle());
 
-			// TODO:remove?
-			final List<String> cats = new ArrayList<String>();
-			article.setCategories(cats);
+			// TODO:remove
+			{
+				final CategoryBranch categoryBranch = new CategoryBranch();
+				List<SubCategory> c = new ArrayList<SubCategory>();
+				c.add(new Category("Softwate", "Software"));
+				c.add(new SubCategory("Eclipse", "Eclipse"));
+				categoryBranch.setCategories(c);
+
+				final List<CategoryBranch> cats = new ArrayList<CategoryBranch>();
+				cats.add(categoryBranch);
+				article.setCategories(cats);
+			}
+
+			// save referer
+			final String referer = request.getHeader("Referer");
+			LOGGER.trace("referer: {}", referer);
+			model.addAttribute(REFERER, referer);
 
 			// article to enrich
-			mv.addObject("article", article);
+			LOGGER.trace("articles: {}", article);
+			model.addAttribute(ARTICLE, article);
 
 			// authors
 			final List<String> authorsName = new LinkedList<String>();
@@ -76,7 +97,7 @@ public class EnricherController {
 			for (Author author : authors) {
 				authorsName.add(author.getName());
 			}
-			mv.addObject("authors", authorsName);
+			model.addAttribute(AUTHORS, authorsName);
 
 			// keywords
 			final List<String> keywordsName = new LinkedList<String>();
@@ -84,36 +105,23 @@ public class EnricherController {
 			for (Keyword keyword : keywords) {
 				keywordsName.add(keyword.getName());
 			}
-			mv.addObject("keywords", keywordsName);
+			model.addAttribute(KEYWORDS, keywordsName);
 
 			// categories
-			final List<Map<String, Object>> categoriesJson = new ArrayList<Map<String, Object>>();
-			final Iterable<Category> categories = categoryRepository.findAll();
-			for (Category c : categories) {
-				final Map<String, Object> cj = new HashMap<String, Object>();
-				cj.put("metadata", buildMetadataMap(c, null, null));
-				cj.put("data", c.getName());
-				if (c.getSubCategories() != null
-						&& !c.getSubCategories().isEmpty()) {
-					final List<Map<String, Object>> subCategories = new ArrayList<Map<String, Object>>();
-					for (SubCategory sc : c.getSubCategories()) {
-						final Map<String, Object> scj = buildSubcategory(sc,
-								c.getCode(), c.getName());
-						subCategories.add(scj);
-					}
-					cj.put("children", subCategories);
-				}
-				categoriesJson.add(cj);
-			}
-			mv.addObject("categories", categoriesJson);
+			final List<Map<String, Object>> categoryTree = categoryTreeBuilder
+					.buildTree();
+			model.addAttribute(CATEGORIES, categoryTree);
 		}
-		return mv;
+		return "articles/enricher";
 	}
 
-	@RequestMapping(value = "/articles/enricher", method = RequestMethod.POST)
-	public String update(@ModelAttribute("article") Article article,
+	@RequestMapping(method = RequestMethod.POST)
+	public String update(@ModelAttribute(ARTICLE) Article article,
 			BindingResult result) {
 
+		String referer = null;
+		LOGGER.trace("pars: referer={} article={}", new Object[] { referer,
+				article });
 		LOGGER.debug("errors? {}", result.hasErrors());
 		LOGGER.debug(
 				"{}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n {}\n",
@@ -123,35 +131,11 @@ public class EnricherController {
 						article.getSummary(), article.getTitle(),
 						article.getUrl() });
 
-		return "redirect:search";
-	}
-
-	private Map<String, Object> buildMetadataMap(SubCategory c, String code,
-			String name) {
-		final Map<String, Object> map = new HashMap<String, Object>();
-		map.put("code",
-				code != null ? code + ID_SEPARATOR + c.getCode() : c.getCode());
-		map.put("name",
-				name != null ? name + NAME_SEPARATOR + c.getName() : c
-						.getName());
-		return map;
-	}
-
-	private Map<String, Object> buildSubcategory(SubCategory c, String code,
-			String name) {
-		final Map<String, Object> cj = new HashMap<String, Object>();
-		cj.put("metadata", buildMetadataMap(c, code, name));
-		cj.put("data", c.getName());
-		if (c.getSubCategories() != null && !c.getSubCategories().isEmpty()) {
-			final List<Map<String, Object>> subCategories = new ArrayList<Map<String, Object>>();
-			for (SubCategory sc : c.getSubCategories()) {
-				final Map<String, Object> scj = buildSubcategory(sc, code
-						+ ID_SEPARATOR + c.getCode(),
-						name + NAME_SEPARATOR + c.getName());
-				subCategories.add(scj);
-			}
-			cj.put("children", subCategories);
+		LOGGER.trace("referer: '{}'", referer);
+		if (referer == null || referer.trim().isEmpty()) {
+			return "redirect:/articles?query=javascript";
+		} else {
+			return "redirect:" + referer;
 		}
-		return cj;
 	}
 }

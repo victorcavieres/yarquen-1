@@ -46,31 +46,32 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span7 offset1">
-					<form id="enrichmentForm" class="form-horizontal" method="POST" th:action="@{/articles/enricher}" action="enricher.html" th:object="${article}">
+					<form id="enrichmentForm" class="form-horizontal" method="POST" th:object="${article}"
+							action="enricher.html" th:action="@{'/articles/enricher/' + *{id}}">
 						<fieldset>
 							<legend>Article</legend>
 							<div class="control-group">
 								<label class="control-label" for="title">Title</label>
 								<div class="controls">
-									<input id="title" type="text" class="input-xlarge" placeholder="article title" th:value="${article.title}"></input>
+									<input id="title" type="text" class="input-xlarge" placeholder="article title" th:value="*{title}"></input>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="url">Url</label>
 								<div class="controls">
-									<input id="url" type="text" class="input-xlarge" placeholder="article url" th:value="${article.url}"></input>
+									<input id="url" type="text" class="input-xlarge" placeholder="article url" th:value="*{url}"></input>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="author">Author</label>
 								<div class="controls">
-									<input id="author" type="text" class="input-xlarge" placeholder="article author" th:value="${article.author}"></input>
+									<input id="author" type="text" class="input-xlarge" placeholder="article author" th:value="*{author}"></input>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="date">Date</label>
 								<div class="controls">
-									<input id="date" type="text" class="input-small" placeholder="article date" th:value="${article.date}"></input>
+									<input id="date" type="text" class="input-small" placeholder="article date" th:value="*{date}"></input>
 								</div>
 							</div>
 							<div class="control-group">
@@ -78,7 +79,7 @@
 								<div class="controls">
 									<!-- fix ul.tagit style -->
 									<ul id="keywords" style="margin-left: 0px;">
-										<li th:each="a : ${article.keywords}" th:text="${a}">java</li>
+										<li th:each="a : *{keywords}" th:text="${a}">java</li>
 										<li th:remove="all">C#</li>
 									</ul>
 								</div>
@@ -89,7 +90,7 @@
 									<span class="help-block">Current categories</span>
 									<div>
 										<ul id="currentCategories">
-											<li id="Informatica/LenguajesDeProgramación" th:each="cat: ${article.categories}" th:id="${cat}"><span th:text="${cat}">Informática/Lenguajes de Programación</span> <span class="close" style="float: none">x</span></li>
+											<li id="Informatica/LenguajesDeProgramación" th:each="cat: *{categories}" th:id="${cat.code}"><span th:text="${cat.name}">Informática/Lenguajes de Programación</span> <span class="close" style="float: none">x</span></li>
 											<li id="Informatica/DataMining" th:remove="all">Informática/Data Mining <span class="close" style="float: none">x</span></li>
 										</ul>
 									</div>
@@ -135,7 +136,7 @@ $(document).ready(function() {
 		plugins: [ "themes", "json_data", "ui" ],
 		themes: { theme: "classic", dots: true, icons: false },
 		json_data: {
-			data: /*[[ ${categories} ]]*/ [ { data: "A node", metadata: { id : 23 }, children: [ "Child 1" ] } ]
+			data: /*[[ ${categories} ]]*/ [ { data: "Software", metadata: { code: "Software", name: "Software" }, children: [ { data: "Eclipse", metadata: { code: "Software.Eclipse", name: "Software/Eclipse" } } ] } ]
 		}
 	}).bind("select_node.jstree", function (e, data) {
 		$('#currentCategories').append("<li id=\"" + data.rslt.obj.data("code") + "\"><span>" + data.rslt.obj.data("name") + "</span> <span class=\"close\" style=\"float: none\">x</span></li>");
@@ -147,21 +148,21 @@ $(function() {
 });
 
 $(function() {
-	var authors = /*[[ ${authors} ]]*/ ["Nostromo", "Charles Gould", "Capitán Mitchell"];
+	var authors = /*[[ ${authors} ]]*/ ["Nostromo", "Charles Gould", "Captain Mitchell"];
 	$( "#author" ).autocomplete({
 		source: authors
 	});
 });
 
-$("#enrichmentForm").submit(function(event) {
+/* $("#enrichmentForm").submit(function(event) {
 	//event.preventDefault();
 	
-/* 	$("#currentCategories li").each(function(index) {
+ 	$("#currentCategories li").each(function(index) {
 		alert("holo" + index + " " + $(this).attr("id"));
-	}); */
+	});
 	
 	return true;
-});
+}); */
 /*]]>*/
 </script>
 	</body>

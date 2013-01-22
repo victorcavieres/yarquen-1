@@ -14,6 +14,13 @@ public class Category extends SubCategory {
 	@Id
 	private String id;
 
+	public Category() {
+	}
+
+	public Category(String code, String name) {
+		super(code, name);
+	}
+
 	public String getId() {
 		return id;
 	}
