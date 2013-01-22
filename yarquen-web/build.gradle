@@ -19,6 +19,7 @@ if (hasProperty("production")) {
 
 ext {
 	thymeleafVersion = "2.0.14"
+	thymeleafspringsecurity3Version = "2.0.0"
 	luceneVersion = "4.0.0"
 }
 
@@ -27,6 +28,10 @@ dependencies {
 
 	compile project(":yarquen-common")	
 	compile "org.springframework:spring-webmvc:$springVersion"
+	compile "org.springframework.security:spring-security-config:$springVersion"
+	compile "org.springframework.security:spring-security-web:$springVersion"
+	compile "org.springframework.security:spring-security-taglibs:$springVersion"
+	compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity3:$thymeleafspringsecurity3Version"
 	compile "org.thymeleaf:thymeleaf:$thymeleafVersion"
 	compile "org.thymeleaf:thymeleaf-spring3:$thymeleafVersion"
 	

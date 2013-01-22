@@ -38,14 +38,15 @@
 			</div>
 				<ul class="breadcrumb">
 					<li><a th:href="@{/}" href="../home.html">Home</a> <span class="divider">/</span></li>
-					<li class="active">Registration</li>
+					<li class="active">Account edit</li>
 				</ul>
 		</div>
 
 		<div class="container-fluid">
-			<form class="form-horizontal" id="registerHere" method='post' action='success.html' th:action='@{/account/}' th:object='${account}'>
+			<form class="form-horizontal" id="registerHere" method="post" action='success.html' th:action='@{/account/update}' th:object='${account}'>
+			<input type="hidden" th:field="*{id}" class="input-large" id="id" name="id"/>
 			<fieldset>
-			<legend>Registration</legend>
+			<legend>Account edit</legend>
 
 			<div th:if="${#fields.hasErrors('*')}" id="errors" class="alert alert-error">
 			        <ul >
@@ -98,7 +99,7 @@
 			<div class="control-group">
 				<label class="control-label"></label>
 				<div class="controls">
-					<button type="submit" class="btn btn-success" >Create My Account</button>
+					<button type="submit" class="btn btn-success" >Save</button>
 				</div>
 			</div>
 			</fieldset>
