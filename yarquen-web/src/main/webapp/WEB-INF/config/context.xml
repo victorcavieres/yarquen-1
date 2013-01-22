@@ -14,10 +14,8 @@
 		http://www.springframework.org/schema/data/mongo
 		http://www.springframework.org/schema/data/mongo/spring-mongo-1.1.xsd
 		">
-	<util:properties id="config">
-		<prop key="indexDirectory">/home/totex/local/tmp/yarquen-lucene/index</prop>
-		<prop key="taxoDirectory">/home/totex/local/tmp/yarquen-lucene/taxo</prop>
-	</util:properties>
+	<util:properties id="config"
+		location="file:${catalina.base}/conf/yarquen.properties" />
 
 	<context:component-scan base-package="org.yarquen" />
 	<!-- Security (authentication and authorization) configuration -->

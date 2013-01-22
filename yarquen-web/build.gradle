@@ -64,6 +64,10 @@ task copyDistLogback(type: Copy, dependsOn: unpackTomcat) {
 	from "src/main/distribution/conf/logback.xml"
 	into "$buildDir/$tomcatDir/conf"
 }
+task copyDistYarquenProps(type: Copy, dependsOn: unpackTomcat) {
+	from "src/main/distribution/conf/yarquen.properties"
+	into "$buildDir/$tomcatDir/conf"
+}
 task copyDistServer(type: Copy, dependsOn: unpackTomcat) {
 	from "src/main/distribution/conf/server.xml"
 	into "$buildDir/$tomcatDir/conf"
@@ -75,7 +79,7 @@ task copyWar(type: Copy, dependsOn: [ unpackTomcat, war ]) {
 	rename(war.archiveName, "yarquen.war")
 }
 
-task dist(type: Tar, dependsOn: [copyDistBin, copyDistLogback, copyDistServer, copyWar]) {
+task dist(type: Tar, dependsOn: [copyDistBin, copyDistLogback, copyDistYarquenProps, copyDistServer, copyWar]) {
 	compression = Compression.GZIP
 	from "$buildDir/$tomcatDir"
 }
