@@ -18,15 +18,15 @@ public class CategoryBranch {
 	public static final String NAME_SEPARATOR = "/";
 
 	@Valid
-	private List<SubCategory> categories = new ArrayList<SubCategory>();
+	private List<CategoryBranchNode> nodes = new ArrayList<CategoryBranchNode>();
 
-	public List<SubCategory> getCategories() {
-		return categories;
+	public void addSubCategory(String code, String name) {
+		nodes.add(new CategoryBranchNode(code, name));
 	}
 
 	public String getCode() {
 		final StringBuilder sb = new StringBuilder();
-		for (SubCategory c : categories) {
+		for (CategoryBranchNode c : nodes) {
 			sb.append(c.getCode());
 			sb.append(CODE_SEPARATOR);
 		}
@@ -36,7 +36,7 @@ public class CategoryBranch {
 
 	public String getName() {
 		final StringBuilder sb = new StringBuilder();
-		for (SubCategory c : categories) {
+		for (CategoryBranchNode c : nodes) {
 			sb.append(c.getName());
 			sb.append(NAME_SEPARATOR);
 		}
@@ -44,13 +44,12 @@ public class CategoryBranch {
 		return sb.toString();
 	}
 
-	public void setCategories(List<SubCategory> categories) {
-		if (categories.get(0) instanceof Category) {
-			this.categories = categories;
-		} else {
-			throw new RuntimeException(
-					"the CategoryBranch root must be an instance of Category");
-		}
+	public List<CategoryBranchNode> getNodes() {
+		return nodes;
+	}
+
+	public void setNodes(List<CategoryBranchNode> nodes) {
+		this.nodes = nodes;
 	}
 
 	@Override

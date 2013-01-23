@@ -3,6 +3,7 @@ package org.yarquen.article;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
@@ -16,44 +17,38 @@ import org.yarquen.category.CategoryBranch;
  * @version $Id$
  * 
  */
-public class Article
-{
-	public static enum Facets
-	{
+public class Article {
+	public static enum Facets {
 		AUTHOR("author"), KEYWORD("keyword"), YEAR("year");
 
 		private String label;
 
-		private Facets(String label)
-		{
+		private Facets(String label) {
 			this.label = label;
 		}
 
 		@Override
-		public String toString()
-		{
+		public String toString() {
 			return label;
 		};
 	}
 
-	public static enum Fields
-	{
+	public static enum Fields {
 		ID("id"), PLAIN_TEXT("plainText"), TITLE("title"), URL("url");
 
 		private String label;
 
-		private Fields(String label)
-		{
+		private Fields(String label) {
 			this.label = label;
 		}
 
 		@Override
-		public String toString()
-		{
+		public String toString() {
 			return label;
 		};
 	}
 
+	@Size(min = 5, max = 100)
 	private String author;
 	@Valid
 	private List<CategoryBranch> categories;
@@ -61,7 +56,7 @@ public class Article
 	@Id
 	private String id;
 	private List<String> keywords;
-	@NotEmpty
+	@NotEmpty(groups = FullArticle.class)
 	private String plainText;
 	private String summary;
 	@NotEmpty
@@ -69,8 +64,7 @@ public class Article
 	@NotEmpty
 	private String url;
 
-	public String getAuthor()
-	{
+	public String getAuthor() {
 		return author;
 	}
 
@@ -78,43 +72,35 @@ public class Article
 		return categories;
 	}
 
-	public String getDate()
-	{
+	public String getDate() {
 		return date;
 	}
 
-	public String getId()
-	{
+	public String getId() {
 		return id;
 	}
 
-	public List<String> getKeywords()
-	{
+	public List<String> getKeywords() {
 		return keywords;
 	}
 
-	public String getPlainText()
-	{
+	public String getPlainText() {
 		return plainText;
 	}
 
-	public String getSummary()
-	{
+	public String getSummary() {
 		return summary;
 	}
 
-	public String getTitle()
-	{
+	public String getTitle() {
 		return title;
 	}
 
-	public String getUrl()
-	{
+	public String getUrl() {
 		return url;
 	}
 
-	public void setAuthor(String value)
-	{
+	public void setAuthor(String value) {
 		this.author = value;
 	}
 
@@ -122,38 +108,31 @@ public class Article
 		this.categories = categories;
 	}
 
-	public void setDate(String value)
-	{
+	public void setDate(String value) {
 		this.date = value;
 	}
 
-	public void setId(String id)
-	{
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public void setKeywords(List<String> value)
-	{
+	public void setKeywords(List<String> value) {
 		this.keywords = value;
 	}
 
-	public void setPlainText(String value)
-	{
+	public void setPlainText(String value) {
 		this.plainText = value;
 	}
 
-	public void setSummary(String value)
-	{
+	public void setSummary(String value) {
 		this.summary = value;
 	}
 
-	public void setTitle(String value)
-	{
+	public void setTitle(String value) {
 		this.title = value;
 	}
 
-	public void setUrl(String value)
-	{
+	public void setUrl(String value) {
 		this.url = value;
 	}
 }

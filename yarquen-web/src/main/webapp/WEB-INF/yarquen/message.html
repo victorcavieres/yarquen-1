@@ -73,9 +73,10 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="alert alert-info no-reports" style="display: block;">
-              <h4 class="alert-heading">Info</h4>
-              <span th:text="${message}">success operation</span>
-            </div>
+				<h4 class="alert-heading">Info</h4>
+				<span th:text="${message}">success operation</span>
+			</div>
+			<small th:if="${!#strings.isEmpty(referer)}">Return to <a href="home.html" th:href="${referer}">home.html</a></small>
 		</div>
 
 		<hr />

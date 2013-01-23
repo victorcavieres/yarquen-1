@@ -49,34 +49,67 @@
 					<form id="enrichmentForm" class="form-horizontal" method="POST" th:object="${article}"
 							action="enricher.html" th:action="@{'/articles/enricher/' + *{id}}">
 						<fieldset>
+							<div class="alert alert-error" th:each="err: ${#fields.errors('keywords')}">
+								<button type="button" class="close" data-dismiss="alert">×</button>
+								<strong>Keywords Error</strong>: <span th:text="${err}">cannot be empty</span>
+							</div>
+							<div class="alert alert-error" th:each="err: ${#fields.errors('categories')}">
+								<button type="button" class="close" data-dismiss="alert">×</button>
+								<strong>Categories Error</strong>: <span th:text="${err}">cannot be empty</span>
+							</div>
+							<input id="id" name="id" type="hidden" th:field="*{id}" />
 							<legend>Article</legend>
 							<div class="control-group">
 								<label class="control-label" for="title">Title</label>
 								<div class="controls">
-									<input id="title" type="text" class="input-xlarge" placeholder="article title" th:value="*{title}"></input>
+									<input id="title" name="title" type="text" class="input-xlarge" placeholder="article title" th:value="*{title}"></input>
+									<span class="text-error" th:if="${#fields.hasErrors('title')}" th:each="err : ${#fields.errors('title')}">
+										<strong> Error</strong>: <span th:text="${err}">Input is incorrect</span>
+									</span>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="url">Url</label>
 								<div class="controls">
-									<input id="url" type="text" class="input-xlarge" placeholder="article url" th:value="*{url}"></input>
+									<input id="url" name="url" type="text" class="input-xlarge" placeholder="article url" th:value="*{url}"></input>
+									<span class="text-error" th:if="${#fields.hasErrors('url')}" th:each="err : ${#fields.errors('url')}">
+										<strong> Error</strong>: <span th:text="${err}">Input is incorrect</span>
+									</span>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="author">Author</label>
 								<div class="controls">
-									<input id="author" type="text" class="input-xlarge" placeholder="article author" th:value="*{author}"></input>
+									<input id="author" name="author" type="text" class="input-xlarge" placeholder="article author" th:value="*{author}"></input>
+									<span class="text-error" th:if="${#fields.hasErrors('author')}" th:each="err : ${#fields.errors('author')}">
+										<strong> Error</strong>: <span th:text="${err}">Input is incorrect</span>
+									</span>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="date">Date</label>
 								<div class="controls">
-									<input id="date" type="text" class="input-small" placeholder="article date" th:value="*{date}"></input>
+									<input id="date" name="date" type="text" class="input-small" placeholder="article date" th:value="*{date}"></input>
+									<span class="text-error" th:if="${#fields.hasErrors('date')}" th:each="err : ${#fields.errors('date')}">
+										<strong> Error</strong>: <span th:text="${err}">Input is incorrect</span>
+									</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="summary">Summary</label>
+								<div class="controls">
+									<textarea id="summary" name="summary" rows="4" placeholder="article summary" th:text="*{summary}"></textarea>
+									<span class="text-error" th:if="${#fields.hasErrors('summary')}" th:each="err : ${#fields.errors('summary')}">
+										<strong> Error</strong>: <span th:text="${err}">Input is incorrect</span>
+									</span>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="keywords">Keywords</label>
 								<div class="controls">
+									<div id="keywordList">
+										<input type="hidden" th:each="kw, stat : *{keywords}" th:field="*{keywords[__${stat.index}__]}" />
+									</div>
 									<!-- fix ul.tagit style -->
 									<ul id="keywords" style="margin-left: 0px;">
 										<li th:each="a : *{keywords}" th:text="${a}">java</li>
@@ -89,10 +122,14 @@
 								<div class="controls">
 									<span class="help-block">Current categories</span>
 									<div>
+										<!--input id="categories" name="categories" type="hidden" th:each="cat: *{categories}" th:value="${cat.code}" /-->
 										<ul id="currentCategories">
-											<li id="Informatica/LenguajesDeProgramación" th:each="cat: *{categories}" th:id="${cat.code}"><span th:text="${cat.name}">Informática/Lenguajes de Programación</span> <span class="close" style="float: none">x</span></li>
-											<li id="Informatica/DataMining" th:remove="all">Informática/Data Mining <span class="close" style="float: none">x</span></li>
+											<li id="Informatica/LenguajesDeProgramación" th:each="cat: *{categories}" th:id="${cat.code}"><span th:text="${cat.name}">Informática/Lenguajes de Programación</span> <span class="categoryCloseBtn close" style="float: none">x</span></li>
+											<li id="Informatica/DataMining" th:remove="all">Informática/Data Mining <span class="categoryCloseBtn close" style="float: none">x</span></li>
 										</ul>
+										<div id="categoryList">
+											<input type="hidden" th:each="cat, stat : *{categories}" th:field="*{categories[__${stat.index}__]}" />
+										</div>
 									</div>
 									<span class="help-block">Category tree:</span>
 									<div id="categoryTree"></div>
@@ -120,14 +157,46 @@
 $(document).ready(function() {
 	$("#keywords").tagit({
 		allowSpaces: true,
+		caseSensitive: false,
 		placeholderText: "new keyword",
+		afterTagAdded: addKeywordHiddenField,
+		afterTagRemoved: removeKeywordHidddenField,
 		availableTags: /*[[ ${keywords} ]]*/ ["Java", "C#", "Haskell"]
 	});
 	
 	$("#currentCategories").on("click", ".close", function() {
-		$(this).parent().remove();
+		removeCategoryFields($(this).parent())
 	});
 });
+
+function addKeywordHiddenField(event, ui) {
+	var c = $("#keywordList").children().size();
+
+	//check to handle page loading
+	if(c <= $("#keywords").tagit("assignedTags").length) {
+		$("#keywordList").append("<input type=\"hidden\" id=\"keywords" + c + "\" name=\"keywords[" + c + "]\" value=\"" + ui.tagLabel + "\">");
+	}
+}
+
+function removeKeywordHidddenField(event, ui) {
+	var c = $("#keywordList").children().size();
+	var i = 0;
+	//locate and remove the keyword element
+	for(; i < c; i++) {
+		var selector = "#keywordList input:nth-child(" + ( i + 1 ) + ")";
+		if($(selector).attr("value") == ui.tagLabel) {
+			$(selector).remove();
+			break;
+		}
+	}
+	//fix remaining elements
+	for(; i < c; i++) {
+		var selector = "#keywordList input:nth-child(" + ( i + 1 ) + ")";
+		$(selector).attr("id","keywords" + i);
+		$(selector).attr("name","keywords[" + i + "]");
+	}
+}
+
 
 $(document).ready(function() {
 	jQuery("#categoryTree")
@@ -138,10 +207,51 @@ $(document).ready(function() {
 		json_data: {
 			data: /*[[ ${categories} ]]*/ [ { data: "Software", metadata: { code: "Software", name: "Software" }, children: [ { data: "Eclipse", metadata: { code: "Software.Eclipse", name: "Software/Eclipse" } } ] } ]
 		}
-	}).bind("select_node.jstree", function (e, data) {
-		$('#currentCategories').append("<li id=\"" + data.rslt.obj.data("code") + "\"><span>" + data.rslt.obj.data("name") + "</span> <span class=\"close\" style=\"float: none\">x</span></li>");
-	})
+	}).bind("select_node.jstree", addCategoryFields)
 });
+
+
+function addCategoryFields(e, data) {
+	var code = data.rslt.obj.data("code");
+	var name= data.rslt.obj.data("name");
+	
+	if($("#categoryList input[value=\"" + code + "\"]").length != 0) {
+		alert("The category " + name + " is already selected");
+	}
+	else {
+		$("#currentCategories").append("<li id=\"" + code + "\"><span>" + name + "</span> <span class=\"categoryCloseBtn close\" style=\"float: none\">x</span></li>");
+
+		var c = $("#categoryList").children().size();
+		$("#categoryList").append("<input type=\"hidden\" id=\"categories" + c + "\" name=\"categories[" + c + "]\" value=\"" + code + "\">");
+	}
+}
+
+function removeCategoryFields(categoryLi) {
+	var code = categoryLi.attr("id");
+	console.log("code is " + code);
+	
+	categoryLi.remove();
+	console.log("element removed");
+	
+	var c = $("#categoryList").children().size();
+	console.log("list size is " + c);
+	var i = 0;
+	//locate and remove the category element
+	for(; i < c; i++) {
+		var selector = "#categoryList input:nth-child(" + ( i + 1 ) + ")";
+		if($(selector).attr("value") == code) {
+			$(selector).remove();
+			break;
+		}
+	}
+	//fix remaining elements
+	for(; i < c; i++) {
+		var selector = "#categoryList input:nth-child(" + ( i + 1 ) + ")";
+		$(selector).attr("id","categories" + i);
+		$(selector).attr("name","categories[" + i + "]");
+	}
+}
+
 
 $(function() {
   $("#date").datepicker();
@@ -154,15 +264,10 @@ $(function() {
 	});
 });
 
-/* $("#enrichmentForm").submit(function(event) {
-	//event.preventDefault();
-	
- 	$("#currentCategories li").each(function(index) {
-		alert("holo" + index + " " + $(this).attr("id"));
-	});
+/*$("#enrichmentForm").submit(function(event) {
 	
 	return true;
-}); */
+});*/
 /*]]>*/
 </script>
 	</body>
