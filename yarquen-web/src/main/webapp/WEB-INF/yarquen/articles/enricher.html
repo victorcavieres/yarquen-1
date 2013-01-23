@@ -228,13 +228,10 @@ function addCategoryFields(e, data) {
 
 function removeCategoryFields(categoryLi) {
 	var code = categoryLi.attr("id");
-	console.log("code is " + code);
 	
 	categoryLi.remove();
-	console.log("element removed");
 	
 	var c = $("#categoryList").children().size();
-	console.log("list size is " + c);
 	var i = 0;
 	//locate and remove the category element
 	for(; i < c; i++) {
