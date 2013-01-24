@@ -132,6 +132,11 @@
 										</div>
 									</div>
 									<span class="help-block">Category tree:</span>
+									<div class="input-append">
+										  <input id="searchTreeInput" class="input-small" type="text" placeholder="Category" />
+										  <button id="searchTree" class="btn" type="button">Search</button>
+										  <button id="resetSearchTree" class="btn" type="button">Reset</button>
+									</div>
 									<div id="categoryTree"></div>
 								</div>
 							</div>
@@ -199,10 +204,18 @@ function removeKeywordHidddenField(event, ui) {
 
 
 $(document).ready(function() {
+	$("#searchTree").click(function () {
+		$("#categoryTree").jstree("search",$("#searchTreeInput").val());
+	});
+	$("#resetSearchTree").click(function () {
+		$("#searchTreeInput").val('');
+		$("#categoryTree").jstree("close_all",$("#categoryTree"));
+		
+	});
 	jQuery("#categoryTree")
 	.jstree({
 		core: { animation: 0 },
-		plugins: [ "themes", "json_data", "ui" ],
+		plugins: [ "themes", "json_data", "ui", "search" ],
 		themes: { theme: "classic", dots: true, icons: false },
 		json_data: {
 			data: /*[[ ${categories} ]]*/ [ { data: "Software", metadata: { code: "Software", name: "Software" }, children: [ { data: "Eclipse", metadata: { code: "Software.Eclipse", name: "Software/Eclipse" } } ] } ]
