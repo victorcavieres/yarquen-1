@@ -1,5 +1,8 @@
 package org.yarquen.web.account;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.yarquen.account.Account;
 import org.yarquen.account.AccountRepository;
 import org.yarquen.account.AccountService;
+import org.yarquen.web.enricher.CategoryTreeBuilder;
 
 @Controller
 @RequestMapping("/account")
@@ -26,6 +30,8 @@ public class AccountController {
 	private AccountService accountService;
 	@Resource
 	private AccountRepository accountRepository;
+	@Resource
+	private CategoryTreeBuilder categoryTreeBuilder;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String save(@Valid Account account, BindingResult result, Model model) {
@@ -79,6 +85,23 @@ public class AccountController {
 		if (account != null) {
 			model.addAttribute("account", account);
 			return "account/edit";
+		} else
+			return "error";
+
+	}
+
+	@RequestMapping(value = "/setupSkills/{accountId}", method = RequestMethod.GET)
+	public String setupSkills(@PathVariable("accountId") String accountId,
+			Model model) {
+		LOGGER.debug("setuping skills for accountId {}", accountId);
+		Account account = accountRepository.findOne(accountId);
+		if (account != null) {
+			// categories
+			final List<Map<String, Object>> categoryTree = categoryTreeBuilder
+					.buildTree();
+			model.addAttribute("categories", categoryTree);
+			model.addAttribute("account", account);
+			return "account/editSkills";
 		} else
 			return "error";
 
