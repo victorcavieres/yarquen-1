@@ -75,15 +75,12 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	
-	public Account update(Account account) {
+	public Account updateSkills(Account account) {
 		LOGGER.info("registering account {}", account.getUsername());
 		final Set<String> violations = validate(account);
 		if (violations != null) {
 			throw new BeanValidationException(account, violations);
 		} else {
-			final String hashedPassword = PasswordUtils
-					.getHashedPassword(account.getPassword());
-			account.setPassword(hashedPassword);
 			return accountRepository.save(account);
 		}
 	}

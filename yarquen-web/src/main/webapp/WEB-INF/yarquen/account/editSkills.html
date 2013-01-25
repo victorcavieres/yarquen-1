@@ -45,7 +45,7 @@
 		
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<div class="span7 offset1">
+				<div>
 					<form id="enrichmentForm" class="form-horizontal" method="POST" th:object="${account}"
 							action="show.html" th:action="@{'/account/skills/'}">
 							
@@ -62,9 +62,6 @@
 					<input type="hidden" th:field="*{password}" class="input-large" id="password" name="password" rel="popover" data-content="What's your Password?" data-original-title="Password"/>
 							
 							
-							
-							
-							
 						<fieldset>
 							<div th:if="${#fields.hasErrors('*')}" id="errors" class="alert alert-error">
 								<button type="button" class="close" data-dismiss="alert">x</button>
@@ -78,26 +75,8 @@
 								<strong>Categories Error</strong>: <span th:text="${err}">cannot be empty</span>
 							</div>
 							<legend><span th:text="${account.firstName}+' '+${account.familyName}">Kathleen Byrne</span> skill details</legend>
-							<div class="control-group">
-								<div class="controls">
-									<div>
-										<!--input id="categories" name="categories" type="hidden" th:each="cat: *{categories}" th:value="${cat.code}" /-->
-										<ul id="currentCategories">
-										<li id="Informatica/LenguajesDeProgramación" th:each="skill, stat: *{skills}" th:id="${skill.categoryBranch.code}">
-											 	<select class="input-small" th:field="*{skills[__${stat.index}__].level}">
-												    <option label="Basic" value="1"/>
-												    <option label="Medium" value="2"/>
-												    <option label="Advanced" value="3"/>
-											    </select>
-											    <span th:text="${skill.categoryBranch.name}">Informática/Lenguajes de Programación</span>
-											    <span class="categoryCloseBtn close" style="float: none">x</span>
-										</li>
-										</ul>
-										<div id="categoryList">
-											<input type="hidden" th:each="cat, stat : *{skills}" th:field="*{skills[__${stat.index}__].categoryBranch}"/>
-										</div>
-									</div>
-									
+							<div class="row">
+								<div class="span4 offset1">
 									<span class="help-block">Skill category tree:</span>
 									<div class="input-append">
 										  <input id="searchTreeInput" class="input-small" type="text" placeholder="Category" />
@@ -105,6 +84,46 @@
 										  <button id="resetSearchTree" class="btn" type="button">Reset</button>
 									</div>
 									<div id="categoryTree"></div>
+								</div>
+							
+								<div class="span6">
+									<div>
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Skill</th>
+													<th>Level</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody id="skillBodyTable">
+												<tr id="Informatica/LenguajesDeProgramación" th:each="skill, stat: *{skills}" th:id="${skill.categoryBranch.code}">
+													<td><span th:text="${skill.categoryBranch.name}">Informática/Lenguajes de Programación</span></td>
+													<td>
+														<select class="input-small" th:field="*{skills[__${stat.index}__].level}">
+														    <option label="Basic" value="1"/>
+														    <option label="Medium" value="2"/>
+														    <option label="Advanced" value="3"/>
+													    </select>
+													</td>
+													<td><span class="categoryCloseBtn close" style="float: none">x</span></td>
+												</tr>
+											</tbody>
+										</table>
+										<div id="categoryList">
+											<input type="hidden" th:each="cat, stat : *{skills}" th:field="*{skills[__${stat.index}__].categoryBranch}"/>
+										</div>
+										
+										<br/>
+										<div class="control-group">
+											<div class="controls">
+												<button type="submit" class="btn btn-primary">Submit</button>
+												<a th:href="@{/articles}" href="search.html" class="btn">Cancel</a>
+											</div>
+										</div>
+									</div>
+									
+									
 									<div class="modal hide fade" id="modalSkill">
 										  <div class="modal-header">
 										    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -126,13 +145,6 @@
 										</div>
 								</div>
 							</div>
-							<br/>
-							<div class="control-group">
-								<div class="controls">
-									<button type="submit" class="btn btn-primary">Submit</button>
-									<a th:href="@{/articles}" href="search.html" class="btn">Cancel</a>
-								</div>
-							</div>
 						</fieldset>
 					</form>
 				</div>
@@ -147,8 +159,8 @@
 /*<![CDATA[*/
 
 $(document).ready(function() {
-	$("#currentCategories").on("click", ".close", function() {
-		removeCategoryFields($(this).parent())
+	$("#skillBodyTable").on("click", ".close", function() {
+		removeCategoryFields($(this).parent().parent())
 	});
 	
 	$("#searchTree").click(function () {
@@ -157,22 +169,24 @@ $(document).ready(function() {
 	$("#resetSearchTree").click(function () {
 		$("#searchTreeInput").val('');
 		$("#categoryTree").jstree("close_all",$("#categoryTree"));
+		$("#modalSkill").modal("hide");
 		
 	});
 	
 	$("#modalSkillSave").click(function () {
 		var code=$("#modalSkillCode").val();
 		var name=$("#modalSkillName").val();
-		$("#currentCategories").append("<li id=\"" + code + "\"><span>" + name + "</span> <span class=\"categoryCloseBtn close\" style=\"float: none\">x</span></li>");
+		$("#skillBodyTable").append("<tr id=\"" + code + "\"><td><span>" + name + "</span></td><td></td><td><span class=\"categoryCloseBtn close\" style=\"float: none\">x</span></td></tr>");
 		var c = $("#categoryList").children().size();
 		$("#categoryList").append("<input type=\"hidden\" id=\"skills" + c + ".categoryBranch\" name=\"skills[" + c + "].categoryBranch\" value=\"" + code + "\">");
 		
 		$("#modalSkill").modal("hide");
 		var jcode=code.replace(/\./g,'\\.')
 		var levelValue = $("#modalSkillLevel").val();
-		$("#modalSkillLevel").clone(true).attr('id', 'select.'+code).appendTo('#'+jcode);
-		$("#select\\."+jcode).val(levelValue);
-		$("#select\\."+jcode).attr("name","skills["+c+"].level");
+		$("#modalSkillLevel").clone(true).attr('id', "skills" + c + ".level").appendTo('#'+jcode+'>td:nth-child(2)');
+		var selectSelector= "#skills" + c + "\\.level";
+		$(selectSelector).val(levelValue);
+		$(selectSelector).attr("name","skills["+c+"].level");
 		$("#modalSkillLevel").val(1);
 	});
 	

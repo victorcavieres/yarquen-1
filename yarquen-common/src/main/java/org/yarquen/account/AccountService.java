@@ -13,7 +13,7 @@ public interface AccountService
 {
 	Account register(Account account);
 	
-	Account update(Account account);
+	Account updateSkills(Account account);
 
 	Account authenticate(String username, String password);
 

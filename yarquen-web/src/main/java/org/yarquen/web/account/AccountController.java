@@ -179,7 +179,7 @@ public class AccountController {
 			return "account/editSkills";
 		}
 		try{
-			accountService.register(account);
+			accountService.updateSkills(account);
 		}catch(BeanValidationException e){
 			ObjectError error=new ObjectError("account",e.getMessage());
 			result.addError(error);
