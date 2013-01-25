@@ -110,6 +110,8 @@ public class AccountController {
 		}
 
 		try{
+			Account accountWithSkill = accountRepository.findOne(account.getId());
+			account.setSkills(accountWithSkill.getSkills());
 			accountService.register(account);
 		}catch(BeanValidationException e){
 			ObjectError error=new ObjectError("account",e.getMessage());
@@ -179,7 +181,9 @@ public class AccountController {
 			return "account/editSkills";
 		}
 		try{
-			accountService.updateSkills(account);
+			Account accountWithoutSkill = accountRepository.findOne(account.getId());
+			accountWithoutSkill.setSkills(account.getSkills());
+			accountService.updateSkills(accountWithoutSkill);
 		}catch(BeanValidationException e){
 			ObjectError error=new ObjectError("account",e.getMessage());
 			result.addError(error);
