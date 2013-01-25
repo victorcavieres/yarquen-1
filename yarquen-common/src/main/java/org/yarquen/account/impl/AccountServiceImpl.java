@@ -1,5 +1,6 @@
 package org.yarquen.account.impl;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -26,8 +27,7 @@ import org.yarquen.validation.ValidationUtils;
  * 
  */
 @Service
-public class AccountServiceImpl implements AccountService
-{
+public class AccountServiceImpl implements AccountService {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(AccountServiceImpl.class);
 
@@ -36,8 +36,7 @@ public class AccountServiceImpl implements AccountService
 	@Resource
 	private Validator validator;
 
-	public Account authenticate(String username, String password)
-	{
+	public Account authenticate(String username, String password) {
 		final String hashedPassword = PasswordUtils.getHashedPassword(password);
 		LOGGER.debug("authenticating {} with passwd {}", username,
 				hashedPassword);
@@ -45,16 +44,12 @@ public class AccountServiceImpl implements AccountService
 				hashedPassword);
 	}
 
-	public Account register(Account account)
-	{
+	public Account register(Account account) {
 		LOGGER.info("registering account {}", account.getUsername());
 		final Set<String> violations = validate(account);
-		if (violations != null)
-		{
+		if (violations != null) {
 			throw new BeanValidationException(account, violations);
-		}
-		else
-		{
+		} else {
 			final String hashedPassword = PasswordUtils
 					.getHashedPassword(account.getPassword());
 			account.setPassword(hashedPassword);
@@ -62,12 +57,35 @@ public class AccountServiceImpl implements AccountService
 		}
 	}
 
-	private Set<String> validate(Account bean)
-	{
+	private Set<String> validate(Account bean) {
+		Set<String> messages = new HashSet<String>();
 		final Set<ConstraintViolation<Account>> violations = validator
 				.validate(bean, Default.class);
-		return !violations.isEmpty() ? ValidationUtils
-				.getConstraintsMessages(violations) : null;
+		// validate bean have unique username and email
+		Account similarAccount=accountRepository.findByUsername(bean.getUsername());
+		if (similarAccount != null && !similarAccount.getId().equals(bean.getId())) {
+			messages.add("username: " + bean.getUsername() + " already exists");
+		}
+		similarAccount = accountRepository.findByEmail(bean.getEmail());
+		if (similarAccount != null && !similarAccount.getId().equals(bean.getId())) {
+			messages.add("email: " + bean.getEmail() + " already exists");
+		}
+		messages.addAll(ValidationUtils.getConstraintsMessages(violations));
+		return !messages.isEmpty() ? messages : null;
+	}
+
+	
+	public Account update(Account account) {
+		LOGGER.info("registering account {}", account.getUsername());
+		final Set<String> violations = validate(account);
+		if (violations != null) {
+			throw new BeanValidationException(account, violations);
+		} else {
+			final String hashedPassword = PasswordUtils
+					.getHashedPassword(account.getPassword());
+			account.setPassword(hashedPassword);
+			return accountRepository.save(account);
+		}
 	}
 
 }

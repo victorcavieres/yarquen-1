@@ -12,4 +12,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface AccountRepository extends CrudRepository<Account, String> {
 	Account findByUsernameAndPassword(String username, String password);
+	Account findByUsername(String username);
+	Account findByEmail(String email);
 }

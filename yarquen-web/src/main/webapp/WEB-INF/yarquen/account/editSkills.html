@@ -47,41 +47,54 @@
 			<div class="row-fluid">
 				<div class="span7 offset1">
 					<form id="enrichmentForm" class="form-horizontal" method="POST" th:object="${account}"
-							action="show.html" th:action="@{'/account/skills/' + *{id}}">
+							action="show.html" th:action="@{'/account/skills/'}">
+							
+							<input type="hidden" th:field="*{id}" class="input-large" id="id" name="id"/>
+
+					<input type="hidden" th:field="*{firstName}" class="input-large" id="firstName" name="firstName" rel="popover" data-content="Enter your first name." data-original-title="First Name"/>
+
+					<input type="hidden" th:field="*{familyName}" class="input-large" id="familyName" name="familyName" rel="popover" data-content="Enter your family name." data-original-title="Family Name"/>
+
+					<input type="hidden" th:field="*{email}" class="input-large" id="email" name="email" rel="popover" data-content="What's your email address?" data-original-title="Email"/>
+
+					<input type="hidden" th:field="*{username}" class="input-large" id="username" name="username" rel="popover" data-content="What's your username?" data-original-title="Username"/>
+
+					<input type="hidden" th:field="*{password}" class="input-large" id="password" name="password" rel="popover" data-content="What's your Password?" data-original-title="Password"/>
+							
+							
+							
+							
+							
 						<fieldset>
+							<div th:if="${#fields.hasErrors('*')}" id="errors" class="alert alert-error">
+								<button type="button" class="close" data-dismiss="alert">x</button>
+						        <ul >
+						            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+						        </ul>
+						    </div>
+						
 							<div class="alert alert-error" th:each="err: ${#fields.errors('username')}">
 								<button type="button" class="close" data-dismiss="alert">×</button>
 								<strong>Categories Error</strong>: <span th:text="${err}">cannot be empty</span>
 							</div>
-							<input id="id" name="id" type="hidden" th:field="*{id}" />
 							<legend><span th:text="${account.firstName}+' '+${account.familyName}">Kathleen Byrne</span> skill details</legend>
 							<div class="control-group">
 								<div class="controls">
 									<div>
 										<!--input id="categories" name="categories" type="hidden" th:each="cat: *{categories}" th:value="${cat.code}" /-->
 										<ul id="currentCategories">
-										<li>
-											 <span>
-											 	<select id="skillLevel" class="input-small">
+										<li id="Informatica/LenguajesDeProgramación" th:each="skill, stat: *{skills}" th:id="${skill.categoryBranch.code}">
+											 	<select class="input-small" th:field="*{skills[__${stat.index}__].level}">
 												    <option label="Basic" value="1"/>
 												    <option label="Medium" value="2"/>
 												    <option label="Advanced" value="3"/>
 											    </select>
-											 </span>
-											 <span class="categoryCloseBtn close" style="float: none">x</span>
-											 </li>
-											<li id="Informatica/DataMining" th:remove="all">Informática/Data Mining 
-											 	<span>
-												 	<select id="skillLevel" class="input-small">
-													    <option label="Basic" value="1"/>
-													    <option label="Medium" value="2"/>
-													    <option label="Advanced" value="3"/>
-												    </select>
-												 </span>
-												<span class="categoryCloseBtn close" style="float: none">x</span>
-											</li>
+											    <span th:text="${skill.categoryBranch.name}">Informática/Lenguajes de Programación</span>
+											    <span class="categoryCloseBtn close" style="float: none">x</span>
+										</li>
 										</ul>
 										<div id="categoryList">
+											<input type="hidden" th:each="cat, stat : *{skills}" th:field="*{skills[__${stat.index}__].categoryBranch}"/>
 										</div>
 									</div>
 									
@@ -99,7 +112,7 @@
 										  </div>
 										  <div class="modal-body">
 										    <p>Select your level skill:</p>
-										    <select id="modalSkillLevel">
+										    <select id="modalSkillLevel" class="input-small">
 											    <option label="Basic" value="1"/>
 											    <option label="Medium" value="2"/>
 											    <option label="Advanced" value="3"/>
@@ -134,6 +147,10 @@
 /*<![CDATA[*/
 
 $(document).ready(function() {
+	$("#currentCategories").on("click", ".close", function() {
+		removeCategoryFields($(this).parent())
+	});
+	
 	$("#searchTree").click(function () {
 		$("#categoryTree").jstree("search",$("#searchTreeInput").val());
 	});
@@ -148,8 +165,15 @@ $(document).ready(function() {
 		var name=$("#modalSkillName").val();
 		$("#currentCategories").append("<li id=\"" + code + "\"><span>" + name + "</span> <span class=\"categoryCloseBtn close\" style=\"float: none\">x</span></li>");
 		var c = $("#categoryList").children().size();
-		$("#categoryList").append("<input type=\"hidden\" id=\"categories" + c + "\" name=\"categories[" + c + "]\" value=\"" + code + "\">");
+		$("#categoryList").append("<input type=\"hidden\" id=\"skills" + c + ".categoryBranch\" name=\"skills[" + c + "].categoryBranch\" value=\"" + code + "\">");
+		
 		$("#modalSkill").modal("hide");
+		var jcode=code.replace(/\./g,'\\.')
+		var levelValue = $("#modalSkillLevel").val();
+		$("#modalSkillLevel").clone(true).attr('id', 'select.'+code).appendTo('#'+jcode);
+		$("#select\\."+jcode).val(levelValue);
+		$("#select\\."+jcode).attr("name","skills["+c+"].level");
+		$("#modalSkillLevel").val(1);
 	});
 	
 	jQuery("#categoryTree")
@@ -198,8 +222,13 @@ function removeCategoryFields(categoryLi) {
 	//fix remaining elements
 	for(; i < c; i++) {
 		var selector = "#categoryList input:nth-child(" + ( i + 1 ) + ")";
-		$(selector).attr("id","categories" + i);
-		$(selector).attr("name","categories[" + i + "]");
+		$(selector).attr("id","skills" + i+".categoryBranch");
+		$(selector).attr("name","skills[" + i + "].categoryBranch");
+		
+		var levelSelector= "#skills"+ ( i + 1 ) +"\\.level";
+		$(levelSelector).attr("name","skills[" + i + "].level");
+		$(levelSelector).attr("id","skills" + i + ".level");
+		
 	}
 }
 

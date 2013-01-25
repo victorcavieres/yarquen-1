@@ -1,7 +1,9 @@
 package org.yarquen.web.account;
 
+import java.beans.PropertyEditorSupport;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -12,12 +14,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.yarquen.account.Account;
 import org.yarquen.account.AccountRepository;
 import org.yarquen.account.AccountService;
+import org.yarquen.category.CategoryBranch;
+import org.yarquen.category.CategoryService;
+import org.yarquen.validation.BeanValidationException;
 import org.yarquen.web.enricher.CategoryTreeBuilder;
 
 @Controller
@@ -32,17 +40,60 @@ public class AccountController {
 	private AccountRepository accountRepository;
 	@Resource
 	private CategoryTreeBuilder categoryTreeBuilder;
+	
+	@Resource
+	private CategoryService categoryService;
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(CategoryBranch.class,
+				new PropertyEditorSupport() {
+					@Override
+					public void setAsText(String branch) {
+						try {
+							LOGGER.trace(
+									"converting {} to a CategoryBranch object",
+									branch);
+							final CategoryBranch categoryBranch = new CategoryBranch();
+							final StringTokenizer tokenizer = new StringTokenizer(
+									branch, ".");
+							while (tokenizer.hasMoreTokens()) {
+								final String code = tokenizer.nextToken();
+								categoryBranch.addSubCategory(code, null);
+							}
+							// fill names
+							categoryService
+									.completeCategoryBranchNodeNames(categoryBranch);
+							setValue(categoryBranch);
+						} catch (RuntimeException e) {
+							LOGGER.error(":(", e);
+							throw e;
+						}
+					}
+				});
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String save(@Valid Account account, BindingResult result, Model model) {
 
 		LOGGER.debug("saving user: {} \n {}", account, result);
 
+		
 		if (result.hasErrors()) {
+			LOGGER.trace("errors!: {}", result.getAllErrors());
+			return "account/register";
+		}
+		
+		try{
+			accountService.register(account);
+		}catch(BeanValidationException e){
+			ObjectError error=new ObjectError("account",e.getMessage());
+			result.addError(error);
+			LOGGER.trace("errors!: {}", result.getAllErrors());
 			return "account/register";
 		}
 
-		accountService.register(account);
+		
 		model.addAttribute("message", "account created successfully");
 		return "message";
 	}
@@ -54,10 +105,18 @@ public class AccountController {
 		LOGGER.debug("updating user: {} \n {}", account, result);
 
 		if (result.hasErrors()) {
+			LOGGER.trace("errors!: {}", result.getAllErrors());
 			return "account/edit";
 		}
 
-		accountService.register(account);
+		try{
+			accountService.register(account);
+		}catch(BeanValidationException e){
+			ObjectError error=new ObjectError("account",e.getMessage());
+			result.addError(error);
+			LOGGER.trace("errors!: {}", result.getAllErrors());
+			return "account/edit";
+		}
 		model.addAttribute("message", "account updated successfully");
 		return "message";
 	}
@@ -104,6 +163,31 @@ public class AccountController {
 			return "account/editSkills";
 		} else
 			return "error";
+
+	}
+	
+	@RequestMapping(value = "/skills/", method = RequestMethod.POST)
+	public String updateSkills(@Valid Account account, BindingResult result,
+			Model model) {
+		LOGGER.debug("skills for accountId {} : {}", account.getId(),account.getSkills());
+		final List<Map<String, Object>> categoryTree = categoryTreeBuilder
+				.buildTree();
+		model.addAttribute("categories", categoryTree);
+		model.addAttribute("account", account);
+		if (result.hasErrors()) {
+			LOGGER.trace("errors!: {}", result.getAllErrors());
+			return "account/editSkills";
+		}
+		try{
+			accountService.register(account);
+		}catch(BeanValidationException e){
+			ObjectError error=new ObjectError("account",e.getMessage());
+			result.addError(error);
+			LOGGER.trace("errors!: {}", result.getAllErrors());
+			return "account/editSkills";
+		}
+		model.addAttribute("account", account);
+		return "account/show";
 
 	}
 }
