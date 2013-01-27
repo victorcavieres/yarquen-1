@@ -39,8 +39,6 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.MultiCollector;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TermQuery;
-import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.NIOFSDirectory;
@@ -128,6 +126,33 @@ public class ArticleSearcher {
 		final String queryString = searchFields.getQuery();
 		LOGGER.debug("searching: {}", queryString);
 
+		boolean recreateIndexSearcher = false;
+		// check for index changes
+		final DirectoryReader newIndexReader = DirectoryReader.openIfChanged(
+				indexReader, indexWriter, true);
+		if (newIndexReader != null) {
+			LOGGER.trace("reopening index reader...");
+			DirectoryReader oldIndexReader = indexReader;
+			indexReader = newIndexReader;
+			oldIndexReader.close();
+
+			recreateIndexSearcher = true;
+		}
+		// check for taxo index changes
+		final TaxonomyReader newTaxoReader = TaxonomyReader
+				.openIfChanged(taxoReader);
+		if (newTaxoReader != null) {
+			LOGGER.trace("reopening taxo reader...");
+			taxoReader.close();
+			taxoReader = newTaxoReader;
+
+			recreateIndexSearcher = true;
+		}
+
+		if (recreateIndexSearcher) {
+			searcher = new IndexSearcher(indexReader);
+		}
+
 		LOGGER.trace("max results: {}", searchFields.getResults());
 		final int numberOfResults = searchFields.getResults() == null ? MAX_RESULTS
 				: searchFields.getResults();
@@ -138,35 +163,21 @@ public class ArticleSearcher {
 		LOGGER.trace("max facets: {}", searchFields.getFacets());
 		final int numberOfFacets = searchFields.getFacets() == null ? MAX_FACETS
 				: searchFields.getFacets();
+		final CountFacetRequest countAuthorFacet = new CountFacetRequest(
+				new CategoryPath(Article.Facets.AUTHOR.toString()),
+				numberOfFacets);
+		final CountFacetRequest countKeywordFacet = new CountFacetRequest(
+				new CategoryPath(Article.Facets.KEYWORD.toString()),
+				numberOfFacets);
+		final CountFacetRequest countYearFacet = new CountFacetRequest(
+				new CategoryPath(Article.Facets.YEAR.toString()),
+				numberOfFacets);
+		final CountFacetRequest countCategoryFacet = new CountFacetRequest(
+				new CategoryPath(Article.Facets.CATEGORY.toString()),
+				numberOfFacets);
 		final FacetSearchParams facetSearchParams = new FacetSearchParams(
-				new CountFacetRequest(new CategoryPath(
-						Article.Facets.AUTHOR.toString()), numberOfFacets),
-				new CountFacetRequest(new CategoryPath(Article.Facets.KEYWORD
-						.toString()), numberOfFacets), new CountFacetRequest(
-						new CategoryPath(Article.Facets.YEAR.toString()),
-						numberOfFacets), new CountFacetRequest(
-						new CategoryPath(Article.Facets.CATEGORY.toString()),
-						numberOfFacets));
-
-		// check for taxo index changes
-		final TaxonomyReader newTaxoReader = TaxonomyReader
-				.openIfChanged(taxoReader);
-		if (newTaxoReader != null) {
-			LOGGER.trace("reopening taxo reader...");
-			taxoReader.close();
-			taxoReader = newTaxoReader;
-		}
-		// check for index changes
-		final DirectoryReader newIndexReader = DirectoryReader.openIfChanged(
-				indexReader, indexWriter, true);
-		if (newIndexReader != null) {
-			LOGGER.trace("reopening index reader...");
-			DirectoryReader oldIndexReader = indexReader;
-			indexReader = newIndexReader;
-			oldIndexReader.close();
-
-			searcher = new IndexSearcher(indexReader);
-		}
+				countAuthorFacet, countKeywordFacet, countYearFacet,
+				countCategoryFacet);
 		final FacetsCollector facetsCollector = new FacetsCollector(
 				facetSearchParams, indexReader, taxoReader);
 
@@ -264,6 +275,7 @@ public class ArticleSearcher {
 						kw));
 			}
 		}
+		// TODO: take categories in account
 
 		if (facetedSearch) {
 			LOGGER.debug("faceted search: author={} year={}", author, year);
@@ -347,7 +359,8 @@ public class ArticleSearcher {
 		// add doc to index
 		indexWriter.addDocument(doc);
 
-		// commit change
+		// commit change (taxo first!)
+		taxoWriter.commit();
 		indexWriter.commit();
 	}
 

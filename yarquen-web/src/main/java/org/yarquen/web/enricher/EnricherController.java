@@ -215,6 +215,7 @@ public class EnricherController {
 				LOGGER.trace("reindexing article {}", id);
 				try {
 					articleSearcher.reindexArticle(updatedArticle);
+//					addAuthorAndKeywords(updatedArticle);
 				} catch (IOException e) {
 					final String msg = "something wen't wrong while reindexing Article "
 							+ id + "(" + updatedArticle.getTitle() + ")";
@@ -244,6 +245,32 @@ public class EnricherController {
 					LOGGER.trace("update => no referer, returning to search");
 					return "redirect:/articles";
 				}
+			}
+		}
+	}
+
+	private void addAuthorAndKeywords(Article article) {
+		// add author if doesn't exists
+		final String authorName = article.getAuthor();
+		if (authorName != null) {
+			final Author author = authorRepository.findByName(authorName);
+			if (author == null) {
+				final Author newAuthor = new Author();
+				newAuthor.setName(authorName);
+				LOGGER.trace("adding author {}", authorName);
+				authorRepository.save(newAuthor);
+			}
+		}
+
+		// add inexistent keywords
+		final List<String> keywords = article.getKeywords();
+		for (String kw : keywords) {
+			final Keyword keywordFound = keywordRepository.findByName(kw);
+			if (keywordFound == null) {
+				final Keyword keyword = new Keyword();
+				keyword.setName(kw);
+				LOGGER.trace("adding keyword {}", kw);
+				keywordRepository.save(keyword);
 			}
 		}
 	}
