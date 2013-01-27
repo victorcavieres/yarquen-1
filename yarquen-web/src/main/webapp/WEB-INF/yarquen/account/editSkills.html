@@ -172,6 +172,15 @@ $(document).ready(function() {
 		$("#modalSkill").modal("hide");
 		
 	});
+	//avoid submit on hit enter 
+	$("#searchTreeInput").keypress(function(e) {
+		if(e.which == 13) {
+			//prevent submit
+			e.preventDefault();
+			
+			$("#categoryTree").jstree("search",$("#searchTreeInput").val());
+		}
+	});
 	
 	$("#modalSkillSave").click(function () {
 		var code=$("#modalSkillCode").val();
@@ -190,8 +199,7 @@ $(document).ready(function() {
 		$("#modalSkillLevel").val(1);
 	});
 	
-	jQuery("#categoryTree")
-	.jstree({
+	$("#categoryTree").jstree({
 		core: { animation: 0 },
 		plugins: [ "themes", "json_data", "ui", "search" ],
 		themes: { theme: "classic", dots: true, icons: false },
