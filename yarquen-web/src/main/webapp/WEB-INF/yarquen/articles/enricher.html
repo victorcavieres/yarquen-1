@@ -178,7 +178,7 @@ function addKeywordHiddenField(event, ui) {
 	var c = $("#keywordList").children().size();
 
 	//check to handle page loading
-	if(c <= $("#keywords").tagit("assignedTags").length) {
+	if(c < $("#keywords").tagit("assignedTags").length) {
 		$("#keywordList").append("<input type=\"hidden\" id=\"keywords" + c + "\" name=\"keywords[" + c + "]\" value=\"" + ui.tagLabel + "\">");
 	}
 }
