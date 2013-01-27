@@ -2,6 +2,8 @@ package org.yarquen.web.enricher;
 
 import java.beans.PropertyEditorSupport;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.codec.net.URLCodec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.spring3.view.ThymeleafView;
+import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
 import org.yarquen.author.Author;
@@ -100,21 +105,20 @@ public class EnricherController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, params = "cancel")
-	public String returnToSearch(@ModelAttribute(REFERER) String referer,
-			Model model) {
+	public String returnToSearch(@ModelAttribute(REFERER) String referer) {
 		if (referer != null) {
 			LOGGER.trace("cancel => referer: '{}'", referer.toString());
 			return "redirect:" + referer;
 		} else {
 			LOGGER.trace("cancel => no referer, returning to search");
-			return "redirect:articles";
+			return "redirect:/articles";
 		}
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String setupForm(@PathVariable String id, Model model,
 			HttpServletRequest request) {
-
+		LOGGER.trace("setup enrichment form for article id={}", id);
 		final Article article = articleRepository.findOne(id);
 		if (article == null) {
 			throw new RuntimeException("Article " + id + " not found");
@@ -221,15 +225,27 @@ public class EnricherController {
 					throw new RuntimeException(msg, e);
 				}
 
-				redirAtts.addFlashAttribute("message",
-						"article \"" + article.getTitle()
-								+ "\" successfully enriched");
+				final String message = "article \"" + article.getTitle()
+						+ "\" successfully enriched";
+				LOGGER.trace("adding flash paramenter: enrichmentMessage={}",
+						message);
+				redirAtts.addFlashAttribute("enrichmentMessage", message);
 				if (referer != null) {
 					LOGGER.trace("update => referer: '{}'", referer.toString());
-					return "redirect:" + referer;
+					final int i = referer.indexOf('?');
+					if (i != -1) {
+						referer = referer.substring(i + 1);
+						try {
+							referer = URLDecoder.decode(referer, "UTF-8");
+						} catch (UnsupportedEncodingException e) {
+							LOGGER.error("error decoding referer", e);
+						}
+						LOGGER.trace("params extracted: {}", referer);
+					}
+					return "redirect:/articles?" + referer;
 				} else {
 					LOGGER.trace("update => no referer, returning to search");
-					return "redirect:articles";
+					return "redirect:/articles";
 				}
 			}
 		}
