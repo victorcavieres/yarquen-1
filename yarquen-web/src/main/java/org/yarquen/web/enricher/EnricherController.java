@@ -1,6 +1,7 @@
 package org.yarquen.web.enricher;
 
 import java.beans.PropertyEditorSupport;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
 import org.yarquen.author.Author;
@@ -30,6 +33,7 @@ import org.yarquen.category.CategoryRepository;
 import org.yarquen.category.CategoryService;
 import org.yarquen.keyword.Keyword;
 import org.yarquen.keyword.KeywordRepository;
+import org.yarquen.web.lucene.ArticleSearcher;
 
 /**
  * Search form
@@ -40,18 +44,21 @@ import org.yarquen.keyword.KeywordRepository;
  * 
  */
 @Controller
+@SessionAttributes({ EnricherController.REFERER })
 @RequestMapping(value = "/articles/enricher/{id}")
 public class EnricherController {
+	public static final String REFERER = "referer";
 	private static final String ARTICLE = "article";
 	private static final String AUTHORS = "authors";
 	private static final String CATEGORIES = "categories";
 	private static final String KEYWORDS = "keywords";
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(EnricherController.class);
-	private static final String REFERER = "referer";
 
 	@Resource
 	private ArticleRepository articleRepository;
+	@Resource
+	private ArticleSearcher articleSearcher;
 	@Resource
 	private AuthorRepository authorRepository;
 	@Resource
@@ -92,6 +99,18 @@ public class EnricherController {
 				});
 	}
 
+	@RequestMapping(method = RequestMethod.POST, params = "cancel")
+	public String returnToSearch(@ModelAttribute(REFERER) String referer,
+			Model model) {
+		if (referer != null) {
+			LOGGER.trace("cancel => referer: '{}'", referer.toString());
+			return "redirect:" + referer;
+		} else {
+			LOGGER.trace("cancel => no referer, returning to search");
+			return "redirect:articles";
+		}
+	}
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String setupForm(@PathVariable String id, Model model,
 			HttpServletRequest request) {
@@ -103,9 +122,12 @@ public class EnricherController {
 			LOGGER.debug("enriching article id={} title={}", article.getId(),
 					article.getTitle());
 
+			// FIXME: find a better way to achieve this, this mechanism may fail
+			// in some browsers
 			// save referer
 			final String referer = request.getHeader("Referer");
 			LOGGER.trace("referer: {}", referer);
+			// model.addAttribute(REFERER, referer);
 			model.addAttribute(REFERER, referer);
 
 			// article to enrich
@@ -128,10 +150,10 @@ public class EnricherController {
 		return "articles/enricher";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, params = "submit")
 	public String update(@ModelAttribute(REFERER) String referer,
 			@Valid @ModelAttribute(ARTICLE) Article article,
-			BindingResult result, Model model) {
+			BindingResult result, Model model, RedirectAttributes redirAtts) {
 
 		if (result.hasErrors()) {
 			LOGGER.trace("errors!: {}", result.getAllErrors());
@@ -151,8 +173,7 @@ public class EnricherController {
 
 			return "articles/enricher";
 		} else {
-			LOGGER.trace("pars: referer={} article={}", new Object[] { referer,
-					article });
+			LOGGER.trace("pars: article={}", article);
 			final String id = article.getId();
 			LOGGER.trace(
 					"id:{}\n author:{}\n date:{}\n  summary:{}\n title:{}\n url:{}",
@@ -178,6 +199,7 @@ public class EnricherController {
 				throw new RuntimeException("Article " + id + " not found");
 			} else {
 				// update
+				LOGGER.trace("updating article {}", id);
 				persistedArticle.setAuthor(article.getAuthor());
 				persistedArticle.setCategories(article.getCategories());
 				persistedArticle.setDate(article.getDate());
@@ -185,12 +207,30 @@ public class EnricherController {
 				persistedArticle.setSummary(article.getSummary());
 				persistedArticle.setTitle(article.getTitle());
 				persistedArticle.setUrl(article.getUrl());
-				articleRepository.save(persistedArticle);
+				final Article updatedArticle = articleRepository
+						.save(persistedArticle);
 
-				LOGGER.trace("referer: '{}'", referer);
-				model.addAttribute("message", "article successfully enriched");
-				model.addAttribute(REFERER, referer);
-				return "message";
+				// reindex
+				LOGGER.trace("reindexing article {}", id);
+				try {
+					articleSearcher.reindexArticle(updatedArticle);
+				} catch (IOException e) {
+					final String msg = "something wen't wrong while reindexing Article "
+							+ id + "(" + updatedArticle.getTitle() + ")";
+					LOGGER.error(msg, e);
+					throw new RuntimeException(msg, e);
+				}
+
+				redirAtts.addFlashAttribute("message",
+						"article \"" + article.getTitle()
+								+ "\" successfully enriched");
+				if (referer != null) {
+					LOGGER.trace("update => referer: '{}'", referer.toString());
+					return "redirect:" + referer;
+				} else {
+					LOGGER.trace("update => no referer, returning to search");
+					return "redirect:articles";
+				}
 			}
 		}
 	}

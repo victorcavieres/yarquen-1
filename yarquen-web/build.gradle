@@ -20,7 +20,7 @@ if (hasProperty("production")) {
 ext {
 	thymeleafVersion = "2.0.14"
 	thymeleafspringsecurity3Version = "2.0.0"
-	luceneVersion = "4.0.0"
+	luceneVersion = "4.1.0"
 }
 
 dependencies {

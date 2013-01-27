@@ -20,14 +20,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @IfProfileValue(name = "test-groups", value = "itests")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/context.xml", "/index-builder-context.xml" })
+@ContextConfiguration(locations = { "/context.xml", "/indexBuilder-context.xml" })
 public class IndexBuilderTest
 {
 	@Resource
 	private IndexBuilder indexBuilder;
 	
 	@Test
-	public void text() throws IOException
+	public void test() throws IOException
 	{
 		indexBuilder.createIndex();
 	}

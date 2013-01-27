@@ -17,7 +17,9 @@
 	<util:properties id="config"
 		location="file:${catalina.base}/conf/yarquen.properties" />
 
+	<context:annotation-config />
 	<context:component-scan base-package="org.yarquen" />
+
 	<!-- Security (authentication and authorization) configuration -->
 	<import resource="applicationContext-security.xml" />
 
@@ -34,4 +36,10 @@
 		factory-method="buildDefaultValidatorFactory" />
 	<bean id="validator" factory-bean="validatorFactory"
 		factory-method="getValidator" />
+
+	<!-- FIXME: @Service removed, due to problems with component scanning. It 
+		seems that spring calls @PostConstruct twice, because the class is found 
+		by the yarquen-servlet.xml component-scan and this one, which provokes problems 
+		with lucene -->
+	<bean id="articleSearcher" class="org.yarquen.web.lucene.ArticleSearcher" />
 </beans>

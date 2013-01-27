@@ -18,7 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.yarquen.web.lucene.ArticleSearch;
+import org.yarquen.web.lucene.ArticleSearcher;
 
 /**
  * Search form
@@ -36,7 +36,7 @@ public class SearchForm
 			.getLogger(SearchForm.class);
 
 	@Resource
-	private ArticleSearch articleSearch;
+	private ArticleSearcher articleSearcher;
 
 	@RequestMapping(value = "/articles", method = RequestMethod.GET)
 	public String processSubmit(SearchFields searchFields,
@@ -53,7 +53,7 @@ public class SearchForm
 			try
 			{
 				final YarquenFacets facetsCount = new YarquenFacets();
-				final List<SearchResult> results = articleSearch.search(
+				final List<SearchResult> results = articleSearcher.search(
 						searchFields, facetsCount);
 
 				// send back applied facets

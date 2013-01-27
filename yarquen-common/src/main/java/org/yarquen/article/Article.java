@@ -19,7 +19,7 @@ import org.yarquen.category.CategoryBranch;
  */
 public class Article {
 	public static enum Facets {
-		AUTHOR("author"), KEYWORD("keyword"), YEAR("year");
+		AUTHOR("author"), KEYWORD("keyword"), YEAR("year"), CATEGORY("category");
 
 		private String label;
 

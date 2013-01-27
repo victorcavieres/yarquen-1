@@ -17,12 +17,11 @@
 	<util:properties id="config">
 		<prop key="indexDirectory">/home/totex/local/tmp/yarquen-lucene/index</prop>
 		<prop key="taxoDirectory">/home/totex/local/tmp/yarquen-lucene/taxo</prop>
-		<!-- /var/yarquen-lucene -->
 	</util:properties>
 
 	<mongo:repositories base-package="org.yarquen.article" />
 
 	<context:annotation-config />
-
-	<bean id="indexBuilder" class="org.yarquen.web.lucene.IndexBuilder" />
+	
+	<context:component-scan base-package="org.yarquen.web.lucene" />
 </beans>
