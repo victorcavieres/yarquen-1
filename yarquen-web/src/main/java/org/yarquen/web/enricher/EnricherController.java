@@ -84,7 +84,7 @@ public class EnricherController {
 									branch);
 							final CategoryBranch categoryBranch = new CategoryBranch();
 							final StringTokenizer tokenizer = new StringTokenizer(
-									branch, ".");
+									branch, CategoryBranch.CODE_SEPARATOR);
 							while (tokenizer.hasMoreTokens()) {
 								final String code = tokenizer.nextToken();
 								categoryBranch.addSubCategory(code, null);
@@ -215,7 +215,7 @@ public class EnricherController {
 				LOGGER.trace("reindexing article {}", id);
 				try {
 					articleSearcher.reindexArticle(updatedArticle);
-//					addAuthorAndKeywords(updatedArticle);
+					addAuthorAndKeywords(updatedArticle);
 				} catch (IOException e) {
 					final String msg = "something wen't wrong while reindexing Article "
 							+ id + "(" + updatedArticle.getTitle() + ")";

@@ -9,39 +9,41 @@ import java.util.List;
  * @version $Id$
  * 
  */
-public class YarquenFacets
-{
+public class YarquenFacets {
 	private List<YarquenFacet> author;
+	private List<YarquenFacet> category;
 	private List<YarquenFacet> keyword;
 	private List<YarquenFacet> year;
 
-	public List<YarquenFacet> getAuthor()
-	{
+	public List<YarquenFacet> getAuthor() {
 		return author;
 	}
 
-	public List<YarquenFacet> getKeyword()
-	{
+	public List<YarquenFacet> getCategory() {
+		return category;
+	}
+
+	public List<YarquenFacet> getKeyword() {
 		return keyword;
 	}
 
-	public List<YarquenFacet> getYear()
-	{
+	public List<YarquenFacet> getYear() {
 		return year;
 	}
 
-	public void setAuthor(List<YarquenFacet> author)
-	{
+	public void setAuthor(List<YarquenFacet> author) {
 		this.author = author;
 	}
 
-	public void setKeyword(List<YarquenFacet> keyword)
-	{
+	public void setCategory(List<YarquenFacet> category) {
+		this.category = category;
+	}
+
+	public void setKeyword(List<YarquenFacet> keyword) {
 		this.keyword = keyword;
 	}
 
-	public void setYear(List<YarquenFacet> year)
-	{
+	public void setYear(List<YarquenFacet> year) {
 		this.year = year;
 	}
 }

@@ -40,8 +40,6 @@ import org.yarquen.category.CategoryBranch;
  * 
  */
 public class IndexBuilder {
-	private static final char CPATH_DELIMITER = '.';
-
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(IndexBuilder.class);
 
@@ -62,6 +60,12 @@ public class IndexBuilder {
 		indexWriter.commit();
 		taxoWriter.commit();
 
+		// categories
+		for (Article.Facets f : Article.Facets.values()) {
+			taxoWriter.addCategory(new CategoryPath(f.toString()));
+		}
+		taxoWriter.commit();
+
 		final Iterable<Article> articles = articleRepository.findAll();
 		int c = 0;
 		for (Article article : articles) {
@@ -69,14 +73,14 @@ public class IndexBuilder {
 			c++;
 		}
 		// commit
-		indexWriter.commit();
 		taxoWriter.commit();
+		indexWriter.commit();
 
-		indexWriter.close();
 		taxoWriter.close();
+		indexWriter.close();
 
-		indexDirectory.close();
 		taxoDirectory.close();
+		indexDirectory.close();
 		LOGGER.debug("{} articles indexed", c);
 	}
 
@@ -129,16 +133,11 @@ public class IndexBuilder {
 						kw));
 			}
 		}
-
 		if (article.getCategories() != null) {
 			for (CategoryBranch branch : article.getCategories()) {
-				final String branchCode = branch.getCode();
-				// branch code is something like
-				// 'Software.ProgrammingLanguages.C#', so we have to prepend
-				// 'Category.' and use '.' as delimiter
-				final CategoryPath categoryPath = new CategoryPath(
-						Article.Facets.CATEGORY.toString() + CPATH_DELIMITER
-								+ branchCode, CPATH_DELIMITER);
+				final String[] components = branch
+						.getCodeAsArray(Article.Facets.CATEGORY.toString());
+				final CategoryPath categoryPath = new CategoryPath(components);
 				facets.add(categoryPath);
 			}
 		}

@@ -16,8 +16,8 @@ public class CategoryBranchNode {
 	}
 
 	public CategoryBranchNode(String code, String name) {
-		this.code = code;
-		this.name = name;
+		setCode(code);
+		setName(name);
 	}
 
 	public String getCode() {
@@ -29,10 +29,24 @@ public class CategoryBranchNode {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if (code.contains(CategoryBranch.CODE_SEPARATOR)) {
+			throw new IllegalArgumentException(
+					code
+							+ " isn't a valid code (it can't contain the code separator: '"
+							+ CategoryBranch.CODE_SEPARATOR + "')");
+		} else {
+			this.code = code;
+		}
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name != null && name.contains(CategoryBranch.NAME_SEPARATOR)) {
+			throw new IllegalArgumentException(
+					name
+							+ "isn't a valid name (it can't contain the name separator: '"
+							+ CategoryBranch.NAME_SEPARATOR + "')");
+		} else {
+			this.name = name;
+		}
 	}
 }

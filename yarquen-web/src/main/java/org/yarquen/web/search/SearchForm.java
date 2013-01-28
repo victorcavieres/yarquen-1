@@ -29,8 +29,7 @@ import org.yarquen.web.lucene.ArticleSearcher;
  * 
  */
 @Controller
-public class SearchForm
-{
+public class SearchForm {
 	private static final String BASE_URL = "http://asdf.cl/jkl";
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(SearchForm.class);
@@ -40,18 +39,13 @@ public class SearchForm
 
 	@RequestMapping(value = "/articles", method = RequestMethod.GET)
 	public String processSubmit(SearchFields searchFields,
-			BindingResult result, Model model)
-	{
+			BindingResult result, Model model) {
 		final String query = searchFields.getQuery();
 		LOGGER.debug("query: {}", query);
-		if (query == null || query.trim().equals(""))
-		{
+		if (query == null || query.trim().equals("")) {
 			return "articles/search";
-		}
-		else
-		{
-			try
-			{
+		} else {
+			try {
 				final YarquenFacets facetsCount = new YarquenFacets();
 				final List<SearchResult> results = articleSearcher.search(
 						searchFields, facetsCount);
@@ -68,52 +62,44 @@ public class SearchForm
 				allFacets.addAll(facetsCount.getAuthor());
 				allFacets.addAll(facetsCount.getKeyword());
 				allFacets.addAll(facetsCount.getYear());
+				allFacets.addAll(facetsCount.getCategory());
 				allFacets.addAll(appliedFacets);
 
 				generateFacetsUrl(allFacets, query);
 
 				// result
-				if (!results.isEmpty())
-				{
+				if (!results.isEmpty()) {
 					model.addAttribute("results", results);
 				}
 
 				return "articles/search";
-			}
-			catch (IOException e)
-			{
+			} catch (IOException e) {
 				throw new RuntimeException("ahg!", e);
-			}
-			catch (ParseException e)
-			{
+			} catch (ParseException e) {
 				throw new RuntimeException("ua!", e);
 			}
 		}
 	}
 
 	@RequestMapping(value = "/articles/search", method = RequestMethod.GET)
-	public String setupForm(Model model)
-	{
+	public String setupForm(Model model) {
 		model.addAttribute("searchFields", new SearchFields());
 		return "articles/search";
 	}
 
 	private List<YarquenFacet> addAppliedFacetsToModel(
-			SearchFields searchFields, YarquenFacets facetsCount, Model model)
-	{
+			SearchFields searchFields, YarquenFacets facetsCount, Model model) {
 		final List<YarquenFacet> appliedFacets = new ArrayList<YarquenFacet>();
 
 		if (searchFields.getAuthor() != null
-				&& !facetsCount.getAuthor().isEmpty())
-		{
+				&& !facetsCount.getAuthor().isEmpty()) {
 			final YarquenFacet facet = facetsCount.getAuthor().get(0);
 			facet.setApplied(true);
 			model.addAttribute("authorFacet", facet);
 
 			appliedFacets.add(facet);
 		}
-		if (searchFields.getYear() != null && !facetsCount.getYear().isEmpty())
-		{
+		if (searchFields.getYear() != null && !facetsCount.getYear().isEmpty()) {
 			final YarquenFacet facet = facetsCount.getYear().get(0);
 			facet.setApplied(true);
 			model.addAttribute("yearFacet", facet);
@@ -125,23 +111,18 @@ public class SearchForm
 		// new list
 		if (searchFields.getKeyword() != null
 				&& !searchFields.getKeyword().isEmpty()
-				&& !facetsCount.getKeyword().isEmpty())
-		{
+				&& !facetsCount.getKeyword().isEmpty()) {
 			final List<YarquenFacet> appliedKw = new ArrayList<YarquenFacet>();
-			for (YarquenFacet kwFc : facetsCount.getKeyword())
-			{
+			for (YarquenFacet kwFc : facetsCount.getKeyword()) {
 				// if the facet is applied, move it to appliedKw list
-				if (searchFields.getKeyword().contains(kwFc.getValue()))
-				{
+				if (searchFields.getKeyword().contains(kwFc.getCode())) {
 					kwFc.setApplied(true);
 					appliedKw.add(kwFc);
 				}
 			}
-			if (!appliedKw.isEmpty())
-			{
+			if (!appliedKw.isEmpty()) {
 				// remove applied facets from count collection
-				for (YarquenFacet kwFc : appliedKw)
-				{
+				for (YarquenFacet kwFc : appliedKw) {
 					facetsCount.getKeyword().remove(kwFc);
 				}
 
@@ -151,13 +132,35 @@ public class SearchForm
 			}
 		}
 
+		// same as before...
+		if (searchFields.getCategory() != null
+				&& !searchFields.getCategory().isEmpty()
+				&& !facetsCount.getCategory().isEmpty()) {
+			final List<YarquenFacet> appliedCategory = new ArrayList<YarquenFacet>();
+			for (YarquenFacet catFc : facetsCount.getCategory()) {
+				// if the facet is applied, move it to appliedCategory list
+				if (searchFields.getCategory().contains(catFc.getCode())) {
+					catFc.setApplied(true);
+					appliedCategory.add(catFc);
+				}
+			}
+			if (!appliedCategory.isEmpty()) {
+				// remove applied facets from count collection
+				for (YarquenFacet catFc : appliedCategory) {
+					facetsCount.getCategory().remove(catFc);
+				}
+
+				appliedFacets.addAll(appliedCategory);
+
+				model.addAttribute("categoryFacets", appliedCategory);
+			}
+		}
+
 		return appliedFacets;
 	}
 
-	private void generateFacetsUrl(Set<YarquenFacet> allFacets, String query)
-	{
-		for (YarquenFacet facet : allFacets)
-		{
+	private void generateFacetsUrl(Set<YarquenFacet> allFacets, String query) {
+		for (YarquenFacet facet : allFacets) {
 			final String generatedUrl = generateUrl(allFacets, facet,
 					facet.isApplied(), query);
 			facet.setUrl(generatedUrl.substring(BASE_URL.length()));
@@ -165,52 +168,36 @@ public class SearchForm
 	}
 
 	private String generateUrl(Set<YarquenFacet> allFacets, YarquenFacet facet,
-			boolean remove, String query)
-	{
+			boolean remove, String query) {
 		URIBuilder uriBuilder = null;
-		try
-		{
+		try {
 			uriBuilder = new URIBuilder(BASE_URL);
-		}
-		catch (URISyntaxException e)
-		{
+		} catch (URISyntaxException e) {
 			throw new RuntimeException("error in the matrix", e);
 		}
 
 		uriBuilder.addParameter("query", query);
 
-		for (YarquenFacet f : allFacets)
-		{
-			if (f == facet)
-			{
-				if (!f.isApplied() && !remove)
-				{
-					uriBuilder.addParameter(f.getName(), f.getValue());
-				}
-				else if (f.isApplied() && remove)
-				{
+		for (YarquenFacet f : allFacets) {
+			if (f == facet) {
+				if (!f.isApplied() && !remove) {
+					uriBuilder.addParameter(f.getName(), f.getCode());
+				} else if (f.isApplied() && remove) {
 					// nothing to do
-				}
-				else
-				{
+				} else {
 					LOGGER.warn(
-							"this doesn't make sense: facet={} vaue={} applied={} remove={}",
-							new Object[] { f.getName(), f.getValue(),
-									f.isApplied(), remove });
+							"this doesn't make sense: facet={} code={} value={} applied={} remove={}",
+							new Object[] { f.getName(), f.getCode(),
+									f.getValue(), f.isApplied(), remove });
 				}
-			}
-			else if (f.isApplied())
-			{
-				uriBuilder.addParameter(f.getName(), f.getValue());
+			} else if (f.isApplied()) {
+				uriBuilder.addParameter(f.getName(), f.getCode());
 			}
 		}
 
-		try
-		{
+		try {
 			return uriBuilder.build().toString();
-		}
-		catch (URISyntaxException e)
-		{
+		} catch (URISyntaxException e) {
 			throw new RuntimeException("douh!", e);
 		}
 	}

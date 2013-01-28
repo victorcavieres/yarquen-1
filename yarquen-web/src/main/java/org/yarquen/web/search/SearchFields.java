@@ -10,72 +10,69 @@ import java.util.List;
  * @version $Id$
  * 
  */
-public class SearchFields
-{
+public class SearchFields {
 	private String author;
+	private List<String> category;
 	private Integer facets;
 	private List<String> keyword;
 	private String query;
 	private Integer results;
 	private String year;
 
-	public String getAuthor()
-	{
+	public String getAuthor() {
 		return author;
 	}
 
-	public Integer getFacets()
-	{
+	public List<String> getCategory() {
+		return category;
+	}
+
+	public Integer getFacets() {
 		return facets;
 	}
 
-	public List<String> getKeyword()
-	{
+	public List<String> getKeyword() {
 		return keyword;
 	}
 
-	public String getQuery()
-	{
+	public String getQuery() {
 		return query;
 	}
 
-	public Integer getResults()
-	{
+	public Integer getResults() {
 		return results;
 	}
 
-	public String getYear()
-	{
+	public String getYear() {
 		return year;
 	}
 
-	public void setAuthor(String author)
-	{
+
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 
-	public void setFacets(Integer facets)
-	{
+	public void setCategory(List<String> category) {
+		this.category = category;
+	}
+
+	public void setFacets(Integer facets) {
 		this.facets = facets;
 	}
 
-	public void setKeyword(List<String> keyword)
-	{
+	public void setKeyword(List<String> keyword) {
 		this.keyword = keyword;
 	}
 
-	public void setQuery(String query)
-	{
+	public void setQuery(String query) {
 		this.query = query;
 	}
 
-	public void setResults(Integer results)
-	{
+	public void setResults(Integer results) {
 		this.results = results;
 	}
 
-	public void setYear(String year)
-	{
+	public void setYear(String year) {
 		this.year = year;
 	}
 }

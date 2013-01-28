@@ -17,11 +17,22 @@ public class CategoryBranch {
 	public static final String CODE_SEPARATOR = ".";
 	public static final String NAME_SEPARATOR = "/";
 
+	public static CategoryBranch incompleteFromCode(String code) {
+		// escape code separator in regex
+		final String[] components = code.split("\\" + CODE_SEPARATOR);
+		final CategoryBranch branch = new CategoryBranch();
+		for (String component : components) {
+			branch.addSubCategory(component, null);
+		}
+		return branch;
+	}
+
 	@Valid
 	private List<CategoryBranchNode> nodes = new ArrayList<CategoryBranchNode>();
 
-	public void addSubCategory(String code, String name) {
+	public CategoryBranch addSubCategory(String code, String name) {
 		nodes.add(new CategoryBranchNode(code, name));
+		return this;
 	}
 
 	public String getCode() {
@@ -32,6 +43,37 @@ public class CategoryBranch {
 		}
 		sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();
+	}
+
+	public String getCode(String categoryCode) {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(categoryCode);
+		sb.append(CODE_SEPARATOR);
+		for (CategoryBranchNode c : nodes) {
+			sb.append(c.getCode());
+			sb.append(CODE_SEPARATOR);
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		return sb.toString();
+	}
+
+	public String[] getCodeAsArray() {
+		final String[] codeArray = new String[nodes.size()];
+		int i = 0;
+		for (CategoryBranchNode node : nodes) {
+			codeArray[i++] = node.getCode();
+		}
+		return codeArray;
+	}
+
+	public String[] getCodeAsArray(String categoryCode) {
+		final String[] codeArray = new String[nodes.size() + 1];
+		int i = 0;
+		codeArray[i++] = categoryCode;
+		for (CategoryBranchNode node : nodes) {
+			codeArray[i++] = node.getCode();
+		}
+		return codeArray;
 	}
 
 	public String getName() {

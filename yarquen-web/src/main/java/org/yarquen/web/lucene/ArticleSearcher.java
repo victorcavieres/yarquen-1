@@ -3,6 +3,8 @@ package org.yarquen.web.lucene;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -49,6 +51,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
 import org.yarquen.category.CategoryBranch;
+import org.yarquen.category.CategoryRepository;
+import org.yarquen.category.CategoryService;
 import org.yarquen.web.search.SearchFields;
 import org.yarquen.web.search.SearchResult;
 import org.yarquen.web.search.YarquenFacet;
@@ -65,8 +69,6 @@ import org.yarquen.web.search.YarquenFacets;
  * 
  */
 public class ArticleSearcher {
-	// FIXME
-	private static final char CPATH_DELIMITER = '.';
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(ArticleSearcher.class);
 
@@ -87,6 +89,10 @@ public class ArticleSearcher {
 	private String taxoDirectoryPath;
 	private TaxonomyReader taxoReader;
 	private TaxonomyWriter taxoWriter;
+	@Resource
+	private CategoryRepository categoryRepository;
+	@Resource
+	private CategoryService categoryService;
 
 	@PreDestroy
 	public void destroy() throws IOException {
@@ -119,6 +125,26 @@ public class ArticleSearcher {
 		taxoReader = new DirectoryTaxonomyReader(taxoDirectory);
 
 		searcher = new IndexSearcher(indexReader);
+	}
+
+	public void reindexArticle(Article article) throws IOException {
+		// remove current doc from index
+		indexWriter.deleteDocuments(new Term(Article.Fields.ID.toString(),
+				article.getId()));
+
+		// new doc
+		final Document doc = new Document();
+		// add fields
+		addFieldsToDoc(doc, article);
+		// add facets
+		addFacetsToDoc(doc, article);
+
+		// add doc to index
+		indexWriter.addDocument(doc);
+
+		// commit change (taxo first!)
+		taxoWriter.commit();
+		indexWriter.commit();
 	}
 
 	public List<SearchResult> search(SearchFields searchFields,
@@ -163,21 +189,8 @@ public class ArticleSearcher {
 		LOGGER.trace("max facets: {}", searchFields.getFacets());
 		final int numberOfFacets = searchFields.getFacets() == null ? MAX_FACETS
 				: searchFields.getFacets();
-		final CountFacetRequest countAuthorFacet = new CountFacetRequest(
-				new CategoryPath(Article.Facets.AUTHOR.toString()),
-				numberOfFacets);
-		final CountFacetRequest countKeywordFacet = new CountFacetRequest(
-				new CategoryPath(Article.Facets.KEYWORD.toString()),
-				numberOfFacets);
-		final CountFacetRequest countYearFacet = new CountFacetRequest(
-				new CategoryPath(Article.Facets.YEAR.toString()),
-				numberOfFacets);
-		final CountFacetRequest countCategoryFacet = new CountFacetRequest(
-				new CategoryPath(Article.Facets.CATEGORY.toString()),
-				numberOfFacets);
-		final FacetSearchParams facetSearchParams = new FacetSearchParams(
-				countAuthorFacet, countKeywordFacet, countYearFacet,
-				countCategoryFacet);
+		final FacetSearchParams facetSearchParams = createFacetSearchParams(
+				numberOfFacets, searchFields);
 		final FacetsCollector facetsCollector = new FacetsCollector(
 				facetSearchParams, indexReader, taxoReader);
 
@@ -200,14 +213,19 @@ public class ArticleSearcher {
 		final List<FacetResult> facetResults = facetsCollector
 				.getFacetResults();
 		populateFacets(facetsCount, facetResults);
-		for (YarquenFacet fc : facetsCount.getAuthor()) {
-			LOGGER.debug("{} = {}", fc.getValue(), fc.getCount());
-		}
-		for (YarquenFacet fc : facetsCount.getKeyword()) {
-			LOGGER.debug("{} = {}", fc.getValue(), fc.getCount());
-		}
-		for (YarquenFacet fc : facetsCount.getYear()) {
-			LOGGER.debug("{} = {}", fc.getValue(), fc.getCount());
+		if (LOGGER.isDebugEnabled()) {
+			for (YarquenFacet fc : facetsCount.getAuthor()) {
+				LOGGER.debug("author: {} = {}", fc.getValue(), fc.getCount());
+			}
+			for (YarquenFacet fc : facetsCount.getKeyword()) {
+				LOGGER.debug("keyword: {} = {}", fc.getValue(), fc.getCount());
+			}
+			for (YarquenFacet fc : facetsCount.getYear()) {
+				LOGGER.debug("year: {} = {}", fc.getValue(), fc.getCount());
+			}
+			for (YarquenFacet fc : facetsCount.getCategory()) {
+				LOGGER.debug("category: {} = {}", fc.getValue(), fc.getCount());
+			}
 		}
 
 		final ScoreDoc[] hits = collector.topDocs().scoreDocs;
@@ -239,6 +257,96 @@ public class ArticleSearcher {
 		return results;
 	}
 
+	private void addFacetsToDoc(Document doc, Article article)
+			throws IOException {
+		final List<CategoryPath> facets = new ArrayList<CategoryPath>();
+
+		if (article.getAuthor() != null) {
+			facets.add(new CategoryPath(Article.Facets.AUTHOR.toString(),
+					article.getAuthor()));
+		}
+		if (article.getDate() != null) {
+			final String date = article.getDate();
+			// FIXME: the date shouldn't be a plain String :o
+			final String year = date.substring(date.lastIndexOf("/") + 1);
+			facets.add(new CategoryPath(Article.Facets.YEAR.toString(), year));
+		}
+		if (article.getKeywords() != null) {
+			for (String kw : article.getKeywords()) {
+				facets.add(new CategoryPath(Article.Facets.KEYWORD.toString(),
+						kw));
+			}
+		}
+		if (article.getCategories() != null) {
+			for (CategoryBranch branch : article.getCategories()) {
+				final CategoryPath categoryPath = new CategoryPath(
+						branch.getCodeAsArray(Article.Facets.CATEGORY
+								.toString()));
+				facets.add(categoryPath);
+			}
+		}
+
+		// TODO: maybe we can reuse this instance
+		FacetFields facetDocumentBuilder = new FacetFields(taxoWriter);
+		facetDocumentBuilder.addFields(doc, facets);
+	}
+
+	private void addFieldsToDoc(Document doc, Article article) {
+		doc.add(new TextField(Article.Fields.ID.toString(), article.getId(),
+				Field.Store.YES));
+		doc.add(new TextField(Article.Fields.PLAIN_TEXT.toString(), article
+				.getPlainText(), Field.Store.YES));
+		doc.add(new TextField(Article.Fields.TITLE.toString(), article
+				.getTitle(), Field.Store.YES));
+		doc.add(new StringField(Article.Fields.URL.toString(),
+				article.getUrl(), Field.Store.YES));
+	}
+
+	private void createCategoryFacet(FacetResultNode facetResultNode,
+			List<YarquenFacet> categoryFacets) {
+		// TODO:improve this (maybe encapsulate in CategoryBranch)
+		final CategoryBranch branch = new CategoryBranch();
+		for (int i = 1; i < facetResultNode.getLabel().components.length; i++) {
+			branch.addSubCategory(facetResultNode.getLabel().components[i],
+					null);
+		}
+		categoryService.completeCategoryBranchNodeNames(branch);
+
+		final String name = Article.Facets.CATEGORY.toString();
+		final String code = branch.getCode();
+		final String value = branch.getName();
+		final double count = facetResultNode.getValue();
+
+		final YarquenFacet yfacet = new YarquenFacet();
+		yfacet.setName(name);
+		yfacet.setCode(code);
+		yfacet.setValue(value);
+		yfacet.setCount((int) count);
+
+		if (!categoryFacets.contains(yfacet)) {
+			categoryFacets.add(yfacet);
+		}
+
+		// sub facets
+		final int numSubResults = facetResultNode.getNumSubResults();
+		LOGGER.trace("numSubResults = {}", numSubResults);
+		if (numSubResults > 0) {
+			for (FacetResultNode subResult : facetResultNode.getSubResults()) {
+				createCategoryFacet(subResult, categoryFacets);
+			}
+		}
+	}
+
+	private void logThisShit(FacetResultNode facetResultNode, int n) {
+		LOGGER.trace("({}) result!: {}", n,
+				facetResultNode.getLabel().components);
+		Iterable<? extends FacetResultNode> subResults = facetResultNode
+				.getSubResults();
+		for (FacetResultNode facetResultNode2 : subResults) {
+			logThisShit(facetResultNode2, n + 1);
+		}
+	}
+
 	private YarquenFacet createFacet(FacetResultNode facetResultNode) {
 		final String name = facetResultNode.getLabel().components[0];
 		final String value = facetResultNode.getLabel().components[1];
@@ -246,6 +354,7 @@ public class ArticleSearcher {
 
 		final YarquenFacet yfacet = new YarquenFacet();
 		yfacet.setName(name);
+		yfacet.setCode(value);
 		yfacet.setValue(value);
 		yfacet.setCount((int) count);
 		return yfacet;
@@ -256,17 +365,20 @@ public class ArticleSearcher {
 		boolean facetedSearch = false;
 		final List<CategoryPath> facets = new ArrayList<CategoryPath>();
 
+		// author
 		final String author = searchFields.getAuthor();
 		if (author != null) {
 			facetedSearch = true;
 			facets.add(new CategoryPath(Article.Facets.AUTHOR.toString(),
 					author));
 		}
+		// year
 		final String year = searchFields.getYear();
 		if (year != null) {
 			facetedSearch = true;
 			facets.add(new CategoryPath(Article.Facets.YEAR.toString(), year));
 		}
+		// keywords
 		final List<String> keywordValues = searchFields.getKeyword();
 		if (keywordValues != null && !keywordValues.isEmpty()) {
 			facetedSearch = true;
@@ -275,15 +387,62 @@ public class ArticleSearcher {
 						kw));
 			}
 		}
-		// TODO: take categories in account
+		// categories
+		final List<String> categoryValues = searchFields.getCategory();
+		if (categoryValues != null && !categoryValues.isEmpty()) {
+			facetedSearch = true;
+			for (String category : categoryValues) {
+				final CategoryBranch incompleteBranch = CategoryBranch
+						.incompleteFromCode(category);
+				final String[] components = incompleteBranch
+						.getCodeAsArray(Article.Facets.CATEGORY.toString());
+				facets.add(new CategoryPath(components));
+			}
+		}
 
 		if (facetedSearch) {
-			LOGGER.debug("faceted search: author={} year={}", author, year);
+			LOGGER.debug(
+					"faceted search: author={} year={} keywords={} categories={}",
+					new Object[] { author, year, keywordValues, categoryValues });
 			return DrillDown.query(facetSearchParams, textQuery,
 					facets.toArray(new CategoryPath[facets.size()]));
 		} else {
 			return null;
 		}
+	}
+
+	private FacetSearchParams createFacetSearchParams(int numberOfFacets,
+			SearchFields searchFields) {
+		final int selectedCategories = searchFields.getCategory() != null ? searchFields
+				.getCategory().size() : 0;
+
+		// I have to count author, keyword, year, category and each category
+		// branch
+		final CountFacetRequest[] countFacetRequests = new CountFacetRequest[4 + selectedCategories];
+		countFacetRequests[0] = new CountFacetRequest(new CategoryPath(
+				Article.Facets.AUTHOR.toString()), numberOfFacets);
+		countFacetRequests[1] = new CountFacetRequest(new CategoryPath(
+				Article.Facets.KEYWORD.toString()), numberOfFacets);
+		countFacetRequests[2] = new CountFacetRequest(new CategoryPath(
+				Article.Facets.YEAR.toString()), numberOfFacets);
+		countFacetRequests[3] = new CountFacetRequest(new CategoryPath(
+				Article.Facets.CATEGORY.toString()), numberOfFacets);
+
+		if (selectedCategories > 0) {
+			int i = 4;
+			for (String categoryBranchCode : searchFields.getCategory()) {
+				final CategoryBranch incompleteFromCode = CategoryBranch
+						.incompleteFromCode(categoryBranchCode);
+				final String[] components = incompleteFromCode
+						.getCodeAsArray(Article.Facets.CATEGORY.toString());
+				LOGGER.trace("counting facet code={} components={}",
+						categoryBranchCode, components);
+				final CategoryPath categoryPath = new CategoryPath(components);
+				countFacetRequests[i++] = new CountFacetRequest(categoryPath,
+						numberOfFacets);
+			}
+		}
+		return new FacetSearchParams(countFacetRequests);
 	}
 
 	private SearchResult createSearchResult(Article article) {
@@ -342,75 +501,36 @@ public class ArticleSearcher {
 		for (FacetResultNode facetResultNode : yearFacetsResults) {
 			facetsCount.getYear().add(createFacet(facetResultNode));
 		}
-	}
 
-	public void reindexArticle(Article article) throws IOException {
-		// remove current doc from index
-		indexWriter.deleteDocuments(new Term(Article.Fields.ID.toString(),
-				article.getId()));
-
-		// new doc
-		final Document doc = new Document();
-		// add fields
-		addFieldsToDoc(doc, article);
-		// add facets
-		addFacetsToDoc(doc, article);
-
-		// add doc to index
-		indexWriter.addDocument(doc);
-
-		// commit change (taxo first!)
-		taxoWriter.commit();
-		indexWriter.commit();
-	}
-
-	private void addFacetsToDoc(Document doc, Article article)
-			throws IOException {
-		final List<CategoryPath> facets = new ArrayList<CategoryPath>();
-
-		if (article.getAuthor() != null) {
-			facets.add(new CategoryPath(Article.Facets.AUTHOR.toString(),
-					article.getAuthor()));
+		// category
+		facetsCount.setCategory(new ArrayList<YarquenFacet>());
+		final FacetResultNode categoryFacetCount = facetResults.get(3)
+				.getFacetResultNode();
+		logThisShit(categoryFacetCount, 0);
+		LOGGER.trace("categoryFacetCount = {}", categoryFacetCount);
+		final Iterable<? extends FacetResultNode> categoryFacetsResults = categoryFacetCount
+				.getSubResults();
+		for (FacetResultNode facetResultNode : categoryFacetsResults) {
+			LOGGER.trace("node: {}", facetResultNode);
+			createCategoryFacet(facetResultNode, facetsCount.getCategory());
 		}
-		if (article.getDate() != null) {
-			final String date = article.getDate();
-			// FIXME: the date shouldn't be a plain String :o
-			final String year = date.substring(date.lastIndexOf("/") + 1);
-			facets.add(new CategoryPath(Article.Facets.YEAR.toString(), year));
-		}
-		if (article.getKeywords() != null) {
-			for (String kw : article.getKeywords()) {
-				facets.add(new CategoryPath(Article.Facets.KEYWORD.toString(),
-						kw));
+
+		int results = facetResults.size();
+		if (results > 4) {
+			for (int i = 4; i < results; i++) {
+				final FacetResultNode cfc = facetResults.get(i)
+						.getFacetResultNode();
+				createCategoryFacet(cfc, facetsCount.getCategory());
 			}
 		}
 
-		if (article.getCategories() != null) {
-			for (CategoryBranch branch : article.getCategories()) {
-				final String branchCode = branch.getCode();
-				// branch code is something like
-				// 'Software.ProgrammingLanguages.C#', so we have to prepend
-				// 'Category.' and use '.' as delimiter
-				final CategoryPath categoryPath = new CategoryPath(
-						Article.Facets.CATEGORY.toString() + CPATH_DELIMITER
-								+ branchCode, CPATH_DELIMITER);
-				facets.add(categoryPath);
-			}
-		}
-
-		// FIXME
-		FacetFields facetDocumentBuilder = new FacetFields(taxoWriter);
-		facetDocumentBuilder.addFields(doc, facets);
-	}
-
-	private void addFieldsToDoc(Document doc, Article article) {
-		doc.add(new TextField(Article.Fields.ID.toString(), article.getId(),
-				Field.Store.YES));
-		doc.add(new TextField(Article.Fields.PLAIN_TEXT.toString(), article
-				.getPlainText(), Field.Store.YES));
-		doc.add(new TextField(Article.Fields.TITLE.toString(), article
-				.getTitle(), Field.Store.YES));
-		doc.add(new StringField(Article.Fields.URL.toString(),
-				article.getUrl(), Field.Store.YES));
+		// TODO: uggh, fix this
+		Collections.sort(facetsCount.getCategory(),
+				new Comparator<YarquenFacet>() {
+					@Override
+					public int compare(YarquenFacet o1, YarquenFacet o2) {
+						return o1.getCode().compareTo(o2.getCode());
+					}
+				});
 	}
 }
