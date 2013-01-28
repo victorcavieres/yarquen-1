@@ -7,6 +7,7 @@ import java.net.URLDecoder;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
@@ -102,7 +103,8 @@ public class EnricherController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, params = "cancel")
-	public String returnToSearch(@ModelAttribute(REFERER) String referer) {
+	public String returnToSearch(@ModelAttribute(REFERER) String referer,
+			RedirectAttributes redirAtts) {
 		if (referer != null) {
 			LOGGER.trace("cancel => referer: '{}'", referer.toString());
 			return "redirect:" + referer;
@@ -240,7 +242,8 @@ public class EnricherController {
 						}
 						LOGGER.trace("params extracted: {}", referer);
 					}
-					return "redirect:/articles?" + referer;
+
+					return "redirect:/articles?{referer}";
 				} else {
 					LOGGER.trace("update => no referer, returning to search");
 					return "redirect:/articles";
