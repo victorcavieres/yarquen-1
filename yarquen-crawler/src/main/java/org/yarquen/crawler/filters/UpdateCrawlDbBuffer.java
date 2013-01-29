@@ -34,8 +34,7 @@ import com.bixolabs.cascading.NullContext;
  */
 @SuppressWarnings("serial")
 public class UpdateCrawlDbBuffer extends BaseOperation<NullContext> implements
-		Buffer<NullContext>
-{
+		Buffer<NullContext> {
 	private static final Fields ANALYZEDDATUM_URL_FIELD = new Fields(
 			AnalyzedDatum.URL);
 	private static final Fields CRAWLDBDATUM_URL_FIELD = new Fields(
@@ -46,23 +45,20 @@ public class UpdateCrawlDbBuffer extends BaseOperation<NullContext> implements
 			StatusDatum.URL_FN);
 	private LoggingFlowProcess _flowProcess;
 
-	public UpdateCrawlDbBuffer()
-	{
+	public UpdateCrawlDbBuffer() {
 		super(CrawlDbDatum.FIELDS);
 	}
 
 	@Override
 	public void cleanup(FlowProcess flowProcess,
-			OperationCall<NullContext> operationCall)
-	{
+			OperationCall<NullContext> operationCall) {
 		LOGGER.info("cleaning up " + getClass().getName());
 		super.cleanup(flowProcess, operationCall);
 		_flowProcess.dumpCounters();
 	}
 
 	@Override
-	public void operate(FlowProcess process, BufferCall<NullContext> bufferCall)
-	{
+	public void operate(FlowProcess process, BufferCall<NullContext> bufferCall) {
 		Iterator<TupleEntry> iter = bufferCall.getArgumentsIterator();
 
 		// We will end up with 1- n entries of (C)rawlDbDatum, (S)tatusDatum,
@@ -76,35 +72,30 @@ public class UpdateCrawlDbBuffer extends BaseOperation<NullContext> implements
 		float pageScore = 0;
 		float linkScore = 0;
 		String url = bufferCall.getGroup().getTuple().getString(0);
-		while (iter.hasNext())
-		{
+		while (iter.hasNext()) {
 			TupleEntry entry = iter.next();
 
 			boolean isCrawlDatum = entry.getString(CRAWLDBDATUM_URL_FIELD) != null;
 			boolean isStatus = entry.getString(STATUSDATUM_URL_FIELD) != null;
 			boolean isAnalyzed = entry.getString(ANALYZEDDATUM_URL_FIELD) != null;
-			if (isCrawlDatum)
-			{
+			if (isCrawlDatum) {
 				Tuple crawlDbTuple = TupleEntry.select(CrawlDbDatum.FIELDS,
 						entry);
 				crawlDbDatum = new CrawlDbDatum(crawlDbTuple);
 			}
 
-			if (isStatus)
-			{
+			if (isStatus) {
 				statusDatum = new StatusDatum(entry);
 			}
 
-			if (isAnalyzed)
-			{
+			if (isAnalyzed) {
 				Tuple analyzedTuple = TupleEntry.select(AnalyzedDatum.FIELDS,
 						entry);
 				analyzedDatum = new AnalyzedDatum(analyzedTuple);
 			}
 
 			// we could have either status + link or just link tuple entry
-			if (entry.getString(new Fields(LinkDatum.URL_FN)) != null)
-			{
+			if (entry.getString(new Fields(LinkDatum.URL_FN)) != null) {
 				LinkDatum linkDatum = new LinkDatum(TupleEntry.select(
 						LinkDatum.FIELDS, entry));
 
@@ -115,34 +106,25 @@ public class UpdateCrawlDbBuffer extends BaseOperation<NullContext> implements
 		}
 
 		long lastFetched = 0;
-		if (crawlDbDatum != null)
-		{
+		if (crawlDbDatum != null) {
 			status = crawlDbDatum.getLastStatus();
 			pageScore = crawlDbDatum.getPageScore();
 			linkScore += crawlDbDatum.getLinksScore();
 			lastFetched = crawlDbDatum.getLastFetched();
-		}
-		else if (statusDatum != null)
-		{
+		} else if (statusDatum != null) {
 			status = statusDatum.getStatus();
-			if (status != UrlStatus.FETCHED)
-			{
+			if (status != UrlStatus.FETCHED) {
 				pageScore = (Float) statusDatum
 						.getPayloadValue(CustomFields.PAGE_SCORE_FN);
 				linkScore += (Float) statusDatum
 						.getPayloadValue(CustomFields.LINKS_SCORE_FN);
-			}
-			else
-			{
-				if (analyzedDatum != null)
-				{
+			} else {
+				if (analyzedDatum != null) {
 					pageScore = analyzedDatum.getPageScore();
 				}
 			}
 			lastFetched = statusDatum.getStatusTime();
-		}
-		else
-		{
+		} else {
 			status = UrlStatus.UNFETCHED;
 		}
 
@@ -153,8 +135,7 @@ public class UpdateCrawlDbBuffer extends BaseOperation<NullContext> implements
 
 	@Override
 	public void prepare(FlowProcess flowProcess,
-			OperationCall<NullContext> operationCall)
-	{
+			OperationCall<NullContext> operationCall) {
 		LOGGER.info("preparing " + getClass().getName());
 		super.prepare(flowProcess, operationCall);
 		_flowProcess = new LoggingFlowProcess((HadoopFlowProcess) flowProcess);

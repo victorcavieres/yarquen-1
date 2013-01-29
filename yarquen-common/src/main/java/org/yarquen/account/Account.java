@@ -114,8 +114,8 @@ public class Account {
 	}
 
 	public List<AccountSkill> getSkills() {
-		if(skills==null)
-			skills=new ArrayList<AccountSkill>();
+		if (skills == null)
+			skills = new ArrayList<AccountSkill>();
 		return skills;
 	}
 

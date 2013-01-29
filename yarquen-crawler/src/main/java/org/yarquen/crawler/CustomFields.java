@@ -10,8 +10,7 @@ import com.bixolabs.cascading.BaseDatum;
  * @version $Id$
  * 
  */
-public class CustomFields
-{
+public class CustomFields {
 	public static final String PAGE_SCORE_FN = BaseDatum.fieldName(
 			CustomFields.class, "pagescore");
 

@@ -16,8 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.yarquen.article.Article;
-import org.yarquen.article.ArticleRepository;
 
 /**
  * repo test
@@ -31,8 +29,7 @@ import org.yarquen.article.ArticleRepository;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/context.xml", "/article-context.xml" })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ArticleRepositoryTest
-{
+public class ArticleRepositoryTest {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(ArticleRepositoryTest.class);
 	private static final String TITLE = "the title";
@@ -43,8 +40,7 @@ public class ArticleRepositoryTest
 	private ArticleRepository articleRepository;
 
 	@Before
-	public void setup()
-	{
+	public void setup() {
 		article = new Article();
 		article.setAuthor("jriquelme");
 		article.setDate("22/11/2012");
@@ -60,24 +56,21 @@ public class ArticleRepositoryTest
 	}
 
 	@Test
-	public void t1Save()
-	{
+	public void t1Save() {
 		final Article savedArticle = articleRepository.save(article);
 		Assert.assertNotNull(savedArticle);
 		LOGGER.info("article saved with id {}", savedArticle.getId());
 	}
 
 	@Test
-	public void t2FindByUrl()
-	{
+	public void t2FindByUrl() {
 		final Article art = articleRepository.findByUrl(URL);
 		Assert.assertNotNull(art);
 		Assert.assertEquals(TITLE, art.getTitle());
 	}
 
 	@Test
-	public void t3Remove()
-	{
+	public void t3Remove() {
 		final Article art = articleRepository.findByUrl(URL);
 		Assert.assertNotNull(art);
 		articleRepository.delete(art);
@@ -86,8 +79,7 @@ public class ArticleRepositoryTest
 	}
 
 	@Test
-	public void t4findById()
-	{
+	public void t4findById() {
 		final Article art = articleRepository
 				.findOne("50eee67d2b5e52b1ef9792bf");
 		Assert.assertNotNull(art);

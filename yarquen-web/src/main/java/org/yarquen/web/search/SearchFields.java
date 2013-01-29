@@ -47,7 +47,6 @@ public class SearchFields {
 		return year;
 	}
 
-
 	public void setAuthor(String author) {
 		this.author = author;
 	}

@@ -10,8 +10,7 @@ import org.kohsuke.args4j.Option;
  * @version $Id$
  * 
  */
-public class Config
-{
+public class Config {
 	public static final int CONNECTION_TIMEOUT = 10 * 1000;
 	public static final String CONTENT_SUBDIR_NAME = "content";
 	public static final int CRAWL_STACKSIZE_KB = 128;
@@ -33,46 +32,38 @@ public class Config
 	private String seedsFile = "seeds.txt";
 	private String workingDir = "/home/totex/local/tmp/cc-crawler";
 
-	public String getAgentName()
-	{
+	public String getAgentName() {
 		return agentName;
 	}
 
-	public int getLoops()
-	{
+	public int getLoops() {
 		return loops;
 	}
 
-	public String getSeedsFile()
-	{
+	public String getSeedsFile() {
 		return seedsFile;
 	}
 
-	public String getWorkingDir()
-	{
+	public String getWorkingDir() {
 		return workingDir;
 	}
 
-	public void setAgentName(String agentName)
-	{
+	public void setAgentName(String agentName) {
 		this.agentName = agentName;
 	}
 
 	@Option(name = "-loops", usage = "crawling loops", required = false)
-	public void setLoops(int loops)
-	{
+	public void setLoops(int loops) {
 		this.loops = loops;
 	}
 
 	@Option(name = "-seeds", usage = "path to seeds file", required = false)
-	public void setSeedsFile(String seedsFile)
-	{
+	public void setSeedsFile(String seedsFile) {
 		this.seedsFile = seedsFile;
 	}
 
 	@Option(name = "-workingdir", usage = "path to directory for fetching", required = false)
-	public void setWorkingDir(String workingDir)
-	{
+	public void setWorkingDir(String workingDir) {
 		this.workingDir = workingDir;
 	}
 }

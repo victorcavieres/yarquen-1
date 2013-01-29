@@ -17,7 +17,6 @@ import cascading.tap.Hfs;
 import cascading.tap.Tap;
 import cascading.tuple.TupleEntryCollector;
 
-
 import com.bixolabs.cascading.HadoopUtils;
 
 /**
@@ -29,8 +28,7 @@ import com.bixolabs.cascading.HadoopUtils;
  * 
  */
 @SuppressWarnings("deprecation")
-public class EnvironmentBootstrapper
-{
+public class EnvironmentBootstrapper {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(EnvironmentBootstrapper.class);
 
@@ -38,12 +36,10 @@ public class EnvironmentBootstrapper
 	private List<String> seedUrls;
 	private Path workingDirectory;
 
-	public void bootstrap() throws IOException, InterruptedException
-	{
+	public void bootstrap() throws IOException, InterruptedException {
 		Path loopDirPath = CrawlDirUtils.findLatestLoopDir(fileSystem,
 				workingDirectory);
-		if (loopDirPath == null)
-		{
+		if (loopDirPath == null) {
 			// Create 0-loop directory
 			loopDirPath = CrawlDirUtils.makeLoopDir(fileSystem,
 					workingDirectory, 0);
@@ -52,44 +48,36 @@ public class EnvironmentBootstrapper
 
 			// write seeds
 			writeSeedUrls(crawlDbPath);
-		}
-		else
-		{
+		} else {
 			LOGGER.info("starting from {}", loopDirPath);
 		}
 	}
 
-	public void setFileSystem(FileSystem fileSystem)
-	{
+	public void setFileSystem(FileSystem fileSystem) {
 		this.fileSystem = fileSystem;
 	}
 
-	public void setSeedUrls(List<String> seedUrls)
-	{
+	public void setSeedUrls(List<String> seedUrls) {
 		this.seedUrls = seedUrls;
 	}
 
-	public void setWorkingDirectory(Path workingDirectory)
-	{
+	public void setWorkingDirectory(Path workingDirectory) {
 		this.workingDirectory = workingDirectory;
 	}
 
 	private void writeSeedUrls(Path crawlDbPath) throws IOException,
-			InterruptedException
-	{
+			InterruptedException {
 		final SimpleUrlNormalizer normalizer = new SimpleUrlNormalizer();
 		final JobConf defaultJobConf = HadoopUtils.getDefaultJobConf();
 
 		TupleEntryCollector writer = null;
-		try
-		{
+		try {
 			final Tap urlSink = new Hfs(new TextLine(), crawlDbPath.toString(),
 					true);
 			writer = urlSink.openForWrite(defaultJobConf);
 
 			LOGGER.info("writing seeds...");
-			for (String seedUrl : seedUrls)
-			{
+			for (String seedUrl : seedUrls) {
 				final String normalizedUrl = normalizer.normalize(seedUrl);
 				LOGGER.trace("writing seed {}", normalizedUrl);
 				final CrawlDbDatum datum = new CrawlDbDatum(normalizedUrl);
@@ -97,17 +85,12 @@ public class EnvironmentBootstrapper
 			}
 
 			writer.close();
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			HadoopUtils.safeRemove(crawlDbPath.getFileSystem(defaultJobConf),
 					crawlDbPath);
 			throw e;
-		}
-		finally
-		{
-			if (writer != null)
-			{
+		} finally {
+			if (writer != null) {
 				writer.close();
 			}
 		}

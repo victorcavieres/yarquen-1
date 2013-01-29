@@ -10,8 +10,8 @@ public class AccountSkill {
 	public static int BASIC = 1;
 	public static int MEDIUM = 2;
 	public static int ADVANCED = 3;
-	public static String[] mapLevel={"Basic","Medium","Advanced"};
-	
+	public static String[] mapLevel = { "Basic", "Medium", "Advanced" };
+
 	@NotNull
 	private CategoryBranch categoryBranch;
 	@Min(value = 1)
@@ -33,9 +33,9 @@ public class AccountSkill {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	
-	public String getLevelName(){
-		return mapLevel[level-1];
+
+	public String getLevelName() {
+		return mapLevel[level - 1];
 	}
 
 	@Override

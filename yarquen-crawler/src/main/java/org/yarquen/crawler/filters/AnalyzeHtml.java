@@ -35,30 +35,26 @@ import com.bixolabs.cascading.NullContext;
  * 
  */
 @SuppressWarnings("serial")
-public class AnalyzeHtml extends DOMParser
-{
+public class AnalyzeHtml extends DOMParser {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(AnalyzeHtml.class);
 
 	private List<ArticleExtractor> extractors;
 	private List<PageScorer> pageScorers;
 
-	public AnalyzeHtml()
-	{
+	public AnalyzeHtml() {
 		super(AnalyzedDatum.FIELDS);
 	}
 
 	@Override
 	public void cleanup(FlowProcess flowProcess,
-			OperationCall<NullContext> operationCall)
-	{
+			OperationCall<NullContext> operationCall) {
 		LOGGER.info("cleaning up " + getClass().getName());
 		super.cleanup(flowProcess, operationCall);
 	}
 
 	@Override
-	public void prepare(FlowProcess process, OperationCall<NullContext> opCall)
-	{
+	public void prepare(FlowProcess process, OperationCall<NullContext> opCall) {
 		LOGGER.info("preparing " + getClass().getName());
 		super.prepare(process, opCall);
 
@@ -71,27 +67,23 @@ public class AnalyzeHtml extends DOMParser
 		pageScorers.add(new InfoqScorer());
 	}
 
-	public void setExtractors(List<ArticleExtractor> extractors)
-	{
+	public void setExtractors(List<ArticleExtractor> extractors) {
 		this.extractors = extractors;
 	}
 
-	public void setPageScorers(List<PageScorer> pageScorers)
-	{
+	public void setPageScorers(List<PageScorer> pageScorers) {
 		this.pageScorers = pageScorers;
 	}
 
 	@Override
 	protected void handleException(ParsedDatum datum, Exception e,
-			TupleEntryCollector collector)
-	{
+			TupleEntryCollector collector) {
 		LOGGER.error("chaisen!: " + datum.getUrl(), e);
 	}
 
 	@Override
 	protected void process(ParsedDatum datum, Document doc,
-			TupleEntryCollector collector) throws Exception
-	{
+			TupleEntryCollector collector) throws Exception {
 		LOGGER.debug("analizing {}", datum.getUrl());
 
 		// extract outlinks
@@ -99,20 +91,17 @@ public class AnalyzeHtml extends DOMParser
 
 		// calc score
 		float pageScore = 0f;
-		for (PageScorer pageScorer : pageScorers)
-		{
+		for (PageScorer pageScorer : pageScorers) {
 			final float ps = pageScorer.getPageScore(datum, doc, outlinks);
 			pageScore += ps;
 		}
 
 		// extract articles
 		final List<ArticleDatum> results = new LinkedList<ArticleDatum>();
-		for (ArticleExtractor extractor : extractors)
-		{
-			final ArticleDatum article = extractor.extractArticles(
-					datum, doc, outlinks);
-			if (article != null)
-			{
+		for (ArticleExtractor extractor : extractors) {
+			final ArticleDatum article = extractor.extractArticles(datum, doc,
+					outlinks);
+			if (article != null) {
 				results.add(article);
 			}
 		}
@@ -129,17 +118,14 @@ public class AnalyzeHtml extends DOMParser
 		collector.add(result.getTuple());
 	}
 
-	private List<Outlink> getOutlinks(Document doc)
-	{
+	private List<Outlink> getOutlinks(Document doc) {
 		final List<Outlink> outlinkList = new ArrayList<Outlink>();
 
 		@SuppressWarnings("unchecked")
 		final List<Node> nodes = doc.selectNodes("//a");
-		if (nodes != null)
-		{
+		if (nodes != null) {
 			LOGGER.debug("{} outlinks found", nodes.size());
-			for (Node node : nodes)
-			{
+			for (Node node : nodes) {
 				final Element element = (Element) node;
 				final String url = element.attributeValue("href");
 				final String anchor = element.attributeValue("name");

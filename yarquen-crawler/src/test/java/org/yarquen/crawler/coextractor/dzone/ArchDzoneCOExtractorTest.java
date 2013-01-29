@@ -37,45 +37,38 @@ import bixo.datum.ParsedDatum;
  * @version $Id$
  * 
  */
-public class ArchDzoneCOExtractorTest
-{
+public class ArchDzoneCOExtractorTest {
 	/**
 	 * Strip out XML namespace, so that XPath can be easily used to extract
 	 * elements.
 	 * 
 	 */
-	private static class DowngradeXmlFilter extends XMLFilterImpl
-	{
+	private static class DowngradeXmlFilter extends XMLFilterImpl {
 
 		@Override
 		public void endElement(String uri, String localName, String name)
-				throws SAXException
-		{
+				throws SAXException {
 			String lower = localName.toLowerCase();
 			super.endElement(XMLConstants.NULL_NS_URI, lower, lower);
 		}
 
 		@Override
-		public void endPrefixMapping(String prefix)
-		{
+		public void endPrefixMapping(String prefix) {
 		}
 
 		@Override
 		public void startElement(String uri, String localName, String name,
-				Attributes atts) throws SAXException
-		{
+				Attributes atts) throws SAXException {
 			String lower = localName.toLowerCase();
 
 			AttributesImpl attributes = new AttributesImpl();
-			for (int i = 0; i < atts.getLength(); i++)
-			{
+			for (int i = 0; i < atts.getLength(); i++) {
 				String local = atts.getLocalName(i);
 				String qname = atts.getQName(i);
 				if (!XMLConstants.NULL_NS_URI.equals(atts.getURI(i).length())
 						&& !local.equals(XMLConstants.XMLNS_ATTRIBUTE)
 						&& !qname
-								.startsWith(XMLConstants.XMLNS_ATTRIBUTE + ":"))
-				{
+								.startsWith(XMLConstants.XMLNS_ATTRIBUTE + ":")) {
 					attributes.addAttribute(atts.getURI(i), local, qname,
 							atts.getType(i), atts.getValue(i));
 				}
@@ -86,24 +79,21 @@ public class ArchDzoneCOExtractorTest
 		}
 
 		@Override
-		public void startPrefixMapping(String prefix, String uri)
-		{
+		public void startPrefixMapping(String prefix, String uri) {
 		}
 	}
 
 	private SAXReader reader;
 
 	@Before
-	public void setup()
-	{
+	public void setup() {
 		reader = new SAXReader(new Parser());
 		reader.setXMLFilter(new DowngradeXmlFilter());
 		reader.setEncoding("UTF-8");
 	}
 
 	@Test
-	public void test_why_having_api_matters_testing() throws DocumentException
-	{
+	public void test_why_having_api_matters_testing() throws DocumentException {
 		final InputStream resourceAsStream = getClass().getResourceAsStream(
 				"/Why having an API matters  testing   Agile Zone.html");
 		Assert.assertNotNull(resourceAsStream);
@@ -136,8 +126,7 @@ public class ArchDzoneCOExtractorTest
 				"http://agile.dzone.com/articles/why-having-api-matters-testing");
 		Assert.assertEquals(article.getKeywords().length, 3);
 		String[] kw = new String[] { "http", "REST", "testing" };
-		for (int i = 0; i < 3; i++)
-		{
+		for (int i = 0; i < 3; i++) {
 			Assert.assertEquals(article.getKeywords()[i], kw[i]);
 		}
 
@@ -148,8 +137,7 @@ public class ArchDzoneCOExtractorTest
 	}
 
 	@Test
-	public void test_election_analytics_tetris_and() throws DocumentException
-	{
+	public void test_election_analytics_tetris_and() throws DocumentException {
 		final InputStream resourceAsStream = getClass()
 				.getResourceAsStream(
 						"/Election Analytics, Tetris, and More Data Links of the Week   Architects Zone.html");
@@ -182,8 +170,7 @@ public class ArchDzoneCOExtractorTest
 		Assert.assertEquals(article.getKeywords().length, 3);
 		String[] kw = new String[] { "Big Data", "Tips and Tricks",
 				"Tools & Methods" };
-		for (int i = 0; i < 3; i++)
-		{
+		for (int i = 0; i < 3; i++) {
 			Assert.assertEquals(article.getKeywords()[i], kw[i]);
 		}
 
@@ -193,18 +180,14 @@ public class ArchDzoneCOExtractorTest
 				.contains("Supermarket banking"));
 	}
 
-	private String getPlainText(Document doc)
-	{
+	private String getPlainText(Document doc) {
 		BodyContentHandler bodyContentHandler = new BodyContentHandler();
 		XHTMLContentHandler xhtmlContentHandler = new XHTMLContentHandler(
 				bodyContentHandler, new Metadata());
 		SAXWriter writer = new SAXWriter(xhtmlContentHandler);
-		try
-		{
+		try {
 			writer.write(doc);
-		}
-		catch (SAXException e)
-		{
+		} catch (SAXException e) {
 			throw new RuntimeException(e);
 		}
 

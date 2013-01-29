@@ -26,8 +26,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/context.xml", "/account-context.xml" })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AccountServiceTest
-{
+public class AccountServiceTest {
 	private static final String EMAIL = "jriquelme@totex.cl";
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(AccountServiceTest.class);
@@ -40,8 +39,7 @@ public class AccountServiceTest
 	private AccountService accountService;
 
 	@Before
-	public void setup()
-	{
+	public void setup() {
 		account = new Account();
 		account.setEmail(EMAIL);
 		account.setAdditionalLastName("Santana");
@@ -52,24 +50,21 @@ public class AccountServiceTest
 	}
 
 	@Test
-	public void t1Save()
-	{
+	public void t1Save() {
 		final Account savedAccount = accountService.register(account);
 		Assert.assertNotNull(savedAccount);
 		LOGGER.info("account saved with id {}", savedAccount.getId());
 	}
 
 	@Test
-	public void t2Authenticate()
-	{
+	public void t2Authenticate() {
 		final Account acc = accountService.authenticate(EMAIL, PASSWD);
 		Assert.assertNotNull(acc);
 		Assert.assertEquals(EMAIL, acc.getUsername());
 	}
 
 	@Test
-	public void t3Remove()
-	{
+	public void t3Remove() {
 		final Account acc = accountService.authenticate(EMAIL, PASSWD);
 		Assert.assertNotNull(acc);
 		accountRepository.delete(acc);

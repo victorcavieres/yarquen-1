@@ -11,15 +11,13 @@ import java.util.Set;
  * @version $Id$
  * 
  */
-public final class BeanValidationException extends RuntimeException
-{
+public final class BeanValidationException extends RuntimeException {
 	private static final long serialVersionUID = 8711287514784916502L;
 
 	private final Object bean;
 	private Set<String> violationsMessages;
 
-	public BeanValidationException(Object bean, Set<String> violationsMessages)
-	{
+	public BeanValidationException(Object bean, Set<String> violationsMessages) {
 		this.bean = bean;
 		this.violationsMessages = violationsMessages;
 	}
@@ -30,23 +28,19 @@ public final class BeanValidationException extends RuntimeException
 	 * 
 	 * @return bean.
 	 */
-	public Object getBean()
-	{
+	public Object getBean() {
 		return bean;
 	}
 
 	@Override
-	public String getLocalizedMessage()
-	{
+	public String getLocalizedMessage() {
 		return getMessage();
 	}
 
 	@Override
-	public String getMessage()
-	{
+	public String getMessage() {
 		final StringBuilder buffer = new StringBuilder("[");
-		for (String v : violationsMessages)
-		{
+		for (String v : violationsMessages) {
 			buffer.append(v);
 			buffer.append(", ");
 		}
@@ -55,8 +49,7 @@ public final class BeanValidationException extends RuntimeException
 		return buffer.toString();
 	}
 
-	public Set<String> getViolationsMessages()
-	{
+	public Set<String> getViolationsMessages() {
 		return violationsMessages;
 	}
 }

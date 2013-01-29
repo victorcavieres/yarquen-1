@@ -37,66 +37,53 @@ import com.bixolabs.cascading.NullContext;
  */
 @SuppressWarnings("serial")
 public class ArticleXmlEmitter extends BaseOperation<NullContext> implements
-		Function<NullContext>
-{
+		Function<NullContext> {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(ArticleXmlEmitter.class);
 
 	private JAXBContext context;
 	private Marshaller marshaller;
 
-	public ArticleXmlEmitter()
-	{
+	public ArticleXmlEmitter() {
 		super(new Fields("line"));
 	}
 
 	@Override
 	public void cleanup(FlowProcess flowProcess,
-			OperationCall<NullContext> operationCall)
-	{
+			OperationCall<NullContext> operationCall) {
 		LOGGER.info("cleaning up " + getClass().getName());
 		super.cleanup(flowProcess, operationCall);
 	}
 
 	@Override
 	public void prepare(FlowProcess process,
-			OperationCall<NullContext> operationCall)
-	{
+			OperationCall<NullContext> operationCall) {
 		LOGGER.info("preparing " + getClass().getName());
 		super.prepare(process, operationCall);
 
-		try
-		{
+		try {
 			context = JAXBContext.newInstance("org.yarquen.model");
 			marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
 					Boolean.TRUE);
-		}
-		catch (JAXBException e)
-		{
+		} catch (JAXBException e) {
 			throw new RuntimeException("Error while setting up JAXB");
 		}
 	}
 
 	@Override
-	public void operate(FlowProcess process, FunctionCall<NullContext> funcCall)
-	{
+	public void operate(FlowProcess process, FunctionCall<NullContext> funcCall) {
 		final ArticleDatum datum = new ArticleDatum(funcCall.getArguments()
 				.getTuple());
 		LOGGER.debug("emitting xml for {}", datum.getUrl());
 
 		// to xml
-		try
-		{
+		try {
 			emitXml(datum);
-		}
-		catch (JAXBException e)
-		{
+		} catch (JAXBException e) {
 			LOGGER.error("Jaxb error while writing xml for " + datum.getUrl(),
 					e);
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			LOGGER.error("IO error while writing xml for " + datum.getUrl(), e);
 		}
 
@@ -107,8 +94,7 @@ public class ArticleXmlEmitter extends BaseOperation<NullContext> implements
 	}
 
 	private void emitXml(ArticleDatum articleDatum) throws JAXBException,
-			IOException
-	{
+			IOException {
 
 		final File tempFile = File.createTempFile("art", ".xml", new File(
 				"/home/totex/local/tmp/asdf"));
@@ -121,8 +107,7 @@ public class ArticleXmlEmitter extends BaseOperation<NullContext> implements
 
 		final List<String> keywords = new ArrayList<String>(
 				articleDatum.getKeywords().length);
-		for (String keyword : articleDatum.getKeywords())
-		{
+		for (String keyword : articleDatum.getKeywords()) {
 			keywords.add(keyword);
 		}
 		article.setKeywords(keywords);
@@ -132,9 +117,9 @@ public class ArticleXmlEmitter extends BaseOperation<NullContext> implements
 		article.setTitle(articleDatum.getTitle());
 		article.setUrl(articleDatum.getUrl());
 
-		//FIXME
-//		final ObjectFactory objectFactory = new ObjectFactory();
-//		marshaller.marshal(objectFactory.createArticle(article), writer);
+		// FIXME
+		// final ObjectFactory objectFactory = new ObjectFactory();
+		// marshaller.marshal(objectFactory.createArticle(article), writer);
 
 		writer.flush();
 		writer.close();

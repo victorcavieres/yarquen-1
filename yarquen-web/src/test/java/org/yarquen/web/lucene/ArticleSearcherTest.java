@@ -27,7 +27,8 @@ import org.yarquen.web.search.YarquenFacets;
  */
 @IfProfileValue(name = "test-groups", value = "itests")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/context.xml", "/articleSearcher-context.xml" })
+@ContextConfiguration(locations = { "/context.xml",
+		"/articleSearcher-context.xml" })
 public class ArticleSearcherTest {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(ArticleSearcherTest.class);

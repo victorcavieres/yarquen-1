@@ -35,23 +35,18 @@ import cascading.flow.Flow;
  * @version $Id$
  * 
  */
-public class Crawler implements Callable<Void>
-{
+public class Crawler implements Callable<Void> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Crawler.class);
 
-	public static void main(String... args) throws Exception
-	{
+	public static void main(String... args) throws Exception {
 		final Crawler crawler = new Crawler();
 
 		// parse args
 		final CmdLineParser parser = new CmdLineParser(crawler.getConfig());
 
-		try
-		{
+		try {
 			parser.parseArgument(args);
-		}
-		catch (CmdLineException e)
-		{
+		} catch (CmdLineException e) {
 			LOGGER.error("Command line parsing error", e);
 			printHelp(parser);
 			System.exit(-1);
@@ -61,8 +56,7 @@ public class Crawler implements Callable<Void>
 		System.exit(0);
 	}
 
-	private static void printHelp(CmdLineParser parser)
-	{
+	private static void printHelp(CmdLineParser parser) {
 		parser.printUsage(System.err);
 		System.exit(-1);
 	}
@@ -70,8 +64,7 @@ public class Crawler implements Callable<Void>
 	private Config config = new Config();
 
 	@Override
-	public Void call() throws Exception
-	{
+	public Void call() throws Exception {
 		final Path workingDirPath = new Path(config.getWorkingDir());
 
 		final Configuration conf = new Configuration();
@@ -89,8 +82,7 @@ public class Crawler implements Callable<Void>
 
 		final Path latestDirPath = CrawlDirUtils.findLatestLoopDir(fs,
 				workingDirPath);
-		if (latestDirPath == null)
-		{
+		if (latestDirPath == null) {
 			throw new RuntimeException("wtf! ¬¬");
 		}
 
@@ -107,8 +99,7 @@ public class Crawler implements Callable<Void>
 		final int lastLoop = getLastLoopNumber(latestDirPath);
 		LOGGER.debug("lastLoop number was {}", lastLoop);
 		Path crawlDbPath = new Path(latestDirPath, Config.CRAWLDB_SUBDIR_NAME);
-		for (int loop = lastLoop; loop < lastLoop + config.getLoops(); loop++)
-		{
+		for (int loop = lastLoop; loop < lastLoop + config.getLoops(); loop++) {
 			final Path curLoopDirPath = CrawlDirUtils.makeLoopDir(fs,
 					workingDirPath, loop + 1);
 			final Flow flow = workflowBuilder
@@ -122,14 +113,12 @@ public class Crawler implements Callable<Void>
 		return null;
 	}
 
-	public Config getConfig()
-	{
+	public Config getConfig() {
 		return config;
 	}
 
 	@SuppressWarnings("deprecation")
-	private FetcherPolicy getFetcherPolicy()
-	{
+	private FetcherPolicy getFetcherPolicy() {
 		final FetcherPolicy fetcherPolicy = new FetcherPolicy();
 		fetcherPolicy.setCrawlDelay(Config.DEFAULT_CRAWL_DELAY_MS);
 		fetcherPolicy.setMaxContentSize(Config.MAX_CONTENT_SIZE);
@@ -139,8 +128,7 @@ public class Crawler implements Callable<Void>
 		final Set<String> validMimeTypes = new HashSet<String>();
 		final Set<MediaType> supportedTypes = new HtmlParser()
 				.getSupportedTypes(new ParseContext());
-		for (MediaType supportedType : supportedTypes)
-		{
+		for (MediaType supportedType : supportedTypes) {
 			final String mediaType = String.format("%s/%s",
 					supportedType.getType(), supportedType.getSubtype());
 			LOGGER.info("valid mediaType: {}", mediaType);
@@ -151,30 +139,24 @@ public class Crawler implements Callable<Void>
 		return fetcherPolicy;
 	}
 
-	private int getLastLoopNumber(Path latestDirPath)
-	{
+	private int getLastLoopNumber(Path latestDirPath) {
 		final String sz = latestDirPath.getName().toString();
 		final int div = sz.indexOf('-');
 		final String lastLoopSz = sz.substring(0, div);
 		return Integer.valueOf(lastLoopSz);
 	}
 
-	private List<String> readSeeds() throws IOException
-	{
+	private List<String> readSeeds() throws IOException {
 		final List<String> seeds = new ArrayList<String>();
 		final LineIterator it = FileUtils.lineIterator(
 				new File(config.getSeedsFile()), "UTF-8");
-		try
-		{
-			while (it.hasNext())
-			{
+		try {
+			while (it.hasNext()) {
 				final String seed = it.nextLine();
 				seeds.add(seed);
 			}
 			return seeds;
-		}
-		finally
-		{
+		} finally {
 			LineIterator.closeQuietly(it);
 		}
 	}

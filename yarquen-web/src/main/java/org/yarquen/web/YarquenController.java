@@ -15,28 +15,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 
  */
 @Controller
-public class YarquenController
-{
+public class YarquenController {
 
 	@RequestMapping("/")
-	public String home()
-	{
+	public String home() {
 		return "home";
 	}
 
 	@RequestMapping("/jobs")
-	public ModelMap vetsHandler()
-	{
+	public ModelMap vetsHandler() {
 		final List<CrawlerJob> jobs = new ArrayList<CrawlerJob>();
 
-		for (int i = 0; i < 5; i++)
-		{
+		for (int i = 0; i < 5; i++) {
 			final CrawlerJob job = new CrawlerJob();
 			job.setName("CRW-" + i);
 			jobs.add(job);
 		}
 		return new ModelMap("jobs", jobs);
 	}
-	
-	
+
 }

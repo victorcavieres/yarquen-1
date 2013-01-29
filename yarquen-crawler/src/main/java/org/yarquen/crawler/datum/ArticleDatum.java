@@ -20,8 +20,7 @@ import com.bixolabs.cascading.BaseDatum;
  * @version $Id$
  * 
  */
-public class ArticleDatum extends BaseDatum implements Writable
-{
+public class ArticleDatum extends BaseDatum implements Writable {
 	public static final String AUTHOR = fieldName(ArticleDatum.class, "author");
 	public static final String DATE = fieldName(ArticleDatum.class, "date");
 	public static final Fields FIELDS;
@@ -35,61 +34,50 @@ public class ArticleDatum extends BaseDatum implements Writable
 	public static final String URL = fieldName(ArticleDatum.class, "url");
 	private static final long serialVersionUID = -4745882286075851714L;
 
-	static
-	{
+	static {
 		FIELDS = new Fields(URL, TITLE, DATE, SUMMARY, AUTHOR, KEYWORDS,
 				PLAIN_TEXT);
 	}
 
-	public ArticleDatum()
-	{
+	public ArticleDatum() {
 		super(FIELDS);
 	}
 
-	public ArticleDatum(Tuple tuple)
-	{
+	public ArticleDatum(Tuple tuple) {
 		super(FIELDS, tuple);
 	}
 
-	public String getAuthor()
-	{
+	public String getAuthor() {
 		return _tupleEntry.getString(AUTHOR);
 	}
 
-	public String getDate()
-	{
+	public String getDate() {
 		return _tupleEntry.getString(DATE);
 	}
 
-	public String[] getKeywords()
-	{
+	public String[] getKeywords() {
 		return TupleUtils.makeObjectArrayFromTuple(String.class,
 				(Tuple) _tupleEntry.get(KEYWORDS));
 	}
 
-	public String getPlainText()
-	{
+	public String getPlainText() {
 		return _tupleEntry.getString(PLAIN_TEXT);
 	}
 
-	public String getSummary()
-	{
+	public String getSummary() {
 		return _tupleEntry.getString(SUMMARY);
 	}
 
-	public String getTitle()
-	{
+	public String getTitle() {
 		return _tupleEntry.getString(TITLE);
 	}
 
-	public String getUrl()
-	{
+	public String getUrl() {
 		return _tupleEntry.getString(URL);
 	}
 
 	@Override
-	public void readFields(DataInput in) throws IOException
-	{
+	public void readFields(DataInput in) throws IOException {
 		setUrl(in.readUTF());
 		setTitle(in.readUTF());
 		setDate(in.readUTF());
@@ -98,8 +86,7 @@ public class ArticleDatum extends BaseDatum implements Writable
 
 		final int k = in.readInt();
 		final String[] keywords = new String[k];
-		for (int i = 0; i < k; i++)
-		{
+		for (int i = 0; i < k; i++) {
 			keywords[i] = in.readUTF();
 		}
 		setKeywords(keywords);
@@ -107,44 +94,36 @@ public class ArticleDatum extends BaseDatum implements Writable
 		setPlainText(in.readUTF());
 	}
 
-	public void setAuthor(String author)
-	{
+	public void setAuthor(String author) {
 		_tupleEntry.set(AUTHOR, author);
 	}
 
-	public void setDate(String date)
-	{
+	public void setDate(String date) {
 		_tupleEntry.set(DATE, date);
 	}
 
-	public void setKeywords(String[] keywords)
-	{
+	public void setKeywords(String[] keywords) {
 		_tupleEntry.set(KEYWORDS, TupleUtils.makeTupleFrom(keywords));
 	}
 
-	public void setPlainText(String plainText)
-	{
+	public void setPlainText(String plainText) {
 		_tupleEntry.set(PLAIN_TEXT, plainText);
 	}
 
-	public void setSummary(String summary)
-	{
+	public void setSummary(String summary) {
 		_tupleEntry.set(SUMMARY, summary);
 	}
 
-	public void setTitle(String title)
-	{
+	public void setTitle(String title) {
 		_tupleEntry.set(TITLE, title);
 	}
 
-	public void setUrl(String url)
-	{
+	public void setUrl(String url) {
 		_tupleEntry.set(URL, url);
 	}
 
 	@Override
-	public void write(DataOutput out) throws IOException
-	{
+	public void write(DataOutput out) throws IOException {
 		out.writeUTF(getUrl());
 		out.writeUTF(getTitle());
 		out.writeUTF(getDate());
@@ -153,8 +132,7 @@ public class ArticleDatum extends BaseDatum implements Writable
 
 		final String[] keywords = getKeywords();
 		out.writeInt(keywords.length);
-		for (String kw : keywords)
-		{
+		for (String kw : keywords) {
 			out.writeUTF(kw);
 		}
 

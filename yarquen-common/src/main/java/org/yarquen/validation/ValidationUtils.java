@@ -13,14 +13,11 @@ import javax.validation.ConstraintViolation;
  * @version $Id$
  * 
  */
-public class ValidationUtils
-{
+public class ValidationUtils {
 	public static <T> Set<String> getConstraintsMessages(
-			Set<ConstraintViolation<T>> violations)
-	{
+			Set<ConstraintViolation<T>> violations) {
 		final Set<String> msgs = new HashSet<String>(violations.size());
-		for (ConstraintViolation<T> v : violations)
-		{
+		for (ConstraintViolation<T> v : violations) {
 			msgs.add(v.getPropertyPath() + " is " + v.getInvalidValue()
 					+ " and " + v.getMessage());
 		}
@@ -28,12 +25,10 @@ public class ValidationUtils
 	}
 
 	public static <T> String getConstraintsMessagesAsError(
-			Set<ConstraintViolation<T>> violations)
-	{
+			Set<ConstraintViolation<T>> violations) {
 		final Set<String> messages = getConstraintsMessages(violations);
 		final StringBuilder buffer = new StringBuilder("[");
-		for (String msg : messages)
-		{
+		for (String msg : messages) {
 			buffer.append(msg);
 			buffer.append(", ");
 		}

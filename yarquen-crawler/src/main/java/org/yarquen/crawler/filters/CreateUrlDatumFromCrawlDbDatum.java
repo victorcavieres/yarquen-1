@@ -24,14 +24,12 @@ import cascading.operation.filter.Limit.Context;
  */
 @SuppressWarnings("serial")
 public class CreateUrlDatumFromCrawlDbDatum extends
-		BaseOperation<Limit.Context> implements Function<Limit.Context>
-{
+		BaseOperation<Limit.Context> implements Function<Limit.Context> {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(CreateUrlDatumFromCrawlDbDatum.class);
 	private long limit = 0;
 
-	public CreateUrlDatumFromCrawlDbDatum(long limit)
-	{
+	public CreateUrlDatumFromCrawlDbDatum(long limit) {
 		super(UrlDatum.FIELDS);
 
 		this.limit = limit;
@@ -39,16 +37,14 @@ public class CreateUrlDatumFromCrawlDbDatum extends
 
 	@Override
 	public void cleanup(FlowProcess flowProcess,
-			OperationCall<Limit.Context> operationCall)
-	{
+			OperationCall<Limit.Context> operationCall) {
 		LOGGER.info("cleaning up " + getClass().getName());
 		super.cleanup(flowProcess, operationCall);
 	}
 
 	@Override
 	public void operate(FlowProcess flowProcess,
-			FunctionCall<Limit.Context> funcCall)
-	{
+			FunctionCall<Limit.Context> funcCall) {
 		final CrawlDbDatum datum = new CrawlDbDatum(funcCall.getArguments());
 
 		final UrlDatum urlDatum = new UrlDatum(datum.getUrl());
@@ -66,8 +62,7 @@ public class CreateUrlDatumFromCrawlDbDatum extends
 
 	@Override
 	public void prepare(FlowProcess flowProcess,
-			OperationCall<Limit.Context> operationCall)
-	{
+			OperationCall<Limit.Context> operationCall) {
 		LOGGER.info("preparing " + getClass().getName());
 		super.prepare(flowProcess, operationCall);
 
@@ -79,12 +74,9 @@ public class CreateUrlDatumFromCrawlDbDatum extends
 
 		int numTasks = 0;
 
-		if (process.isMapper())
-		{
+		if (process.isMapper()) {
 			numTasks = process.getCurrentNumMappers();
-		}
-		else
-		{
+		} else {
 			numTasks = process.getCurrentNumReducers();
 		}
 

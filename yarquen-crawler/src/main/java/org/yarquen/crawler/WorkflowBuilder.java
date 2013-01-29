@@ -59,8 +59,7 @@ import com.bixolabs.cascading.SplitterAssembly;
  * 
  */
 @SuppressWarnings("deprecation")
-public class WorkflowBuilder
-{
+public class WorkflowBuilder {
 	private static final long MAX_DISTRIBUTED_FETCH = 100;
 	// Max URLs to fetch in local vs. distributed mode.
 	private static final long MAX_LOCAL_FETCH = 100; // was 5
@@ -69,8 +68,7 @@ public class WorkflowBuilder
 	private UserAgent userAgent;
 
 	public Flow build(Path crawlDbPath, Path curLoopDirPath)
-			throws IOException, InterruptedException
-	{
+			throws IOException, InterruptedException {
 		// Fetch at most 200 pages, max size of 128K, complete mode, from the
 		// current dir.
 		// HTML only.
@@ -92,8 +90,7 @@ public class WorkflowBuilder
 		FileSystem fs = crawlDbPath.getFileSystem(conf);
 
 		// Input : the crawldb
-		if (!fs.exists(crawlDbPath))
-		{
+		if (!fs.exists(crawlDbPath)) {
 			throw new RuntimeException("CrawlDb not found");
 		}
 
@@ -165,8 +162,7 @@ public class WorkflowBuilder
 
 		// write xml
 		Pipe articlesXmlPipe = new Pipe("articles xml pipe", articlesPipe);
-		articlesXmlPipe = new Each(articlesXmlPipe,
-				new ArticleXmlEmitter());
+		articlesXmlPipe = new Each(articlesXmlPipe, new ArticleXmlEmitter());
 
 		// Group the finished datums, the skipped datums, status, outlinks
 		Pipe updatePipe = new CoGroup("update pipe", Pipe.pipes(
@@ -211,18 +207,15 @@ public class WorkflowBuilder
 		return flow;
 	}
 
-	private Pipe buildContentPipe()
-	{
+	private Pipe buildContentPipe() {
 		return null;
 	}
 
-	public void setFetcherPolicy(FetcherPolicy fetcherPolicy)
-	{
+	public void setFetcherPolicy(FetcherPolicy fetcherPolicy) {
 		this.fetcherPolicy = fetcherPolicy;
 	}
 
-	public void setUserAgent(UserAgent userAgent)
-	{
+	public void setUserAgent(UserAgent userAgent) {
 		this.userAgent = userAgent;
 	}
 }

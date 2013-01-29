@@ -15,7 +15,6 @@ import bixo.datum.ParsedDatum;
  * @version $Id$
  * 
  */
-public interface PageScorer
-{
+public interface PageScorer {
 	float getPageScore(ParsedDatum datum, Document doc, List<Outlink> outlinks);
 }

@@ -13,10 +13,8 @@ import org.apache.commons.codec.binary.Hex;
  * @version $Id$
  * 
  */
-public class PasswordUtils
-{
-	private PasswordUtils()
-	{
+public class PasswordUtils {
+	private PasswordUtils() {
 	}
 
 	/**
@@ -26,15 +24,11 @@ public class PasswordUtils
 	 *            password to hash
 	 * @return readables SHA-1 version of <code>clearPassword</code>
 	 */
-	public static String getHashedPassword(String clearPassword)
-	{
+	public static String getHashedPassword(String clearPassword) {
 		MessageDigest md = null;
-		try
-		{
+		try {
 			md = MessageDigest.getInstance("SHA-1");
-		}
-		catch (NoSuchAlgorithmException e)
-		{
+		} catch (NoSuchAlgorithmException e) {
 			throw new RuntimeException("no SHA-1? ¬¬", e);
 		}
 		final byte[] passwdBytes = md.digest(clearPassword.getBytes());

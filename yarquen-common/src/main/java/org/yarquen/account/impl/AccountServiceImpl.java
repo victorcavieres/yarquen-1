@@ -62,19 +62,21 @@ public class AccountServiceImpl implements AccountService {
 		final Set<ConstraintViolation<Account>> violations = validator
 				.validate(bean, Default.class);
 		// validate bean have unique username and email
-		Account similarAccount=accountRepository.findByUsername(bean.getUsername());
-		if (similarAccount != null && !similarAccount.getId().equals(bean.getId())) {
+		Account similarAccount = accountRepository.findByUsername(bean
+				.getUsername());
+		if (similarAccount != null
+				&& !similarAccount.getId().equals(bean.getId())) {
 			messages.add("username: " + bean.getUsername() + " already exists");
 		}
 		similarAccount = accountRepository.findByEmail(bean.getEmail());
-		if (similarAccount != null && !similarAccount.getId().equals(bean.getId())) {
+		if (similarAccount != null
+				&& !similarAccount.getId().equals(bean.getId())) {
 			messages.add("email: " + bean.getEmail() + " already exists");
 		}
 		messages.addAll(ValidationUtils.getConstraintsMessages(violations));
 		return !messages.isEmpty() ? messages : null;
 	}
 
-	
 	public Account updateSkills(Account account) {
 		LOGGER.info("registering account {}", account.getUsername());
 		final Set<String> violations = validate(account);

@@ -21,27 +21,23 @@ import bixo.datum.ParsedDatum;
  * @version $Id$
  * 
  */
-public class DzoneArticleExtractor implements ArticleExtractor
-{
+public class DzoneArticleExtractor implements ArticleExtractor {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(DzoneArticleExtractor.class);
 
 	@Override
 	public ArticleDatum extractArticles(ParsedDatum parsedDatum, Document doc,
-			List<Outlink> outlinks)
-	{
+			List<Outlink> outlinks) {
 		LOGGER.info("extracting articles from {} {}", parsedDatum.getUrl(),
 				parsedDatum.getHostAddress());
 
 		final Node articleNode = doc.selectSingleNode("//div[@id='article']");
-		if (articleNode != null)
-		{
+		if (articleNode != null) {
 			// title
 			final Node titleNode = articleNode
 					.selectSingleNode("//div[@id='articleHead']/h1/text()");
 			String title = "";
-			if (titleNode != null)
-			{
+			if (titleNode != null) {
 				title = titleNode.getText().trim();
 			}
 			LOGGER.trace("title: {}", title);
@@ -50,8 +46,7 @@ public class DzoneArticleExtractor implements ArticleExtractor
 			final Node dateNode = articleNode
 					.selectSingleNode("//div[@id='date']/text()");
 			String date = "";
-			if (dateNode != null)
-			{
+			if (dateNode != null) {
 				date = dateNode.getText().trim();
 			}
 			LOGGER.trace("date: {}", date);
@@ -60,8 +55,7 @@ public class DzoneArticleExtractor implements ArticleExtractor
 			final Node authorNode = articleNode
 					.selectSingleNode("//b[@id='authorname']/text()");
 			String author = "";
-			if (authorNode != null)
-			{
+			if (authorNode != null) {
 				author = authorNode.getText().trim();
 			}
 			LOGGER.trace("author: {}", author);
@@ -70,8 +64,7 @@ public class DzoneArticleExtractor implements ArticleExtractor
 			final Node summaryNode = articleNode
 					.selectSingleNode("//div[@id='articleText']/*/div[@class='content']/p[1]");
 			String summary = "";
-			if (summaryNode != null)
-			{
+			if (summaryNode != null) {
 				summary = summaryNode.getText().trim();
 			}
 			LOGGER.trace("summary: {}", summary);
@@ -81,21 +74,17 @@ public class DzoneArticleExtractor implements ArticleExtractor
 			@SuppressWarnings("unchecked")
 			final List<Node> tagNodes = articleNode
 					.selectNodes("//div[@id='articleText']//a[@rel='tag']");
-			if (tagNodes != null && !tagNodes.isEmpty())
-			{
+			if (tagNodes != null && !tagNodes.isEmpty()) {
 				LOGGER.trace("{} keywords detected", tagNodes.size());
 				keywords = new String[tagNodes.size()];
 				int i = 0;
-				for (Node node : tagNodes)
-				{
+				for (Node node : tagNodes) {
 					final String kw = node.getText().trim();
 					LOGGER.trace("keyword[{}]: {}", i, kw);
 					keywords[i++] = kw;
 				}
-			}
-			else
-			{
-				//FIXME
+			} else {
+				// FIXME
 				LOGGER.trace("no keywords detected");
 				return null;
 			}
@@ -116,9 +105,7 @@ public class DzoneArticleExtractor implements ArticleExtractor
 			article.setPlainText(plainText);
 
 			return article;
-		}
-		else
-		{
+		} else {
 			return null;
 		}
 	}

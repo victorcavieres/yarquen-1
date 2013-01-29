@@ -5,7 +5,6 @@ import org.yarquen.crawler.datum.CrawlDbDatum;
 import bixo.datum.UrlStatus;
 import cascading.tuple.TupleEntry;
 
-
 import com.bixolabs.cascading.BaseSplitter;
 
 /**
@@ -15,20 +14,17 @@ import com.bixolabs.cascading.BaseSplitter;
  * @version $Id$
  * 
  */
-public class SplitFetchedUnfetchedSSCrawlDatums extends BaseSplitter
-{
+public class SplitFetchedUnfetchedSSCrawlDatums extends BaseSplitter {
 	private static final long serialVersionUID = 3030137500118978806L;
 
 	@Override
-	public String getLHSName()
-	{
+	public String getLHSName() {
 		return "unfetched crawl db datums";
 	}
 
 	@Override
 	// LHS represents unfetched tuples
-	public boolean isLHS(TupleEntry tupleEntry)
-	{
+	public boolean isLHS(TupleEntry tupleEntry) {
 		final CrawlDbDatum datum = new CrawlDbDatum(tupleEntry);
 		final UrlStatus status = datum.getLastStatus();
 		return status == UrlStatus.UNFETCHED

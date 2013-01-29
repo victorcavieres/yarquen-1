@@ -14,30 +14,24 @@ import cascading.tuple.Tuple;
  * @svn $LastChangedDate$
  * 
  */
-public class TupleUtils
-{
+public class TupleUtils {
 	@SuppressWarnings("unchecked")
-	public static <T> T[] makeObjectArrayFromTuple(Class<T> clazz, Tuple tuple)
-	{
+	public static <T> T[] makeObjectArrayFromTuple(Class<T> clazz, Tuple tuple) {
 		final T[] result = (T[]) Array.newInstance(clazz, tuple.size());
-		for (int i = 0; i < tuple.size(); i++)
-		{
+		for (int i = 0; i < tuple.size(); i++) {
 			result[i] = (T) tuple.getObject(i);
 		}
 		return result;
 	}
 
-	public static <T> Tuple makeTupleFrom(T[] values)
-	{
+	public static <T> Tuple makeTupleFrom(T[] values) {
 		final Tuple t = new Tuple();
-		for (T v : values)
-		{
+		for (T v : values) {
 			t.add(v);
 		}
 		return t;
 	}
 
-	private TupleUtils()
-	{
+	private TupleUtils() {
 	}
 }

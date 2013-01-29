@@ -15,43 +15,33 @@ import org.xml.sax.SAXException;
  * @version $Id$
  * 
  */
-public class DocumentUtils
-{
-	public static String getPlainText(Document doc)
-	{
+public class DocumentUtils {
+	public static String getPlainText(Document doc) {
 		final BodyContentHandler bodyContentHandler = new BodyContentHandler();
 		final XHTMLContentHandler xhtmlContentHandler = new XHTMLContentHandler(
 				bodyContentHandler, new Metadata());
 		final SAXWriter writer = new SAXWriter(xhtmlContentHandler);
-		try
-		{
+		try {
 			writer.write(doc);
 			return bodyContentHandler.toString();
-		}
-		catch (SAXException e)
-		{
-			throw new RuntimeException("Ugh!", e);
-		}
-	}
-	
-	public static String getPlainText(Node node)
-	{
-		final BodyContentHandler bodyContentHandler = new BodyContentHandler();
-		final XHTMLContentHandler xhtmlContentHandler = new XHTMLContentHandler(
-				bodyContentHandler, new Metadata());
-		final SAXWriter writer = new SAXWriter(xhtmlContentHandler);
-		try
-		{
-			writer.write(node);
-			return bodyContentHandler.toString();
-		}
-		catch (SAXException e)
-		{
+		} catch (SAXException e) {
 			throw new RuntimeException("Ugh!", e);
 		}
 	}
 
-	private DocumentUtils()
-	{
+	public static String getPlainText(Node node) {
+		final BodyContentHandler bodyContentHandler = new BodyContentHandler();
+		final XHTMLContentHandler xhtmlContentHandler = new XHTMLContentHandler(
+				bodyContentHandler, new Metadata());
+		final SAXWriter writer = new SAXWriter(xhtmlContentHandler);
+		try {
+			writer.write(node);
+			return bodyContentHandler.toString();
+		} catch (SAXException e) {
+			throw new RuntimeException("Ugh!", e);
+		}
+	}
+
+	private DocumentUtils() {
 	}
 }

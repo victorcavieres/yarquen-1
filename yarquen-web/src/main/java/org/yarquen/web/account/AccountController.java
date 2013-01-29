@@ -40,10 +40,10 @@ public class AccountController {
 	private AccountRepository accountRepository;
 	@Resource
 	private CategoryTreeBuilder categoryTreeBuilder;
-	
+
 	@Resource
 	private CategoryService categoryService;
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(CategoryBranch.class,
@@ -78,22 +78,20 @@ public class AccountController {
 
 		LOGGER.debug("saving user: {} \n {}", account, result);
 
-		
 		if (result.hasErrors()) {
 			LOGGER.trace("errors!: {}", result.getAllErrors());
 			return "account/register";
 		}
-		
-		try{
+
+		try {
 			accountService.register(account);
-		}catch(BeanValidationException e){
-			ObjectError error=new ObjectError("account",e.getMessage());
+		} catch (BeanValidationException e) {
+			ObjectError error = new ObjectError("account", e.getMessage());
 			result.addError(error);
 			LOGGER.trace("errors!: {}", result.getAllErrors());
 			return "account/register";
 		}
 
-		
 		model.addAttribute("message", "account created successfully");
 		return "message";
 	}
@@ -109,12 +107,13 @@ public class AccountController {
 			return "account/edit";
 		}
 
-		try{
-			Account accountWithSkill = accountRepository.findOne(account.getId());
+		try {
+			Account accountWithSkill = accountRepository.findOne(account
+					.getId());
 			account.setSkills(accountWithSkill.getSkills());
 			accountService.register(account);
-		}catch(BeanValidationException e){
-			ObjectError error=new ObjectError("account",e.getMessage());
+		} catch (BeanValidationException e) {
+			ObjectError error = new ObjectError("account", e.getMessage());
 			result.addError(error);
 			LOGGER.trace("errors!: {}", result.getAllErrors());
 			return "account/edit";
@@ -167,11 +166,12 @@ public class AccountController {
 			return "error";
 
 	}
-	
+
 	@RequestMapping(value = "/skills/", method = RequestMethod.POST)
 	public String updateSkills(@Valid Account account, BindingResult result,
 			Model model) {
-		LOGGER.debug("skills for accountId {} : {}", account.getId(),account.getSkills());
+		LOGGER.debug("skills for accountId {} : {}", account.getId(),
+				account.getSkills());
 		final List<Map<String, Object>> categoryTree = categoryTreeBuilder
 				.buildTree();
 		model.addAttribute("categories", categoryTree);
@@ -180,12 +180,13 @@ public class AccountController {
 			LOGGER.trace("errors!: {}", result.getAllErrors());
 			return "account/editSkills";
 		}
-		try{
-			Account accountWithoutSkill = accountRepository.findOne(account.getId());
+		try {
+			Account accountWithoutSkill = accountRepository.findOne(account
+					.getId());
 			accountWithoutSkill.setSkills(account.getSkills());
 			accountService.updateSkills(accountWithoutSkill);
-		}catch(BeanValidationException e){
-			ObjectError error=new ObjectError("account",e.getMessage());
+		} catch (BeanValidationException e) {
+			ObjectError error = new ObjectError("account", e.getMessage());
 			result.addError(error);
 			LOGGER.trace("errors!: {}", result.getAllErrors());
 			return "account/editSkills";

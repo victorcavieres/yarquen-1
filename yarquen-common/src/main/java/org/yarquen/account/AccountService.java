@@ -1,6 +1,5 @@
 package org.yarquen.account;
 
-
 /**
  * Account service
  * 
@@ -9,10 +8,9 @@ package org.yarquen.account;
  * @version $Id$
  * 
  */
-public interface AccountService
-{
+public interface AccountService {
 	Account register(Account account);
-	
+
 	Account updateSkills(Account account);
 
 	Account authenticate(String username, String password);

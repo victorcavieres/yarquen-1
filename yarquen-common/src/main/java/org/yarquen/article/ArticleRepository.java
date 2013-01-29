@@ -10,8 +10,7 @@ import org.springframework.data.repository.CrudRepository;
  * @version $Id$
  * 
  */
-public interface ArticleRepository extends CrudRepository<Article, String>
-{
+public interface ArticleRepository extends CrudRepository<Article, String> {
 	Article findByTitle(String title);
 
 	Article findByUrl(String url);

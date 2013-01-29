@@ -9,11 +9,12 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 import org.yarquen.account.Account;
 import org.yarquen.account.AccountService;
+
 /**
  * Authentication provider for yarquen based in account service
  * 
  * @author maliq
- *
+ * 
  */
 @Service
 public class YarquenAuthenticationProvider implements AuthenticationProvider {
@@ -28,11 +29,13 @@ public class YarquenAuthenticationProvider implements AuthenticationProvider {
 		String username = String.valueOf(auth.getPrincipal());
 		String password = String.valueOf(auth.getCredentials());
 		Account account = accountService.authenticate(username, password);
-		if (account != null){
-			auth= new UsernamePasswordAuthenticationToken(account.getFirstName()+" "+account.getFamilyName(),authentication.getCredentials(), null);
+		if (account != null) {
+			auth = new UsernamePasswordAuthenticationToken(
+					account.getFirstName() + " " + account.getFamilyName(),
+					authentication.getCredentials(), null);
 			auth.setDetails(account);
 			return auth;
-		}else
+		} else
 			return null;
 
 	}

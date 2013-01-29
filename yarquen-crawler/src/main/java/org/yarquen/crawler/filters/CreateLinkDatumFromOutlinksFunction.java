@@ -17,7 +17,6 @@ import cascading.operation.FunctionCall;
 import cascading.operation.OperationCall;
 import cascading.tuple.TupleEntryCollector;
 
-
 import com.bixolabs.cascading.NullContext;
 
 /**
@@ -29,35 +28,30 @@ import com.bixolabs.cascading.NullContext;
  */
 @SuppressWarnings("serial")
 public class CreateLinkDatumFromOutlinksFunction extends
-		BaseOperation<NullContext> implements Function<NullContext>
-{
+		BaseOperation<NullContext> implements Function<NullContext> {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(CreateLinkDatumFromOutlinksFunction.class);
 	private transient SimpleUrlNormalizer _normalizer;
 
-	public CreateLinkDatumFromOutlinksFunction()
-	{
+	public CreateLinkDatumFromOutlinksFunction() {
 		super(LinkDatum.FIELDS);
 	}
 
 	@Override
 	public void prepare(FlowProcess process,
-			OperationCall<NullContext> operationCall)
-	{
+			OperationCall<NullContext> operationCall) {
 		LOGGER.info("preparing " + getClass().getName());
 		_normalizer = new SimpleUrlNormalizer();
 	}
 
 	@Override
 	public void cleanup(FlowProcess process,
-			OperationCall<NullContext> operationCall)
-	{
+			OperationCall<NullContext> operationCall) {
 		LOGGER.info("cleaning up " + getClass().getName());
 	}
 
 	@Override
-	public void operate(FlowProcess process, FunctionCall<NullContext> funcCall)
-	{
+	public void operate(FlowProcess process, FunctionCall<NullContext> funcCall) {
 		final AnalyzedDatum datum = new AnalyzedDatum(funcCall.getArguments()
 				.getTuple());
 		final Outlink outlinks[] = datum.getOutlinks();
@@ -66,24 +60,21 @@ public class CreateLinkDatumFromOutlinksFunction extends
 
 		final TupleEntryCollector collector = funcCall.getOutputCollector();
 
-		if (outlinks.length > 0)
-		{
+		if (outlinks.length > 0) {
 			float pageScore = datum.getPageScore();
 
 			// Give each outlink 1/N th the page score.
 			float outlinkScore = pageScore / outlinks.length;
 
 			final Set<String> links = new HashSet<String>(outlinks.length);
-			for (Outlink outlink : outlinks)
-			{
+			for (Outlink outlink : outlinks) {
 				final String url = outlink.getToUrl().replaceAll("[\n\r]", "");
 				final String normalizedUrl = _normalizer.normalize(url);
 				links.add(normalizedUrl);
 			}
 			links.remove(datum.getUrl());
 
-			for (String url : links)
-			{
+			for (String url : links) {
 				final LinkDatum linkDatum = new LinkDatum();
 				linkDatum.setUrl(url);
 				linkDatum.setPageScore(pageScore);

@@ -16,8 +16,7 @@ import bixo.datum.ParsedDatum;
  * @version $Id$
  * 
  */
-public interface ArticleExtractor
-{
+public interface ArticleExtractor {
 	/**
 	 * Extract an article from the document
 	 * 
