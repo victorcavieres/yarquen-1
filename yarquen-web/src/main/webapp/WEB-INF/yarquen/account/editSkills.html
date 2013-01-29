@@ -77,7 +77,10 @@
 							<legend><span th:text="${account.firstName}+' '+${account.familyName}">Kathleen Byrne</span> skill details</legend>
 							<div class="row">
 								<div class="span4 offset1">
-									<span class="help-block">Skill category tree:</span>
+									<div class="alert alert-info no-reports help-block" style="display: block;">
+										<span>Please select category to add</span>
+									</div>	
+									<br/>
 									<div class="input-append">
 										  <input id="searchTreeInput" class="input-small" type="text" placeholder="Category" />
 										  <button id="searchTree" class="btn" type="button">Search</button>
