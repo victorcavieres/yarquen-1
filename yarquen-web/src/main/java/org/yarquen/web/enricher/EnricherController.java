@@ -243,7 +243,7 @@ public class EnricherController {
 						LOGGER.trace("params extracted: {}", referer);
 					}
 
-					return "redirect:/articles?{referer}";
+					return "redirect:/articles?" + referer;
 				} else {
 					LOGGER.trace("update => no referer, returning to search");
 					return "redirect:/articles";
