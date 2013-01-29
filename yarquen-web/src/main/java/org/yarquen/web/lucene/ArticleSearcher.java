@@ -51,7 +51,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
 import org.yarquen.category.CategoryBranch;
-import org.yarquen.category.CategoryRepository;
 import org.yarquen.category.CategoryService;
 import org.yarquen.web.search.SearchFields;
 import org.yarquen.web.search.SearchResult;
@@ -89,8 +88,6 @@ public class ArticleSearcher {
 	private String taxoDirectoryPath;
 	private TaxonomyReader taxoReader;
 	private TaxonomyWriter taxoWriter;
-	@Resource
-	private CategoryRepository categoryRepository;
 	@Resource
 	private CategoryService categoryService;
 

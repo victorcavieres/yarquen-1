@@ -7,7 +7,6 @@ import java.net.URLDecoder;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
@@ -32,7 +31,6 @@ import org.yarquen.article.ArticleRepository;
 import org.yarquen.author.Author;
 import org.yarquen.author.AuthorRepository;
 import org.yarquen.category.CategoryBranch;
-import org.yarquen.category.CategoryRepository;
 import org.yarquen.category.CategoryService;
 import org.yarquen.keyword.Keyword;
 import org.yarquen.keyword.KeywordRepository;
@@ -64,8 +62,6 @@ public class EnricherController {
 	private ArticleSearcher articleSearcher;
 	@Resource
 	private AuthorRepository authorRepository;
-	@Resource
-	private CategoryRepository categoryRepository;
 	@Resource
 	private CategoryService categoryService;
 	@Resource
