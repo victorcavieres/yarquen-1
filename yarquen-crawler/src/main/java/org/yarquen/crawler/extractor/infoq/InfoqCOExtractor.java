@@ -1,12 +1,8 @@
 package org.yarquen.crawler.extractor.infoq;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.dom4j.Document;
-import org.dom4j.Node;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.yarquen.crawler.datum.ArticleDatum;
 import org.yarquen.crawler.extractor.ArticleExtractor;
 
@@ -22,9 +18,6 @@ import bixo.datum.ParsedDatum;
  */
 public class InfoqCOExtractor implements ArticleExtractor
 {
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(InfoqCOExtractor.class);
-
 	@Override
 	public ArticleDatum extractArticles(ParsedDatum parsedDatum,
 			Document doc, List<Outlink> outlinks)
