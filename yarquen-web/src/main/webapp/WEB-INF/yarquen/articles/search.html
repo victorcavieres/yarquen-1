@@ -42,12 +42,12 @@
 			<div class="row-fluid">
 				<div class="span4 offset1">
 					<div th:if="${!#strings.isEmpty(enrichmentMessage)}" class="alert alert-success">
-						<button type="button" class="close" data-dismiss="alert">×</button>
+						<button type="button" class="close" data-dismiss="alert">x</button>
 						<strong>Info</strong>: <span th:text="${enrichmentMessage}">success operation</span>
 					</div>
 					<form class="form-search" th:action="@{/articles}" action="search.html" th:object="${searchFields}" method="get">
 						<div class="alert alert-error" th:errors="*{query}">
-							<button type="button" class="close" data-dismiss="alert">×</button>
+							<button type="button" class="close" data-dismiss="alert">x</button>
 							<strong>Error</strong>: a query is required!
 						</div>
 						<input type="text" class="input-xlarge search-query" th:field="*{query}" placeholder="search terms" />

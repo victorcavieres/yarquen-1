@@ -50,11 +50,11 @@
 							action="enricher.html" th:action="@{'/articles/enricher/' + *{id}}">
 						<fieldset>
 							<div class="alert alert-error" th:each="err: ${#fields.errors('keywords')}">
-								<button type="button" class="close" data-dismiss="alert">×</button>
+								<button type="button" class="close" data-dismiss="alert">x</button>
 								<strong>Keywords Error</strong>: <span th:text="${err}">cannot be empty</span>
 							</div>
 							<div class="alert alert-error" th:each="err: ${#fields.errors('categories')}">
-								<button type="button" class="close" data-dismiss="alert">×</button>
+								<button type="button" class="close" data-dismiss="alert">x</button>
 								<strong>Categories Error</strong>: <span th:text="${err}">cannot be empty</span>
 							</div>
 							<input id="id" name="id" type="hidden" th:field="*{id}" />
@@ -281,10 +281,6 @@ $(function() {
 	});
 });
 
-/*$("#enrichmentForm").submit(function(event) {
-	
-	return true;
-});*/
 /*]]>*/
 </script>
 	</body>
