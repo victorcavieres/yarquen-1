@@ -2,6 +2,8 @@ package org.yarquen.web.search;
 
 import java.util.List;
 
+import org.yarquen.account.Skill;
+
 /**
  * Search fields
  * 
@@ -12,19 +14,16 @@ import java.util.List;
  */
 public class SearchFields {
 	private String author;
-	private List<String> category;
 	private Integer facets;
 	private List<String> keyword;
+	private List<Skill> providedSkill;
 	private String query;
+	private List<Skill> requiredSkill;
 	private Integer results;
 	private String year;
 
 	public String getAuthor() {
 		return author;
-	}
-
-	public List<String> getCategory() {
-		return category;
 	}
 
 	public Integer getFacets() {
@@ -35,8 +34,16 @@ public class SearchFields {
 		return keyword;
 	}
 
+	public List<Skill> getProvidedSkill() {
+		return providedSkill;
+	}
+
 	public String getQuery() {
 		return query;
+	}
+
+	public List<Skill> getRequiredSkill() {
+		return requiredSkill;
 	}
 
 	public Integer getResults() {
@@ -51,10 +58,6 @@ public class SearchFields {
 		this.author = author;
 	}
 
-	public void setCategory(List<String> category) {
-		this.category = category;
-	}
-
 	public void setFacets(Integer facets) {
 		this.facets = facets;
 	}
@@ -63,8 +66,16 @@ public class SearchFields {
 		this.keyword = keyword;
 	}
 
+	public void setProvidedSkill(List<Skill> providedSkill) {
+		this.providedSkill = providedSkill;
+	}
+
 	public void setQuery(String query) {
 		this.query = query;
+	}
+
+	public void setRequiredSkill(List<Skill> requiredSkill) {
+		this.requiredSkill = requiredSkill;
 	}
 
 	public void setResults(Integer results) {

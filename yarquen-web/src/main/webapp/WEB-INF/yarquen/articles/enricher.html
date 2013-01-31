@@ -53,9 +53,13 @@
 								<button type="button" class="close" data-dismiss="alert">x</button>
 								<strong>Keywords Error</strong>: <span th:text="${err}">cannot be empty</span>
 							</div>
-							<div class="alert alert-error" th:each="err: ${#fields.errors('categories')}">
+							<div class="alert alert-error" th:each="err: ${#fields.errors('providedSkills')}">
 								<button type="button" class="close" data-dismiss="alert">x</button>
-								<strong>Categories Error</strong>: <span th:text="${err}">cannot be empty</span>
+								<strong>Provided Skills Error</strong>: <span th:text="${err}">cannot be empty</span>
+							</div>
+							<div class="alert alert-error" th:each="err: ${#fields.errors('requiredSkills')}">
+								<button type="button" class="close" data-dismiss="alert">x</button>
+								<strong>Required Skills Error</strong>: <span th:text="${err}">cannot be empty</span>
 							</div>
 							<input id="id" name="id" type="hidden" th:field="*{id}" />
 							<legend>Article</legend>
@@ -118,19 +122,43 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="categories">Categories</label>
+								<label class="control-label">Skills</label>
 								<div class="controls">
-									<span class="help-block">Current categories</span>
 									<div>
-										<!--input id="categories" name="categories" type="hidden" th:each="cat: *{categories}" th:value="${cat.code}" /-->
-										<ul id="currentCategories">
-											<li id="Informatica/LenguajesDeProgramación" th:each="cat: *{categories}" th:id="${cat.code}"><span th:text="${cat.name}">Informática/Lenguajes de Programación</span> <span class="categoryCloseBtn close" style="float: none">x</span></li>
-											<li id="Informatica/DataMining" th:remove="all">Informática/Data Mining <span class="categoryCloseBtn close" style="float: none">x</span></li>
-										</ul>
-										<div id="categoryList">
-											<input type="hidden" th:each="cat, stat : *{categories}" th:field="*{categories[__${stat.index}__]}" />
-										</div>
+										<table id="currentProvidedSkills" class="table table-condensed">
+											<caption class="pull-left">Provided Skills</caption>
+											<tbody><tr th:unless="*{#lists.isEmpty(providedSkills)}" th:each="rs: *{providedSkills}">
+													<td>
+														<span style="display: none" th:text="${rs.categoryBranch.code}">Informatica.LenguajesDeProgramacion</span>
+														<span th:text="${rs.categoryBranch.name}">Informática/Lenguajes de Programación</span>
+													</td>
+													<td>
+														<span style="display: none" th:text="${rs.level}">1</span>
+														<span th:text="${rs.levelName}">Basic</span>
+													</td>
+													<td><span class="removeSkillBtn close" style="float: none">&times;</span></td>
+												</tr></tbody>
+										</table>
+										<div id="providedSkillList"><input type="hidden" th:each="rs, stat : *{providedSkills}" th:field="*{providedSkills[__${stat.index}__]}" /></div>
 									</div>
+									<div>
+										<table id="currentRequiredSkills" class="table table-condensed">
+											<caption class="pull-left">Required Skills</caption>
+											<tbody><tr th:unless="*{#lists.isEmpty(requiredSkills)}" th:each="rs : *{requiredSkills}">
+													<td>
+														<span style="display: none" th:text="${rs.categoryBranch.code}">Informatica.LenguajesDeProgramacion</span>
+														<span th:text="${rs.categoryBranch.name}">Informática/Lenguajes de Programación</span>
+													</td>
+													<td>
+														<span style="display: none" th:text="${rs.level}">1</span>
+														<span th:text="${rs.levelName}">Basic</span>
+													</td>
+													<td><span class="removeSkillBtn close" style="float: none">&times;</span></td>
+												</tr></tbody>
+										</table>
+										<div id="requiredSkillList"><input type="hidden" th:each="rs, stat : *{requiredSkills}" th:field="*{requiredSkills[__${stat.index}__]}" /></div>
+									</div>
+									
 									<span class="help-block">Category tree:</span>
 									<div class="input-append">
 										  <input id="searchTreeInput" class="input-small" type="text" placeholder="Category" />
@@ -140,7 +168,6 @@
 									<div id="categoryTree"></div>
 								</div>
 							</div>
-							
 							<div class="control-group">
 								<div class="controls">
 									<button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
@@ -149,6 +176,48 @@
 							</div>
 						</fieldset>
 					</form>
+
+					<!-- dialog -->
+					<div id="newSkillModal" class="modal hide fade">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3>New Skill</h3>
+						</div>
+						<div class="modal-body">
+							<form class="form-horizontal" action="">
+								<fieldset>
+									<div class="control-group">
+										<label class="control-label">Category</label>
+										<div class="controls" style="padding-top: 5px">
+											<strong id="newSkillName">Informática/Lenguajes de Programación</strong>
+											<input id="newSkillCode" type="hidden" value="Informatica.LenguajesDeProgramacion" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="newSkillRequired">Relation type</label>
+										<div class="controls">
+											<label class="radio"><input id="newSkillRequired" type="radio" name="relationType" checked = "checked" /> Required</label>
+											<label class="radio"><input id="newSkillProvided" type="radio" name="relationType" /> Provided</label>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="newSkillLevel">Skill Level</label>
+										<div class="controls">
+											<select id="newSkillLevel" class="input-small">
+												<option label="Basic" value="1"/>
+												<option label="Medium" value="2"/>
+												<option label="Advanced" value="3"/>
+										</select>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<a id="newSkillSave" href="#" class="btn btn-primary">Add Skill</a>
+							<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -159,6 +228,8 @@
 		</div>
 <script type="text/javascript" th:inline="javascript">
 /*<![CDATA[*/
+
+//Keywords
 $(document).ready(function() {
 	$("#keywords").tagit({
 		allowSpaces: true,
@@ -167,10 +238,6 @@ $(document).ready(function() {
 		afterTagAdded: addKeywordHiddenField,
 		afterTagRemoved: removeKeywordHidddenField,
 		availableTags: /*[[ ${keywords} ]]*/ ["Java", "C#", "Haskell"]
-	});
-	
-	$("#currentCategories").on("click", ".close", function() {
-		removeCategoryFields($(this).parent())
 	});
 });
 
@@ -202,7 +269,7 @@ function removeKeywordHidddenField(event, ui) {
 	}
 }
 
-
+//Skills
 $(document).ready(function() {
 	$("#searchTree").click(function () {
 		$("#categoryTree").jstree("search",$("#searchTreeInput").val());
@@ -228,55 +295,101 @@ $(document).ready(function() {
 		json_data: {
 			data: /*[[ ${categories} ]]*/ [ { data: "Software", metadata: { code: "Software", name: "Software" }, children: [ { data: "Eclipse", metadata: { code: "Software.Eclipse", name: "Software/Eclipse" } } ] } ]
 		}
-	}).bind("select_node.jstree", addCategoryFields)
+	}).bind("select_node.jstree", showNewSkillModal)
+
+	$("#currentRequiredSkills").on("click", ".close", function() {
+		removeSkill("#requiredSkillList", "requiredSkills", $(this).parent());
+	});
+	$("#currentProvidedSkills").on("click", ".close", function() {
+		removeSkill("#providedSkillList", "providedSkills", $(this).parent());
+	});
 });
 
-function addCategoryFields(e, data) {
-	var code = data.rslt.obj.data("code");
-	var name= data.rslt.obj.data("name");
+function showNewSkillModal(e, data) {
+	//setup modal
+	$("#newSkillName").text(data.rslt.obj.data("name"));
+	$("#newSkillCode").attr("value", data.rslt.obj.data("code"));
 	
-	if($("#categoryList input[value=\"" + code + "\"]").length != 0) {
-		alert("The category " + name + " is already selected");
-	}
-	else {
-		$("#currentCategories").append("<li id=\"" + code + "\"><span>" + name + "</span> <span class=\"categoryCloseBtn close\" style=\"float: none\">x</span></li>");
-
-		var c = $("#categoryList").children().size();
-		$("#categoryList").append("<input type=\"hidden\" id=\"categories" + c + "\" name=\"categories[" + c + "]\" value=\"" + code + "\">");
-	}
+	//show it
+	$("#newSkillModal").modal("show");
 }
 
-function removeCategoryFields(categoryLi) {
-	var code = categoryLi.attr("id");
+$("#newSkillSave").click(function() {
+	$("#newSkillModal").modal("hide");
 	
-	categoryLi.remove();
+	var code = $("#newSkillCode").attr("value");
+	var name = $("#newSkillName").text();
 	
-	var c = $("#categoryList").children().size();
+	var listSelector =  "#providedSkillList";
+	var collection = "providedSkills";
+	var tableSelector = "#currentProvidedSkills";
+	if($("#newSkillRequired").is(":checked")) {
+		listSelector = "#requiredSkillList";
+		collection = "requiredSkills";
+		tableSelector = "#currentRequiredSkills";
+	}
+
+ 	if($(listSelector + " input[value=\"" + code + "\"]").length != 0) {
+		alert("The category " + name + " is already selected");
+		return false;
+	}
+	else {
+		tableSelector += " tbody";
+		$(tableSelector).append("<tr></tr>");
+
+		tableSelector += " tr:last-child";
+
+		var levelCode = $("#newSkillLevel").val();
+		var levelName = $("#newSkillLevel option:selected").attr("label");
+
+		$(tableSelector).append("<td><span style=\"display: none\">" + code + "</span><span>" + name + "</span></td>");
+		$(tableSelector).append("<td><span style=\"display: none\">" + levelCode + "</span><span>" + levelName + "</span></td>");
+		$(tableSelector).append("<td><span style=\"display: none\">" + code + "." + levelCode + "</span><span class=\"removeSkillBtn close\" style=\"float: none\">&times;</span></td>");
+
+		var c = $(listSelector).children().size();
+		var id = collection + c;
+		var name = collection + "[" + c + "]";
+		var skill = code + "." + levelCode;
+		$(listSelector).append("<input type=\"hidden\" id=\"" + id + "\" name=\"" + name + "\" value=\"" + skill + "\">");
+		
+		return false;
+	}
+});
+
+function removeSkill(selector, collectionProperty, skillTd) {	
+	skillTd.parent().remove();
+	
+	var skillCode = skillTd.children().first().text();
+	console.log("skillCode: " + skillCode);
+	var c = $(selector).children().size();
+	console.log("children count: " + c);
 	var i = 0;
-	//locate and remove the category element
+	//locate and remove the skill element
 	for(; i < c; i++) {
-		var selector = "#categoryList input:nth-child(" + ( i + 1 ) + ")";
-		if($(selector).attr("value") == code) {
-			$(selector).remove();
+		var sel = selector + " input:nth-child(" + ( i + 1 ) + ")";
+		console.log("sel: " + selector + " = " + $(selector).attr("value"));
+		if($(sel).attr("value") == skillCode) {
+			$(sel).remove();
 			break;
 		}
 	}
 	//fix remaining elements
 	for(; i < c; i++) {
-		var selector = "#categoryList input:nth-child(" + ( i + 1 ) + ")";
-		$(selector).attr("id","categories" + i);
-		$(selector).attr("name","categories[" + i + "]");
+		var sel = selector + " input:nth-child(" + ( i + 1 ) + ")";
+		$(sel).attr("id", collectionProperty + i);
+		$(sel).attr("name", collectionProperty + "[" + i + "]");
 	}
 }
 
-
+//date
 $(function() {
   $("#date").datepicker();
 });
 
+//authors
 $(function() {
 	var authors = /*[[ ${authors} ]]*/ ["Nostromo", "Charles Gould", "Captain Mitchell"];
-	$( "#author" ).autocomplete({
+	$("#author").autocomplete({
 		source: authors
 	});
 });

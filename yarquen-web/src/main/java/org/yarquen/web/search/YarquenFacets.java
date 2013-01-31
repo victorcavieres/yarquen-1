@@ -11,20 +11,25 @@ import java.util.List;
  */
 public class YarquenFacets {
 	private List<YarquenFacet> author;
-	private List<YarquenFacet> category;
 	private List<YarquenFacet> keyword;
+	private List<SkillYarquenFacet> providedSkill;
+	private List<SkillYarquenFacet> requiredSkill;
 	private List<YarquenFacet> year;
 
 	public List<YarquenFacet> getAuthor() {
 		return author;
 	}
 
-	public List<YarquenFacet> getCategory() {
-		return category;
-	}
-
 	public List<YarquenFacet> getKeyword() {
 		return keyword;
+	}
+
+	public List<SkillYarquenFacet> getProvidedSkill() {
+		return providedSkill;
+	}
+
+	public List<SkillYarquenFacet> getRequiredSkill() {
+		return requiredSkill;
 	}
 
 	public List<YarquenFacet> getYear() {
@@ -35,12 +40,16 @@ public class YarquenFacets {
 		this.author = author;
 	}
 
-	public void setCategory(List<YarquenFacet> category) {
-		this.category = category;
-	}
-
 	public void setKeyword(List<YarquenFacet> keyword) {
 		this.keyword = keyword;
+	}
+
+	public void setProvidedSkill(List<SkillYarquenFacet> providedSkill) {
+		this.providedSkill = providedSkill;
+	}
+
+	public void setRequiredSkill(List<SkillYarquenFacet> requiredSkill) {
+		this.requiredSkill = requiredSkill;
 	}
 
 	public void setYear(List<YarquenFacet> year) {

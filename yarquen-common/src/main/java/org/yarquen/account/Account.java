@@ -47,7 +47,7 @@ public class Account {
 	private String username;
 
 	@Valid
-	private List<AccountSkill> skills;
+	private List<Skill> skills;
 
 	public String getAdditionalLastName() {
 		return additionalLastName;
@@ -113,13 +113,13 @@ public class Account {
 		this.username = username;
 	}
 
-	public List<AccountSkill> getSkills() {
+	public List<Skill> getSkills() {
 		if (skills == null)
-			skills = new ArrayList<AccountSkill>();
+			skills = new ArrayList<Skill>();
 		return skills;
 	}
 
-	public void setSkills(List<AccountSkill> skills) {
+	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
 	}
 

@@ -27,9 +27,9 @@ import org.apache.lucene.util.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.yarquen.account.Skill;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
-import org.yarquen.category.CategoryBranch;
 
 /**
  * Lucenes index builder
@@ -133,10 +133,20 @@ public class IndexBuilder {
 						kw));
 			}
 		}
-		if (article.getCategories() != null) {
-			for (CategoryBranch branch : article.getCategories()) {
-				final String[] components = branch
-						.getCodeAsArray(Article.Facets.CATEGORY.toString());
+		if (article.getProvidedSkills() != null) {
+			for (Skill skill : article.getProvidedSkills()) {
+				final String[] components = skill
+						.getCodeAsArray(Article.Facets.PROVIDED_SKILL
+								.toString());
+				final CategoryPath categoryPath = new CategoryPath(components);
+				facets.add(categoryPath);
+			}
+		}
+		if (article.getRequiredSkills() != null) {
+			for (Skill skill : article.getRequiredSkills()) {
+				final String[] components = skill
+						.getCodeAsArray(Article.Facets.REQUIRED_SKILL
+								.toString());
 				final CategoryPath categoryPath = new CategoryPath(components);
 				facets.add(categoryPath);
 			}

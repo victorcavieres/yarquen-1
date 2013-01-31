@@ -1,13 +1,11 @@
 package org.yarquen.web.enricher;
 
-import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.yarquen.account.Skill;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
 import org.yarquen.author.Author;
 import org.yarquen.author.AuthorRepository;
-import org.yarquen.category.CategoryBranch;
 import org.yarquen.category.CategoryService;
 import org.yarquen.keyword.Keyword;
 import org.yarquen.keyword.KeywordRepository;
@@ -53,7 +51,7 @@ public class EnricherController {
 	private static final String AUTHORS = "authors";
 	private static final String CATEGORIES = "categories";
 	private static final String KEYWORDS = "keywords";
-	private static final Logger LOGGER = LoggerFactory
+	static final Logger LOGGER = LoggerFactory
 			.getLogger(EnricherController.class);
 
 	@Resource
@@ -71,31 +69,8 @@ public class EnricherController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(CategoryBranch.class,
-				new PropertyEditorSupport() {
-					@Override
-					public void setAsText(String branch) {
-						try {
-							LOGGER.trace(
-									"converting {} to a CategoryBranch object",
-									branch);
-							final CategoryBranch categoryBranch = new CategoryBranch();
-							final StringTokenizer tokenizer = new StringTokenizer(
-									branch, CategoryBranch.CODE_SEPARATOR);
-							while (tokenizer.hasMoreTokens()) {
-								final String code = tokenizer.nextToken();
-								categoryBranch.addSubCategory(code, null);
-							}
-							// fill names
-							categoryService
-									.completeCategoryBranchNodeNames(categoryBranch);
-							setValue(categoryBranch);
-						} catch (RuntimeException e) {
-							LOGGER.error(":(", e);
-							throw e;
-						}
-					}
-				});
+		binder.registerCustomEditor(Skill.class,
+				new SkillPropertyEditorSupport(categoryService));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, params = "cancel")
@@ -185,11 +160,20 @@ public class EnricherController {
 			} else {
 				LOGGER.trace("no keywords");
 			}
-			if (article.getCategories() != null) {
-				LOGGER.trace("{} categories: {}", article.getCategories()
-						.size(), article.getCategories());
+
+			if (article.getProvidedSkills() != null) {
+				LOGGER.trace("{} provided skills: {}", article
+						.getProvidedSkills().size(), article
+						.getProvidedSkills());
 			} else {
-				LOGGER.trace("no categories");
+				LOGGER.trace("no provided skills");
+			}
+			if (article.getRequiredSkills() != null) {
+				LOGGER.trace("{} required skills: {}", article
+						.getRequiredSkills().size(), article
+						.getRequiredSkills());
+			} else {
+				LOGGER.trace("no required skills");
 			}
 
 			// get persisted article
@@ -200,12 +184,13 @@ public class EnricherController {
 				// update
 				LOGGER.trace("updating article {}", id);
 				persistedArticle.setAuthor(article.getAuthor());
-				persistedArticle.setCategories(article.getCategories());
 				persistedArticle.setDate(article.getDate());
 				persistedArticle.setKeywords(article.getKeywords());
 				persistedArticle.setSummary(article.getSummary());
 				persistedArticle.setTitle(article.getTitle());
 				persistedArticle.setUrl(article.getUrl());
+				persistedArticle.setProvidedSkills(article.getProvidedSkills());
+				persistedArticle.setRequiredSkills(article.getRequiredSkills());
 				final Article updatedArticle = articleRepository
 						.save(persistedArticle);
 

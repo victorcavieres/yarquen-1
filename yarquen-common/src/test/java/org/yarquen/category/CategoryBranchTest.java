@@ -3,7 +3,6 @@ package org.yarquen.category;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.yarquen.article.Article;
 
 /**
  * {@link CategoryBranch} unit tests
@@ -14,6 +13,7 @@ import org.yarquen.article.Article;
  * 
  */
 public class CategoryBranchTest {
+	private static final String CATEGORY = "category";
 	private static final String ECLIPSE_CODE = "ECLIPSE";
 	private static final String ECLIPSE_NAME = "Eclipse";
 	private static final String SOFTWARE_CODE = "SW";
@@ -35,10 +35,8 @@ public class CategoryBranchTest {
 
 	@Test
 	public void testGetCodeAsArrayPrependCategory() {
-		Assert.assertArrayEquals(
-				new String[] { Article.Facets.CATEGORY.toString(),
-						SOFTWARE_CODE, ECLIPSE_CODE },
-				branch.getCodeAsArray(Article.Facets.CATEGORY.toString()));
+		Assert.assertArrayEquals(new String[] { CATEGORY, SOFTWARE_CODE,
+				ECLIPSE_CODE }, branch.getCodeAsArray(CATEGORY));
 	}
 
 	@Test
@@ -49,10 +47,9 @@ public class CategoryBranchTest {
 
 	@Test
 	public void testGetCodePrependCategory() {
-		Assert.assertEquals(Article.Facets.CATEGORY.toString()
-				+ CategoryBranch.CODE_SEPARATOR + SOFTWARE_CODE
-				+ CategoryBranch.CODE_SEPARATOR + ECLIPSE_CODE,
-				branch.getCode(Article.Facets.CATEGORY.toString()));
+		Assert.assertEquals(CATEGORY + CategoryBranch.CODE_SEPARATOR
+				+ SOFTWARE_CODE + CategoryBranch.CODE_SEPARATOR + ECLIPSE_CODE,
+				branch.getCode(CATEGORY));
 	}
 
 	@Test

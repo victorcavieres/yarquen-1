@@ -48,12 +48,14 @@ import org.apache.lucene.util.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.yarquen.account.Skill;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
 import org.yarquen.category.CategoryBranch;
 import org.yarquen.category.CategoryService;
 import org.yarquen.web.search.SearchFields;
 import org.yarquen.web.search.SearchResult;
+import org.yarquen.web.search.SkillYarquenFacet;
 import org.yarquen.web.search.YarquenFacet;
 import org.yarquen.web.search.YarquenFacets;
 
@@ -77,6 +79,8 @@ public class ArticleSearcher {
 	private Analyzer analyzer;
 	@Resource
 	private ArticleRepository articleRepository;
+	@Resource
+	private CategoryService categoryService;
 	private Directory indexDirectory;
 	@Value("#{config.indexDirectory}")
 	private String indexDirectoryPath;
@@ -88,8 +92,6 @@ public class ArticleSearcher {
 	private String taxoDirectoryPath;
 	private TaxonomyReader taxoReader;
 	private TaxonomyWriter taxoWriter;
-	@Resource
-	private CategoryService categoryService;
 
 	@PreDestroy
 	public void destroy() throws IOException {
@@ -220,8 +222,13 @@ public class ArticleSearcher {
 			for (YarquenFacet fc : facetsCount.getYear()) {
 				LOGGER.debug("year: {} = {}", fc.getValue(), fc.getCount());
 			}
-			for (YarquenFacet fc : facetsCount.getCategory()) {
-				LOGGER.debug("category: {} = {}", fc.getValue(), fc.getCount());
+			for (YarquenFacet fc : facetsCount.getProvidedSkill()) {
+				LOGGER.debug("providedSkill: {} = {}", fc.getValue(),
+						fc.getCount());
+			}
+			for (YarquenFacet fc : facetsCount.getRequiredSkill()) {
+				LOGGER.debug("requiredSkill: {} = {}", fc.getValue(),
+						fc.getCount());
 			}
 		}
 
@@ -274,11 +281,27 @@ public class ArticleSearcher {
 						kw));
 			}
 		}
-		if (article.getCategories() != null) {
-			for (CategoryBranch branch : article.getCategories()) {
-				final CategoryPath categoryPath = new CategoryPath(
-						branch.getCodeAsArray(Article.Facets.CATEGORY
-								.toString()));
+		if (article.getProvidedSkills() != null) {
+			for (Skill skill : article.getProvidedSkills()) {
+				final String[] components = skill
+						.getCodeAsArray(Article.Facets.PROVIDED_SKILL
+								.toString());
+				LOGGER.trace(
+						"article={}, adding CategoryPath {} to lucene taxo index",
+						article.getId(), components);
+				final CategoryPath categoryPath = new CategoryPath(components);
+				facets.add(categoryPath);
+			}
+		}
+		if (article.getRequiredSkills() != null) {
+			for (Skill skill : article.getRequiredSkills()) {
+				final String[] components = skill
+						.getCodeAsArray(Article.Facets.REQUIRED_SKILL
+								.toString());
+				LOGGER.trace(
+						"article={}, adding CategoryPath {} to lucene taxo index",
+						article.getId(), components);
+				final CategoryPath categoryPath = new CategoryPath(components);
 				facets.add(categoryPath);
 			}
 		}
@@ -297,51 +320,6 @@ public class ArticleSearcher {
 				.getTitle(), Field.Store.YES));
 		doc.add(new StringField(Article.Fields.URL.toString(),
 				article.getUrl(), Field.Store.YES));
-	}
-
-	private void createCategoryFacet(FacetResultNode facetResultNode,
-			List<YarquenFacet> categoryFacets) {
-		// TODO:improve this (maybe encapsulate in CategoryBranch)
-		final CategoryBranch branch = new CategoryBranch();
-		for (int i = 1; i < facetResultNode.getLabel().components.length; i++) {
-			branch.addSubCategory(facetResultNode.getLabel().components[i],
-					null);
-		}
-		categoryService.completeCategoryBranchNodeNames(branch);
-
-		final String name = Article.Facets.CATEGORY.toString();
-		final String code = branch.getCode();
-		final String value = branch.getName();
-		final double count = facetResultNode.getValue();
-
-		final YarquenFacet yfacet = new YarquenFacet();
-		yfacet.setName(name);
-		yfacet.setCode(code);
-		yfacet.setValue(value);
-		yfacet.setCount((int) count);
-
-		if (!categoryFacets.contains(yfacet)) {
-			categoryFacets.add(yfacet);
-		}
-
-		// sub facets
-		final int numSubResults = facetResultNode.getNumSubResults();
-		LOGGER.trace("numSubResults = {}", numSubResults);
-		if (numSubResults > 0) {
-			for (FacetResultNode subResult : facetResultNode.getSubResults()) {
-				createCategoryFacet(subResult, categoryFacets);
-			}
-		}
-	}
-
-	private void logThisShit(FacetResultNode facetResultNode, int n) {
-		LOGGER.trace("({}) result!: {}", n,
-				facetResultNode.getLabel().components);
-		Iterable<? extends FacetResultNode> subResults = facetResultNode
-				.getSubResults();
-		for (FacetResultNode facetResultNode2 : subResults) {
-			logThisShit(facetResultNode2, n + 1);
-		}
 	}
 
 	private YarquenFacet createFacet(FacetResultNode facetResultNode) {
@@ -384,23 +362,38 @@ public class ArticleSearcher {
 						kw));
 			}
 		}
-		// categories
-		final List<String> categoryValues = searchFields.getCategory();
-		if (categoryValues != null && !categoryValues.isEmpty()) {
+		// provided skills
+		final List<Skill> providedSkills = searchFields.getProvidedSkill();
+		if (providedSkills != null && !providedSkills.isEmpty()) {
 			facetedSearch = true;
-			for (String category : categoryValues) {
-				final CategoryBranch incompleteBranch = CategoryBranch
-						.incompleteFromCode(category);
-				final String[] components = incompleteBranch
-						.getCodeAsArray(Article.Facets.CATEGORY.toString());
+			for (Skill skill : providedSkills) {
+				final String[] components = skill
+						.getCodeAsArray(Article.Facets.PROVIDED_SKILL
+								.toString());
+				LOGGER.trace("adding provided skill facet to query: {}{}",
+						components, "");
+				facets.add(new CategoryPath(components));
+			}
+		}
+		// required skills
+		final List<Skill> requiredSkills = searchFields.getRequiredSkill();
+		if (requiredSkills != null && !requiredSkills.isEmpty()) {
+			facetedSearch = true;
+			for (Skill skill : requiredSkills) {
+				final String[] components = skill
+						.getCodeAsArray(Article.Facets.REQUIRED_SKILL
+								.toString());
+				LOGGER.trace("adding required skill facet to query: {}{}",
+						components, "");
 				facets.add(new CategoryPath(components));
 			}
 		}
 
 		if (facetedSearch) {
 			LOGGER.debug(
-					"faceted search: author={} year={} keywords={} categories={}",
-					new Object[] { author, year, keywordValues, categoryValues });
+					"faceted search: author={} year={} keywords={} providedSkills={} requiredSkills={}",
+					new Object[] { author, year, keywordValues, providedSkills,
+							requiredSkills });
 			return DrillDown.query(facetSearchParams, textQuery,
 					facets.toArray(new CategoryPath[facets.size()]));
 		} else {
@@ -410,35 +403,62 @@ public class ArticleSearcher {
 
 	private FacetSearchParams createFacetSearchParams(int numberOfFacets,
 			SearchFields searchFields) {
-		final int selectedCategories = searchFields.getCategory() != null ? searchFields
-				.getCategory().size() : 0;
+		LOGGER.trace("creating faceted search params...");
 
-		// I have to count author, keyword, year, category and each category
-		// branch
-		final CountFacetRequest[] countFacetRequests = new CountFacetRequest[4 + selectedCategories];
-		countFacetRequests[0] = new CountFacetRequest(new CategoryPath(
+		LOGGER.trace("providedSkills: {}, requiredSkills: {}",
+				searchFields.getProvidedSkill(),
+				searchFields.getRequiredSkill());
+		final int providedSkillsSelected = searchFields.getProvidedSkill() != null ? searchFields
+				.getProvidedSkill().size() : 0;
+		final int requiredSkillsSelected = searchFields.getRequiredSkill() != null ? searchFields
+				.getRequiredSkill().size() : 0;
+		LOGGER.trace("providedSkills selected = {}", providedSkillsSelected);
+		LOGGER.trace("requiredSkills selected = {}", requiredSkillsSelected);
+
+		// I have to count author, keyword, year, providedSkill and
+		// requiredSkill
+		int i = 0;
+		final CountFacetRequest[] countFacetRequests = new CountFacetRequest[5
+				+ providedSkillsSelected + requiredSkillsSelected];
+		countFacetRequests[i++] = new CountFacetRequest(new CategoryPath(
 				Article.Facets.AUTHOR.toString()), numberOfFacets);
-		countFacetRequests[1] = new CountFacetRequest(new CategoryPath(
+		countFacetRequests[i++] = new CountFacetRequest(new CategoryPath(
 				Article.Facets.KEYWORD.toString()), numberOfFacets);
-		countFacetRequests[2] = new CountFacetRequest(new CategoryPath(
+		countFacetRequests[i++] = new CountFacetRequest(new CategoryPath(
 				Article.Facets.YEAR.toString()), numberOfFacets);
-		countFacetRequests[3] = new CountFacetRequest(new CategoryPath(
-				Article.Facets.CATEGORY.toString()), numberOfFacets);
+		countFacetRequests[i++] = new CountFacetRequest(new CategoryPath(
+				Article.Facets.PROVIDED_SKILL.toString()), numberOfFacets);
+		countFacetRequests[i++] = new CountFacetRequest(new CategoryPath(
+				Article.Facets.REQUIRED_SKILL.toString()), numberOfFacets);
 
-		if (selectedCategories > 0) {
-			int i = 4;
-			for (String categoryBranchCode : searchFields.getCategory()) {
-				final CategoryBranch incompleteFromCode = CategoryBranch
-						.incompleteFromCode(categoryBranchCode);
-				final String[] components = incompleteFromCode
-						.getCodeAsArray(Article.Facets.CATEGORY.toString());
-				LOGGER.trace("counting facet code={} components={}",
-						categoryBranchCode, components);
+		if (providedSkillsSelected > 0) {
+			for (Skill skill : searchFields.getProvidedSkill()) {
+				final String[] components = skill
+						.getCodeAsArray(Article.Facets.PROVIDED_SKILL
+								.toString());
+				LOGGER.trace(
+						"counting facet providedSkill code={} components={}",
+						skill.getAsText(), components);
 				final CategoryPath categoryPath = new CategoryPath(components);
 				countFacetRequests[i++] = new CountFacetRequest(categoryPath,
 						numberOfFacets);
 			}
 		}
+		if (requiredSkillsSelected > 0) {
+			for (Skill skill : searchFields.getRequiredSkill()) {
+				final String[] components = skill
+						.getCodeAsArray(Article.Facets.REQUIRED_SKILL
+								.toString());
+				LOGGER.trace(
+						"counting facet requiredSkill code={} components={}",
+						skill.getAsText(), components);
+				final CategoryPath categoryPath = new CategoryPath(components);
+				countFacetRequests[i++] = new CountFacetRequest(categoryPath,
+						numberOfFacets);
+			}
+		}
+		LOGGER.trace("{} count facet requests (index={})",
+				countFacetRequests.length, i - 1);
 		return new FacetSearchParams(countFacetRequests);
 	}
 
@@ -467,11 +487,81 @@ public class ArticleSearcher {
 		return searchResult;
 	}
 
+	// TODO:improve this (maybe encapsulate in skill)
+	private void createSkillFacet(FacetResultNode facetResultNode,
+			List<SkillYarquenFacet> skillFacets) {
+		final String[] components = facetResultNode.getLabel().components;
+		final String lastComponent = components[components.length - 1];
+		// TODO: improve this
+		boolean leaf = lastComponent.equals("1") || lastComponent.equals("2")
+				|| lastComponent.equals("3");
+
+		LOGGER.trace("creating skill facet from {} subResults:{}", components,
+				facetResultNode.getNumSubResults());
+
+		// first element tell us if is a provided or required skill
+		final String name = components[0];
+
+		// if it's a leaf, discard last element (level)
+		final int branchLength = leaf ? components.length - 1
+				: components.length;
+		// element from index 2 to branchLength-1 forms the category branch code
+		final CategoryBranch branch = new CategoryBranch();
+		for (int i = 1; i < branchLength; i++) {
+			branch.addSubCategory(components[i], null);
+		}
+		categoryService.completeCategoryBranchNodeNames(branch);
+		final String code = branch.getCode();
+		final String value = branch.getName();
+
+		final SkillYarquenFacet yfacet = new SkillYarquenFacet();
+		yfacet.setName(name);
+		yfacet.setCode(code);
+		yfacet.setValue(value);
+		yfacet.setCount((int) facetResultNode.getValue());
+		if (leaf) {
+			// last element contains the code level
+			final int level = Integer
+					.valueOf(components[components.length - 1]);
+			yfacet.setLevel(level);
+			// ughhh
+			yfacet.setLevelName(Skill.mapLevel[level]);
+		}
+		// else: level will be 0 and levelName null
+		LOGGER.trace("leaf:{} level:{} levelName:{}", new Object[] { leaf,
+				yfacet.getLevel(), yfacet.getLevelName() });
+
+		if (!skillFacets.contains(yfacet)) {
+			skillFacets.add(yfacet);
+		}
+
+		// sub facets
+		final int numSubResults = facetResultNode.getNumSubResults();
+		LOGGER.trace("numSubResults = {}", numSubResults);
+		if (numSubResults > 0) {
+			for (FacetResultNode subResult : facetResultNode.getSubResults()) {
+				createSkillFacet(subResult, skillFacets);
+			}
+		}
+	}
+
+	private void logThisShit(FacetResultNode facetResultNode, int n) {
+		LOGGER.trace("({}) result!: {}", n,
+				facetResultNode.getLabel().components);
+		Iterable<? extends FacetResultNode> subResults = facetResultNode
+				.getSubResults();
+		for (FacetResultNode facetResultNode2 : subResults) {
+			logThisShit(facetResultNode2, n + 1);
+		}
+	}
+
 	private void populateFacets(YarquenFacets facetsCount,
 			List<FacetResult> facetResults) {
+		int fc = 0;
+
 		// author
 		facetsCount.setAuthor(new ArrayList<YarquenFacet>());
-		final FacetResultNode authorFacetCount = facetResults.get(0)
+		final FacetResultNode authorFacetCount = facetResults.get(fc++)
 				.getFacetResultNode();
 		final Iterable<? extends FacetResultNode> authorFacetsResults = authorFacetCount
 				.getSubResults();
@@ -481,7 +571,7 @@ public class ArticleSearcher {
 
 		// keyword
 		facetsCount.setKeyword(new ArrayList<YarquenFacet>());
-		final FacetResultNode keywordFacetCount = facetResults.get(1)
+		final FacetResultNode keywordFacetCount = facetResults.get(fc++)
 				.getFacetResultNode();
 		final Iterable<? extends FacetResultNode> keywordFacetsResults = keywordFacetCount
 				.getSubResults();
@@ -491,7 +581,7 @@ public class ArticleSearcher {
 
 		// year
 		facetsCount.setYear(new ArrayList<YarquenFacet>());
-		final FacetResultNode yearFacetCount = facetResults.get(2)
+		final FacetResultNode yearFacetCount = facetResults.get(fc++)
 				.getFacetResultNode();
 		final Iterable<? extends FacetResultNode> yearFacetsResults = yearFacetCount
 				.getSubResults();
@@ -499,35 +589,60 @@ public class ArticleSearcher {
 			facetsCount.getYear().add(createFacet(facetResultNode));
 		}
 
-		// category
-		facetsCount.setCategory(new ArrayList<YarquenFacet>());
-		final FacetResultNode categoryFacetCount = facetResults.get(3)
+		// provided skills
+		facetsCount.setProvidedSkill(new ArrayList<SkillYarquenFacet>());
+		final FacetResultNode providedSkillFacetCount = facetResults.get(fc++)
 				.getFacetResultNode();
-		logThisShit(categoryFacetCount, 0);
-		LOGGER.trace("categoryFacetCount = {}", categoryFacetCount);
-		final Iterable<? extends FacetResultNode> categoryFacetsResults = categoryFacetCount
+		logThisShit(providedSkillFacetCount, 0);
+		LOGGER.trace("providedSkillFacetCount = {}", providedSkillFacetCount);
+		final Iterable<? extends FacetResultNode> providedSkillFacetsResults = providedSkillFacetCount
 				.getSubResults();
-		for (FacetResultNode facetResultNode : categoryFacetsResults) {
+		for (FacetResultNode facetResultNode : providedSkillFacetsResults) {
 			LOGGER.trace("node: {}", facetResultNode);
-			createCategoryFacet(facetResultNode, facetsCount.getCategory());
+			createSkillFacet(facetResultNode, facetsCount.getProvidedSkill());
 		}
 
+		// required skills
+		facetsCount.setRequiredSkill(new ArrayList<SkillYarquenFacet>());
+		final FacetResultNode requiredSkillFacetCount = facetResults.get(fc++)
+				.getFacetResultNode();
+		logThisShit(requiredSkillFacetCount, 0);
+		LOGGER.trace("requiredSkillFacetCount = {}", requiredSkillFacetCount);
+		final Iterable<? extends FacetResultNode> requiredSkillFacetsResults = requiredSkillFacetCount
+				.getSubResults();
+		for (FacetResultNode facetResultNode : requiredSkillFacetsResults) {
+			LOGGER.trace("node: {}", facetResultNode);
+			createSkillFacet(facetResultNode, facetsCount.getRequiredSkill());
+		}
+
+		final int lastIndex = 5;
 		int results = facetResults.size();
-		if (results > 4) {
-			for (int i = 4; i < results; i++) {
+		if (results > lastIndex) {
+			for (int i = lastIndex; i < results; i++) {
 				final FacetResultNode cfc = facetResults.get(i)
 						.getFacetResultNode();
-				createCategoryFacet(cfc, facetsCount.getCategory());
+				final String skillFacetName = cfc.getLabel().components[0];
+				if (skillFacetName.equals(Article.Facets.PROVIDED_SKILL
+						.toString())) {
+					createSkillFacet(cfc, facetsCount.getProvidedSkill());
+				} else if (skillFacetName.equals(Article.Facets.REQUIRED_SKILL
+						.toString())) {
+					createSkillFacet(cfc, facetsCount.getRequiredSkill());
+				} else {
+					throw new RuntimeException("Unknow facet skill name: "
+							+ skillFacetName);
+				}
 			}
 		}
 
 		// TODO: uggh, fix this
-		Collections.sort(facetsCount.getCategory(),
-				new Comparator<YarquenFacet>() {
-					@Override
-					public int compare(YarquenFacet o1, YarquenFacet o2) {
-						return o1.getCode().compareTo(o2.getCode());
-					}
-				});
+		final Comparator<YarquenFacet> simpleCodeComparator = new Comparator<YarquenFacet>() {
+			@Override
+			public int compare(YarquenFacet o1, YarquenFacet o2) {
+				return o1.getCode().compareTo(o2.getCode());
+			}
+		};
+		Collections.sort(facetsCount.getProvidedSkill(), simpleCodeComparator);
+		Collections.sort(facetsCount.getRequiredSkill(), simpleCodeComparator);
 	}
 }

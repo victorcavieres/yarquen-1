@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
-import org.yarquen.category.CategoryBranch;
+import org.yarquen.account.Skill;
 
 /**
  * Article
@@ -19,7 +19,8 @@ import org.yarquen.category.CategoryBranch;
  */
 public class Article {
 	public static enum Facets {
-		AUTHOR("author"), KEYWORD("keyword"), YEAR("year"), CATEGORY("category");
+		AUTHOR("author"), KEYWORD("keyword"), YEAR("year"), PROVIDED_SKILL(
+				"providedSkill"), REQUIRED_SKILL("requiredSkill");
 
 		private String label;
 
@@ -50,14 +51,16 @@ public class Article {
 
 	@Size(min = 5, max = 100)
 	private String author;
-	@Valid
-	private List<CategoryBranch> categories;
 	private String date;
 	@Id
 	private String id;
 	private List<String> keywords;
 	@NotEmpty(groups = FullArticle.class)
 	private String plainText;
+	@Valid
+	private List<Skill> providedSkills;
+	@Valid
+	private List<Skill> requiredSkills;
 	private String summary;
 	@NotEmpty
 	private String title;
@@ -66,10 +69,6 @@ public class Article {
 
 	public String getAuthor() {
 		return author;
-	}
-
-	public List<CategoryBranch> getCategories() {
-		return categories;
 	}
 
 	public String getDate() {
@@ -88,6 +87,14 @@ public class Article {
 		return plainText;
 	}
 
+	public List<Skill> getProvidedSkills() {
+		return providedSkills;
+	}
+
+	public List<Skill> getRequiredSkills() {
+		return requiredSkills;
+	}
+
 	public String getSummary() {
 		return summary;
 	}
@@ -104,10 +111,6 @@ public class Article {
 		this.author = value;
 	}
 
-	public void setCategories(List<CategoryBranch> categories) {
-		this.categories = categories;
-	}
-
 	public void setDate(String value) {
 		this.date = value;
 	}
@@ -122,6 +125,14 @@ public class Article {
 
 	public void setPlainText(String value) {
 		this.plainText = value;
+	}
+
+	public void setProvidedSkills(List<Skill> providedSkills) {
+		this.providedSkills = providedSkills;
+	}
+
+	public void setRequiredSkills(List<Skill> requiredSkills) {
+		this.requiredSkills = requiredSkills;
 	}
 
 	public void setSummary(String value) {

@@ -16,8 +16,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.yarquen.account.Skill;
+import org.yarquen.category.CategoryService;
+import org.yarquen.web.enricher.SkillPropertyEditorSupport;
 import org.yarquen.web.lucene.ArticleSearcher;
 
 /**
@@ -36,6 +41,14 @@ public class SearchForm {
 
 	@Resource
 	private ArticleSearcher articleSearcher;
+	@Resource
+	private CategoryService categoryService;
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Skill.class,
+				new SkillPropertyEditorSupport(categoryService));
+	}
 
 	@RequestMapping(value = "/articles", method = RequestMethod.GET)
 	public String processSubmit(SearchFields searchFields,
@@ -62,7 +75,8 @@ public class SearchForm {
 				allFacets.addAll(facetsCount.getAuthor());
 				allFacets.addAll(facetsCount.getKeyword());
 				allFacets.addAll(facetsCount.getYear());
-				allFacets.addAll(facetsCount.getCategory());
+				allFacets.addAll(facetsCount.getProvidedSkill());
+				allFacets.addAll(facetsCount.getRequiredSkill());
 				allFacets.addAll(appliedFacets);
 
 				generateFacetsUrl(allFacets, query);
@@ -133,26 +147,53 @@ public class SearchForm {
 		}
 
 		// same as before...
-		if (searchFields.getCategory() != null
-				&& !searchFields.getCategory().isEmpty()
-				&& !facetsCount.getCategory().isEmpty()) {
-			final List<YarquenFacet> appliedCategory = new ArrayList<YarquenFacet>();
-			for (YarquenFacet catFc : facetsCount.getCategory()) {
-				// if the facet is applied, move it to appliedCategory list
-				if (searchFields.getCategory().contains(catFc.getCode())) {
-					catFc.setApplied(true);
-					appliedCategory.add(catFc);
+		if (searchFields.getProvidedSkill() != null
+				&& !searchFields.getProvidedSkill().isEmpty()
+				&& !facetsCount.getProvidedSkill().isEmpty()) {
+			final List<SkillYarquenFacet> appliedProvidedSkill = new ArrayList<SkillYarquenFacet>();
+			for (SkillYarquenFacet pskFc : facetsCount.getProvidedSkill()) {
+				// if the facet is applied, move it to appliedProvidedSkill list
+				for (Skill syf : searchFields.getProvidedSkill()) {
+					if (syf.getCode().equals(pskFc.getCode())) {
+						pskFc.setApplied(true);
+						appliedProvidedSkill.add(pskFc);
+					}
 				}
 			}
-			if (!appliedCategory.isEmpty()) {
+			if (!appliedProvidedSkill.isEmpty()) {
 				// remove applied facets from count collection
-				for (YarquenFacet catFc : appliedCategory) {
-					facetsCount.getCategory().remove(catFc);
+				for (YarquenFacet pskFc : appliedProvidedSkill) {
+					facetsCount.getProvidedSkill().remove(pskFc);
 				}
 
-				appliedFacets.addAll(appliedCategory);
+				appliedFacets.addAll(appliedProvidedSkill);
 
-				model.addAttribute("categoryFacets", appliedCategory);
+				model.addAttribute("providedSkillFacets", appliedProvidedSkill);
+			}
+		}
+
+		if (searchFields.getRequiredSkill() != null
+				&& !searchFields.getRequiredSkill().isEmpty()
+				&& !facetsCount.getRequiredSkill().isEmpty()) {
+			final List<SkillYarquenFacet> appliedRequiredSkill = new ArrayList<SkillYarquenFacet>();
+			for (SkillYarquenFacet rskFc : facetsCount.getRequiredSkill()) {
+				// if the facet is applied, move it to appliedRequiredSkill list
+				for (Skill syf : searchFields.getRequiredSkill()) {
+					if (syf.getCode().equals(rskFc.getCode())) {
+						rskFc.setApplied(true);
+						appliedRequiredSkill.add(rskFc);
+					}
+				}
+			}
+			if (!appliedRequiredSkill.isEmpty()) {
+				// remove applied facets from count collection
+				for (YarquenFacet rskFc : appliedRequiredSkill) {
+					facetsCount.getRequiredSkill().remove(rskFc);
+				}
+
+				appliedFacets.addAll(appliedRequiredSkill);
+
+				model.addAttribute("requiredSkillFacets", appliedRequiredSkill);
 			}
 		}
 

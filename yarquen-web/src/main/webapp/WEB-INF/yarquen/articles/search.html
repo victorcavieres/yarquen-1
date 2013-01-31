@@ -105,14 +105,33 @@
 						</div>
 					</div>
 					<div>
-						<h4>Categories</h4>
-						<div th:each="categoryFacet : ${categoryFacets}" id="Software.Monodevelop">
-							<a th:href="${categoryFacet.url}" href="#"><span class="text-error">-</span><span class="text-error" th:text="${categoryFacet.value}">Software/Monodevelop</span></a>
-							<small class="muted">(<span th:text="${categoryFacet.count}">12</span>)</small>
+						<h4>Skills Provided</h4>
+						<div th:each="psf : ${providedSkillFacets}" id="Software.Monodevelop">
+							<a th:href="${psf.url}" href="#">
+								<span class="text-error">-</span><span class="text-error" th:text="${psf.value}">Software/Monodevelop</span>
+								<small class="text-error" th:unless="${psf.level == 0}">[<span th:text="${psf.levelName}">Basic</span>]</small>
+							</a>
+							<small class="muted">(<span th:text="${psf.count}">12</span>)</small>
 						</div>
-						<div th:each="categoryFacet : ${facets.category}">
-							<a th:href="${categoryFacet.url}" href="#" th:text="${categoryFacet.value}">Software/Eclipse</a>
-							<small class="muted">(<span th:text="${categoryFacet.count}">2</span>)</small>
+						<div th:each="psf : ${facets.providedSkill}">
+							<a href="#" th:href="${psf.url}" th:text="${psf.value}">Software/Eclipse</a>
+							<small class="muted" th:unless="${psf.level == 0}">[<span th:text="${psf.levelName}">Basic</span>]</small>
+							<small class="muted">(<span th:text="${psf.count}">12</span>)</small>
+						</div>
+					</div>
+					<div>
+						<h4>Skills Required</h4>
+						<div th:each="rsf : ${requiredSkillFacets}" id="Software.Monodevelop">
+							<a th:href="${rsf.url}" href="#">
+								<span class="text-error">-</span><span class="text-error" th:text="${rsf.value}">Software/Monodevelop</span>
+								<small class="text-error" th:unless="${rsf.level == 0}">[<span th:text="${rsf.levelName}">Basic</span>]</small>
+							</a>
+							<small class="muted">(<span th:text="${rsf.count}">12</span>)</small>
+						</div>
+						<div th:each="rsf : ${facets.requiredSkill}">
+							<a href="#" th:href="${rsf.url}" th:text="${rsf.value}">Software/Eclipse</a>
+							<small class="muted" th:unless="${rsf.level == 0}">[<span th:text="${rsf.levelName}">Basic</span>]</small>
+							<small class="muted">(<span th:text="${rsf.count}">12</span>)</small>
 						</div>
 					</div>
 				</div>
