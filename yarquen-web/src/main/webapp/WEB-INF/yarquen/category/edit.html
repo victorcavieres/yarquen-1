@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Yarquen Crawler</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link th:href="@{/static/bootstrap/css/bootstrap.min.css}" href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link th:href="@{/static/css/yarquen.css}" href="../../../css/yarquen.css" rel="stylesheet" />
+		<link th:href="@{/static/bootstrap/css/bootstrap-responsive.min.css}" href="../../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+		<link th:href="@{/static/css/flick/jquery-ui-1.10.0.custom.min.css}" href="../../../css/flick/jquery-ui-1.10.0.custom.min.css" rel="stylesheet" />
+		<link th:href="@{/static/css/jquery.tagit.css}" href="../../../css/jquery.tagit.css" rel="stylesheet" />
+
+		<script th:src="@{/static/js/jquery.js}" src="../../../js/jquery.js"></script>
+		<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" src="../../../bootstrap/js/bootstrap.min.js"></script>
+		<script th:src="@{/static/js/jquery-ui-1.10.0.custom.min.js}" src="../../../js/jquery-ui-1.10.0.custom.min.js"></script>
+		<script th:src="@{/static/js/tag-it.min.js}" src="../../../js/tag-it.min.js" charset="utf-8"></script>
+		<script th:src="@{/static/jstree/jquery.jstree.js}" src="../../../jstree/jquery.jstree.js"></script>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner" th:substituteby="layout :: navbar">
+				<div class="container-fluid" >
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" th:href="@{/}" href="../home.html">Yarquen</a>
+					<div class="nav-collapse collapse">
+						<p class="navbar-text pull-right">Logged in as <a href="#" class="navbar-link">admin</a></p>
+						<ul class="nav">
+							<li class="active"><a th:href="@{/}" href="../home.html">Home</a></li>
+							<li><a href="#about">About</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+				<ul class="breadcrumb">
+					<li><a th:href="@{/}" href="../home.html">Home</a> <span class="divider">/</span></li>
+					<li class="active">Edit Categories</li>
+				</ul>
+		</div>
+		
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div>
+					<form id="editCategoryForm" class="form-horizontal" method="POST" th:object="${account}"
+							action="show.html" th:action="@{'/account/skills/'}">
+							
+						<fieldset>
+						
+							<div class="row">
+								<div class="span6 offset1">
+									<div class="alert alert-info no-reports help-block" style="display: block;">
+										<span>Please right click over tree to create, rename or delete category</span>
+									</div>	
+									<br/>
+									<div class="input-append">
+										  <input id="searchTreeInput" class="input-small" type="text" placeholder="Category" />
+										  <button id="searchTree" class="btn" type="button">Search</button>
+										  <button id="resetSearchTree" class="btn" type="button">Reset</button>
+									</div>
+									<div id="categoryTree"></div>
+								</div>
+							
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+
+			<hr/>
+			<footer class="pull-right" th:substituteby="layout :: footer">
+				<small class="muted">Yarquen, a focused, semantic, distributed crawler :)</small>
+			</footer>
+		</div>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+
+$(document).ready(function() {
+	$("#skillBodyTable").on("click", ".close", function() {
+		removeCategoryFields($(this).parent().parent())
+	});
+	
+	$("#searchTree").click(function () {
+		$("#categoryTree").jstree("search",$("#searchTreeInput").val());
+	});
+	$("#resetSearchTree").click(function () {
+		$("#searchTreeInput").val('');
+		$("#categoryTree").jstree("close_all",$("#categoryTree"));
+		$("#modalSkill").modal("hide");
+		
+	});
+	//avoid submit on hit enter 
+	$("#searchTreeInput").keypress(function(e) {
+		if(e.which == 13) {
+			//prevent submit
+			e.preventDefault();
+			
+			$("#categoryTree").jstree("search",$("#searchTreeInput").val());
+		}
+	});
+	
+	$("#modalSkillSave").click(function () {
+		var code=$("#modalSkillCode").val();
+		var name=$("#modalSkillName").val();
+		$("#skillBodyTable").append("<tr id=\"" + code + "\"><td><span>" + name + "</span></td><td></td><td><span class=\"categoryCloseBtn close\" style=\"float: none\">x</span></td></tr>");
+		var c = $("#categoryList").children().size();
+		$("#categoryList").append("<input type=\"hidden\" id=\"skills" + c + ".categoryBranch\" name=\"skills[" + c + "].categoryBranch\" value=\"" + code + "\">");
+		
+		$("#modalSkill").modal("hide");
+		var jcode=code.replace(/\./g,'\\.')
+		var levelValue = $("#modalSkillLevel").val();
+		$("#modalSkillLevel").clone(true).attr('id', "skills" + c + ".level").appendTo('#'+jcode+'>td:nth-child(2)');
+		var selectSelector= "#skills" + c + "\\.level";
+		$(selectSelector).val(levelValue);
+		$(selectSelector).attr("name","skills["+c+"].level");
+		$("#modalSkillLevel").val(1);
+	});
+	
+	$("#categoryTree").bind("create.jstree", function(e, data){
+		var name= data.rslt.name;
+		
+		data.rslt.obj.data('name',name);
+		var parent=data.inst._get_parent(data.rslt.obj).data("code");
+		console.log(name+" from parent "+parent+" created ");
+		var propsObj = $(data.rslt.obj).data();
+		
+	    
+	    $.ajax({
+	        type: "GET",
+	        url: /*[[@{'/category/addCategory'}]]*/ "http://localhost:8080/yarquen/category/addCategoryFake",
+	        data: 'parent='+parent+'&child='+name,
+	        complete: function(e, xhr, settings){
+	            if(e.status === 200){
+	            	data.rslt.obj.data('code',e.responseText);
+	            	console.log("category added successfully");
+	            }else{
+	            	$("#categoryTree").jstree("remove",data.rslt.obj);
+					alert(e.responseText);
+	            }
+	        }
+	        });
+	});
+	
+	$("#categoryTree").bind("rename.jstree", function(e, data){
+		var code = data.rslt.obj.data("code");
+		var name= data.rslt.obj.data("name");
+		var new_name=data.rslt.new_name;
+		var old_name=data.rslt.old_name;
+		var parent=data.inst._get_parent(data.rslt.obj).data("code");
+		console.log(old_name+" to "+new_name+".."+code+","+name);
+		$.ajax({
+	        type: "GET",
+	        url: /*[[@{'/category/renameCategory'}]]*/ "http://localhost:8080/yarquen/category/renameCategoryFake",
+	        data: 'parent='+parent+'&newName='+new_name+"&oldCode="+code,
+	        complete: function(e, xhr, settings){
+	            if(e.status === 200){
+	            	console.log("category renamed successfully"+e.responseText);
+	            }else{
+	            	//$("#categoryTree").remove(data.rslt.obj);
+	            	$("#categoryTree").jstree('set_text', data.rslt.obj , old_name );
+					alert(e.responseText);
+					
+	            }
+	        }
+	        });
+	}); 
+
+	 
+
+	$("#categoryTree").bind("remove.jstree", function(e, data){
+		var code = data.rslt.obj.data("code");
+		var name= data.rslt.obj.data("name");
+		console.log("deleting: "+code);
+	}); 
+	
+	$("#categoryTree").jstree({
+		core: { animation: 0 },
+		plugins: [ "themes", "json_data", "ui", "search","crrm", "contextmenu" ],
+		themes: { theme: "classic", dots: true, icons: false },
+		contextmenu: {
+            items: {
+                "create": {
+                    "label": "Create",
+                    "action": function (obj) {
+                        this.create(obj);
+                    }, "_disabled": false,
+                    "_class": "add",
+                    "separator_before": false,
+                    "separator_after": false,
+                    "icon": false
+                }, "rename": {
+                    "label": "Rename",
+                    "action": function (obj) {
+                        this.rename(obj);
+                    }, "_disabled": false,
+                    "_class": "rename",
+                    "separator_before": false,
+                    "separator_after": false,
+                    "icon": false
+                }, "remove": {
+                    "label": "Delete",
+                    "action": function (obj) {
+                    	console.log("will remove: "+obj.data("code"));
+                    	$.ajax({
+                	        type: "GET",
+                	        url: /*[[@{'/category/removeCategory'}]]*/ "http://localhost:8080/yarquen/category/removeCategoryFake",
+                	        data: "branch="+obj.data("code"),
+                	        complete: function(e, xhr, settings){
+                	            if(e.status === 200){
+                	            	console.log("category removed successfully");
+                	            	$("#categoryTree").jstree("remove",obj);
+                	            }else{
+                					alert(e.responseText);
+                	            }
+                	        }
+                	        });
+                    	
+                    	
+                        
+                    }, "_disabled": false,
+                    "_class": "delete",
+                    "separator_before": false,
+                    "separator_after": false,
+                    "icon": false
+                }, "ccp": false
+            }},
+		json_data: {
+			data: /*[[ ${categories} ]]*/ [ { data: "Software", metadata: { code: "Software", name: "Software" }, children: [ { data: "Eclipse", metadata: { code: "Software.Eclipse", name: "Software/Eclipse" } } ] } ]
+		}
+	}).bind("select_node.jstree", showModalSkill)
+	 
+});
+
+function showModalSkill(e, data) {
+	var code = data.rslt.obj.data("code");
+	var name= data.rslt.obj.data("name");
+	
+	if($("#categoryList input[value=\"" + code + "\"]").length != 0) {
+		alert("The Skill " + name + " is already selected, please change in list");
+	}
+	else {
+		$("#modalSkill").modal("show");
+		$("#modalSkillHeader").text(name);
+		$("#modalSkillCode").val(code);
+		$("#modalSkillName").val(name);
+	}
+}
+
+function removeCategoryFields(categoryLi) {
+	var code = categoryLi.attr("id");
+	
+	categoryLi.remove();
+	
+	var c = $("#categoryList").children().size();
+	var i = 0;
+	//locate and remove the category element
+	for(; i < c; i++) {
+		var selector = "#categoryList input:nth-child(" + ( i + 1 ) + ")";
+		if($(selector).attr("value") == code) {
+			$(selector).remove();
+			break;
+		}
+	}
+	//fix remaining elements
+	for(; i < c; i++) {
+		var selector = "#categoryList input:nth-child(" + ( i + 1 ) + ")";
+		$(selector).attr("id","skills" + i+".categoryBranch");
+		$(selector).attr("name","skills[" + i + "].categoryBranch");
+		
+		var levelSelector= "#skills"+ ( i + 1 ) +"\\.level";
+		$(levelSelector).attr("name","skills[" + i + "].level");
+		$(levelSelector).attr("id","skills" + i + ".level");
+		
+	}
+}
+
+
+$(function() {
+  $("#date").datepicker();
+});
+
+$(function() {
+	var authors = /*[[ ${authors} ]]*/ ["Nostromo", "Charles Gould", "Captain Mitchell"];
+	$( "#author" ).autocomplete({
+		source: authors
+	});
+});
+
+/*$("#enrichmentForm").submit(function(event) {
+	
+	return true;
+});*/
+/*]]>*/
+</script>
+	</body>
+</html>

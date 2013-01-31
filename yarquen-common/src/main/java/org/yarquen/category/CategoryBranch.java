@@ -2,6 +2,7 @@ package org.yarquen.category;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.validation.Valid;
 
@@ -92,6 +93,17 @@ public class CategoryBranch {
 
 	public void setNodes(List<CategoryBranchNode> nodes) {
 		this.nodes = nodes;
+	}
+	
+	public static CategoryBranch parse(String branch){
+		final CategoryBranch categoryBranch = new CategoryBranch();
+		final StringTokenizer tokenizer = new StringTokenizer(
+				branch, ".");
+		while (tokenizer.hasMoreTokens()) {
+			final String code = tokenizer.nextToken();
+			categoryBranch.addSubCategory(code, null);
+		}
+		return categoryBranch;
 	}
 
 	@Override
