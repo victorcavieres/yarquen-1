@@ -100,11 +100,11 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value = "/renameCategory", method = RequestMethod.GET)
-	public void renameCategory(@RequestParam("parent") String parentCategory,@RequestParam("oldCode") String oldCode, @RequestParam("newName") String newName,HttpServletResponse rsp) throws IOException {
-		final CategoryBranch categoryBranch = CategoryBranch.parse(parentCategory);
-		LOGGER.debug("renaming category to {} from parent {}",newName,categoryBranch);
+	public void renameCategory(@RequestParam("branch") String branch, @RequestParam("newName") String newName,HttpServletResponse rsp) throws IOException {
+		final CategoryBranch categoryBranch = CategoryBranch.parse(branch);
+		LOGGER.debug("renaming category branch {} with {}",branch,newName);
 		try{
-			categoryService.renameCategory(categoryBranch, oldCode,newName);
+			categoryService.renameCategory(categoryBranch, newName);
 			rsp.setStatus(HttpServletResponse.SC_OK);
 		}catch(Exception e){
 			LOGGER.error("can't add Category", e);
@@ -116,8 +116,8 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/renameCategoryFake", method = RequestMethod.GET)
 	@ResponseStatus( HttpStatus.OK )
-	public void renameCategoryFake(@RequestParam("parent") String parentCategory,@RequestParam("oldCode") String oldCode, @RequestParam("newName") String newName) {
-		LOGGER.debug("renaming category to {} from parent {}",newName,parentCategory);
+	public void renameCategoryFake(@RequestParam("branch") String branch, @RequestParam("newName") String newName) {
+		LOGGER.debug("renaming category branch {} with {}",branch,newName);
 	}
 	
 	@RequestMapping(value = "/removeCategory", method = RequestMethod.GET)
@@ -137,7 +137,7 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/removeCategoryFake", method = RequestMethod.GET)
 	@ResponseStatus( HttpStatus.OK )
-	public void removeCategoryFake(@RequestParam("brach") String branch) {
+	public void removeCategoryFake(@RequestParam("branch") String branch) {
 		final CategoryBranch categoryBranch = CategoryBranch.parse(branch);
 		LOGGER.debug("removing category branch {}",categoryBranch);
 	}

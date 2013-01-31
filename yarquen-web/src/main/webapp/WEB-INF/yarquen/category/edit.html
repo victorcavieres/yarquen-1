@@ -135,7 +135,7 @@ $(document).ready(function() {
 	        data: 'parent='+parent+'&child='+name,
 	        complete: function(e, xhr, settings){
 	            if(e.status === 200){
-	            	data.rslt.obj.data('code',e.responseText);
+	            	data.rslt.obj.data('code',parent+"."+e.responseText);
 	            	console.log("category added successfully");
 	            }else{
 	            	$("#categoryTree").jstree("remove",data.rslt.obj);
@@ -155,7 +155,7 @@ $(document).ready(function() {
 		$.ajax({
 	        type: "GET",
 	        url: /*[[@{'/category/renameCategory'}]]*/ "http://localhost:8080/yarquen/category/renameCategoryFake",
-	        data: 'parent='+parent+'&newName='+new_name+"&oldCode="+code,
+	        data: 'branch='+code+'&newName='+new_name,
 	        complete: function(e, xhr, settings){
 	            if(e.status === 200){
 	            	console.log("category renamed successfully"+e.responseText);
@@ -169,13 +169,6 @@ $(document).ready(function() {
 	        });
 	}); 
 
-	 
-
-	$("#categoryTree").bind("remove.jstree", function(e, data){
-		var code = data.rslt.obj.data("code");
-		var name= data.rslt.obj.data("name");
-		console.log("deleting: "+code);
-	}); 
 	
 	$("#categoryTree").jstree({
 		core: { animation: 0 },

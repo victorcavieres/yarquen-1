@@ -112,38 +112,57 @@ public class CategoryServiceImpl implements CategoryService {
 
 		subCategory.getSubCategories().add(subCategoryChild);
 		LOGGER.info("{}: {}  added successfull", categoryBranch, newCategory);
-		// categoryRepository.save(categoryParent);
+		categoryRepository.save(categoryParent);
 		return code;
 	}
 
 	@Override
-	public void renameCategory(CategoryBranch categoryBranch, String oldCode,
-			String newNameNode) {
+	public void renameCategory(CategoryBranch categoryBranch, String newNameNode) {
 		if (categoryBranch == null || categoryBranch.getNodes().isEmpty()) {
 			throw new IllegalArgumentException(
 					"category branch cannot be null/empty");
 		}
 		Category categoryParent = categoryRepository.findByCode(categoryBranch
 				.getNodes().get(0).getCode());
-		SubCategory subCategory = getLeaf(categoryParent, categoryBranch);
-		SubCategory subCategoryRenamed = null;
-
-		for (SubCategory sub : subCategory.getSubCategories()) {
-			if (sub.getName().equals(newNameNode)) {
-				throw new IllegalArgumentException(newNameNode
-						+ " already exists");
-			}
-			if (sub.getCode().equals(oldCode)) {
-				subCategoryRenamed = sub;
-			}
-		}
-		if (subCategoryRenamed == null) {
-			throw new IllegalArgumentException(categoryBranch + "/" + oldCode
+		if (categoryParent == null) {
+			throw new IllegalArgumentException("Branch " + categoryBranch
 					+ " not found");
 		}
-		subCategoryRenamed.setName(newNameNode);
-		LOGGER.info("{}: {}  renamed successfull", categoryBranch, newNameNode);
-		// categoryRepository.save(categoryParent);
+
+		if (categoryBranch.getNodes().size() == 1) {
+			// renaming root category
+			categoryParent.setName(newNameNode);
+			categoryRepository.save(categoryParent);
+			LOGGER.info("{}: {}  renamed successfull", categoryBranch,
+					newNameNode);
+
+		} else {
+
+			// renaming category leaf
+			CategoryBranchNode leaf = categoryBranch.getNodes().get(
+					categoryBranch.getNodes().size() - 1);
+			categoryBranch.getNodes().remove(leaf);
+			LOGGER.info("Will remane leaf: {} with {}", leaf, newNameNode);
+			SubCategory subCategoryParent = getLeaf(categoryParent, categoryBranch);
+			SubCategory subCategoryRenamed = null;
+			for (SubCategory sub : subCategoryParent.getSubCategories()) {
+				if (sub.getName().equals(newNameNode)) {
+					throw new IllegalArgumentException(newNameNode
+							+ " already exists");
+				}
+				if (sub.getCode().equals(leaf.getCode())) {
+					subCategoryRenamed = sub;
+				}
+			}
+			if (subCategoryRenamed == null) {
+				throw new IllegalArgumentException("Leaf "
+						+ leaf.getCode() + " not found");
+			}
+			subCategoryRenamed.setName(newNameNode);
+			LOGGER.info("{}: {}  renamed successfull", categoryBranch+"."+leaf.getCode(),
+					newNameNode);
+			categoryRepository.save(categoryParent);
+		}
 
 	}
 
@@ -157,11 +176,16 @@ public class CategoryServiceImpl implements CategoryService {
 
 		Category categoryParent = categoryRepository.findByCode(categoryBranch
 				.getNodes().get(0).getCode());
-		// remove root category
+		if (categoryParent == null) {
+			throw new IllegalArgumentException("Branch " + categoryBranch
+					+ " not found");
+		}
+
 		if (categoryBranch.getNodes().size() == 1) {
+			// remove root category
 			LOGGER.info("Will remove root category: {}", categoryParent);
 			if (!hasArticlesWith(categoryParent.getCode())) {
-				// categoryRepository.delete(categoryParent);
+				categoryRepository.delete(categoryParent);
 				LOGGER.info("{} remove successfull", categoryParent.getCode());
 			} else {
 				throw new UnsupportedOperationException(
@@ -170,6 +194,7 @@ public class CategoryServiceImpl implements CategoryService {
 			}
 
 		} else {
+			// remove category leaf
 			CategoryBranchNode leaf = categoryBranch.getNodes().get(
 					categoryBranch.getNodes().size() - 1);
 			categoryBranch.getNodes().remove(leaf);
@@ -188,9 +213,9 @@ public class CategoryServiceImpl implements CategoryService {
 			}
 
 			subCategory.getSubCategories().remove(subCategoryRemoved);
-			
+
 			if (!hasArticlesWith(leaf.getCode())) {
-				// categoryRepository.save(categoryParent);
+				categoryRepository.save(categoryParent);
 				LOGGER.info("{}: {}  remove successfull", categoryBranch,
 						leaf.getCode());
 			} else {
