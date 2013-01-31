@@ -9,9 +9,13 @@ package org.yarquen.category;
  * 
  */
 public interface CategoryService {
-	void completeCategoryBranchNodeNames(CategoryBranch categoryBranch);
-	void renameCategory(CategoryBranch categoryBranch,String newNameNode);
-	void deleteCategory(CategoryBranch categoryBranch);
 	String addCategory(CategoryBranch categoryBranch, String newCategory);
+
+	void completeCategoryBranchNodeNames(CategoryBranch categoryBranch);
+
+	void deleteCategory(CategoryBranch categoryBranch);
+
 	SubCategory getLeaf(Category category, CategoryBranch categoryBranch);
+
+	void renameCategory(CategoryBranch categoryBranch, String newNameNode);
 }

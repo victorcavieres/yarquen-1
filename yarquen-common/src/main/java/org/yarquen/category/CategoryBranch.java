@@ -28,6 +28,17 @@ public class CategoryBranch {
 		return branch;
 	}
 
+	public static CategoryBranch parse(String branch) {
+		final CategoryBranch categoryBranch = new CategoryBranch();
+		final StringTokenizer tokenizer = new StringTokenizer(branch,
+				CODE_SEPARATOR);
+		while (tokenizer.hasMoreTokens()) {
+			final String code = tokenizer.nextToken();
+			categoryBranch.addSubCategory(code, null);
+		}
+		return categoryBranch;
+	}
+
 	@Valid
 	private List<CategoryBranchNode> nodes = new ArrayList<CategoryBranchNode>();
 
@@ -93,17 +104,6 @@ public class CategoryBranch {
 
 	public void setNodes(List<CategoryBranchNode> nodes) {
 		this.nodes = nodes;
-	}
-	
-	public static CategoryBranch parse(String branch){
-		final CategoryBranch categoryBranch = new CategoryBranch();
-		final StringTokenizer tokenizer = new StringTokenizer(
-				branch, ".");
-		while (tokenizer.hasMoreTokens()) {
-			final String code = tokenizer.nextToken();
-			categoryBranch.addSubCategory(code, null);
-		}
-		return categoryBranch;
 	}
 
 	@Override

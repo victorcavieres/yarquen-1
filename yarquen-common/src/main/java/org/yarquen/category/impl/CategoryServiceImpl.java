@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,64 +31,20 @@ import org.yarquen.category.SubCategory;
  */
 @Service
 public class CategoryServiceImpl implements CategoryService {
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(CategoryServiceImpl.class);
+
+	public static String generateCode(String categoryName) {
+		final String temp = StringUtils.stripAccents(categoryName);
+		String code = WordUtils.capitalize(temp);
+		code = code.replaceAll("\\s", "");
+		return code;
+	}
+
 	@Resource
 	private CategoryRepository categoryRepository;
 	@Resource
 	private MongoTemplate mongoTemplate;
-
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(CategoryServiceImpl.class);
-
-	@Override
-	public void completeCategoryBranchNodeNames(CategoryBranch categoryBranch) {
-		final List<CategoryBranchNode> nodes = categoryBranch.getNodes();
-		if (nodes == null || nodes.isEmpty()) {
-			throw new IllegalArgumentException(
-					"category branch nodes cannot be null/empty");
-		} else {
-			final String categoryCode = nodes.get(0).getCode();
-			final SubCategory category = categoryRepository
-					.findByCode(categoryCode);
-			if (category == null) {
-				throw new RuntimeException("category " + categoryCode
-						+ " not found");
-			} else if (!(category instanceof Category)) {
-				throw new IllegalArgumentException(
-						"category branch root must be of type Category");
-			} else {
-				nodes.get(0).setName(category.getName());
-
-				final Iterator<CategoryBranchNode> iterator = nodes.iterator();
-				// discard element already processed
-				iterator.next();
-
-				completeSubCategory(iterator, category);
-			}
-		}
-	}
-
-	private void completeSubCategory(Iterator<CategoryBranchNode> iterator,
-			SubCategory parentCategory) {
-		if (iterator.hasNext()) {
-			final CategoryBranchNode node = iterator.next();
-			final List<SubCategory> subCategories = parentCategory
-					.getSubCategories();
-			if (subCategories == null) {
-				throw new RuntimeException(
-						"Invalid branch, no more subCategories from node "
-								+ node.getCode());
-			}
-			for (SubCategory subCategory : subCategories) {
-				if (subCategory.getCode().equals(node.getCode())) {
-					node.setName(subCategory.getName());
-					completeSubCategory(iterator, subCategory);
-					return;
-				}
-			}
-			throw new RuntimeException("Invalid branch, subCategory for node "
-					+ node.getCode() + " not found");
-		}
-	}
 
 	@Override
 	public String addCategory(CategoryBranch categoryBranch, String newCategory) {
@@ -117,53 +74,31 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public void renameCategory(CategoryBranch categoryBranch, String newNameNode) {
-		if (categoryBranch == null || categoryBranch.getNodes().isEmpty()) {
+	public void completeCategoryBranchNodeNames(CategoryBranch categoryBranch) {
+		final List<CategoryBranchNode> nodes = categoryBranch.getNodes();
+		if (nodes == null || nodes.isEmpty()) {
 			throw new IllegalArgumentException(
-					"category branch cannot be null/empty");
-		}
-		Category categoryParent = categoryRepository.findByCode(categoryBranch
-				.getNodes().get(0).getCode());
-		if (categoryParent == null) {
-			throw new IllegalArgumentException("Branch " + categoryBranch
-					+ " not found");
-		}
-
-		if (categoryBranch.getNodes().size() == 1) {
-			// renaming root category
-			categoryParent.setName(newNameNode);
-			categoryRepository.save(categoryParent);
-			LOGGER.info("{}: {}  renamed successfull", categoryBranch,
-					newNameNode);
-
+					"category branch nodes cannot be null/empty");
 		} else {
+			final String categoryCode = nodes.get(0).getCode();
+			final SubCategory category = categoryRepository
+					.findByCode(categoryCode);
+			if (category == null) {
+				throw new RuntimeException("category " + categoryCode
+						+ " not found");
+			} else if (!(category instanceof Category)) {
+				throw new IllegalArgumentException(
+						"category branch root must be of type Category");
+			} else {
+				nodes.get(0).setName(category.getName());
 
-			// renaming category leaf
-			CategoryBranchNode leaf = categoryBranch.getNodes().get(
-					categoryBranch.getNodes().size() - 1);
-			categoryBranch.getNodes().remove(leaf);
-			LOGGER.info("Will remane leaf: {} with {}", leaf, newNameNode);
-			SubCategory subCategoryParent = getLeaf(categoryParent, categoryBranch);
-			SubCategory subCategoryRenamed = null;
-			for (SubCategory sub : subCategoryParent.getSubCategories()) {
-				if (sub.getName().equals(newNameNode)) {
-					throw new IllegalArgumentException(newNameNode
-							+ " already exists");
-				}
-				if (sub.getCode().equals(leaf.getCode())) {
-					subCategoryRenamed = sub;
-				}
+				final Iterator<CategoryBranchNode> iterator = nodes.iterator();
+				// discard element already processed
+				iterator.next();
+
+				completeSubCategory(iterator, category);
 			}
-			if (subCategoryRenamed == null) {
-				throw new IllegalArgumentException("Leaf "
-						+ leaf.getCode() + " not found");
-			}
-			subCategoryRenamed.setName(newNameNode);
-			LOGGER.info("{}: {}  renamed successfull", categoryBranch+"."+leaf.getCode(),
-					newNameNode);
-			categoryRepository.save(categoryParent);
 		}
-
 	}
 
 	@Override
@@ -228,14 +163,6 @@ public class CategoryServiceImpl implements CategoryService {
 
 	}
 
-	public boolean hasArticlesWith(String code) {
-		Query query = new Query(Criteria.where("categories").elemMatch(
-				Criteria.where("nodes").elemMatch(
-						Criteria.where("code").is(code))));
-		List<Article> result = mongoTemplate.find(query, Article.class);
-		return !result.isEmpty();
-	}
-
 	@Override
 	public SubCategory getLeaf(Category category, CategoryBranch categoryBranch) {
 		final List<CategoryBranchNode> nodes = categoryBranch.getNodes();
@@ -261,6 +188,88 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 	}
 
+	public boolean hasArticlesWith(String code) {
+		Query query = new Query(Criteria.where("categories").elemMatch(
+				Criteria.where("nodes").elemMatch(
+						Criteria.where("code").is(code))));
+		List<Article> result = mongoTemplate.find(query, Article.class);
+		return !result.isEmpty();
+	}
+
+	@Override
+	public void renameCategory(CategoryBranch categoryBranch, String newNameNode) {
+		if (categoryBranch == null || categoryBranch.getNodes().isEmpty()) {
+			throw new IllegalArgumentException(
+					"category branch cannot be null/empty");
+		}
+		Category categoryParent = categoryRepository.findByCode(categoryBranch
+				.getNodes().get(0).getCode());
+		if (categoryParent == null) {
+			throw new IllegalArgumentException("Branch " + categoryBranch
+					+ " not found");
+		}
+
+		if (categoryBranch.getNodes().size() == 1) {
+			// renaming root category
+			categoryParent.setName(newNameNode);
+			categoryRepository.save(categoryParent);
+			LOGGER.info("{}: {}  renamed successfull", categoryBranch,
+					newNameNode);
+
+		} else {
+
+			// renaming category leaf
+			CategoryBranchNode leaf = categoryBranch.getNodes().get(
+					categoryBranch.getNodes().size() - 1);
+			categoryBranch.getNodes().remove(leaf);
+			LOGGER.info("Will remane leaf: {} with {}", leaf, newNameNode);
+			SubCategory subCategoryParent = getLeaf(categoryParent,
+					categoryBranch);
+			SubCategory subCategoryRenamed = null;
+			for (SubCategory sub : subCategoryParent.getSubCategories()) {
+				if (sub.getName().equals(newNameNode)) {
+					throw new IllegalArgumentException(newNameNode
+							+ " already exists");
+				}
+				if (sub.getCode().equals(leaf.getCode())) {
+					subCategoryRenamed = sub;
+				}
+			}
+			if (subCategoryRenamed == null) {
+				throw new IllegalArgumentException("Leaf " + leaf.getCode()
+						+ " not found");
+			}
+			subCategoryRenamed.setName(newNameNode);
+			LOGGER.info("{}: {}  renamed successfull", categoryBranch + "."
+					+ leaf.getCode(), newNameNode);
+			categoryRepository.save(categoryParent);
+		}
+
+	}
+
+	private void completeSubCategory(Iterator<CategoryBranchNode> iterator,
+			SubCategory parentCategory) {
+		if (iterator.hasNext()) {
+			final CategoryBranchNode node = iterator.next();
+			final List<SubCategory> subCategories = parentCategory
+					.getSubCategories();
+			if (subCategories == null) {
+				throw new RuntimeException(
+						"Invalid branch, no more subCategories from node "
+								+ node.getCode());
+			}
+			for (SubCategory subCategory : subCategories) {
+				if (subCategory.getCode().equals(node.getCode())) {
+					node.setName(subCategory.getName());
+					completeSubCategory(iterator, subCategory);
+					return;
+				}
+			}
+			throw new RuntimeException("Invalid branch, subCategory for node "
+					+ node.getCode() + " not found");
+		}
+	}
+
 	private SubCategory getLeafSubCategory(
 			Iterator<CategoryBranchNode> iterator, SubCategory parentCategory) {
 		if (iterator.hasNext()) {
@@ -282,14 +291,6 @@ public class CategoryServiceImpl implements CategoryService {
 		} else {
 			return parentCategory;
 		}
-	}
-
-	public static String generateCode(String categoryName) {
-		String temp = org.apache.commons.lang3.StringUtils
-				.stripAccents(categoryName);
-		String code = WordUtils.capitalize(temp);
-		code = code.replaceAll("\\s", "");
-		return code;
 	}
 
 }
