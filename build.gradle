@@ -14,7 +14,7 @@ allprojects {
 
 	group = "org.yarquen"
 	version = "0.4.0-SNAPSHOT"
-	sourceCompatibility = "1.6"
+	sourceCompatibility = "1.7"
 }
 
 subprojects {

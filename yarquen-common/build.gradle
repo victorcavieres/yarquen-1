@@ -6,8 +6,6 @@
  * version: $Id: build.gradle 786 2012-11-26 16:29:54Z totex $
  */
 
-import org.gradle.groovy.scripts.internal.BuildScriptClasspathScriptTransformer;
-
 if (hasProperty("production")) {
 	jar.exclude "rebel.xml"
 }
