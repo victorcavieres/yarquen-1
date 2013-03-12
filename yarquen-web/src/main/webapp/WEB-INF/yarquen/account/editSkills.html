@@ -104,9 +104,9 @@
 													<td><span th:text="${skill.categoryBranch.name}">Informática/Lenguajes de Programación</span></td>
 													<td>
 														<select class="input-small" th:field="*{skills[__${stat.index}__].level}">
-														    <option label="Basic" value="1"/>
-														    <option label="Medium" value="2"/>
-														    <option label="Advanced" value="3"/>
+														    <option label="Basic" value="1">Basic</option>
+														    <option label="Medium" value="2">Medium</option>
+														    <option label="Advanced" value="3">Advanced</option>
 													    </select>
 													</td>
 													<td><span class="categoryCloseBtn close" style="float: none">x</span></td>
@@ -135,9 +135,9 @@
 										  <div class="modal-body">
 										    <p>Select your level skill:</p>
 										    <select id="modalSkillLevel" class="input-small">
-											    <option label="Basic" value="1"/>
-											    <option label="Medium" value="2"/>
-											    <option label="Advanced" value="3"/>
+											    <option label="Basic" value="1">Basic</option>
+											    <option label="Medium" value="2">Medium</option>
+											    <option label="Advanced" value="3">Advanced</option>
 										    </select>
 										    <input id="modalSkillCode" type="hidden"/>
 										    <input id="modalSkillName" type="hidden"/>
