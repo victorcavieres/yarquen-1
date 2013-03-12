@@ -260,7 +260,7 @@ public class CategoryServiceImpl implements CategoryService {
 			}
 			for (SubCategory subCategory : subCategories) {
 				if (subCategory.getCode().equals(node.getCode())) {
-					node.setName(subCategory.getName());
+					node.setName(subCategory.getName(),true);
 					completeSubCategory(iterator, subCategory);
 					return;
 				}

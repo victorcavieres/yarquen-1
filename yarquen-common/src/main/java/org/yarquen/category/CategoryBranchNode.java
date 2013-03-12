@@ -49,4 +49,10 @@ public class CategoryBranchNode {
 			this.name = name;
 		}
 	}
+	
+	public void setName(String name,Boolean fromSafeSource) {
+		if(!fromSafeSource)
+			this.setName(name);
+		this.name = name;
+	}
 }
