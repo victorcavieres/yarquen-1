@@ -22,14 +22,13 @@ dependencies {
 	compile ("org.apache.hadoop:hadoop-core:0.20.2") {
 		exclude group: "ant", module: "ant"
 	}
-	
-	//compile "com.ibm.icu:icu4j:3.4.4"
+
 	compile "bixo:bixo-core:0.8.0"
 	compile "dom4j:dom4j:1.6.1"
 
 	compile "org.springframework.data:spring-data-hadoop:1.0.0.RC1"
 
-	runtime ("jaxen:jaxen:1.1.1") {
+	runtime ("jaxen:jaxen:1.1.4") {
 		exclude group: "xerces", module: "xercesImpl"
 	}
 }

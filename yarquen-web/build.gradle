@@ -18,9 +18,11 @@ if (hasProperty("production")) {
 }
 
 ext {
-	thymeleafVersion = "2.0.14"
-	thymeleafspringsecurity3Version = "2.0.0"
+	thymeleafVersion = "2.0.16"
+	thymeleafSpringVersion = "2.0.16"
+	thymeleafSpringSecurityVersion = "2.0.0"
 	luceneVersion = "4.1.0"
+	springSecurity = "3.1.3.RELEASE"
 }
 
 dependencies {
@@ -28,19 +30,24 @@ dependencies {
 
 	compile project(":yarquen-common")	
 	compile "org.springframework:spring-webmvc:$springVersion"
-	compile "org.springframework.security:spring-security-config:$springVersion"
-	compile "org.springframework.security:spring-security-web:$springVersion"
-	compile "org.springframework.security:spring-security-taglibs:$springVersion"
-	compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity3:$thymeleafspringsecurity3Version"
+	compile "org.springframework:spring-web:$springVersion"
+	compile "org.springframework.security:spring-security-config:$springSecurity"
+	compile ("org.springframework.security:spring-security-web:$springSecurity") {
+		exclude group: "org.springframework", module: "spring-jdbc"
+	}
+	compile ("org.springframework.security:spring-security-taglibs:$springSecurity") {
+		exclude group: "org.springframework", module: "spring-jdbc"
+	}
+	compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity3:$thymeleafSpringSecurityVersion"
 	compile "org.thymeleaf:thymeleaf:$thymeleafVersion"
-	compile "org.thymeleaf:thymeleaf-spring3:$thymeleafVersion"
+	compile "org.thymeleaf:thymeleaf-spring3:$thymeleafSpringVersion"
 	
 	compile "org.apache.lucene:lucene-core:$luceneVersion"
 	compile "org.apache.lucene:lucene-analyzers-common:$luceneVersion"
 	compile "org.apache.lucene:lucene-queryparser:$luceneVersion"
 	compile "org.apache.lucene:lucene-facet:$luceneVersion"
 	compile "commons-io:commons-io:2.4"
-	compile "org.apache.httpcomponents:httpclient:4.2.2"
+	compile "org.apache.httpcomponents:httpclient:4.2.3" //4.2.2
 	
 	runtime "ch.qos.logback:logback-classic:1.0.9"
 }
