@@ -1,85 +1,93 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-	<head th:fragment="header">
-		<meta charset="UTF-8" />
-		<title>Yarquen Crawler</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:fragment="header">
+<meta charset="UTF-8" />
+<title>Yarquen Crawler</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<link th:href="@{/static/bootstrap/css/bootstrap.css}" href="../../bootstrap/css/bootstrap.css" rel="stylesheet" />
-		<link th:href="@{/static/css/yarquen.css}" href="../../css/yarquen.css" rel="stylesheet" />
-		<link th:href="@{/static/bootstrap/css/bootstrap-responsive.css}" href="../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+<link th:href="@{/static/bootstrap/css/bootstrap.css}"
+	href="../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link th:href="@{/static/css/yarquen.css}" href="../../css/yarquen.css"
+	rel="stylesheet" />
+<link th:href="@{/static/bootstrap/css/bootstrap-responsive.css}"
+	href="../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 
-		<script th:src="@{/static/js/jquery.js}" src="../../js/jquery.js"></script>
-		<script th:src="@{/static/js/jquery.validate.js}" src="../../js/jquery.validate.js"></script>
-		<script th:src="@{/static/bootstrap/js/bootstrap.js}" src="../../bootstrap/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner" th:fragment="navbar">
-				<div class="container-fluid">
-					<a class="btn btn-navbar" data-toggle="collapse"
-						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a>
-					<a class="brand" th:href="@{/}" href="home.html">Yarquen</a>
-					<div class="nav-collapse collapse">
-						<p class="navbar-text pull-right" th:fragment="logout"
-							sec:authorize="isAuthenticated()">
-							Logged in as <a href="account/show.html" th:href="@{/account/current.html}" class="navbar-link"
-								sec:authentication="name">admin</a><span
-								class="divider-vertical"></span> <a href="index.html" th:href="@{/j_spring_security_logout}">Logout</a>
-						</p>
-						<ul class="nav">
-							<li class="active"><a th:href="@{/}" href="home.html">Home</a></li>
-							<li><a href="#about">About</a></li>
-							<li><a href="#contact">Contact</a></li>
-						</ul>
-						<ul class="nav pull-right" sec:authorize="!isAuthenticated()">
-							<li><a href="account/register.html"
-								th:href="@{/account/register.html}">Sign Up</a></li>
-							<li class="divider-vertical"></li>
-							<li class="dropdown"><a class="dropdown-toggle" href="#"
-								data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-								<div class="dropdown-menu"
-									style="padding: 15px; padding-bottom: 0px;">
-									<form action="#" th:action="@{/j_spring_security_check}"
-										method="post">
-										<fieldset>
-											<div class="clearfix">
-												<input type="text" id="j_username" name="j_username"
-													placeholder="Username" />
-											</div>
-											<div class="clearfix">
-												<input type="password" id="j_password" name="j_password"
-													placeholder="Password" />
-											</div>
-											<button class="btn btn-primary" type="submit">Sign in</button>
-										</fieldset>
-									</form>
-								</div>
-							</li>
-						</ul>
-					</div>
+<script th:src="@{/static/js/jquery.js}" src="../../js/jquery.js"></script>
+<script th:src="@{/static/js/jquery.validate.js}"
+	src="../../js/jquery.validate.js"></script>
+<script th:src="@{/static/bootstrap/js/bootstrap.js}"
+	src="../../bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner" th:fragment="navbar">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a class="brand" th:href="@{/}" href="home.html">Yarquen</a>
+				<div class="nav-collapse collapse">
+					<p class="navbar-text pull-right" th:fragment="logout"
+						sec:authorize="isAuthenticated()">
+						Logged in as <a href="account/show.html"
+							th:href="@{/account/current.html}" class="navbar-link"
+							sec:authentication="name">admin</a><span class="divider-vertical"></span>
+						<a href="index.html" th:href="@{/j_spring_security_logout}">Logout</a>
+					</p>
+					<ul class="nav">
+						<li class="active"><a th:href="@{/}" href="home.html">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+					<ul class="nav pull-right" sec:authorize="!isAuthenticated()">
+						<li><a href="account/register.html"
+							th:href="@{/account/register.html}">Sign Up</a></li>
+						<li class="divider-vertical"></li>
+						<li class="dropdown"><a class="dropdown-toggle" href="#"
+							data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+							<div class="dropdown-menu"
+								style="padding: 15px; padding-bottom: 0px;">
+								<form action="#" th:action="@{/j_spring_security_check}"
+									method="post">
+									<fieldset>
+										<div class="clearfix">
+											<input type="text" id="j_username" name="j_username"
+												placeholder="Username" />
+										</div>
+										<div class="clearfix">
+											<input type="password" id="j_password" name="j_password"
+												placeholder="Password" />
+										</div>
+										<button class="btn btn-primary" type="submit">Sign in</button>
+										<a th:href="@{/account/forgotPassword.html}" href="account/forgotPassword.html">Forgot
+											Password</a>
+									</fieldset>
+								</form>
+							</div></li>
+					</ul>
 				</div>
 			</div>
-				<ul class="breadcrumb">
-					<li><a href="#">Home</a> <span class="divider">/</span></li>
-					<li><a href="#">Library</a> <span class="divider">/</span></li>
-					<li class="active">Data</li>
-				</ul>
 		</div>
+		<ul class="breadcrumb">
+			<li><a href="#">Home</a> <span class="divider">/</span></li>
+			<li><a href="#">Library</a> <span class="divider">/</span></li>
+			<li class="active">Data</li>
+		</ul>
+	</div>
 
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="hero-unit">
-					<p>Ah ah!</p>
-				</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="hero-unit">
+				<p>Ah ah!</p>
 			</div>
-
-			<hr/>
-			<footer class="pull-right" th:fragment="footer">
-				<small class="muted">Yarquen, a focused, semantic, distributed crawler :)</small>
-			</footer>
 		</div>
-	</body>
+
+		<hr />
+		<footer class="pull-right" th:fragment="footer">
+			<small class="muted">Yarquen, a focused, semantic,
+				distributed crawler :)</small>
+		</footer>
+	</div>
+</body>
 </html>

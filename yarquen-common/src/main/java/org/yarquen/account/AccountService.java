@@ -15,4 +15,22 @@ public interface AccountService {
 
 	Account authenticate(String username, String password);
 
+	/**
+	 * Sends a unique email for password reset process
+	 * 
+	 * @param email
+	 *            Email of the user trying to reset his password
+	 * @return true if the email existed or false if it didn't.
+	 */
+	boolean resetPasswordRequest(String email);
+
+	/**
+	 * Updates account with new password
+	 * 
+	 * @param account
+	 *            account with new password
+	 * @return 
+	 */
+	Account updatePassword(Account account);
+
 }

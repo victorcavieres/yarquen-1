@@ -96,6 +96,16 @@ public class AccountController {
 		return "message";
 	}
 
+	@RequestMapping(value = "/forgotPassword", method = RequestMethod.POST)
+	public String forgotPassword(Model model) {
+		String email = "ffx.tidus.master@hotmail.com";
+		LOGGER.debug("sending email to: [{}]", email);
+		accountService.resetPasswordRequest(email);
+		model.addAttribute("message",
+				"Verification email sent successfully. Check your inbox.");
+		return "message";
+	}
+
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@Valid Account account, BindingResult result,
 			Model model) {
@@ -128,6 +138,11 @@ public class AccountController {
 		return "account/register";
 	}
 
+	@RequestMapping("forgotPassword.html")
+	public String passwordChangeRequest() {
+		return "account/forgotPassword";
+	}
+
 	@RequestMapping("current.html")
 	public String register(Model model) {
 		Account userDetails = (Account) SecurityContextHolder.getContext()
@@ -147,8 +162,9 @@ public class AccountController {
 			return "account/edit";
 		} else
 			return "error";
-
 	}
+	
+	
 
 	@RequestMapping(value = "/setupSkills/{accountId}", method = RequestMethod.GET)
 	public String setupSkills(@PathVariable("accountId") String accountId,
