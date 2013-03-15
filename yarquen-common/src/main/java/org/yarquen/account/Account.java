@@ -49,6 +49,18 @@ public class Account {
 	@Valid
 	private List<Skill> skills;
 
+	private List<String> roleId;
+
+	public List<String> getRoleId() {
+		if (roleId == null)
+			roleId = new ArrayList<String>();
+		return roleId;
+	}
+
+	public void setRoleId(List<String> roleId) {
+		this.roleId = roleId;
+	}
+
 	public String getAdditionalLastName() {
 		return additionalLastName;
 	}

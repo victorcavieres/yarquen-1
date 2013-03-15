@@ -1,25 +1,54 @@
 package org.yarquen.account;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.yarquen.category.CategoryBranch;
 import org.yarquen.category.CategoryBranchNode;
 
 public class Skill {
-	public static int ADVANCED = 3;
-	// FIXME: convert to enum
-	public static int BASIC = 1;
+	public static enum Level {
+		UNKNOW(0, "Unknow"), BASIC(1, "Basic"), MEDIUM(2, "Medium"), ADVANCED(
+				3, "Advanced");
+		private final int id;
+		private final String name;
+
+		Level(int id, String name) {
+			this.id = id;
+			this.name = name;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public static Level parse(int value) {
+			for (Level l : Level.values()) {
+				if (value == l.getId()) {
+					return l;
+				}
+			}
+			throw new IllegalArgumentException("Invalid level value(" + value
+					+ "), it has to be in the range [0, 3]");
+		}
+	}
+
 	public static final String LEVEL_SEPARATOR = ".";
-	public static String[] mapLevel = { "Basic", "Medium", "Advanced" };
-	public static int MEDIUM = 2;
 
 	@NotNull
 	private CategoryBranch categoryBranch;
-	@Min(value = 1)
-	@Max(value = 3)
 	private int level;
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
 
 	public String getAsText() {
 		return categoryBranch.getCode() + LEVEL_SEPARATOR + level;
@@ -31,7 +60,7 @@ public class Skill {
 
 	public String getCode() {
 		String code = categoryBranch.getCode();
-		if (level != 0) {
+		if (level != Level.UNKNOW.getId()) {
 			code += LEVEL_SEPARATOR + level;
 		}
 		return code;
@@ -39,7 +68,7 @@ public class Skill {
 
 	public String[] getCodeAsArray(String categoryCode) {
 		int arrayLength = 1 + categoryBranch.getNodes().size();
-		if (level != 0) {
+		if (level != Level.UNKNOW.getId()) {
 			arrayLength++;
 		}
 		final String[] codeArray = new String[arrayLength];
@@ -48,31 +77,18 @@ public class Skill {
 		for (CategoryBranchNode node : categoryBranch.getNodes()) {
 			codeArray[i++] = node.getCode();
 		}
-		if (level != 0) {
+		if (level != Level.UNKNOW.getId()) {
 			codeArray[i++] = String.valueOf(level);
 		}
 		return codeArray;
 	}
 
-	public int getLevel() {
-		return level;
-	}
-
 	public String getLevelName() {
-		return mapLevel[level - 1];
+		return Level.parse(level).getName();
 	}
 
 	public void setCategoryBranch(CategoryBranch categoryBranch) {
 		this.categoryBranch = categoryBranch;
-	}
-
-	public void setLevel(int level) {
-		if (level < 0 || level > 3) {
-			throw new IllegalArgumentException("Invalid level value(" + level
-					+ "), it has to be in the range [0, 3]");
-		} else {
-			this.level = level;
-		}
 	}
 
 	@Override

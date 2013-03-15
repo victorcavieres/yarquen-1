@@ -32,6 +32,7 @@
 							<li class="active"><a th:href="@{/}" href="../home.html">Home</a></li>
 							<li><a href="#about">About</a></li>
 							<li><a href="#contact">Contact</a></li>
+							<li><a href="list.html">Accounts</a></li>
 						</ul>
 					</div>
 				</div>
@@ -82,6 +83,16 @@
 					<input type="text" th:field="*{username}" class="input-large" id="username" name="username" rel="popover" data-content="What's your username?" data-original-title="Username"/>
 				</div>
 			</div>
+			
+			<div class="control-group">
+				<label class="control-label">Roles</label>
+				<div class="controls">
+						<span th:each="role : ${roles}">
+							<input type="checkbox" th:field="*{roleId}" th:value="${role.id}" class="checkbox inline"/>
+							<label th:for="${#ids.prev('roleId')}" th:text="${role.id}" class="checkbox inline">ADMIN</label>
+						</span>
+				</div>
+			</div>
 
 			<div class="control-group">
 				<label class="control-label">Password</label>
@@ -98,9 +109,12 @@
 			</div>
 
 			<div class="control-group">
-				<label class="control-label"></label>
-				<div class="controls">
+				<div class="controls" >
 					<button type="submit" class="btn btn-success" >Save</button>
+					<button type="reset" class="btn" >Cancel</button>
+				</div>
+				<div class="controls">
+					
 				</div>
 			</div>
 			</fieldset>

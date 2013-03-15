@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.yarquen.account.Account;
 import org.yarquen.account.AccountRepository;
 import org.yarquen.account.AccountService;
+import org.yarquen.account.Role;
+import org.yarquen.account.RoleService;
 import org.yarquen.category.CategoryBranch;
 import org.yarquen.category.CategoryService;
 import org.yarquen.validation.BeanValidationException;
@@ -36,6 +38,8 @@ public class AccountController {
 
 	@Resource
 	private AccountService accountService;
+	@Resource
+	private RoleService roleService;
 	@Resource
 	private AccountRepository accountRepository;
 	@Resource
@@ -71,6 +75,15 @@ public class AccountController {
 						}
 					}
 				});
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String list(Model model) {
+		LOGGER.debug("retrieval all account");
+		Iterable<Account> accountList = accountRepository.findAll();
+		model.addAttribute("accountList", accountList);
+		return "account/list";
+
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -144,11 +157,19 @@ public class AccountController {
 	}
 
 	@RequestMapping("current.html")
-	public String register(Model model) {
+	public String showCurrent(Model model) {
 		Account userDetails = (Account) SecurityContextHolder.getContext()
 				.getAuthentication().getDetails();
 		LOGGER.debug("userDetail: {}", userDetails);
 		Account account = accountRepository.findOne(userDetails.getId());
+		model.addAttribute("account", account);
+		return "account/show";
+	}
+	
+	@RequestMapping("/show/{accountId}")
+	public String showAccount(@PathVariable("accountId") String accountId,Model model) {
+		Account account = accountRepository.findOne(accountId);
+		LOGGER.debug("userDetail: {}", accountId);
 		model.addAttribute("account", account);
 		return "account/show";
 	}
@@ -157,7 +178,10 @@ public class AccountController {
 	public String edit(@PathVariable("accountId") String accountId, Model model) {
 		LOGGER.debug("accountId to edit: {}", accountId);
 		Account account = accountRepository.findOne(accountId);
+		
 		if (account != null) {
+			Iterable<Role> roles = roleService.findAll();
+			model.addAttribute("roles",roles);
 			model.addAttribute("account", account);
 			return "account/edit";
 		} else
