@@ -13,7 +13,6 @@
 <link th:href="@{/static/bootstrap/css/bootstrap-responsive.css}"
 	href="../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 
-<<<<<<< HEAD
 <script th:src="@{/static/js/jquery.js}" src="../../js/jquery.js"></script>
 <script th:src="@{/static/js/jquery.validate.js}"
 	src="../../js/jquery.validate.js"></script>
@@ -38,6 +37,8 @@
 					</p>
 					<ul class="nav">
 						<li class="active"><a th:href="@{/}" href="home.html">Home</a></li>
+						<li sec:authorize="hasRole('PERM_READ_USER')"><a th:href="@{/account/}" href="account/list.html">Accounts</a></li>
+						<li sec:authorize="hasRole('PERM_WRITE_CATEGORY')"><a th:href="@{/category/setupCategory}" href="category/edit.html">Category</a></li>
 						<li><a href="#about">About</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
@@ -67,61 +68,6 @@
 								</form>
 							</div></li>
 					</ul>
-=======
-		<script th:src="@{/static/js/jquery.js}" src="../../js/jquery.js"></script>
-		<script th:src="@{/static/js/jquery.validate.js}" src="../../js/jquery.validate.js"></script>
-		<script th:src="@{/static/bootstrap/js/bootstrap.js}" src="../../bootstrap/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner" th:fragment="navbar">
-				<div class="container-fluid">
-					<a class="btn btn-navbar" data-toggle="collapse"
-						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a>
-					<a class="brand" th:href="@{/}" href="home.html">Yarquen</a>
-					<div class="nav-collapse collapse">
-						<p class="navbar-text pull-right" th:fragment="logout"
-							sec:authorize="isAuthenticated()">
-							Logged in as <a href="account/show.html" th:href="@{/account/current.html}" class="navbar-link"
-								sec:authentication="name">admin</a><span
-								class="divider-vertical"></span> <a href="index.html" th:href="@{/j_spring_security_logout}">Logout</a>
-						</p>
-						<ul class="nav">
-							<li class="active"><a th:href="@{/}" href="home.html">Home</a></li>
-							<li sec:authorize="hasRole('PERM_READ_USER')"><a th:href="@{/account/}" href="account/list.html">Accounts</a></li>
-							<li sec:authorize="hasRole('PERM_WRITE_CATEGORY')"><a th:href="@{/category/setupCategory}" href="category/edit.html">Category</a></li>
-							<li><a href="#about">About</a></li>
-							<li><a href="#contact">Contact</a></li>
-						</ul>
-						<ul class="nav pull-right" sec:authorize="!isAuthenticated()">
-							<li><a href="account/register.html"
-								th:href="@{/account/register.html}">Sign Up</a></li>
-							<li class="divider-vertical"></li>
-							<li class="dropdown"><a class="dropdown-toggle" href="#"
-								data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-								<div class="dropdown-menu"
-									style="padding: 15px; padding-bottom: 0px;">
-									<form action="#" th:action="@{/j_spring_security_check}"
-										method="post">
-										<fieldset>
-											<div class="clearfix">
-												<input type="text" id="j_username" name="j_username"
-													placeholder="Username" />
-											</div>
-											<div class="clearfix">
-												<input type="password" id="j_password" name="j_password"
-													placeholder="Password" />
-											</div>
-											<button class="btn btn-primary" type="submit">Sign in</button>
-										</fieldset>
-									</form>
-								</div>
-							</li>
-						</ul>
-					</div>
->>>>>>> Account List, with basic Roles and PermmisionYQ-6
 				</div>
 			</div>
 		</div>
