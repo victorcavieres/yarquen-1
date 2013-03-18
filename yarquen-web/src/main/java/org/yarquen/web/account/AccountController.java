@@ -29,6 +29,8 @@ import org.yarquen.account.AccountRepository;
 import org.yarquen.account.AccountService;
 import org.yarquen.account.PasswordChange;
 import org.yarquen.account.PasswordChangeRepository;
+import org.yarquen.account.Role;
+import org.yarquen.account.RoleService;
 import org.yarquen.category.CategoryBranch;
 import org.yarquen.category.CategoryService;
 import org.yarquen.validation.BeanValidationException;

@@ -525,7 +525,7 @@ public class ArticleSearcher {
 					.valueOf(components[components.length - 1]);
 			yfacet.setLevel(level);
 			// ughhh
-			yfacet.setLevelName(Skill.mapLevel[level]);
+			yfacet.setLevelName(Skill.Level.parse(level).getName());
 		}
 		// else: level will be 0 and levelName null
 		LOGGER.trace("leaf:{} level:{} levelName:{}", new Object[] { leaf,
