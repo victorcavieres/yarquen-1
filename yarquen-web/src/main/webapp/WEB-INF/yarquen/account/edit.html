@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 	<head th:substituteby="layout :: header">
 		<meta charset="UTF-8" />
 		<title>Yarquen Crawler</title>
@@ -46,6 +47,7 @@
 		<div class="container-fluid">
 			<form class="form-horizontal" id="registerHere" method="post" action='success.html' th:action='@{/account/update}' th:object='${account}'>
 			<input type="hidden" th:field="*{id}" class="input-large" id="id" name="id"/>
+			<input type="hidden" th:field="*{password}" class="input-large" id="password" name="password"/>
 			<fieldset>
 			<legend>Account edit</legend>
 
@@ -84,7 +86,9 @@
 				</div>
 			</div>
 			
-			<div class="control-group">
+			
+			
+			<div id="roles" class="control-group">
 				<label class="control-label">Roles</label>
 				<div class="controls">
 						<span th:each="role : ${roles}">
@@ -93,28 +97,15 @@
 						</span>
 				</div>
 			</div>
-
 			<div class="control-group">
-				<label class="control-label">Password</label>
-				<div class="controls">
-					<input type="password" th:field="*{password}" class="input-large" id="password" name="password" rel="popover" data-content="What's your Password?" data-original-title="Password"/>
-				</div>
-			</div>
-
-			<div class="control-group">
-				<label class="control-label">Confirm Password</label>
-				<div class="controls">
-					<input type="password" class="input-large" id="cpwd" name="cpwd" rel="popover" data-content="Confirm your Password" data-original-title="Confirm Password"/>
-				</div>
+				<label class="control-label"></label>
+				<a href="/account/edit.html" th:href="@{/account/passwordChange/}+${account.id}"><i class="icon-edit"></i> Change Password </a>
 			</div>
 
 			<div class="control-group">
 				<div class="controls" >
 					<button type="submit" class="btn btn-success" >Save</button>
 					<button type="reset" class="btn" >Cancel</button>
-				</div>
-				<div class="controls">
-					
 				</div>
 			</div>
 			</fieldset>
@@ -124,12 +115,19 @@
 			<footer class="pull-right" th:substituteby="layout :: footer">
 				<small class="muted">Yarquen, a focused, semantic, distributed crawler :)</small>
 			</footer>
+				<script type="text/javascript" th:inline="javascript" sec:authorize="!hasRole('PERM_WRITE_USER')">
+				$(document).ready(function()
+						{
+						$("#roles").css({ display: "none" });
+						});
+				</script>
 			<script type="text/javascript" th:inline="javascript">
 			/*<![CDATA[*/
 			$(document).ready(function()
 			{
 				// Popover
 				$("#registerHere input").popover({ trigger: "hover" });
+				
 
 
 			// Validation
@@ -138,9 +136,7 @@
 				firstName:"required",
 				familyName:"required",
 				username:"required",
-				email:{required:true,email: true},
-				password:{required:true,minlength: 6},
-				cpwd:{required:true,equalTo: "#password"}
+				email:{required:true,email: true}
 			},
 
 			messages:{
@@ -149,13 +145,7 @@
 				username:"Enter your username",
 				email:{
 				required:"Enter your email address",
-				email:"Enter valid email address"},
-				password:{
-				required:"Enter your password",
-				minlength:"Password must be minimum 6 characters"},
-				cpwd:{
-				required:"Enter confirm password",
-				equalTo:"Password and Confirm Password must match"}
+				email:"Enter valid email address"}
 			},
 
 			errorClass: "help-inline",

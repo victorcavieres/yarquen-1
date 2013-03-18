@@ -42,7 +42,7 @@ import org.yarquen.validation.ValidationUtils;
 public class AccountServiceImpl implements AccountService {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(AccountServiceImpl.class);
-	
+
 	private static final String SENDER_EMAIL = "test@gmail.com";
 
 	@Resource
@@ -72,6 +72,24 @@ public class AccountServiceImpl implements AccountService {
 					.getHashedPassword(account.getPassword());
 			account.setPassword(hashedPassword);
 			return accountRepository.save(account);
+		}
+	}
+	@Override
+	public Account updateBasicInfo(Account account){
+		LOGGER.info("updateBasicInfo account {}", account.getUsername());
+		Account accountBase=this.findOne(account.getId());
+		accountBase.setEmail(account.getEmail());
+		accountBase.setAdditionalLastName(account.getAdditionalLastName());
+		accountBase.setFamilyName(account.getFamilyName());
+		accountBase.setFirstName(account.getFirstName());
+		accountBase.setMiddleName(account.getMiddleName());
+		accountBase.setRoleId(account.getRoleId());
+		accountBase.setUsername(account.getUsername());
+		final Set<String> violations = validate(accountBase);
+		if (violations != null) {
+			throw new BeanValidationException(accountBase, violations);
+		} else {
+			return accountRepository.save(accountBase);
 		}
 	}
 
@@ -189,16 +207,12 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account updatePassword(Account account) {
-		LOGGER.info("updating account {}", account.getUsername());
-		final Set<String> violations = validate(account);
-		if (violations != null) {
-			throw new BeanValidationException(account, violations);
-		} else {
-			final String hashedPassword = PasswordUtils
-					.getHashedPassword(account.getPassword());
-			account.setPassword(hashedPassword);
-			return accountRepository.save(account);
-		}
+		LOGGER.info("updating password account {}", account.getUsername());
+		final String hashedPassword = PasswordUtils.getHashedPassword(account
+				.getPassword());
+		account = this.findOne(account.getId());
+		account.setPassword(hashedPassword);
+		return accountRepository.save(account);
 	}
 
 	@Override

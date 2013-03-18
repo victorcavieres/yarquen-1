@@ -38,5 +38,12 @@ public interface AccountService {
 	Iterable<Account> findAll();
 
 	Account findOne(String id);
+	/**
+	 * Update account but consider just basic info, not skills or password
+	 * @param account - account updated
+	 * @return account updated
+	 */
+
+	Account updateBasicInfo(Account account);
 
 }

@@ -145,10 +145,7 @@ public class AccountController {
 		}
 
 		try {
-			Account accountWithSkill = accountService.findOne(account
-					.getId());
-			account.setSkills(accountWithSkill.getSkills());
-			accountService.register(account);
+			accountService.updateBasicInfo(account);
 		} catch (BeanValidationException e) {
 			ObjectError error = new ObjectError("account", e.getMessage());
 			result.addError(error);
