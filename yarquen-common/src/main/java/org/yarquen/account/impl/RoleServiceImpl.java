@@ -2,8 +2,6 @@ package org.yarquen.account.impl;
 
 import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.yarquen.account.Role;
 import org.yarquen.account.RoleRepository;
@@ -20,8 +18,6 @@ import org.yarquen.account.RoleService;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RoleServiceImpl.class);
 
 	public static enum Roles {
 		BASIC, ADMIN;
