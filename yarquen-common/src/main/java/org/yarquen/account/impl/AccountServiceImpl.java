@@ -201,4 +201,14 @@ public class AccountServiceImpl implements AccountService {
 		}
 	}
 
+	@Override
+	public Iterable<Account> findAll() {
+		return accountRepository.findAll();
+	}
+
+	@Override
+	public Account findOne(String id) {
+		return accountRepository.findOne(id);
+	}
+
 }

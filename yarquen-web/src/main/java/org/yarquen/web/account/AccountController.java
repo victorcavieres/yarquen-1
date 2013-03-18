@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.yarquen.account.Account;
-import org.yarquen.account.AccountRepository;
 import org.yarquen.account.AccountService;
 import org.yarquen.account.PasswordChange;
 import org.yarquen.account.PasswordChangeRepository;
@@ -50,8 +49,6 @@ public class AccountController {
 	private AccountService accountService;
 	@Resource
 	private RoleService roleService;
-	@Resource
-	private AccountRepository accountRepository;
 	@Resource
 	private PasswordChangeRepository passwordChangeRepository;
 	@Resource
@@ -94,7 +91,7 @@ public class AccountController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(Model model) {
 		LOGGER.debug("retrieval all account");
-		Iterable<Account> accountList = accountRepository.findAll();
+		Iterable<Account> accountList = accountService.findAll();
 		model.addAttribute("accountList", accountList);
 		return "account/list";
 
@@ -148,7 +145,7 @@ public class AccountController {
 		}
 
 		try {
-			Account accountWithSkill = accountRepository.findOne(account
+			Account accountWithSkill = accountService.findOne(account
 					.getId());
 			account.setSkills(accountWithSkill.getSkills());
 			accountService.register(account);
@@ -178,7 +175,7 @@ public class AccountController {
 		Account userDetails = (Account) SecurityContextHolder.getContext()
 				.getAuthentication().getDetails();
 		LOGGER.debug("userDetail: {}", userDetails);
-		Account account = accountRepository.findOne(userDetails.getId());
+		Account account = accountService.findOne(userDetails.getId());
 		model.addAttribute("account", account);
 		return "account/show";
 	}
@@ -186,7 +183,11 @@ public class AccountController {
 	@RequestMapping("/show/{accountId}")
 	public String showAccount(@PathVariable("accountId") String accountId,
 			Model model) {
+<<<<<<< HEAD
 		Account account = accountRepository.findOne(accountId);
+=======
+		Account account = accountService.findOne(accountId);
+>>>>>>> Removed AccountRepository from account controller, replaced method with
 		LOGGER.debug("userDetail: {}", accountId);
 		model.addAttribute("account", account);
 		return "account/show";
@@ -195,7 +196,11 @@ public class AccountController {
 	@RequestMapping(value = "/edit/{accountId}", method = RequestMethod.GET)
 	public String edit(@PathVariable("accountId") String accountId, Model model) {
 		LOGGER.debug("accountId to edit: {}", accountId);
+<<<<<<< HEAD
 		Account account = accountRepository.findOne(accountId);
+=======
+		Account account = accountService.findOne(accountId);
+>>>>>>> Removed AccountRepository from account controller, replaced method with
 
 		if (account != null) {
 			Iterable<Role> roles = roleService.findAll();
@@ -235,7 +240,7 @@ public class AccountController {
 	@RequestMapping(value = "/passwordChange", method = RequestMethod.POST)
 	public String passwordChange(@Valid Account account, BindingResult result,
 			Model model) {
-		LOGGER.debug("changing password for account: {}", account.getUsername());
+		LOGGER.debug("password change for account: {}", account.getUsername());
 		try {
 			accountService.updatePassword(account);
 		} catch (BeanValidationException e) {
@@ -247,6 +252,16 @@ public class AccountController {
 		model.addAttribute("message",
 				"your password has been updated, please login.");
 		return "message";
+	}
+	
+	@RequestMapping(value = "/passwordChange/{accountId}", method = RequestMethod.GET)
+	public String setupPasswordChange(@PathVariable("accountId") String accountId,
+			Model model) {
+		Account account=accountService.findOne(accountId);
+		LOGGER.debug("changing password for account: {}", account.getUsername());
+		model.addAttribute("account", account);
+			return "account/passwordChange";
+		
 
 	}
 
@@ -254,7 +269,7 @@ public class AccountController {
 	public String setupSkills(@PathVariable("accountId") String accountId,
 			Model model) {
 		LOGGER.debug("setuping skills for accountId {}", accountId);
-		Account account = accountRepository.findOne(accountId);
+		Account account = accountService.findOne(accountId);
 		if (account != null) {
 			// categories
 			final List<Map<String, Object>> categoryTree = categoryTreeBuilder
@@ -281,7 +296,7 @@ public class AccountController {
 			return "account/editSkills";
 		}
 		try {
-			Account accountWithoutSkill = accountRepository.findOne(account
+			Account accountWithoutSkill = accountService.findOne(account
 					.getId());
 			accountWithoutSkill.setSkills(account.getSkills());
 			accountService.updateSkills(accountWithoutSkill);

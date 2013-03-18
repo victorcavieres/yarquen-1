@@ -35,4 +35,8 @@ public interface AccountService {
 	 */
 	Account updatePassword(Account account);
 
+	Iterable<Account> findAll();
+
+	Account findOne(String id);
+
 }
