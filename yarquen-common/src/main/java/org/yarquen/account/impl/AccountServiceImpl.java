@@ -15,15 +15,12 @@ import javax.validation.Validator;
 import javax.validation.groups.Default;
 
 import org.apache.commons.codec.binary.Hex;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.protocol.RequestContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextLoader;
 import org.yarquen.account.Account;
 import org.yarquen.account.AccountRepository;
 import org.yarquen.account.AccountService;
@@ -32,8 +29,6 @@ import org.yarquen.account.PasswordChangeRepository;
 import org.yarquen.account.PasswordUtils;
 import org.yarquen.validation.BeanValidationException;
 import org.yarquen.validation.ValidationUtils;
-
-import com.sun.xml.internal.ws.client.RequestContext;
 
 /**
  * Account service
