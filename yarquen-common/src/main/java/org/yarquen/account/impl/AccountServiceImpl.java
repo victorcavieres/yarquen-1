@@ -1,8 +1,11 @@
 package org.yarquen.account.impl;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.TimeZone;
 
@@ -11,18 +14,26 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import javax.validation.groups.Default;
 
+import org.apache.commons.codec.binary.Hex;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.protocol.RequestContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextLoader;
 import org.yarquen.account.Account;
 import org.yarquen.account.AccountRepository;
 import org.yarquen.account.AccountService;
+import org.yarquen.account.PasswordChange;
+import org.yarquen.account.PasswordChangeRepository;
 import org.yarquen.account.PasswordUtils;
 import org.yarquen.validation.BeanValidationException;
 import org.yarquen.validation.ValidationUtils;
+
+import com.sun.xml.internal.ws.client.RequestContext;
 
 /**
  * Account service
@@ -36,9 +47,14 @@ import org.yarquen.validation.ValidationUtils;
 public class AccountServiceImpl implements AccountService {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(AccountServiceImpl.class);
+	//FIXME, obtain this from 
+	private static final String BASE_URL = "http://localhost:8080/yarquen/account/passwordReset/";
+	private static final String SENDER_EMAIL = "choonho.yoon.b@gmail.com";
 
 	@Resource
 	private AccountRepository accountRepository;
+	@Resource
+	private PasswordChangeRepository passwordChangeRepository;
 	@Resource
 	private MailSender mailSender;
 	@Resource
@@ -103,15 +119,27 @@ public class AccountServiceImpl implements AccountService {
 		LOGGER.debug("account: {}", account);
 		if (account != null) {
 			final SimpleMailMessage message = new SimpleMailMessage();
-			// Testing
-			message.setFrom("choonho.yoon.b@gmail.com");
+			final String token = getHashedToken();
+			final PasswordChange passwordChange = new PasswordChange();
+			final String baseUrl = "asd";
+
+			message.setFrom(SENDER_EMAIL);
 			message.setTo(email);
 			message.setSubject("Yarquen Account Recovery");
-			message.setText(getMessageWithUrl(account));
+			message.setText(getMessageWithUrl(account, token, baseUrl));
 
 			try {
+				final Date now = Calendar.getInstance(
+						TimeZone.getTimeZone("UTC")).getTime();
+				passwordChange.setAccount(account);
+				passwordChange.setToken(token);
+				passwordChange.setRequestDate(now);
+				passwordChangeRepository.save(passwordChange);
+				LOGGER.debug("saved token and request date");
+
 				mailSender.send(message);
 				LOGGER.debug("email sent successfully to {}", email);
+
 				return true;
 			} catch (MailException e) {
 				LOGGER.error("error sending mail", e);
@@ -129,33 +157,40 @@ public class AccountServiceImpl implements AccountService {
 	 *            Account trying to reset his password
 	 * @return Message formatted for an email
 	 */
-	private String getMessageWithUrl(Account account) {
+	private String getMessageWithUrl(Account account, String token,
+			String baseUrl) {
 		LOGGER.debug("generating mail message for account: [{}]",
 				account.getUsername());
 		final StringBuilder mailMessage = new StringBuilder();
 		mailMessage.append("To initiate the password reset process for your ");
 		mailMessage.append(account.getEmail());
 		mailMessage.append(" Yarquen account, click the link below: \n");
-		mailMessage.append(getUniqueUrlPasswordReset(account.getUsername()));
+		mailMessage.append(baseUrl + token);
 		mailMessage
 				.append("\nIf clicking the link above doesn't work, please copy and paste the URL in a new browser window instead.");
 		return mailMessage.toString();
 	}
 
 	/**
-	 * Generates an URL encrypted with username and an expiration date
+	 * Generates an Hashed code
 	 * 
-	 * @param username
-	 *            Username of the user trying to reset password
 	 * @return URL encrypted
 	 */
-	private String getUniqueUrlPasswordReset(String username) {
-		LOGGER.debug("generating url for account with username: [{}]", username);
-		final Date now = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-				.getTime();
-
-		// TODO finish later
-		return now.toString();
+	private String getHashedToken() {
+		LOGGER.debug("generating random hashed code");
+		final Random random = new Random();
+		final Integer randomNumber = random.nextInt(100);
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("SHA-1");
+		} catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException("maybe SHA-1 doesn't exist", e);
+		}
+		final byte[] randomBytes = md
+				.digest(randomNumber.toString().getBytes());
+		final String generatedToken = new String(Hex.encodeHex(randomBytes));
+		LOGGER.debug("generated token: [{}]", generatedToken);
+		return generatedToken;
 	}
 
 	@Override

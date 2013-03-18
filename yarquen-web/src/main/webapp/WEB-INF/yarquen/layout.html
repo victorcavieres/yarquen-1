@@ -37,6 +37,8 @@
 					</p>
 					<ul class="nav">
 						<li class="active"><a th:href="@{/}" href="home.html">Home</a></li>
+						<li sec:authorize="hasRole('PERM_READ_USER')"><a th:href="@{/account/}" href="account/list.html">Accounts</a></li>
+						<li sec:authorize="hasRole('PERM_WRITE_CATEGORY')"><a th:href="@{/category/setupCategory}" href="category/edit.html">Category</a></li>
 						<li><a href="#about">About</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
@@ -60,8 +62,8 @@
 												placeholder="Password" />
 										</div>
 										<button class="btn btn-primary" type="submit">Sign in</button>
-										<a th:href="@{/account/forgotPassword.html}" href="account/forgotPassword.html">Forgot
-											Password</a>
+										<a th:href="@{/account/forgotPassword.html}"
+											href="account/forgotPassword.html">Forgot Password</a>
 									</fieldset>
 								</form>
 							</div></li>
