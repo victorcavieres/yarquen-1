@@ -45,6 +45,12 @@
 		</property>
 	</bean>
 
+	<!-- messages config -->
+	<bean id="mail"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="mail" />
+	</bean>
+
 	<!-- bean validation -->
 	<bean id="validatorFactory" class="javax.validation.Validation"
 		factory-method="buildDefaultValidatorFactory" />

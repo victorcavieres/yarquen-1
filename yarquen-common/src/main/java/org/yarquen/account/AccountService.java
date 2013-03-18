@@ -20,16 +20,18 @@ public interface AccountService {
 	 * 
 	 * @param email
 	 *            Email of the user trying to reset his password
+	 * @param baseUrl
+	 *            Base url
 	 * @return true if the email existed or false if it didn't.
 	 */
-	boolean resetPasswordRequest(String email);
+	boolean resetPasswordRequest(String email, String baseUrl);
 
 	/**
 	 * Updates account with new password
 	 * 
 	 * @param account
 	 *            account with new password
-	 * @return 
+	 * @return
 	 */
 	Account updatePassword(Account account);
 

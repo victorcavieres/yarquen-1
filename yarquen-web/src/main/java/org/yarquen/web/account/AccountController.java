@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,8 +36,6 @@ import org.yarquen.category.CategoryBranch;
 import org.yarquen.category.CategoryService;
 import org.yarquen.validation.BeanValidationException;
 import org.yarquen.web.enricher.CategoryTreeBuilder;
-import org.yarquen.account.Role;
-import org.yarquen.account.RoleService;
 
 @Controller
 @RequestMapping("/account")
@@ -44,6 +43,7 @@ public class AccountController {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(AccountController.class);
 
+	// Minutes to expiring the unique url for password reset
 	private static final int EXPIRATION_MINUTES = 15;
 
 	@Resource
@@ -56,6 +56,8 @@ public class AccountController {
 	private PasswordChangeRepository passwordChangeRepository;
 	@Resource
 	private CategoryTreeBuilder categoryTreeBuilder;
+	@Resource(name = "mail")
+	private ResourceBundleMessageSource configMsg;
 
 	@Resource
 	private CategoryService categoryService;
@@ -88,7 +90,7 @@ public class AccountController {
 					}
 				});
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(Model model) {
 		LOGGER.debug("retrieval all account");
@@ -125,8 +127,10 @@ public class AccountController {
 	public String forgotPassword(
 			@RequestParam(value = "email", required = true) String email,
 			Model model) {
+		final String baseUrl = configMsg.getMessage("baseUrl", null, null);
 		LOGGER.debug("sending email to: [{}]", email);
-		accountService.resetPasswordRequest(email);
+		accountService.resetPasswordRequest(email, baseUrl
+				+ "/account/passwordReset/");
 		model.addAttribute("message",
 				"Verification email sent successfully. Check your inbox.");
 		return "message";
@@ -178,9 +182,10 @@ public class AccountController {
 		model.addAttribute("account", account);
 		return "account/show";
 	}
-	
+
 	@RequestMapping("/show/{accountId}")
-	public String showAccount(@PathVariable("accountId") String accountId,Model model) {
+	public String showAccount(@PathVariable("accountId") String accountId,
+			Model model) {
 		Account account = accountRepository.findOne(accountId);
 		LOGGER.debug("userDetail: {}", accountId);
 		model.addAttribute("account", account);
@@ -191,10 +196,10 @@ public class AccountController {
 	public String edit(@PathVariable("accountId") String accountId, Model model) {
 		LOGGER.debug("accountId to edit: {}", accountId);
 		Account account = accountRepository.findOne(accountId);
-		
+
 		if (account != null) {
 			Iterable<Role> roles = roleService.findAll();
-			model.addAttribute("roles",roles);
+			model.addAttribute("roles", roles);
 			model.addAttribute("account", account);
 			return "account/edit";
 		} else

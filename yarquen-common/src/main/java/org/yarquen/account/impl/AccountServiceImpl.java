@@ -15,15 +15,12 @@ import javax.validation.Validator;
 import javax.validation.groups.Default;
 
 import org.apache.commons.codec.binary.Hex;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.protocol.RequestContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextLoader;
 import org.yarquen.account.Account;
 import org.yarquen.account.AccountRepository;
 import org.yarquen.account.AccountService;
@@ -32,8 +29,6 @@ import org.yarquen.account.PasswordChangeRepository;
 import org.yarquen.account.PasswordUtils;
 import org.yarquen.validation.BeanValidationException;
 import org.yarquen.validation.ValidationUtils;
-
-import com.sun.xml.internal.ws.client.RequestContext;
 
 /**
  * Account service
@@ -47,9 +42,8 @@ import com.sun.xml.internal.ws.client.RequestContext;
 public class AccountServiceImpl implements AccountService {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(AccountServiceImpl.class);
-	//FIXME, obtain this from 
-	private static final String BASE_URL = "http://localhost:8080/yarquen/account/passwordReset/";
-	private static final String SENDER_EMAIL = "choonho.yoon.b@gmail.com";
+	
+	private static final String SENDER_EMAIL = "test@gmail.com";
 
 	@Resource
 	private AccountRepository accountRepository;
@@ -112,16 +106,16 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public boolean resetPasswordRequest(String email) {
+	public boolean resetPasswordRequest(String email, String baseUrl) {
 		LOGGER.info("sending email with steps to reset password to: [{}]",
 				email);
+
 		final Account account = accountRepository.findByEmail(email);
 		LOGGER.debug("account: {}", account);
 		if (account != null) {
 			final SimpleMailMessage message = new SimpleMailMessage();
 			final String token = getHashedToken();
 			final PasswordChange passwordChange = new PasswordChange();
-			final String baseUrl = "asd";
 
 			message.setFrom(SENDER_EMAIL);
 			message.setTo(email);
