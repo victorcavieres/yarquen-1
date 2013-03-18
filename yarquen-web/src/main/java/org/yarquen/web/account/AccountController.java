@@ -180,11 +180,7 @@ public class AccountController {
 	@RequestMapping("/show/{accountId}")
 	public String showAccount(@PathVariable("accountId") String accountId,
 			Model model) {
-<<<<<<< HEAD
-		Account account = accountRepository.findOne(accountId);
-=======
 		Account account = accountService.findOne(accountId);
->>>>>>> Removed AccountRepository from account controller, replaced method with
 		LOGGER.debug("userDetail: {}", accountId);
 		model.addAttribute("account", account);
 		return "account/show";
@@ -193,11 +189,8 @@ public class AccountController {
 	@RequestMapping(value = "/edit/{accountId}", method = RequestMethod.GET)
 	public String edit(@PathVariable("accountId") String accountId, Model model) {
 		LOGGER.debug("accountId to edit: {}", accountId);
-<<<<<<< HEAD
-		Account account = accountRepository.findOne(accountId);
-=======
+
 		Account account = accountService.findOne(accountId);
->>>>>>> Removed AccountRepository from account controller, replaced method with
 
 		if (account != null) {
 			Iterable<Role> roles = roleService.findAll();
