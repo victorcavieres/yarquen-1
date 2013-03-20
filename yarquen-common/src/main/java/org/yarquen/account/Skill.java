@@ -96,4 +96,22 @@ public class Skill {
 		return "AccountSkill [categoryBranch=" + categoryBranch + ", level="
 				+ level + "]";
 	}
+	
+	@Override
+	public boolean equals(Object anObject) {
+		if (this == anObject) {
+			return true;
+		}
+
+		if (anObject instanceof Skill) {
+			final Skill skill = (Skill) anObject;
+			if (this.getCode().equals(skill.getCode())) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+	
+	
 }

@@ -3,9 +3,12 @@ package org.yarquen.web.enricher;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +16,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.yarquen.account.Account;
 import org.yarquen.account.Skill;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
@@ -66,6 +71,8 @@ public class EnricherController {
 	private CategoryTreeBuilder categoryTreeBuilder;
 	@Resource
 	private KeywordRepository keywordRepository;
+	@Resource
+	private EnrichmentRecordRepository enrichmentRecordRepository;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -182,6 +189,9 @@ public class EnricherController {
 				throw new RuntimeException("Article " + id + " not found");
 			} else {
 				// update
+				LOGGER.trace("saving new version of article id {}", id);
+				saveArticleDiff(persistedArticle, article);
+
 				LOGGER.trace("updating article {}", id);
 				persistedArticle.setAuthor(article.getAuthor());
 				persistedArticle.setDate(article.getDate());
@@ -231,6 +241,232 @@ public class EnricherController {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Finds the difference between the new article and the persisted article
+	 * and saves the difference and history to database
+	 * 
+	 * @param persistedArticle
+	 *            Latest Persisted Article
+	 * @param updatedArticle
+	 *            Updated Article
+	 */
+	private void saveArticleDiff(Article persistedArticle,
+			Article updatedArticle) {
+
+		LOGGER.trace("finding differences between articles");
+		final EnrichmentRecord enrichmentRecord = new EnrichmentRecord();
+		enrichmentRecord.setArticleId(persistedArticle.getId());
+		enrichmentRecord.setVersionDate(Calendar.getInstance(
+				TimeZone.getTimeZone("UTC")).getTime());
+
+		Account userDetails = (Account) SecurityContextHolder.getContext()
+				.getAuthentication().getDetails();
+		enrichmentRecord.setAccountId(userDetails.getId());
+
+		// Finds the diff between articles and saves it in the enrichmentRecord
+		final boolean changed = findDiffBetweenArticles(persistedArticle,
+				updatedArticle, enrichmentRecord);
+
+		if (changed) {
+			enrichmentRecordRepository.save(enrichmentRecord);
+			LOGGER.trace("enrichment record saved for article id: {}",
+					enrichmentRecord.getArticleId());
+		} else {
+			LOGGER.trace("enrichment record not created, there was no change");
+		}
+
+	}
+
+	/**
+	 * Compares every field of a persisted and updated article and keeps the
+	 * difference on a enrichmentRecord
+	 * 
+	 * @param persistedArticle
+	 *            Last persisted article
+	 * @param updatedArticle
+	 *            Article with changes
+	 * @param enrichmentRecord
+	 *            Object for keeping diff
+	 * @return {@code true} if there was a diff, {@code false} if there was not
+	 */
+	private boolean findDiffBetweenArticles(Article persistedArticle,
+			Article updatedArticle, EnrichmentRecord enrichmentRecord) {
+
+		LOGGER.trace("finding diff between articles, for article id: {}",
+				persistedArticle.getId());
+
+		boolean changed = false;
+
+		// Comparing Authors
+		if (persistedArticle.getAuthor() == null
+				&& updatedArticle.getAuthor() != null) {
+			enrichmentRecord.setNewAuthor(updatedArticle.getAuthor());
+			enrichmentRecord.setChangedAuthor(true);
+		} else {
+			if (persistedArticle.getAuthor() != null
+					&& !persistedArticle.getAuthor().equals(
+							updatedArticle.getAuthor())) {
+				enrichmentRecord.setNewAuthor(updatedArticle.getAuthor());
+				enrichmentRecord.setChangedAuthor(true);
+				changed = true;
+			} else {
+				enrichmentRecord.setChangedAuthor(false);
+			}
+		}
+
+		// Comparing Dates
+		if (persistedArticle.getDate() == null
+				&& updatedArticle.getDate() != null) {
+			enrichmentRecord.setNewDate(updatedArticle.getDate());
+			enrichmentRecord.setChangedDate(true);
+		} else {
+			if (persistedArticle.getDate() != null
+					&& !persistedArticle.getDate().equals(
+							updatedArticle.getDate())) {
+				enrichmentRecord.setNewDate(updatedArticle.getDate());
+				enrichmentRecord.setChangedDate(true);
+				changed = true;
+			} else {
+				enrichmentRecord.setChangedDate(false);
+			}
+		}
+
+		// Comparing Summary
+		if (persistedArticle.getSummary() == null
+				&& updatedArticle.getSummary() != null) {
+			enrichmentRecord.setNewSummary(updatedArticle.getSummary());
+			enrichmentRecord.setChangedSummary(true);
+		} else {
+			if (persistedArticle.getSummary() != null
+					&& !persistedArticle.getSummary().equals(
+							updatedArticle.getSummary())) {
+				enrichmentRecord.setNewSummary(updatedArticle.getSummary());
+				enrichmentRecord.setChangedSummary(true);
+				changed = true;
+			} else {
+				enrichmentRecord.setChangedSummary(false);
+			}
+		}
+
+		// Comparing Keywords
+		final List<String> addedKeywords = new ArrayList<String>();
+		final List<String> removedKeywords = new ArrayList<String>();
+		if (updatedArticle.getKeywords() != null
+				&& !updatedArticle.getKeywords().isEmpty()) {
+			for (String updatedKeyword : updatedArticle.getKeywords()) {
+				if (persistedArticle.getKeywords() != null
+						&& !persistedArticle.getKeywords().contains(
+								updatedKeyword)) {
+					addedKeywords.add(updatedKeyword);
+				}
+			}
+		}
+		if (persistedArticle.getKeywords() != null
+				&& !persistedArticle.getKeywords().isEmpty()) {
+			for (String persistedKeyword : persistedArticle.getKeywords()) {
+				if (updatedArticle.getKeywords() != null
+						&& !updatedArticle.getKeywords().contains(
+								persistedKeyword)) {
+					removedKeywords.add(persistedKeyword);
+				}
+			}
+		}
+		if (!addedKeywords.isEmpty() || !removedKeywords.isEmpty()) {
+			changed = true;
+		}
+		if (!addedKeywords.isEmpty()) {
+			enrichmentRecord.setAddedKeywords(addedKeywords);
+		}
+		if (!removedKeywords.isEmpty()) {
+			enrichmentRecord.setRemovedKeywords(removedKeywords);
+		}
+
+		// Comparing Title
+		if (!persistedArticle.getTitle().equals(updatedArticle.getTitle())) {
+			enrichmentRecord.setNewTitle(updatedArticle.getTitle());
+			changed = true;
+		}
+
+		// Comparing URL
+		if (!persistedArticle.getUrl().equals(updatedArticle.getUrl())) {
+			enrichmentRecord.setNewUrl(updatedArticle.getUrl());
+			changed = true;
+		}
+
+		// Comparing Provided Skills
+		final List<Skill> addedProvidedSkills = new ArrayList<Skill>();
+		final List<Skill> removedProvidedSkills = new ArrayList<Skill>();
+		if (updatedArticle.getProvidedSkills() != null
+				&& !updatedArticle.getProvidedSkills().isEmpty()) {
+			for (Skill updatedProvidedSkill : updatedArticle
+					.getProvidedSkills()) {
+				if (persistedArticle.getProvidedSkills() != null
+						&& !persistedArticle.getProvidedSkills().contains(
+								updatedProvidedSkill)) {
+					addedProvidedSkills.add(updatedProvidedSkill);
+				}
+			}
+		}
+		if (persistedArticle.getProvidedSkills() != null
+				&& !persistedArticle.getProvidedSkills().isEmpty()) {
+			for (Skill persistedProvidedSkill : persistedArticle
+					.getProvidedSkills()) {
+				if (updatedArticle.getProvidedSkills() != null
+						&& !updatedArticle.getProvidedSkills().contains(
+								persistedProvidedSkill)) {
+					removedProvidedSkills.add(persistedProvidedSkill);
+				}
+			}
+		}
+		if (!addedProvidedSkills.isEmpty() || !removedProvidedSkills.isEmpty()) {
+			changed = true;
+		}
+		if (!addedProvidedSkills.isEmpty()) {
+			enrichmentRecord.setAddedProvidedSkills(addedProvidedSkills);
+		}
+		if (!removedProvidedSkills.isEmpty()) {
+			enrichmentRecord.setRemovedProvidedSkills(removedProvidedSkills);
+		}
+
+		// Comparing Required Skills
+		final List<Skill> addedRequiredSkills = new ArrayList<Skill>();
+		final List<Skill> removedRequiredSkills = new ArrayList<Skill>();
+		if (updatedArticle.getRequiredSkills() != null
+				&& !updatedArticle.getRequiredSkills().isEmpty()) {
+			for (Skill updatedRequiredSkill : updatedArticle
+					.getRequiredSkills()) {
+				if (persistedArticle.getRequiredSkills() != null
+						&& !persistedArticle.getRequiredSkills().contains(
+								updatedRequiredSkill)) {
+					addedRequiredSkills.add(updatedRequiredSkill);
+				}
+			}
+		}
+		if (persistedArticle.getRequiredSkills() != null
+				&& !persistedArticle.getRequiredSkills().isEmpty()) {
+			for (Skill persistedRequiredSkill : persistedArticle
+					.getRequiredSkills()) {
+				if (updatedArticle.getRequiredSkills() != null
+						&& !updatedArticle.getRequiredSkills().contains(
+								persistedRequiredSkill)) {
+					removedRequiredSkills.add(persistedRequiredSkill);
+				}
+			}
+		}
+		if (!addedRequiredSkills.isEmpty() || !removedRequiredSkills.isEmpty()) {
+			changed = true;
+		}
+		if (!addedRequiredSkills.isEmpty()) {
+			enrichmentRecord.setAddedRequiredSkills(addedRequiredSkills);
+		}
+		if (!removedRequiredSkills.isEmpty()) {
+			enrichmentRecord.setRemovedRequiredSkills(removedRequiredSkills);
+		}
+
+		return changed;
+
 	}
 
 	private void addAuthorAndKeywords(Article article) {

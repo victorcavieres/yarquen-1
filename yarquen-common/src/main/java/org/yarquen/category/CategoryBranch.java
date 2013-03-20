@@ -110,4 +110,20 @@ public class CategoryBranch {
 	public String toString() {
 		return getCode();
 	}
+
+	@Override
+	public boolean equals(Object anObject) {
+		if (this == anObject) {
+			return true;
+		}
+
+		if (anObject instanceof CategoryBranch) {
+			final CategoryBranch categoryBranch = (CategoryBranch) anObject;
+			if (this.getCode().equals(categoryBranch.getCode())) {
+				return true;
+			}
+		}
+		return false;
+
+	}
 }

@@ -1,237 +1,275 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:substituteby="layout :: header">
-		<meta charset="UTF-8" />
-		<title>Yarquen Crawler</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head th:substituteby="layout :: header">
+<meta charset="UTF-8" />
+<title>Yarquen Crawler</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet" />
-		<link href="../../../css/yarquen.css" rel="stylesheet" />
-		<link href="../../../bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+<link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="../../../css/yarquen.css" rel="stylesheet" />
+<link href="../../../bootstrap/css/bootstrap-responsive.css"
+	rel="stylesheet" />
 
-		<script src="../../../js/jquery.js"></script>
-		<script src="../../../bootstrap/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner" th:substituteby="layout :: navbar">
-				<div class="container-fluid">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					<a class="brand" th:href="@{/}" href="../home.html">Yarquen</a>
-					<div class="nav-collapse collapse">
-						<p class="navbar-text pull-right">Logged in as <a href="#" class="navbar-link">admin</a></p>
-						<ul class="nav">
-							<li class="active"><a th:href="@{/}" href="../home.html">Home</a></li>
-							<li><a href="#about">About</a></li>
-							<li><a href="#contact">Contact</a></li>
-						</ul>
-					</div>
+<script src="../../../js/jquery.js"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner" th:substituteby="layout :: navbar">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a class="brand" th:href="@{/}" href="../home.html">Yarquen</a>
+				<div class="nav-collapse collapse">
+					<p class="navbar-text pull-right">
+						Logged in as <a href="#" class="navbar-link">admin</a>
+					</p>
+					<ul class="nav">
+						<li class="active"><a th:href="@{/}" href="../home.html">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
 				</div>
 			</div>
-				<ul class="breadcrumb">
-					<li><a th:href="@{/}" href="../home.html">Home</a> <span class="divider">/</span></li>
-					<li class="active">Search</li>
-				</ul>
 		</div>
+		<ul class="breadcrumb">
+			<li><a th:href="@{/}" href="../home.html">Home</a> <span
+				class="divider">/</span></li>
+			<li class="active">Search</li>
+		</ul>
+	</div>
 
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span4 offset1">
-					<div th:if="${!#strings.isEmpty(enrichmentMessage)}" class="alert alert-success">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span4 offset1">
+				<div th:if="${!#strings.isEmpty(enrichmentMessage)}"
+					class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					<strong>Info</strong>: <span th:text="${enrichmentMessage}">success
+						operation</span>
+				</div>
+				<form class="form-search" th:action="@{/articles}"
+					action="search.html" th:object="${searchFields}" method="get">
+					<div class="alert alert-error" th:errors="*{query}">
 						<button type="button" class="close" data-dismiss="alert">x</button>
-						<strong>Info</strong>: <span th:text="${enrichmentMessage}">success operation</span>
+						<strong>Error</strong>: a query is required!
 					</div>
-					<form class="form-search" th:action="@{/articles}" action="search.html" th:object="${searchFields}" method="get">
-						<div class="alert alert-error" th:errors="*{query}">
-							<button type="button" class="close" data-dismiss="alert">x</button>
-							<strong>Error</strong>: a query is required!
-						</div>
-						<input type="text" class="input-xlarge search-query" th:field="*{query}" placeholder="search terms" />
-						<button type="submit" class="btn btn-primary">Search</button>
-					</form>
-				</div>
+					<input type="text" class="input-xlarge search-query"
+						th:field="*{query}" placeholder="search terms" />
+					<button type="submit" class="btn btn-primary">Search</button>
+				</form>
 			</div>
-
-			<div class="row-fluid">
-				<div id="facetsSection" class="span2" th:if="${results != null}">
-					<h3>Facets</h3>
-					<div id="authorFacetSection">
-						<h4>Author</h4>
-						<div th:if="${authorFacet != null}">
-							<a th:href="${authorFacet.url}" href="#"><span class="text-error">-</span><span class="text-error" th:text="${authorFacet.value}">George</span></a>
-							<small class="muted">(<span th:text="${authorFacet.count}">12</span>)</small>
-						</div>
-						<div th:each="af : ${facets.author}" th:if="${authorFacet == null}">
-							<a th:href="${af.url}" href="#" th:text="${af.value}">Peter</a>
-							<small class="muted">(<span th:text="${af.count}">12</span>)</small>
-						</div>
-						<div th:remove="all">
-							<a href="#">John</a>
-							<small class="muted">(8)</small>
-						</div>
-					</div>
-					<div>
-						<h4>Year</h4>
-						<div th:if="${yearFacet != null}">
-							<a th:href="${yearFacet.url}" href="#"><span class="text-error">-</span><span class="text-error" th:text="${yearFacet.value}">2008</span></a>
-							<small class="muted">(<span th:text="${yearFacet.count}">12</span>)</small>
-						</div>
-						<div th:each="yf : ${facets.year}" th:if="${yearFacet == null}">
-							<a th:href="${yf.url}" href="#" th:text="${yf.value}">2012</a>
-							<small class="muted">(<span th:text="${yf.count}">12</span>)</small>
-						</div>
-						<div th:remove="all">
-							<a href="#">2010</a>
-							<small class="muted">(8)</small>
-						</div>
-					</div>
-					<div id="keywordFacetSection">
-						<h4>Keywords</h4>
-						<div th:each="keywordFacet : ${keywordFacets}">
-							<a th:href="${keywordFacet.url}" href="#"><span class="text-error">-</span><span class="text-error" th:text="${keywordFacet.value}">Javascript</span></a>
-							<small class="muted">(<span th:text="${keywordFacet.count}">12</span>)</small>
-						</div>
-						<div th:each="keywordFacet : ${facets.keyword}">
-							<a th:href="${keywordFacet.url}" href="#" th:text="${keywordFacet.value}">Java</a>
-							<small class="muted">(<span th:text="${keywordFacet.count}">12</span>)</small>
-						</div>
-						<div th:remove="all">
-							<a href="#">REST</a>
-							<small class="muted">(8)</small>
-						</div>
-					</div>
-					<div>
-						<h4>Skills Provided</h4>
-						<div th:each="psf : ${providedSkillFacets}" id="Software.Monodevelop">
-							<a th:href="${psf.url}" href="#">
-								<span class="text-error">-</span><span class="text-error" th:text="${psf.value}">Software/Monodevelop</span>
-								<small class="text-error" th:unless="${psf.level == 0}">[<span th:text="${psf.levelName}">Basic</span>]</small>
-							</a>
-							<small class="muted">(<span th:text="${psf.count}">12</span>)</small>
-						</div>
-						<div th:each="psf : ${facets.providedSkill}">
-							<a href="#" th:href="${psf.url}" th:text="${psf.value}">Software/Eclipse</a>
-							<small class="muted" th:unless="${psf.level == 0}">[<span th:text="${psf.levelName}">Basic</span>]</small>
-							<small class="muted">(<span th:text="${psf.count}">12</span>)</small>
-						</div>
-					</div>
-					<div>
-						<h4>Skills Required</h4>
-						<div th:each="rsf : ${requiredSkillFacets}" id="Software.Monodevelop">
-							<a th:href="${rsf.url}" href="#">
-								<span class="text-error">-</span><span class="text-error" th:text="${rsf.value}">Software/Monodevelop</span>
-								<small class="text-error" th:unless="${rsf.level == 0}">[<span th:text="${rsf.levelName}">Basic</span>]</small>
-							</a>
-							<small class="muted">(<span th:text="${rsf.count}">12</span>)</small>
-						</div>
-						<div th:each="rsf : ${facets.requiredSkill}">
-							<a href="#" th:href="${rsf.url}" th:text="${rsf.value}">Software/Eclipse</a>
-							<small class="muted" th:unless="${rsf.level == 0}">[<span th:text="${rsf.levelName}">Basic</span>]</small>
-							<small class="muted">(<span th:text="${rsf.count}">12</span>)</small>
-						</div>
-					</div>
-				</div>
-				<div class="span10">
-					<h3 th:if="${results != null}">Results</h3>
-					<h3 id="searchResultsText" th:if="${results == null}">No results found</h3>
-					<ol id="results">
-						<li th:each="result : ${results}">
-							<div style="margin-bottom: 15px">
-								<span>
-									<em><a th:href="${result.url}" href="http://architects.dzone.com/news/functional-programming-101-lam"
-										th:text="${result.title}" target="_blank">Functional Programming 101: Lambda Forms</a></em>
-									<small>by</small>
-									<small><span class="icon-user"></span> <a href="#" th:text="${result.author}">Pramod Subramanyan</a></small>
-									<small>on</small>
-									<small><span class="icon-calendar"></span> <span th:text="${result.date}">05.19.2008</span></small>
-									<a th:href="@{'/articles/enricher/' + ${result.id}}" href="enricher.html" rel="tooltip" title="complete metadata"><span class="icon-pencil"></span></a>
-								</span>
-								<br />
-								<small class="muted" th:text="${result.url}">http://architects.dzone.com/news/functional-programming-101-lam</small>
-								<br />
-								<span class="icon-tags"></span>
-								<small class="muted">Keywords:</small>
-								<small th:each="kw : ${result.keywords}" style="margin-right:5px"><a href="#" th:text="${kw}" class="text-success">lambda,</a>,</small>
-								<br />
-								<small><a href="#" class="resultDetailsLink muted">+ more details</a></small>
-								<div class="resultDetails hide">
-									<button type="button" class="resultDetailsClose pull-right close">&times;</button>
-									<h5>Summary</h5>
-									<p th:text="${result.summary}">In this example you will see how to populate a form using Spring annotations. The annotated user controller class is shown below.</p>
-								</div>
-							</div>
-						</li>
-						<li th:remove="all">
-							<span>
-								<em><a href="http://www.dzone.com/tutorials/java/spring/spring-annotations.html"
-									target="_blank">Spring Annotations Tutorial</a></em>
-								<small>by</small>
-								<small><span class="icon-user"></span> <a href="#">Meyyappan Muthuraman</a></small>
-								<small>on</small>
-								<small><span class="icon-calendar"></span> <span>06.15.2012</span></small>
-								<a href="enricher.html" rel="tooltip" title="complete metadata"><span class="icon-pencil"></span></a>
-							</span>
-							<br />
-							<small class="muted">http://www.dzone.com/tutorials/java/spring/spring-annotations.html</small>
-							<br />
-							<span class="icon-tags"></span>
-							<small>Keywords:</small>
-							<small><a href="#" class="text-success">Spring,</a></small>
-							<small><a href="#" class="text-success">Java,</a></small>
-							<br />
-							<small><a href="#" class="resultDetailsLink muted">+ more details</a></small>
-							<div class="resultDetails hide">
-								<button type="button" class="resultDetailsClose pull-right close">&times;</button>
-								<h5>Summary</h5>
-								<p  th:text="${result.summary}">In this example you will see how to populate a form using Spring annotations. The annotated user controller class is shown below.</p>
-							</div>
-						</li>
-<script type="text/javascript">
-/*<![CDATA[*/
-$('#results').on('click', '.resultDetailsLink', function(event) {
-	var el = $(this).parent().next('.resultDetails');
-	if(el.hasClass('hide')) {
-		el.removeClass('hide');
-		$(this).text('- less details');
-	} else {
-		el.addClass('hide');
-		$(this).text('+ more details');
-	}
-	event.preventDefault();
-});
-
-$('#results').on('click', '.resultDetailsClose', function(event) {
-	$(this).parent().addClass('hide');
-	$(this).parent().prev('small').children('.resultDetailsLink').text('+ more details');
-	event.preventDefault();
-});
-/*]]>*/
-</script>
-					</ol>
-				</div>
-			</div>
-
-			<hr/>
-			<footer class="pull-right" th:substituteby="layout :: footer">
-				<small class="muted">Yarquen, a focused, semantic, distributed crawler :)</small>
-			</footer>
 		</div>
-<script type="text/javascript">
-/*<![CDATA[*/
-$(document).ready(function() {
-	if(document.location.search.length) {
-		$("#searchResultsText").show();
-		$("#facetsSection").show();
-	} else {
-		$("#searchResultsText").hide();
-		$("#facetsSection").hide();
-	}
-});
-/*]]>*/
-</script>
-	</body>
+
+		<div class="row-fluid">
+			<div id="facetsSection" class="span2" th:if="${results != null}">
+				<h3>Facets</h3>
+				<div id="authorFacetSection">
+					<h4>Author</h4>
+					<div th:if="${authorFacet != null}">
+						<a th:href="${authorFacet.url}" href="#"><span
+							class="text-error">-</span><span class="text-error"
+							th:text="${authorFacet.value}">George</span></a> <small class="muted">(<span
+							th:text="${authorFacet.count}">12</span>)
+						</small>
+					</div>
+					<div th:each="af : ${facets.author}" th:if="${authorFacet == null}">
+						<a th:href="${af.url}" href="#" th:text="${af.value}">Peter</a> <small
+							class="muted">(<span th:text="${af.count}">12</span>)
+						</small>
+					</div>
+					<div th:remove="all">
+						<a href="#">John</a> <small class="muted">(8)</small>
+					</div>
+				</div>
+				<div>
+					<h4>Year</h4>
+					<div th:if="${yearFacet != null}">
+						<a th:href="${yearFacet.url}" href="#"><span
+							class="text-error">-</span><span class="text-error"
+							th:text="${yearFacet.value}">2008</span></a> <small class="muted">(<span
+							th:text="${yearFacet.count}">12</span>)
+						</small>
+					</div>
+					<div th:each="yf : ${facets.year}" th:if="${yearFacet == null}">
+						<a th:href="${yf.url}" href="#" th:text="${yf.value}">2012</a> <small
+							class="muted">(<span th:text="${yf.count}">12</span>)
+						</small>
+					</div>
+					<div th:remove="all">
+						<a href="#">2010</a> <small class="muted">(8)</small>
+					</div>
+				</div>
+				<div id="keywordFacetSection">
+					<h4>Keywords</h4>
+					<div th:each="keywordFacet : ${keywordFacets}">
+						<a th:href="${keywordFacet.url}" href="#"><span
+							class="text-error">-</span><span class="text-error"
+							th:text="${keywordFacet.value}">Javascript</span></a> <small
+							class="muted">(<span th:text="${keywordFacet.count}">12</span>)
+						</small>
+					</div>
+					<div th:each="keywordFacet : ${facets.keyword}">
+						<a th:href="${keywordFacet.url}" href="#"
+							th:text="${keywordFacet.value}">Java</a> <small class="muted">(<span
+							th:text="${keywordFacet.count}">12</span>)
+						</small>
+					</div>
+					<div th:remove="all">
+						<a href="#">REST</a> <small class="muted">(8)</small>
+					</div>
+				</div>
+				<div>
+					<h4>Skills Provided</h4>
+					<div th:each="psf : ${providedSkillFacets}"
+						id="Software.Monodevelop">
+						<a th:href="${psf.url}" href="#"> <span class="text-error">-</span><span
+							class="text-error" th:text="${psf.value}">Software/Monodevelop</span>
+							<small class="text-error" th:unless="${psf.level == 0}">[<span
+								th:text="${psf.levelName}">Basic</span>]
+						</small>
+						</a> <small class="muted">(<span th:text="${psf.count}">12</span>)
+						</small>
+					</div>
+					<div th:each="psf : ${facets.providedSkill}">
+						<a href="#" th:href="${psf.url}" th:text="${psf.value}">Software/Eclipse</a>
+						<small class="muted" th:unless="${psf.level == 0}">[<span
+							th:text="${psf.levelName}">Basic</span>]
+						</small> <small class="muted">(<span th:text="${psf.count}">12</span>)
+						</small>
+					</div>
+				</div>
+				<div>
+					<h4>Skills Required</h4>
+					<div th:each="rsf : ${requiredSkillFacets}"
+						id="Software.Monodevelop">
+						<a th:href="${rsf.url}" href="#"> <span class="text-error">-</span><span
+							class="text-error" th:text="${rsf.value}">Software/Monodevelop</span>
+							<small class="text-error" th:unless="${rsf.level == 0}">[<span
+								th:text="${rsf.levelName}">Basic</span>]
+						</small>
+						</a> <small class="muted">(<span th:text="${rsf.count}">12</span>)
+						</small>
+					</div>
+					<div th:each="rsf : ${facets.requiredSkill}">
+						<a href="#" th:href="${rsf.url}" th:text="${rsf.value}">Software/Eclipse</a>
+						<small class="muted" th:unless="${rsf.level == 0}">[<span
+							th:text="${rsf.levelName}">Basic</span>]
+						</small> <small class="muted">(<span th:text="${rsf.count}">12</span>)
+						</small>
+					</div>
+				</div>
+			</div>
+			<div class="span10">
+				<h3 th:if="${results != null}">Results</h3>
+				<h3 id="searchResultsText" th:if="${results == null}">No
+					results found</h3>
+				<ol id="results">
+					<li th:each="result : ${results}">
+						<div style="margin-bottom: 15px">
+							<span> <em><a th:href="${result.url}"
+									href="http://architects.dzone.com/news/functional-programming-101-lam"
+									th:text="${result.title}" target="_blank">Functional
+										Programming 101: Lambda Forms</a></em> <small>by</small> <small><span
+									class="icon-user"></span> <a href="#"
+									th:text="${result.author}">Pramod Subramanyan</a></small> <small>on</small>
+								<small><span class="icon-calendar"></span> <span
+									th:text="${result.date}">05.19.2008</span></small> <a
+								th:href="@{'/articles/enricher/' + ${result.id}}"
+								href="enricher.html" rel="tooltip" title="complete metadata"><span
+									class="icon-pencil"></span></a> <a
+								th:href="@{'/articles/record/' + ${result.id}}"
+								href="record.html" rel="tooltip" title="see changes"><span
+									class="icon-time"></span></a>
+							</span> <br /> <small class="muted" th:text="${result.url}">http://architects.dzone.com/news/functional-programming-101-lam</small>
+							<br /> <span class="icon-tags"></span> <small class="muted">Keywords:</small>
+							<small th:each="kw : ${result.keywords}"
+								style="margin-right: 5px"><a href="#" th:text="${kw}"
+								class="text-success">lambda,</a>,</small> <br /> <small><a
+								href="#" class="resultDetailsLink muted">+ more details</a></small>
+							<div class="resultDetails hide">
+								<button type="button"
+									class="resultDetailsClose pull-right close">&times;</button>
+								<h5>Summary</h5>
+								<p th:text="${result.summary}">In this example you will see
+									how to populate a form using Spring annotations. The annotated
+									user controller class is shown below.</p>
+							</div>
+						</div>
+					</li>
+					<li th:remove="all"><span> <em><a
+								href="http://www.dzone.com/tutorials/java/spring/spring-annotations.html"
+								target="_blank">Spring Annotations Tutorial</a></em> <small>by</small>
+							<small><span class="icon-user"></span> <a href="#">Meyyappan
+									Muthuraman</a></small> <small>on</small> <small><span
+								class="icon-calendar"></span> <span>06.15.2012</span></small> <a
+							href="enricher.html" rel="tooltip" title="complete metadata"><span
+								class="icon-pencil"></span></a>
+					</span> <br /> <small class="muted">http://www.dzone.com/tutorials/java/spring/spring-annotations.html</small>
+						<br /> <span class="icon-tags"></span> <small>Keywords:</small> <small><a
+							href="#" class="text-success">Spring,</a></small> <small><a
+							href="#" class="text-success">Java,</a></small> <br /> <small><a
+							href="#" class="resultDetailsLink muted">+ more details</a></small>
+						<div class="resultDetails hide">
+							<button type="button" class="resultDetailsClose pull-right close">&times;</button>
+							<h5>Summary</h5>
+							<p th:text="${result.summary}">In this example you will see
+								how to populate a form using Spring annotations. The annotated
+								user controller class is shown below.</p>
+						</div></li>
+					<script type="text/javascript">
+						/*<![CDATA[*/
+						$('#results').on(
+								'click',
+								'.resultDetailsLink',
+								function(event) {
+									var el = $(this).parent().next(
+											'.resultDetails');
+									if (el.hasClass('hide')) {
+										el.removeClass('hide');
+										$(this).text('- less details');
+									} else {
+										el.addClass('hide');
+										$(this).text('+ more details');
+									}
+									event.preventDefault();
+								});
+
+						$('#results').on(
+								'click',
+								'.resultDetailsClose',
+								function(event) {
+									$(this).parent().addClass('hide');
+									$(this).parent().prev('small').children(
+											'.resultDetailsLink').text(
+											'+ more details');
+									event.preventDefault();
+								});
+						/*]]>*/
+					</script>
+				</ol>
+			</div>
+		</div>
+
+		<hr />
+		<footer class="pull-right" th:substituteby="layout :: footer">
+			<small class="muted">Yarquen, a focused, semantic,
+				distributed crawler :)</small>
+		</footer>
+	</div>
+	<script type="text/javascript">
+		/*<![CDATA[*/
+		$(document).ready(function() {
+			if (document.location.search.length) {
+				$("#searchResultsText").show();
+				$("#facetsSection").show();
+			} else {
+				$("#searchResultsText").hide();
+				$("#facetsSection").hide();
+			}
+		});
+		/*]]>*/
+	</script>
+</body>
 </html>
