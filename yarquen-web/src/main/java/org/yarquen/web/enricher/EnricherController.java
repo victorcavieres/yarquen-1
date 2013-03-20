@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -300,54 +301,33 @@ public class EnricherController {
 		boolean changed = false;
 
 		// Comparing Authors
-		if (persistedArticle.getAuthor() == null
-				&& updatedArticle.getAuthor() != null) {
+		if (!StringUtils.equals(persistedArticle.getAuthor(),
+				updatedArticle.getAuthor())) {
 			enrichmentRecord.setNewAuthor(updatedArticle.getAuthor());
+			enrichmentRecord.setOldAuthor(persistedArticle.getAuthor());
 			enrichmentRecord.setChangedAuthor(true);
 		} else {
-			if (persistedArticle.getAuthor() != null
-					&& !persistedArticle.getAuthor().equals(
-							updatedArticle.getAuthor())) {
-				enrichmentRecord.setNewAuthor(updatedArticle.getAuthor());
-				enrichmentRecord.setChangedAuthor(true);
-				changed = true;
-			} else {
-				enrichmentRecord.setChangedAuthor(false);
-			}
+			enrichmentRecord.setChangedAuthor(false);
 		}
 
 		// Comparing Dates
-		if (persistedArticle.getDate() == null
-				&& updatedArticle.getDate() != null) {
+		if (!StringUtils.equals(persistedArticle.getDate(),
+				updatedArticle.getDate())) {
 			enrichmentRecord.setNewDate(updatedArticle.getDate());
+			enrichmentRecord.setOldDate(persistedArticle.getDate());
 			enrichmentRecord.setChangedDate(true);
 		} else {
-			if (persistedArticle.getDate() != null
-					&& !persistedArticle.getDate().equals(
-							updatedArticle.getDate())) {
-				enrichmentRecord.setNewDate(updatedArticle.getDate());
-				enrichmentRecord.setChangedDate(true);
-				changed = true;
-			} else {
-				enrichmentRecord.setChangedDate(false);
-			}
+			enrichmentRecord.setChangedDate(false);
 		}
 
 		// Comparing Summary
-		if (persistedArticle.getSummary() == null
-				&& updatedArticle.getSummary() != null) {
+		if (StringUtils.equals(persistedArticle.getSummary(),
+				updatedArticle.getSummary())) {
 			enrichmentRecord.setNewSummary(updatedArticle.getSummary());
+			enrichmentRecord.setOldSummary(persistedArticle.getSummary());
 			enrichmentRecord.setChangedSummary(true);
 		} else {
-			if (persistedArticle.getSummary() != null
-					&& !persistedArticle.getSummary().equals(
-							updatedArticle.getSummary())) {
-				enrichmentRecord.setNewSummary(updatedArticle.getSummary());
-				enrichmentRecord.setChangedSummary(true);
-				changed = true;
-			} else {
-				enrichmentRecord.setChangedSummary(false);
-			}
+			enrichmentRecord.setChangedSummary(false);
 		}
 
 		// Comparing Keywords
@@ -386,12 +366,14 @@ public class EnricherController {
 		// Comparing Title
 		if (!persistedArticle.getTitle().equals(updatedArticle.getTitle())) {
 			enrichmentRecord.setNewTitle(updatedArticle.getTitle());
+			enrichmentRecord.setOldTitle(persistedArticle.getTitle());
 			changed = true;
 		}
 
 		// Comparing URL
 		if (!persistedArticle.getUrl().equals(updatedArticle.getUrl())) {
 			enrichmentRecord.setNewUrl(updatedArticle.getUrl());
+			enrichmentRecord.setOldUrl(persistedArticle.getUrl());
 			changed = true;
 		}
 
