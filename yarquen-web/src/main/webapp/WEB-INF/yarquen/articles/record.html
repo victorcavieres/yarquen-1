@@ -47,7 +47,7 @@
 					<span class="icon-step-backward"></span>Previous Change
 				</div>
 				<a th:if="${accountPrev != null}" th:href="@{'/articles/record/'}"
-					href="record.html" rel="tooltip" title="next change"
+					href="record.html" rel="tooltip" title="previous change"
 					style="float: right;"><span class="icon-step-backward">
 				</span>Previous Change </a> <br />
 				<div style="text-align: right;">
@@ -63,6 +63,10 @@
 
 			</div>
 			<div class="span6">
+				<div th:if="${actualRecord != null}">
+					<span class="icon-user"> </span> <small>Choon</small> <span
+						class="icon-calendar"> </span> <small>21/12/2013</small>
+				</div>
 				<table class="table">
 					<tbody>
 						<tr>
@@ -85,34 +89,58 @@
 						</tr>
 						<tr>
 							<td style="text-align: right;"><strong>Summary</strong></td>
-							<td th:if="${actualRecord == null}"
-								th:text="${!article.summary.isEmpty() ? article.summary : 'No summary found'}">Summary
-								of the document Summary of the document Summary of the document
-								Summary of the document</td>
+							<td><p th:if="${actualRecord == null}" align="justify"
+									th:text="${!article.summary.isEmpty() ? article.summary : 'No summary found'}">Summary
+								</p></td>
 						</tr>
 						<tr>
 							<td style="text-align: right;"><strong>Keywords</strong></td>
 							<td th:if="${actualRecord == null}"><span
-								th:each="kw : *{article.keywords}" th:text="${kw}" class="label"></span>
-							</td>
+								th:each="kw : ${article.keywords}" th:text="${kw}" class="label"></span></td>
 							<td th:remove="all"><span class="label">C++</span> <span
 								class="label">Java</span> <span class="label label-important">C#</span><span
 								class="label label-info">Programming Language</span></td>
 						</tr>
+						<tr>
+							<td style="text-align: right;"><strong>Provided
+									Skills</strong></td>
+							<td th:if="${actualRecord == null}"><span
+								th:if="${article.providedSkills != null and !article.providedSkills.isEmpty()}"
+								th:each="pS : ${article.providedSkills}"
+								th:text="${pS.friendlyName()}" class="label"></span><span
+								th:if="${article.providedSkills == null or article.providedSkills.isEmpty()}">No
+									Provided Skills found.</span></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"><strong>Required
+									Skills</strong></td>
+							<td th:if="${actualRecord == null}"><span
+								th:if="${article.requiredSkills != null and !article.requiredSkills.isEmpty() and article.requiredSkills.size() > 0}"
+								th:each="rS : ${article.requiredSkills}"
+								th:text="${rS.friendlyName()}" class="label"></span> <span
+								th:if="${article.requiredSkills == null or article.requiredSkills.isEmpty()}">No
+									Required Skills found.</span></td>
+						</tr>
 					</tbody>
 				</table>
-
 			</div>
 			<div class="span3">
-
-				<a th:href="@{'/articles/record/'}" href="record.html" rel="tooltip"
-					title="previous change">Next Change <span
-					class="icon-step-forward"> </span></a>
+				<div th:if="${accountNext == null}">
+					Next Change <span class="icon-step-forward"></span>
+				</div>
+				<a th:if="${accountNext != null}" th:href="@{'/articles/record/'}"
+					href="record.html" rel="tooltip" title="next change">Next
+					Change <span class="icon-step-forward"> </span>
+				</a>
 				<div>
-					User: <strong>Usuario B</strong>
+					User: <strong th:if="${accountNext != null}"
+						th:text="${accountNext.firstName + ' ' + accountNext.familyName}">Usuario
+						B</strong><strong th:if="${accountNext == null}"> - </strong>
 				</div>
 				<div>
-					Change Date: <strong> 21/04/2012</strong>
+					Change Date: <strong th:if="${accountNext != null}"
+						th:text="${'fecha'}"> 21/04/2012</strong><strong
+						th:if="${accountNext == null}"> - </strong>
 				</div>
 			</div>
 

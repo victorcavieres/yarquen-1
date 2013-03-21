@@ -96,7 +96,7 @@ public class Skill {
 		return "AccountSkill [categoryBranch=" + categoryBranch + ", level="
 				+ level + "]";
 	}
-	
+
 	@Override
 	public boolean equals(Object anObject) {
 		if (this == anObject) {
@@ -112,6 +112,11 @@ public class Skill {
 		return false;
 
 	}
-	
-	
+
+	public String friendlyName() {
+		return categoryBranch.getNodes()
+				.get(categoryBranch.getNodes().size() - 1).getName()
+				+ ": " + getLevelName();
+	}
+
 }
