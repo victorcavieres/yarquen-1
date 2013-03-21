@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.yarquen.account.Account;
+import org.yarquen.account.AccountRepository;
 import org.yarquen.article.Article;
 import org.yarquen.article.ArticleRepository;
 import org.yarquen.web.enricher.EnrichmentRecord;
@@ -35,6 +37,8 @@ public class RecordController {
 	private EnrichmentRecordRepository enrichmentRecordRepository;
 	@Resource
 	private ArticleRepository articleRepository;
+	@Resource
+	private AccountRepository accountRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String initRecordView(@PathVariable String articleId, Model model,
@@ -44,7 +48,18 @@ public class RecordController {
 		if (article != null) {
 			final List<EnrichmentRecord> articleHistory = enrichmentRecordRepository
 					.findByArticleId(articleId);
-			
+
+			model.addAttribute("article", article);
+			model.addAttribute("articleRecords", articleHistory);
+			model.addAttribute("actualRecord", null);
+
+			if (articleHistory.size() > 0) {
+				final Account account = accountRepository
+						.findOne(articleHistory.get(articleHistory.size() - 1)
+								.getAccountId());
+				model.addAttribute("accountPrev", account);
+			}
+
 			LOGGER.debug("Article ID: [{}] has {} enrichment records.",
 					articleId, articleHistory.size());
 			return "articles/record";

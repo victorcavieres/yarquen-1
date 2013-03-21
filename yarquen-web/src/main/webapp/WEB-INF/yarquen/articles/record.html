@@ -41,8 +41,81 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span4">hola 4</div>
-			<div class="span8">hola 8</div>
+			<div class="span3">
+
+				<div th:if="${accountPrev == null}" style="float: right;">
+					<span class="icon-step-backward"></span>Previous Change
+				</div>
+				<a th:if="${accountPrev != null}" th:href="@{'/articles/record/'}"
+					href="record.html" rel="tooltip" title="next change"
+					style="float: right;"><span class="icon-step-backward">
+				</span>Previous Change </a> <br />
+				<div style="text-align: right;">
+					User: <strong th:if="${accountPrev != null}"
+						th:text="${accountPrev.firstName + ' ' + accountPrev.familyName}">Usuario
+						A</strong><strong th:if="${accountPrev == null}"> - </strong>
+				</div>
+				<div style="text-align: right;">
+					Change Date: <strong th:if="${accountPrev != null}"
+						th:text="'2121212'">Usuario A</strong><strong
+						th:if="${accountPrev == null}"> - </strong>
+				</div>
+
+			</div>
+			<div class="span6">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td style="text-align: right;"><strong>Title</strong></td>
+							<td th:if="${actualRecord == null}" th:text="${article.title}">Title
+								of the document</td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"><strong>Author</strong></td>
+							<td th:if="${actualRecord == null}" th:text="${article.author}">Stanley
+								Cooper</td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"><strong>Date</strong></td>
+							<td th:if="${actualRecord == null}" th:text="${article.date}">20/12/2012</td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"><strong>URL</strong></td>
+							<td th:if="${actualRecord == null}" th:text="${article.url}">www.site.cl</td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"><strong>Summary</strong></td>
+							<td th:if="${actualRecord == null}"
+								th:text="${!article.summary.isEmpty() ? article.summary : 'No summary found'}">Summary
+								of the document Summary of the document Summary of the document
+								Summary of the document</td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"><strong>Keywords</strong></td>
+							<td th:if="${actualRecord == null}"><span
+								th:each="kw : *{article.keywords}" th:text="${kw}" class="label"></span>
+							</td>
+							<td th:remove="all"><span class="label">C++</span> <span
+								class="label">Java</span> <span class="label label-important">C#</span><span
+								class="label label-info">Programming Language</span></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="span3">
+
+				<a th:href="@{'/articles/record/'}" href="record.html" rel="tooltip"
+					title="previous change">Next Change <span
+					class="icon-step-forward"> </span></a>
+				<div>
+					User: <strong>Usuario B</strong>
+				</div>
+				<div>
+					Change Date: <strong> 21/04/2012</strong>
+				</div>
+			</div>
+
 
 		</div>
 
